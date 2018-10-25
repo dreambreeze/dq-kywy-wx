@@ -1,0 +1,27 @@
+<view class="contianer">
+  <view class="random-tech">随机分配技师
+    <view class="check-box">
+      <text class="active"></text>
+    </view>
+  </view>
+
+  <view class="tech-content">
+    <view class="optional">
+      <text>4</text>名技师可选</view>
+    
+    <view class="tech-item" wx:for="{{techArr}}">
+      <view class="flex-wrp">
+        <image class="tech-img" src="https://iservice.daqisoft.cn/Public/Home/images/tech_img.png" lazy-load></image>
+        <view class="tech-info">
+          <view class="tech-name">102号</view>
+          <view class="tech-inte">女/26岁/SPA、理疗技师</view>
+          <view class="check-box">
+            <text></text>
+          </view>
+        </view>
+
+      </view>
+    </view>
+
+  </view>
+</view>

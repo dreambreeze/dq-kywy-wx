@@ -1,0 +1,114 @@
+/**
+ * 小程序公用Js
+ */
+// 引入腾讯地图SDK核心类
+var QQMapWX = require('/pages/common/lib/qqmap-wx-jssdk.min.js');
+
+var host = "https://iservice.daqisoft.cn"
+/**
+ * 配置参数
+ */
+var config = {
+  // 下面为公用配置
+  //主域名
+  host: host,
+  //显示图片域名
+  showImgUrl: host + '/Uploads/',
+  //腾讯地图API KEY
+  QQMapWXKey: 'SEABZ-R7CKF-56RJH-NMADQ-ECCZJ-W3FRG',
+  //无会员卡图片的默认会员卡图
+  cardPicUrl: host + '/Public/Home/images/docard3.png'
+};
+
+/**
+ * 技术支持跳转
+ */
+function jishuzhichi() {
+  wx.navigateTo({
+    url: '../webView/webView',
+  });
+}
+
+/**
+ * 验证手机号码是否合法
+ **/
+function ismobile(value) {
+  var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(14[1-9]{1})|(17[0-9]{1})|(19[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+  return mobile.test(value);
+}
+/**
+ * 验证邮箱是否合法
+ **/
+function isemail(value) {
+  var email = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+  return email.test(value);
+}
+//验证是否是座机号
+function istel(tel) {
+  var telReg = /^\d{3,4}[-]\d{7,8}$/g;
+  return telReg.test(tel);
+}
+//验证是否是数字
+function isnumber(a) {
+  var reg = /^\d+$/g;
+  return (reg.test(a));
+}
+//验证金额是否正确
+function ismoney(money) {
+  var reg = /^\d+[\.]?\d+$|\d+$/;
+  return reg.test(money);
+}
+
+//检查功能是否开启或有权限
+function checkFun(id, authorizerId) {
+  wx.request({
+    url: host + '/index.php/Api/Base/checkFun',
+    data: {
+      'authorizerId': authorizerId,
+      'id': id
+    },
+    method: 'POST',
+    header: {
+      'content-type': 'application/json'
+    },
+    success: function (res) {
+      if (res.statusCode == 200 && res.data.status == 0) {
+        wx.redirectTo({
+          url: '/pages/component/pages/checkPrivilege/checkPrivilege?message=' + res.data.info
+        });
+      }
+    }
+  });
+}
+
+//地址解析(地址转坐标)
+function addressToCoor(address){
+  var qqmapsdk = new QQMapWX({
+    key: config.QQMapWXKey
+  });
+
+  qqmapsdk.geocoder({
+    address: address,
+    success: function (res) {
+      console.log(res);
+      if (res.status == 0) {
+        return res.result;
+      } else {
+        return false;
+      }
+    },
+    fail: function (res) {
+      return false;
+    }
+  });
+}
+
+module.exports.config = config;
+module.exports.jishuzhichi = jishuzhichi;
+module.exports.ismobile = ismobile;
+module.exports.isemail = isemail;
+module.exports.istel = istel;
+module.exports.isnumber = isnumber;
+module.exports.ismoney = ismoney;
+module.exports.checkFun = checkFun;
+module.exports.addressToCoor = addressToCoor;

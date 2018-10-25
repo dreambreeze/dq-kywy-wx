@@ -1,0 +1,49 @@
+<view class="project-info">
+  <view class="flex-wrp">
+    <image class="p-img" src="https://iservice.daqisoft.cn/Public/Home/images/home_banner.png" lazy-load></image>
+    <view class="p-info">
+      <view class="p-name">60分钟飘然若仙</view>
+      <view class="p-time">
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/order_time_icon.png" lazy-load></image>
+        <text space="nbsp" decode>今天01-25  17:00</text>
+      </view>
+      <view class="p-store">
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/order_store_icon.png" lazy-load></image>和毅足道滨江店</view>
+    </view>
+    <view class="p-price">
+        <view>￥236.00</view>
+        <view>￥266.00</view>
+    </view>
+  </view>
+</view>
+
+<view class="reserve-num">预订数量：
+  <view class="num-fun">
+    <text bindtap="lessNum">－</text>
+    <text>{{nums}}</text>
+    <text bindtap="addNum">＋</text>
+  </view>
+</view>
+
+<view class="selecter-iner" bindtap="toSelectTech">选择技师：
+  <view class="select-tips">不限<image lazy-load src="https://iservice.daqisoft.cn/Public/Home/images/arrowright1.png"></image></view>
+</view>
+
+<view class="selecter-iner" bindtap="toSelectCoupon">优惠券：
+  <view class="coupon-tips"><text>1个可用</text><image lazy-load src="https://iservice.daqisoft.cn/Public/Home/images/arrowright1.png"></image></view>
+</view>
+
+<view class="input-box">
+  <textarea maxlength="50" placeholder="备注：可将您其它要求告知我们" cursor-spacing="50" bindinput="remarks"></textarea>
+  <view class="input-limit">{{inputLimit}}</view>
+</view>
+
+<view class="order-bar">
+  <view class="flex-wrp">
+    <view class="order-price">
+      <text class="p-num">2个</text>
+      <text class="price"><text>合计：</text>￥239.00</text>
+    </view>
+    <view class="order-btn" bindtap="toSuccess">确定下单</view>
+  </view>
+</view>

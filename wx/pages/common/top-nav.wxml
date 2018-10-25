@@ -1,0 +1,13 @@
+<template name="top-nav">
+  <view class="top-nav">
+    <view class="flex-wrp nav-flex">
+      <view class="nav-coupons {{status == 0 ? 'active' : ''}}">
+        <navigator url="{{url[0]}}" hover-class="" open-type="redirect">{{title[0]}}</navigator>
+      </view>
+      <view class="coupon-pack {{status == 1 ? 'active' : ''}}">
+        <navigator url="{{url[1]}}" hover-class="" open-type="redirect">{{title[1]}}</navigator>
+      </view>
+      
+    </view>
+  </view>
+</template>

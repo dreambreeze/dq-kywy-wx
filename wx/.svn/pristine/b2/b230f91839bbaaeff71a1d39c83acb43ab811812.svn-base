@@ -1,0 +1,104 @@
+.addaddr{
+  display: flex;
+  align-items: center;
+  padding: 0 32rpx;
+  height: 90rpx;
+}
+.addaddr .icon{
+  width: 36rpx;
+  height: 36rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+.addaddr .icon image{
+  width: 33rpx;
+  height: 33rpx;
+}
+.addaddr  .title{
+  flex: 1;
+  margin-left: 24rpx;
+  font-size: 32rpx;
+}
+.addaddr .rightimg {
+  display: flex;
+  align-items: center;
+}
+.addaddr .rightimg image{
+  width: 14rpx;
+  height: 26rpx;
+}
+
+.addrlist{
+  width: 100%;
+}
+.addrlist .a-item{
+  padding: 30rpx  0 30rpx 32rpx;
+  border-bottom: 1rpx solid rgba(0,0,0,0.1);
+  display: flex;
+  position: relative;
+
+  flex-direction: column
+}
+.addrlist .a-item .i-top{
+  display: flex;
+  position: relative;
+  align-items: center
+}
+.a-item .i-bottom{
+  margin-top:10rpx;
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: #666
+}
+.i-bottom .default{
+  flex: 1
+}
+.i-bottom .delete{
+  display: flex;
+  align-items: center;
+  margin-right: 8rpx;
+  height: 58rpx;
+  width: 100rpx;
+}
+.i-bottom .delete image{
+width: 26rpx;
+height: 26rpx;
+margin-right: 10rpx
+}
+.a-item .active{
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+}
+.a-item .active.display{
+  display: block
+}
+.a-item .active image{
+  width: 79rpx;
+  height: 70rpx;
+}
+.a-item .i-left{
+flex:1 ;
+}
+.i-left .l-phone{margin-top: 10rpx}
+.a-item .i-right{
+  margin-left: 8rpx;
+  width: 98rpx;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1rpx solid rgba(0,0,0,0.1)
+}
+.a-item .i-right image{
+  width: 32rpx;
+  height: 32rpx;
+}
+.reminder{
+  font-size: 22rpx;
+  color: #666;
+  margin: 120rpx 0;
+}

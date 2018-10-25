@@ -1,0 +1,128 @@
+<import src="../../../common/reserve-stime.wxml"/>
+<view class="container">
+  <view class="top-store">
+    <view class="flex-wrp">
+      <image class="store-img" src="https://iservice.daqisoft.cn/Public/Home/images/home_banner.png" lazy-load></image>
+      <view class="store-name">
+        <view class="s-name">和毅足道滨江店</view>
+        <view class="s-coupon">
+          <image src="https://iservice.daqisoft.cn/Public/Home/images/bulletin_icon.png" lazy-load></image>
+          您有一张优惠券待领取</view>
+      </view>
+      <view class="change-store">
+        <view class="change-store-btn btn-gradient" bindtap="changeStoreBtn">切换门店
+          <image src="https://iservice.daqisoft.cn/Public/Home/images/double_arrow_icon.png" lazy-load></image>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="top-store-address">
+    <view class="flex-wrp">
+      <view class="address text-ellipsis">
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/location_icon_1.png" lazy-load></image>
+        长沙市雨花区人民东路与万家丽
+      </view>
+      <view class="location">699.3km
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/location_icon_2.png" lazy-load></image>
+      </view>
+      <view class="telphone">
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/telphone_icon_1.png" lazy-load></image>
+      </view>
+    </view>
+  </view>
+  <view class="project-search-box">
+    <view class="project-search" bindtap="toSearchProject">
+      <image src="https://iservice.daqisoft.cn/Public/Home/images/search.png" lazy-load></image>请输入关键字</view>
+  </view>
+  <view class="category-project-box">
+    <view class="category-project">
+      <view class="category-project-flex" bindtouchstart="categorystart">
+        <view class="cate-item active">全部
+          <view></view>
+        </view>
+        <view class="cate-item">SPA
+          <view></view>
+        </view>
+        <view class="cate-item">中医
+          <view></view>
+        </view>
+        <view class="cate-item">泰式
+          <view></view>
+        </view>
+        <view class="cate-item">普足
+          <view></view>
+        </view>
+        <view class="cate-item">SPA
+          <view></view>
+        </view>
+        <view class="cate-item">中医
+          <view></view>
+        </view>
+        <view class="cate-item">泰式
+          <view></view>
+        </view>
+        <view class="cate-item">普足
+          <view></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="project-box">
+    <view class="project-item" catchtap="navigatordetail">
+      <view class="flex-wrp">
+        <image class="project-img" src="https://iservice.daqisoft.cn/Public/Home/images/home_banner.png" lazy-load></image>
+        <view class="pject-info">
+          <view class="pject-name text-ellipsis">60分钟飘然若仙
+            <text>限女生</text>
+          </view>
+          <view class="pject-intr text-ellipsis">介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍</view>
+          <view class="pject-price">￥250.00</view>
+        </view>
+        <view class="pject-reserve">
+          <view class="pject-reserve-btn btn-gradient" catchtap="reserveBtn">预约</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="project-item" catchtap="navigatordetail">
+      <view class="flex-wrp">
+        <image class="project-img" src="https://iservice.daqisoft.cn/Public/Home/images/home_banner.png" lazy-load></image>
+        <view class="pject-info">
+          <view class="pject-name text-ellipsis">60分钟飘然若仙</view>
+          <view class="pject-intr text-ellipsis">介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍</view>
+          <view class="pject-price">￥250.00</view>
+        </view>
+        <view class="pject-reserve">
+          <view class="pject-reserve-btn btn-gradient" catchtap="reserveBtn">预约</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="project-item" catchtap="navigatordetail">
+      <view class="flex-wrp">
+        <image class="project-img" src="https://iservice.daqisoft.cn/Public/Home/images/home_banner.png" lazy-load></image>
+        <view class="pject-info">
+          <view class="pject-name text-ellipsis">60分钟飘然若仙</view>
+          <view class="pject-intr text-ellipsis">介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍</view>
+          <view class="pject-price">￥250.00</view>
+        </view>
+        <view class="pject-reserve">
+          <view class="pject-reserve-btn btn-gradient" catchtap="reserveBtn">预约</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<!-- 分享按钮 -->
+<view class="share-box">
+  <button hover-class="none" open-type="share">
+    <text>分享</text>
+  </button>
+</view>
+
+<!-- 选择时间模版 -->
+<template is="reserve-stime" data="{{maskDisplay: maskDisplay,showSelectTime: showSelectTime}}" />

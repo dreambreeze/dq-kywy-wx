@@ -1,0 +1,21 @@
+<import src="../../../common/coupons.wxml" />
+<import src="../../../common/top-nav.wxml" />
+<view class="container">
+  <!-- 顶部导航模版 -->
+  <template is="top-nav" data="{{url:['../coupons-pack/coupons-pack','../expired-coupon/expired-coupon'],title:['我的券包','已使用/过期'],status: 1}}" />
+  <view class="coupon-box">
+    <block wx:if="{{coupons[0]}}">
+      <!-- 卡券内容模版 -->
+      <template is="coupons" data="{{coupons:coupons,display:display,ishide:ishide,btnName: '立即使用',arrow: arrow,cAction: 'active'}}" />
+    </block>
+    <block wx:else>
+      <view class="empty-coupon">
+        <icon type="warn" size="50" color="#d6d6d6"></icon>
+        <view class="empty-t">暂无失效优惠券</view>
+        <view class="empty-btn" hidden>
+          <navigator url="../coupons/coupons" open-type="redirect" hover-class="none">去领取</navigator>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

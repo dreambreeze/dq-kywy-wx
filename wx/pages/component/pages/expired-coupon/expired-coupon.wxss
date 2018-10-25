@@ -1,0 +1,44 @@
+@import "../../../common/coupons.wxss";
+@import "../../../common/top-nav.wxss";
+@import "/pages/common/lib/animate.wxss";
+.container {
+  background: #eee;
+}
+
+.coupon-box {
+  padding: 24rpx;
+  overflow: hidden;
+  min-height: 1150rpx;
+}
+
+.empty-coupon{
+  text-align: center;
+  font-size: 32rpx;
+  color: #999999;
+  margin-top: 275rpx;
+}
+
+.empty-t{
+  margin-top: 10rpx;
+}
+
+.empty-btn{
+  width: 274rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+  margin: 90rpx auto 0;
+  text-align: center;
+  font-size: 30rpx;
+  color: #caa876;
+  border-radius: 6rpx;
+  border: 1rpx solid #caa876;
+}
+
+.status-box {
+position:absolute;
+right:-10rpx;
+top:-18rpx;
+width:180rpx;
+height:180rpx;
+
+}

@@ -1,0 +1,66 @@
+<view class="qrcode-content">
+  <view class="con-box">
+    <view class="head-info flex-wrp">
+      <image src="http://nwx.daqisoft.cn/uploads/j/jmprxe1453369563/2/3/b/6/thumb_59f7ee1141ddc.jpg" lazy-load mode="aspectFill"></image>
+      <view class="infos">
+        <view class="ptitle">60分钟飘然若仙</view>
+        <view class="pstore">门店：和毅足道滨江店</view>
+        <view class="pstore">地址：湖南省长沙市芙蓉区人民东路</view>
+      </view>
+    </view>
+
+    <view class="qrcode-box">
+      <image src="https://iservice.daqisoft.cn/Public/Home/images/coupon.png" lazy-load></image>
+
+      <view class="sumption-tips">出示二维码消费</view>
+      <view class="verify-code">验证码：2910 4893 2849 4839</view>
+
+      <view class="useed" hidden></view>
+    </view>
+  </view>
+
+  <view class="again-reserve" hidden>
+    <view bindtap="jumpPage" data-url="/pages/reserve/pages/reserve-project/reserve-project">再次预约</view>
+    <view class="active" bindtap="jumpPage" data-url="/pages/transbuy/pages/assess/assess">评价</view>
+  </view>
+</view>
+
+<view class="bottom-con">
+  <view class="order-infos">
+    <view class="order-title">订单信息</view>
+    <view class="order-info-con">
+      <view>
+        <text>订单状态：</text>待消费...</view>
+      <view>
+        <text>实付金额：</text>￥213.00</view>
+      <view>
+        <text>备注信息：</text>肩颈痛</view>
+      <view>
+        <text>订 单 号：</text>49865932918446661</view>
+      <view>
+        <text>下单时间：</text>2017-01-05 20:20</view>
+      <view>
+        <text>消费时间：</text>2017-02-05 03:20</view>
+    </view>
+  </view>
+
+  <view class="top-store-address">
+    <view class="store-name">和毅足道滨江店</view>
+    <view class="flex-wrp">
+      <view class="address text-ellipsis">
+        长沙市雨花区人民东路与万家丽
+      </view>
+      <view class="location">699.3km
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/location_icon_2.png" lazy-load></image>
+      </view>
+      <view class="telphone">
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/telphone_icon_1.png" lazy-load></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="ad-box">
+    <image src="https://iservice.daqisoft.cn/Public/Home/images/ad.png" lazy-load></image>
+  </view>
+</view>
+

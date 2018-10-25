@@ -1,0 +1,59 @@
+<view class="container">
+  <block wx:if="{{storeProject.length > 0}}">
+
+   <!--bindtap="goProjectStore" data-nodeid="{{store.nodeid}}"  -->
+
+    <block wx:for="{{storeProject}}" wx:for-index="idx" wx:for-item="store">
+      <view class="store-item">
+        <view class="store-title" >
+          <text class="store-ico"></text>
+          <text class="store-name">{{store.store_name}}</text>
+          <text class="jump-ico"></text>
+          <text class="distance">{{store.distance == '未知' ? '未知' : store.distance + 'm'}}</text>
+        </view>
+
+        <!-- 项目模版 -->
+        <!-- <template is="project" data="{{isHeight: !search ? true : false,projectArr: store.project,sIdx: idx,heightIdx: heightIdx,heightOff: heightOff,height: height,showImgUrl: showImgUrl}}" /> -->
+        <view class="item" wx:for="{{store.project}}" data-pid="{{item.id}}" data-nodeid="{{store.nodeid}}" wx:key="" bindtap='todetail'>
+            <view class='i-img'><image mode="aspectFill"  src='{{item.picurl[0]}}'></image></view>
+            <view class='i-bottom'>
+              <view class='i-name'>
+                  {{item.project}}
+              </view>
+              <view class='i-avatar flex' wx:if="{{item.orders}}">
+                  <view class='a-pic'>
+                    <view class='' wx:for="{{item.orders}}" wx:key="" wx:for-item="order">
+                      <image src='{{order.pavatar}}'></image>
+                    </view>
+                  </view>
+                  <view class='a-count'>
+                    已拼 {{item.count}} 件
+                  </view>
+              </view>
+              <view class='i-pricebutton flex'>
+                <view class='left flex'> 
+                  <view class='groupp'><text >￥</text>{{item.groupprice}}</view>
+                  <view class='marketp'>￥{{item.marketprice}}</view>
+                  <view class='nums'>{{item.nums}}人团</view>
+                </view>
+                <view class='togroup'>去开团</view>
+              </view>
+            </view>
+        </view>
+
+
+        <!-- <view class="look-more" bindtap="goProjectStore" data-nodeid="{{store.nodeid}}" wx:if="{{!search}}">查看全部团购项目
+          <view class="arrowdown"></view>
+        </view> -->
+      </view>
+    </block>
+
+  </block>
+  <block wx:else>
+    <view class="empty-assess">{{projectState}}</view>
+  </block>
+
+</view>
+
+<!-- 导航模版公用 -->
+<!-- <template is="buy-nav" data="{{buyNavType: 'home'}}" /> -->

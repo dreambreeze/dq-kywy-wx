@@ -1,0 +1,164 @@
+@import "../../../common/reserve-stime.wxss";
+@import "../../../common/online-reserve.wxss";
+.container {
+  background: #e5e5e5;
+}
+
+/* .project-search-box {
+  background: #fff;
+  padding-top: 26rpx;
+}
+
+.project-search {
+  text-align: center;
+  width: 430rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border-bottom: 1rpx solid #b2b2b2;
+  margin: 0 auto;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.project-search image {
+  width: 22rpx;
+  height: 23rpx;
+  vertical-align: middle;
+  margin-top: -4rpx;
+  margin-right: 12rpx;
+} */
+
+.category-project-box {
+  background: #fff;
+}
+
+.category-project {
+  overflow: hidden;
+  margin: 0 46rpx;
+}
+
+.category-project-flex {
+  padding: 24rpx 0 17rpx;
+  width: 1000rpx;
+  position: relative;
+}
+
+.cate-item {
+  padding: 0 24rpx 14rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #535353;
+  position: relative;
+  display: inline-block;
+}
+
+.cate-item view {
+  width: 0;
+  height: 0;
+}
+
+.cate-item.active {
+  color: #be9e70;
+}
+
+.cate-item.active view {
+  width: 36rpx;
+  height: 8rpx;
+  background: #be9e70;
+  border-radius: 15rpx;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -18rpx;
+}
+
+.project-box {
+  background: #fff;
+  padding: 0 22rpx 150rpx;
+}
+
+.project-item {
+  padding: 23rpx 0 25rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.project-item:last-child {
+  border: none;
+}
+
+.project-img {
+  width: 131rpx;
+  height: 130rpx;
+  margin-right: 29rpx;
+  border-radius: 6rpx;
+}
+
+.pject-info {
+  width: 410rpx;
+  line-height: 1;
+}
+
+.pject-name {
+  font-size: 30rpx;
+  color: #333;
+  padding: 8rpx 0 12rpx;
+}
+
+.pject-name text {
+  display: inline-block;
+  line-height: 1;
+  font-size: 22rpx;
+  color: #be9e70;
+  border: 1rpx solid #be9e70;
+  border-radius: 15rpx;
+  padding: 0 8rpx; 
+  margin-left: 8rpx;
+}
+
+.pject-intr {
+  font-size: 24rpx;
+  color: #848484;
+  padding-bottom: 30rpx;
+}
+
+.pject-price {
+  font-size: 28rpx;
+  color: #e40a0a;
+}
+
+.pject-reserve {
+  flex: 1;
+  text-align: center;
+}
+
+.pject-reserve icon{
+  margin-top: 40rpx;
+  display: none;
+}
+
+.pject-reserve-btn {
+  margin-left: 12rpx;
+  width: 118rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 28rpx;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 4rpx 12rpx rgba(199, 156, 98, 0.5);
+  border-radius: 6rpx;
+  margin-top: 40rpx;
+}
+
+.buy-bar {
+  width: 100%;
+  height: 97rpx;
+  line-height: 97rpx;
+  background: #be9e70;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  font-size: 34rpx;
+  color: #fff;
+  font-weight: 500;
+}

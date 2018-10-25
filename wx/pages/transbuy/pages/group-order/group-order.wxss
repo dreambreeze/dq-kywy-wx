@@ -1,0 +1,50 @@
+
+@import "../../../common/order-item.wxss";
+
+.contianer {
+  background: #eee;
+  min-height: 1106rpx;
+  
+  padding-top: 94rpx;
+}
+
+.empty-order image{
+height:150rpx;
+width:346rpx;
+margin-bottom: 80rpx;
+}
+.head{
+  height: 90rpx;
+  background-color: #353535;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  color: #caa876;
+  font-size: 30rpx;
+  padding-bottom: 10rpx;
+  position:fixed;
+  width:100%;
+  top:0;
+
+}
+.head view{
+  margin: 0 68rpx;
+  height:54rpx;
+}
+.head .active::after{
+content:" ";
+display:block;
+height:6px;
+border-radius: 4rpx;
+margin:-4px auto;
+transition:width 0.3s ease 0s;
+width:50%;
+margin-top:0px;
+border-bottom:7rpx solid #caa876;
+}
+
+.order-title .tright{
+  float: right;
+  font-size: 22rpx;
+  color: #caa876
+}

@@ -1,0 +1,25 @@
+<import src="../../../common/top-nav.wxml" />
+<view class="container">
+  <!-- 顶部导航模版 -->
+  <template is="top-nav" data="{{url:['../historycons/historycons','../hisannal/hisannal'],title:['会员卡消费','转赠卡记录'],status: 0}}" />
+
+  <view class="his-tab">
+    <view class="his-title">消费总金额：20000元</view>
+
+    <view class="tables">
+      <view class="flex-wrp flex-title">
+        <view class="tab-item">日期</view>
+        <view class="tab-item">卡类型</view>
+        <view class="tab-item">卡号</view>
+        <view class="tab-item">金额（元）</view>
+      </view>
+
+      <view class="flex-wrp" wx:for="{{historycons}}">
+        <view class="tab-item">2017-05-28</view>
+        <view class="tab-item">铂金卡</view>
+        <view class="tab-item">243544125454512</view>
+        <view class="tab-item">30000.00</view>
+      </view>
+    </view>
+  </view>
+</view>

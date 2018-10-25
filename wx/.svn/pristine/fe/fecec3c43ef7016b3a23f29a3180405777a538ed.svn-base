@@ -1,0 +1,189 @@
+<view class='amcontainer'>
+
+ <scroll-view class='sv' scroll-y="true"  >
+ <!--订单收货信息  -->
+  <view class='head'>
+      <view class='black'></view>
+      <view class='white'></view>
+      <view class='h-content'>
+          <view class='userinfo'>
+              <view class="addr">当前房间：{{roomname}}</view>
+              <view class="info">
+                <view class='c-flex'>
+                  {{phoneinfo.names}}   {{phoneinfo.phone}}
+                </view>
+              </view>
+               <image class='torightimg'  src="{{toright}}"></image>
+          </view>
+          <view class='arrivetime'>
+           <!-- <view style='flex:1;'>大约{{arrivetime}}分钟送达</view> -->
+          </view>
+      </view>
+  </view>
+
+  <!--选择支付方式  -->
+  <view class='swiper'>
+   <view class='sw-head c-head flex-wrp'>
+        <view class='ssway'>选择支付方式</view>
+        <image class='c-img1' src="{{toright}}"> </image>
+  </view>
+  <swiper indicator-dots="true"  previous-margin="90rpx" next-margin="90rpx"  bindchange='bindchange'>
+      <block wx:for="{{payWayList}}" wx:key="imgid">
+        <swiper-item item-id="{{index}}"  >
+           <view class="swiper-item {{item.CardNo?'forcard':''}} {{index==pyselected?'siactive':''}}">
+            <block wx:if="{{!item.pic}}">
+              <view class='cardimg'>
+                <image src='{{item.PicUrl?showImgUrl:""}}{{item.PicUrl?item.PicUrl:defaultcardimg}}'  class="slide-image {{index==pyselected?'active':''}} "></image>
+              </view>
+              <view class='cardinfo'>
+                <view class='cardname'>{{item.MembershipTypeName}}</view>
+                <view class="cardno">
+                  卡号：{{item.CardNo}}
+                </view>
+                <view class="cardno">
+                  余额：{{item.CardNum*1.00 + item.SendNum*1.00}}
+                </view>
+              </view>
+
+            </block>
+            <block wx:elif="{{item.pic}}">
+              <view class='cardimg'>
+                <image src='{{item.pic}}'   class="slide-image {{index==pyselected?'weactive':''}} "></image>
+              </view>
+              <view class='cardinfo'>
+                <view class='cardname'>{{item.MembershipTypeName}}</view>
+              </view>
+            </block>
+           
+            </view>
+          <!-- <image src="{{item}}" class="slide-image {{index==selected?'active':''}} " /> -->
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+<view class='line'></view>
+ 
+ <!--项目信息  -->
+  <view class='content'>
+    <view class='c-head'>
+        <image class='c-img' src="{{storeimg}}"> </image>
+        {{store.store_name}}
+        <image class='c-img1' src="{{toright}}"> </image>
+    </view>
+    <view class='c-list' >
+      <!-- 项目信息头 -->
+        <view class='c-title'>
+         
+          <view class='t-info' bindtap='initiativeSelectAll'>
+            <image class='' src ="{{selectAllStatus?selectedimg:noselectedimg}}"></image>
+           商品信息
+          </view>
+          <view class='t-num'>数量</view>
+          <view class='t-num'>单价</view>
+          <view class='t-num'>金额</view>
+        </view>
+        <view class='c-item'  wx:for="{{cart.list}}" wx:for-index="id" wx:for-item="num" wx:key="c-id">
+            <view class='selimg' bindtap='selectList' data-id="{{id}}">
+                <image class='' src ="{{goods[id].selected?selectedimg:noselectedimg}}"></image>
+            </view>
+            
+            <image class='i-img' src = "{{goods[id].picurl?showImgUrl+goods[id].picurl[0]:fooddefpic}}"></image>
+            <view class='i-name'>{{goods[id].serviceitemname}}</view>
+            <view class="i-num">x {{num}}</view>
+            <view class="i-total">
+                      <text class='oprice'></text>
+                      ￥{{goods[id].itembaseprice>0?goods[id].itembaseprice:"0"}}
+                  <!-- {{goods[id].onlycash==0?"会员":"现金"}} --></view>
+            <view  class="i-total">￥{{pyselected>0?
+            cart.iteminfo[id].BasePrice>0?cart.iteminfo[id].BasePrice*num:
+            goods[id].itembaseprice>0?goods[id].itembaseprice*num:"0":goods[id].itembaseprice>0?
+            goods[id].itembaseprice*num:"0"}}
+                  </view>
+        </view>
+    </view>
+    <view class='c-foot'>
+        <view class='f-all'>共{{cart.count}}件商品</view>
+        <view class='f-pay '>应付：<text class='f-money'>￥{{cart.total}}</text></view>
+    </view>
+  </view>
+
+  <view class='line'></view>
+  <!--备注  -->
+  <view class='note'>
+      <view class='n-title'>备注：</view>
+      <view class='n-desc' bindtap='tonote'>
+        <view class='n-note'>{{noteword==''?note:noteword}}</view>
+        <image class='n-lightimg' src='{{light}}'></image>
+      </view>
+  </view>
+  <view class='lastline'></view>
+
+</scroll-view>
+
+<!--提交订单  -->
+  <view class='topay'>
+    <view class='t-title'>
+      <view class='t-desc'>合计:
+        <text class='t-total'>￥{{cart.total}}</text>
+      </view>
+    </view>
+    <view class='t-sub'>
+    	<form bindsubmit="tosubmit" report-submit="true">
+			  <button class="blue" formType="submit" >提 交</button>
+		  </form>
+    </view>
+  </view>
+  
+    <!-- 选择结账方式界面 -->
+  <view class="payway" hidden="{{!showPayWay}}">
+		<view class="mask" bindtap="hidePayWay"></view>
+		<view class="list">
+     <view class="head">
+          <view  class="ximg flex" bindtap="hidePayWay">
+              <image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/x.png' ></image>
+          </view>
+          <view class="desc">确认付款</view>
+       
+      </view>
+
+      <view class="price">
+         ￥{{cart.total}}
+      </view>
+      <radio-group bindchange="selectPayWay">
+        <label  wx:for="{{payWayList}}" wx:key="{{item.AutoID}}">
+           <view class="item {{item.CardNo?'forcard':''}}">
+            <block wx:if="{{item.PicUrl}}">
+              <image src='{{showImgUrl}}{{item.PicUrl}}' class="pwl-img"></image>
+            </block>
+            <block wx:elif="{{item.pic}}">
+              <image src='{{item.pic}}'  class="pwl-img"></image>
+            </block>
+            <block wx:else>
+              <image src='https://iservice.daqisoft.cn/Public/Home/images/amimgs/mmcard.png' class="pwl-img"></image>
+            </block>
+            <view class='pwl-name'>{{item.MembershipTypeName}}</view>
+            <view class="pwl-select">
+              <radio value="{{item.AutoID}}" checked="{{item.AutoID==pwseleted}}"/>
+            </view>
+          </view>
+          <!-- mmcard info -->
+          <view class="cardinfo" wx:if="{{item.CardNo}}">
+              <view class='cardno'>CardNO:{{item.CardNo}}</view>
+              <view class='cardno'>余额:{{item.CardNum*1.00 + item.SendNum*1.00}}</view>
+          </view>
+
+        </label>
+       
+      </radio-group>
+     
+
+      <!-- <view class='pw-sub'>
+        <form bindsubmit="paysubmit" report-submit="true">
+          <button class="blue" formType="submit" >付款</button>
+        </form>
+      </view> -->
+		</view>
+	</view>
+
+</view>
+                    

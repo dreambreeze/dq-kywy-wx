@@ -1,0 +1,39 @@
+/* 门店地址 */
+
+.store-address {
+  height: 78rpx;
+  padding: 30rpx 0;
+  background: #fff;
+}
+
+.aress-item:nth-of-type(1) {
+  width: 488rpx;
+  padding: 0 20rpx;
+}
+
+.aress-item:nth-of-type(1) view:first-child {
+  font-size: 32rpx;
+  color: #333;
+  margin-bottom: 4rpx;
+}
+
+.aress-item:nth-of-type(1) view:last-child {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.aress-item:nth-of-type(2) {
+  border-left: 1rpx solid #e5e5e5;
+  border-right: 1rpx solid #e5e5e5;
+  background: url(https://iservice.daqisoft.cn/Public/Home/images/location4.png) no-repeat center center;
+  background-size: 30%;
+}
+
+.aress-item:nth-of-type(3) {
+  background: url(https://iservice.daqisoft.cn/Public/Home/images/telphone2.png) no-repeat center center;
+  background-size: 30%;
+}
+
+.aress-item:nth-of-type(2), .aress-item:nth-of-type(3) {
+  width: 120rpx;
+}

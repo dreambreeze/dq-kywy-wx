@@ -1,0 +1,89 @@
+<!--在线商城首页  -->
+<import src="../common/shop-nav.wxml" />
+<view class='shopcontainer'>
+   <scroll-view scroll-y="true" style='height:{{height}}px'  bindscrolltolower="lower" lower-threshold="20px" scroll-with-animation="true" enable-back-to-top="true">  
+    <view class='banner'>
+      <swiper class='swiper' indicator-dots="true" indicator-color="#fff" indicator-active-color="#d41919" autoplay='true'  circular="true">
+        <swiper-item wx:for="{{imgUrls}}" wx:key="">
+          <image src="{{showImgUrl}}{{item.image}}" class="slide-image" /> 
+        </swiper-item>
+      </swiper>
+    </view>
+    <!--分类  -->
+    <view class='i-type'>
+      <block wx:for="{{types}}" wx:key="id" >
+        <view data-id="{{item.id}}" class='t-item'>
+          <navigator url='../shoptype/shoptype?name={{item.name}}&id={{item.id}}'>
+            <image src="{{showImgUrl}}{{item.image}}"></image>
+            <view >{{item.name}}</view>
+          </navigator>
+        </view>
+      </block>
+    </view>
+
+    <view class='bcline'></view>
+
+    <view class='i-content'>
+       <!--新品推荐  -->
+       <view class='i-new'>
+          <view class='n-head'>
+            <view class='n-line'></view>
+            <view class='n-title'>新品推荐</view>
+            <view class='n-line'></view>
+          </view>
+          <view class='n-content'>
+            <block wx:for="{{newProducts}}" wx:key="npid">
+              <view class='n-item' data-id="{{item.id}}">
+              <navigator url='../goodsdetail/goodsdetail?id={{item.id}}'>
+                <image src='{{showImgUrl}}{{item.image}}'></image>
+                <view class='t-iteminfo'>
+                  <view class='ellipsis'>{{item.name}}</view>
+                  <view class='ellipsis'>{{item.goodscontent}}</view>
+                </view>
+             </navigator>
+              </view>
+            </block>
+          </view>
+       </view>
+
+      <view class='bcline'></view>
+
+      <!--热门商品  -->
+     
+       <view class='i-new i-hot'>
+          <view class='n-head'>
+            <view class='n-line'></view>
+            <view class='n-title'>热门商品</view>
+            <view class='n-line'></view>
+          </view>
+        
+          <view class='h-content'>
+           
+            <block wx:for="{{hotProducts}}" wx:key="hpid">
+              <view class='h-item' data-id="{{item.id}}">
+              <navigator url='../goodsdetail/goodsdetail?id={{item.id}}'>
+                <image src='{{showImgUrl}}{{item.image}}'></image>
+                <view class='t-hinfo'>
+                  <view  class='ellipsis'>{{item.name}}</view>
+                  <view  class='ellipsis'>￥{{item.price}}</view>
+                </view>
+              </navigator>
+              </view>
+            </block>
+          
+          </view>
+          
+       </view>
+      
+       <view class='flex nomore' wx:if="{{nomore}}">没有更多了~</view> 
+    </view>
+
+
+<!-- 导航公用模版 -->
+<template is="shop-nav" data="{{type: 0,navArr: navTabBar,showImgUrl: showImgUrl1}}" />
+
+    <button class='customer' open-type='contact'>
+      <image src="https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/customer.png"></image>
+    </button> 
+     </scroll-view>
+</view>

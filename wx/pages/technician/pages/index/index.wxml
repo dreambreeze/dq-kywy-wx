@@ -1,0 +1,38 @@
+ <!-- <import src="../../template/share/share.wxml"/> -->
+
+<view class="container">
+  <!-- <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view> -->
+  <scroll-view scroll-y="true" bindscrolltolower="bindscrolltolower" style='height:{{scrollHeight}}px'>
+  <view class='t-info'>
+   
+      <view class='t-item' bindtap='toproject' wx:for="{{datainfo}}" wx:key="{{id}}"  data-id='{{item.id}}'>
+          <view class='i-img'>
+            <image src='../../imgs/tech.png'></image>
+          </view>
+          <view class='i-no'>{{item.id}}号</view>
+          <view class='i-detail'>{{item.name}}/26岁/SPA、按摩理疗</view>
+          <view class="i-today">今日可约</view>
+      </view>
+   <view>{{more}}</view>
+  </view>
+   
+</scroll-view>
+   
+
+    <view class="body-view">
+         <loading hidden="{{hidden}}" bindchange="loadingChange">
+            加载中...
+         </loading>
+    </view>
+
+    <template is="share" ></template>
+</view>

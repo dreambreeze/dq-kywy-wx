@@ -1,0 +1,54 @@
+<view class="amcontainer">
+  <view class='head'>
+    <view class='store hdflex'>
+      <image src='../../../image/icon64_appwx_logo.png'></image>
+      大旗Adian
+    </view>
+    <view class='opmoney hdflex'>-2333</view>
+    <view class='state hdflex'>交易成功</view>
+  </view>
+
+  <!--中部  付款方式等  -->
+  <view class='middle'>
+    <view class='mitem hdflex'>
+      <view class='mleft'>付款方式</view>
+      <view class='mright'>会员卡</view>
+    </view>
+     <view class='mitem hdflex'>
+      <view class='mleft'>商品说明</view>
+      <view class='mright'>yansgeh足浴</view>
+    </view>
+     <view class='mitem hdflex'>
+      <view class='mleft'>房号</view>
+      <view class='mright'>V101</view>
+    </view>
+     <view class='mitem hdflex'>
+      <view class='mleft'>消费时间</view>
+      <view class='mright'>2018-06-18 22:22</view>
+    </view>
+     <view class='mitem hdflex'>
+      <view class='mleft'>结账单号</view>
+      <view class='mright'>1215483654871</view>
+    </view>
+  </view>
+
+  <!--尾部 订单项目详情  -->
+  <view class='ptable'>
+    <view  class='phead hdflex'>
+      <view class='p1'>项目</view>
+      <view class='p2'>数量</view>
+      <view >单价</view>
+      <view >折扣</view>
+      <view >金额</view>
+      <view >工号</view>
+    </view>
+    <view  class='projects hdflex'>
+      <view class='p1'>项目项项目项</view>
+      <view >2</view>
+      <view >299</view>
+      <view >0.85</view>
+      <view >688</view>
+      <view >777</view>
+    </view>
+  </view>
+</view>

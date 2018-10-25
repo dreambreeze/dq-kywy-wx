@@ -1,0 +1,242 @@
+@import "../../../common/amount.wxss";
+.container {
+  background: #eee;
+}
+
+.card-info {
+  height: 158rpx;
+  padding: 18rpx 0;
+  background: #2e2e2e;
+}
+
+.flex-item {
+  width: 50%;
+}
+
+.info-l {
+  width: 264rpx;
+  height: 158rpx;
+  margin: 0 auto;
+  position: relative;
+}
+
+.info-l image {
+  width: 100%;
+  height: 100%;
+}
+
+.card-type {
+  position: absolute;
+  left: 63rpx;
+  color: #fff;
+}
+
+.card-type {
+  font-size: 24rpx;
+  top: 23rpx;
+}
+
+.card-num {
+  font-size: 22rpx;
+  top: 48rpx;
+  width: 174rpx;
+}
+
+.info-r view {
+  font-size: 26rpx;
+  color: #fff;
+  margin-top: 16rpx;
+}
+
+.info-input {
+  margin-top: 10rpx;
+  padding: 25rpx 42rpx;
+  background: #fff;
+}
+
+.input-item {
+  margin-bottom: 28rpx;
+  box-sizing: border-box;
+}
+
+.i-label {
+  font-size: 28rpx;
+  width: 156rpx;
+  color: #666;
+  line-height: 72rpx;
+}
+
+.i-label text {
+  font-weight: bold;
+  font-size: 28rpx;
+  /* font-family: tahoma, verdana; */
+  color: #ed0f10;
+  vertical-align: bottom;
+  display: inline-block;
+  margin-right: 2px;
+}
+
+.i-input {
+  border-bottom: 1rpx solid #ccc;
+  flex: 1;
+}
+
+.i-input input, .verify-input input {
+  line-height: 72rpx;
+  font-size: 28rpx;
+  height: 72rpx;
+  padding: 0 20rpx;
+}
+
+.verify-input {
+  width: 306rpx;
+  margin-left: 156rpx;
+  border-bottom: 1rpx solid #ccc;
+}
+
+.get-verify {
+  width: 164rpx;
+  font-size: 24rpx;
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  border-radius: 3px;
+  margin-left: 10rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  margin-top: 10rpx;
+}
+
+.get-verify.seconds{
+  background-color: #ccc
+}
+
+.radio {
+  font-size: 28rpx;
+  margin-right: 35rpx;
+}
+
+.dc-btn {
+  width: 576rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  color: #fff;
+  box-shadow: 0 0 14px rgba(189, 144, 85, 0.6);
+  text-align: center;
+  border-radius: 3px;
+  margin: 61rpx auto 80rpx;
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+.t-r{
+  position: absolute;
+  bottom: 0rpx;
+  right: 20rpx;
+}
+
+.rules {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 99999;
+  width: 600rpx;
+  height: 900rpx;
+  margin-top: -450rpx;
+  margin-left: -300rpx;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  animation-name: notice;
+  -webkit-animation-name: notice;
+  animation-duration: 0.3s;
+  -webkit-animation-duration: 0.3s;
+  animation-fill-mode: both;
+  -webkit-animation-fill-mode: both;
+}
+
+@keyframes notice {
+  0% {
+    opacity: 0.3;
+    -ms-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+
+  100% {
+    opacity: 1;
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@-webkit-keyframes notice {
+  0% {
+    opacity: 0.3;
+    -webkit-transform: scale(0.5);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+  }
+}
+
+.rules scroll-view {
+  height: 840rpx;
+}
+
+.rules-con {
+  padding: 0 30rpx 30rpx;
+}
+
+.close-r {
+  line-height: 50rpx;
+  text-align: right;
+  color: #333;
+  font-size: 46rpx;
+  padding: 0 16rpx;
+}
+
+.rules-t {
+  font-size: 32rpx;
+  margin: 20rpx 0;
+  color: #000;
+}
+
+.rules-c {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 4rpx;
+}
+
+.cardRules{
+  font-size:28rpx;
+  margin-left: 14rpx;
+}
+
+.openingRules{
+  color: #ed0f10;
+  display: inline-block;
+  margin-left: 8rpx;
+}
+
+.input-item checkbox-group{
+  display: inline-block;
+}
+
+.getPhoneNumber{
+  flex: 1;
+  border-bottom: 1rpx solid #ccc;
+}
+
+.getPhoneNumber button{
+  width: 150rpx; 
+  background-color: #51C332;
+  color: #fff;
+  margin: 0 0 0 70rpx;
+  padding: 12rpx 10rpx;
+  line-height: 1;
+  font-size: 28rpx;
+  border-radius: 3rpx;
+  display: inline-block;
+}

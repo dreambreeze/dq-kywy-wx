@@ -1,0 +1,91 @@
+const app = getApp()
+var common = require('../../../../common.js');
+Page({
+
+  data: {
+    toright: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/toright.png',
+    storeimg: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/store.png',
+    cart:{},
+    goods:{},
+    userinfo: {},
+    arrivetime: '',
+    order:null,
+    store:null,
+    orderinfo:null,
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({
+      store: wx.getStorageSync("store"),
+      goods:wx.getStorageSync("goods"),
+      arrivetime: app.globalData.arrivetime,
+      showImgUrl: app.globalData.showImgUrl,
+    })
+    //加载加载数据
+    var conditions  =  ""
+    if(options.MutexSign){
+      conditions = " MutexSign = '" + options.MutexSign+"'"
+    }else{
+      conditions = " RGUID = '" + options.rguid+"'"
+    }
+    this.loaddata('/index.php/Api/OnLineTasks/lists',
+      {
+        "authorizerId": app.globalData.authorizerId,
+        "tablename": "onlinetasks",
+        "conditions": conditions,
+      }, 1)
+  },
+
+  loaddata: function (url, data, operate) {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    })
+    var that = this
+
+    wx.request({
+      url: common.config.host + url,
+      data: data,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+
+        that.dealdata(res, operate)
+
+      },
+
+    });
+  },
+
+  //处理加载过来的数据
+  //  res   成功的数据   operate   加载  1-
+  dealdata: function (res, operate) {
+    switch (operate) {
+      case 1:
+        if (res.data.status == 0) {
+          //var order = this.data.order
+          var order = res.data.data
+          var orderlength = Object.keys(order).length
+          for (var i in order) {
+            order[i].taskjson = JSON.parse(order[i].taskjson)
+            order[i].tasktime = order[i].tasktime.substring(0, 19)
+          }
+          this.setData({
+            order: order,
+          })
+        }
+        break
+      case 2:
+        
+        break
+     
+    }
+    wx.hideLoading()
+  },
+
+})

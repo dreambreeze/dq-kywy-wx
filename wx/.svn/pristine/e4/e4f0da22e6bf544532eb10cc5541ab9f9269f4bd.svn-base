@@ -1,0 +1,61 @@
+<import src="../../../common/assess.wxml" />
+<view class="top-nav">
+  <view class="flex-wrp">
+    <view class="nav-item">
+      <navigator url="../store-assess/store-assess?type=" hover-class="none" open-type="redirect">
+        <text class="{{!navType ? 'active' : ''}}">全部</text>
+      </navigator>
+    </view>
+    <view class="nav-item">
+      <navigator url="../store-assess/store-assess?type=1" hover-class="none" open-type="redirect">
+        <text class="{{navType == '1' ? 'active' : ''}}">好评</text>
+      </navigator>
+    </view>
+    <view class="nav-item">
+      <navigator url="../store-assess/store-assess?type=2" hover-class="none" open-type="redirect">
+        <text class="{{navType == '2' ? 'active' : ''}}">中评</text>
+      </navigator>
+    </view>
+    <view class="nav-item">
+      <navigator url="../store-assess/store-assess?type=3" hover-class="none" open-type="redirect">
+        <text class="{{navType == '3' ? 'active' : ''}}">差评</text>
+      </navigator>
+    </view>
+  </view>
+</view>
+
+<view class="container">
+  <block wx:if="{{selfAssess}}">
+    <view class="assess selfAssess">
+      <!-- 评论模版 -->
+      <template is="assess" data="{{assess: selfAssess,isStore:true}}" />
+    </view>
+  </block>
+
+  <block wx:if="{{assesData || selfAssess}}">
+    <view class="assess">
+      <!-- 评论模版 -->
+      <template is="assess" data="{{assess: assesData,isStore:true}}" />
+
+      <!-- 上拉加载提示 -->
+      <view class="load-more">{{loadMtext}}</view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="empty-assess">{{currentState}}</view>
+  </block>
+</view>
+
+
+<!-- 分享按钮 -->
+<view class="assess-btn">
+  <view bindtap="toAssess">
+    <text>我要评价</text>
+  </view>
+</view>
+
+<view class="mask" style="{{display}}"></view>
+<view class="get-user-info" style="{{display}}">
+  <view class="getui-title">基本资料获取</view>
+  <button open-type="getUserInfo" bindgetuserinfo="getUInfo">确定</button>
+</view>

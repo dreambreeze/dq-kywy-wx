@@ -1,0 +1,9 @@
+<template name="orderaddr">
+  <view class='oa-info flex'>
+    <image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/wladdr.png'></image>
+    <view class='oa-desc' >
+      <view class='oa-pn flex'><text>收货人：{{addr.aname}}</text>  {{addr.aphone}}</view>
+      <view class='oa-addr'>收货地址：{{addr.addr}}</view>
+    </view>
+  </view>
+</template>

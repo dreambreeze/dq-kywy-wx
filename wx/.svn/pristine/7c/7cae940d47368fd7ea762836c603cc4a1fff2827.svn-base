@@ -1,0 +1,83 @@
+.contianer {
+  background: #eee;
+  padding: 20rpx;
+}
+
+.random-tech {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  color: #333;
+  border-radius: 6rpx;
+  padding: 0 38rpx 0 26rpx;
+  background: #fff;
+}
+
+.check-box {
+  float: right;
+}
+
+.check-box text {
+  display: inline-block;
+  width: 34rpx;
+  height: 34rpx;
+  vertical-align: middle;
+  background: url(https://iservice.daqisoft.cn/Public/Home/images/not_check_icon.png) no-repeat;
+  background-size: contain;
+}
+
+.check-box text.active {
+  background: url(https://iservice.daqisoft.cn/Public/Home/images/check_icon.png) no-repeat;
+  background-size: contain;
+}
+
+.tech-content {
+  margin-top: 40rpx;
+}
+
+.optional {
+  font-size: 28rpx;
+  margin-bottom: 14rpx;
+  color: #666666;
+}
+
+.optional text {
+  color: #be9e70;
+  margin-right: 6rpx;
+}
+
+.tech-item {
+  margin-bottom: 20rpx;
+  background-color: #fff;
+}
+
+.tech-img {
+  width: 192rpx;
+  height: 186rpx;
+  border-radius: 6rpx 0 0 6rpx;
+  margin-right: 28rpx;
+}
+
+.tech-info {
+  flex: 1;
+  position: relative;
+}
+
+.tech-name{
+  font-size: 32rpx;
+  margin: 50rpx 0 30rpx;
+  line-height: 1;
+}
+
+.tech-inte{
+  font-size: 24rpx;
+  color: #be9e70;
+  line-height: 1;
+}
+
+.tech-info .check-box{
+  position: absolute;
+  right: 38rpx;
+  top: 50%;
+  margin-top: -17rpx;
+}

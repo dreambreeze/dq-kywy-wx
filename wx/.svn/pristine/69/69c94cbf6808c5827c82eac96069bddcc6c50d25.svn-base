@@ -1,0 +1,17 @@
+Page({
+  data: {
+      compeleteimg:'https://iservice.daqisoft.cn/Public/Home/images/amimgs/complete.png',
+      adimg:'https://iservice.daqisoft.cn/Public/Home/images/amimgs/ad.png',
+      arrivetime:5,
+      MutexSign:"",
+  },
+  onLoad:function(options){
+    this.setData({ MutexSign: options.MutexSign})
+  },
+  toorder:function(){
+    wx.navigateTo({
+      url: '../orderdetail/orderdetail?MutexSign=' + this.data.MutexSign,
+    })
+  },
+
+})

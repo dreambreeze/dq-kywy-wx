@@ -1,0 +1,29 @@
+<template name="assess">
+  <view class="assess-item" wx:for="{{assess}}">
+    <view class="head-user clear">
+      <image src="https://iservice.daqisoft.cn/Public/Home/images/cbd.jpg" class="head-img"></image>
+      <view class="user-name">逆查看全部意</view>
+      <view class="star clear">
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/star_check.png" lazy-load></image>
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/star_check.png" lazy-load></image>
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/star_check.png" lazy-load></image>
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/star.png" lazy-load></image>
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/star.png" lazy-load></image>
+      </view>
+    </view>
+
+    <view class="assess-con">门店很装修的很大气，技师很专业，房间干净整洁，门店很装 修的很大气，技师很专业，房间干净整洁。
+    </view>
+    <block wx:if="{{index == 0}}">
+      <view class="assess-img">
+        <image src="http://nwx.daqisoft.cn/uploads/j/jmprxe1453369563/2/3/b/6/thumb_59f7ee1141ddc.jpg" lazy-load bindtap="previewImg" data-urlarr="{{['http://nwx.daqisoft.cn/uploads/j/jmprxe1453369563/2/3/b/6/thumb_59f7ee1141ddc.jpg','http://nwx.daqisoft.cn/uploads/j/jmprxe1453369563/6/e/6/a/thumb_59f7f2ece5a36.jpg']}}" data-currentimg="http://nwx.daqisoft.cn/uploads/j/jmprxe1453369563/2/3/b/6/thumb_59f7ee1141ddc.jpg"></image>
+        <image src="http://nwx.daqisoft.cn/uploads/j/jmprxe1453369563/6/e/6/a/thumb_59f7f2ece5a36.jpg" lazy-load bindtap="previewImg" data-urlarr="{{['http://nwx.daqisoft.cn/uploads/j/jmprxe1453369563/2/3/b/6/thumb_59f7ee1141ddc.jpg','http://nwx.daqisoft.cn/uploads/j/jmprxe1453369563/6/e/6/a/thumb_59f7f2ece5a36.jpg']}}" data-currentimg="http://nwx.daqisoft.cn/uploads/j/jmprxe1453369563/6/e/6/a/thumb_59f7f2ece5a36.jpg"></image>
+      </view>
+    </block>
+
+    <view class="assess-info clear">
+      <view>2017-07-20</view>
+      <view>60分钟飘然若仙</view>
+    </view>
+  </view>
+</template>

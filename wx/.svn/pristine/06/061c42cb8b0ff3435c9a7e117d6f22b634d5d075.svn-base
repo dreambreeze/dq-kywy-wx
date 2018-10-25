@@ -1,0 +1,113 @@
+{
+  "extEnable": true,
+  "extAppid": "wx55aed2eecf83e331",
+  "directCommit": false,
+  "ext": {
+    "authorizer_appid":"wx55aed2eecf83e331"
+  },
+  "extPages": {
+    "pages": [
+      "pages/index/index",
+      "pages/vip-center/vip-center",
+      "pages/promotions/promotions",
+      "pages/ucenter/ucenter",
+      "pages/webView/webView"
+    ],
+    "subPackages": [
+      {
+        "root": "pages/component/",
+        "pages": [
+          "pages/now-docard/now-docard",
+          "pages/docardsuccess/docardsuccess",
+          "pages/recharge/recharge",
+          "pages/recharge-amount/recharge-amount",
+          "pages/coupons/coupons",
+          "pages/coupons-pack/coupons-pack",
+          "pages/expired-coupon/expired-coupon",
+          "pages/cardtrans/cardtrans",
+          "pages/cardtrans-amount/cardtrans-amount",
+          "pages/cardtrans-success/cardtrans-success",
+          "pages/historycons/historycons",
+          "pages/hisannal/hisannal",
+          "pages/docard/docard",
+          "pages/checkPrivilege/checkPrivilege"
+        ]
+      },
+      {
+        "root": "pages/transbuy/",
+        "pages": [
+          "pages/group-buy/group-buy",
+          "pages/project-search/project-search",
+          "pages/project-store/project-store",
+          "pages/all-assess/all-assess",
+          "pages/project-detail/project-detail",
+          "pages/buy-car/buy-car",
+          "pages/all-order/all-order",
+          "pages/consume-order/consume-order",
+          "pages/assess-order/assess-order",
+          "pages/order-detail/order-detail",
+          "pages/buy-success/buy-success",
+          "pages/assess/assess"
+        ]
+      },
+      {
+        "root": "pages/reserve/",
+        "pages": [
+          "pages/reserve-project/reserve-project",
+          "pages/project-detail/project-detail",
+          "pages/order-confirm/order-confirm",
+          "pages/search-project/search-project",
+          "pages/select-tech/select-tech",
+          "pages/select-coupon/select-coupon",
+          "pages/pay-success/pay-success",
+          "pages/select-store/select-store",
+          "pages/reserve-room/reserve-room",
+          "pages/room-detail/room-detail",
+          "pages/room-order-confirm/room-order-confirm"
+        ]
+      },
+      {
+        "root": "pages/automina/",
+        "pages": [
+          "pages/detail/detail",
+          "pages/gooddetail/gooddetail",
+          "pages/evaluation/evaluation",
+          "pages/orderdetail/orderdetail",
+          "pages/order/order",
+          "pages/paycomplete/paycomplete",
+          "pages/commit/commit",
+          "pages/note/note",
+          "pages/ucenter/index/index"
+        ]
+      },
+      {
+        "root": "pages/technician/",
+        "pages": [
+          "pages/techindex/techindex",
+          "pages/techproject/techproject",
+          "pages/techpaycomplete/techpaycomplete",
+          "pages/techcoupon/techcoupon",
+          "pages/techpayorder/techpayorder",
+          "pages/techpjdetail/techpjdetail",
+          "pages/techdetail/techdetail",
+          "pages/index/index",
+          "pages/techsearch/techsearch"
+        ]
+      },
+      {
+        "root": "pages/ucentermodel",
+        "pages": [
+          "pages/orders/orders",
+          "pages/infobind/infobind",
+          "pages/orderdetail/orderdetail"
+        ]
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 5000,
+    "downloadFile": 5000,
+    "uploadFile": 5000
+  },
+  "debug": true
+}

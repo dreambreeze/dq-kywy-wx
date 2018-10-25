@@ -1,0 +1,24 @@
+<view class="container">
+  <view class='s-head'>
+    <view class='black'></view>
+    <view class='white'></view>
+    <view class='s-search'>
+      <view class='s-input'>
+        <input type='text' confirm-type='search' placeholder='请输入技师号' placeholder-class='plh' bindinput='bindinput' bindblur='bindblur'></input>
+      </view>
+      <view class='searchbutton' bindtap='toSearch'>搜索</view>
+    </view>
+  </view>
+
+  <view class='history' >
+    <view class='h-title'>
+      <view class='t-left'><image src='https://iservice.daqisoft.cn/Public/Home/images/techimgs/history.png'></image>历史</view>
+      <view class='t-right' bindtap='clearHistory'><image src='https://iservice.daqisoft.cn/Public/Home/images/techimgs/delete.png'></image></view>
+    </view>
+    <view class='historyItem' hidden='{{!showHistory}}'>
+      <block wx:for="{{contentLists}}" wx:key="cl">
+        <view class='item' bindtap='itemToSearch' data-value="{{item}}">{{item}}</view>
+      </block>
+    </view>
+  </view> 
+</view>

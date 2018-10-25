@@ -1,0 +1,24 @@
+<view class='container'>
+  <view class='head'>
+    <view class='h-img'>
+      <image src='{{compeleteimg}}'></image>
+    </view>
+    <view class='h-desc'>预约单已提交，等待门店确认!</view>
+    <view class='h-time'>
+      <text>请于 {{dateobj[artime].name}} 内抵达门店</text></view>
+  </view>
+
+  <view class="nav">
+
+    <view bindtap='toorder'>查看订单</view>
+    <navigator url='../../../index/index' open-type="redirect" hover-class="none">
+      <view>返回首页</view>
+    </navigator>
+  </view>
+
+   <block wx:if="{{ad}}">
+    <view class="ad-box">
+      <image src="{{ad.adimg}}" lazy-load bindtap="jumpAd" data-adurl="{{ad.adurl}}" mode="aspectFill"></image>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,106 @@
+.assess {
+  background: #fff;
+  padding: 0 20rpx;
+  overflow: hidden;
+}
+
+.assess-title {
+  height: 98rpx;
+  line-height: 98rpx;
+}
+
+.assess-title text:first-child {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.assess-title view {
+  font-size: 22rpx;
+  color: #9d9d9d;
+  float: right;
+}
+
+.assess-title image {
+  width: 7rpx;
+  height: 13rpx;
+  margin-left: 4rpx;
+  margin-top: 42rpx;
+}
+
+.assess-item {
+  padding: 20rpx 0 25rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.head-user {
+  line-height: 50rpx;
+  margin-bottom: 18rpx;
+}
+
+.head-user image {
+  float: left;
+}
+
+.head-img {
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+}
+
+.user-name {
+  float: left;
+  font-size: 24rpx;
+  color: #333;
+}
+
+.star {
+  float: left;
+  margin: 15rpx 0 0 28rpx;
+}
+
+.star image {
+  width: 21rpx;
+  height: 20rpx;
+  margin-right: 6rpx;
+}
+
+.assess-con {
+  font-size: 26rpx;
+  color: #333;
+  line-height: 36rpx;
+  margin-bottom: 22rpx;
+}
+
+.assess-info {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.assess-info view:first-child {
+  float: left;
+}
+
+.assess-info view:last-child {
+  float: right;
+}
+
+.assess-img image {
+  width: 160rpx;
+  height: 180rpx;
+  margin-right: 20rpx;
+  margin-bottom: 22rpx;
+}
+
+.reply-con text{
+  color: #e81c1c;
+}
+
+.reply-con{
+  font-size: 28rpx
+}
+
+.assess-reply{
+  margin-bottom: 22rpx
+}

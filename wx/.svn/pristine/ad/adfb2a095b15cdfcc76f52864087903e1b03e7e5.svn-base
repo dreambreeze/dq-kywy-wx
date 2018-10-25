@@ -1,0 +1,265 @@
+/**
+ * 小程序公用Js
+ */
+// 引入腾讯地图SDK核心类
+var QQMapWX = require('/pages/common/lib/qqmap-wx-jssdk.min.js');
+
+var host = "https://iservice.daqisoft.cn"
+/**
+ * 配置参数
+ */
+var config = {
+  // 下面为公用配置
+  //主域名
+  host: host,
+  //显示图片域名
+  showImgUrl: host + '/Uploads/',
+  //腾讯地图API KEY
+  QQMapWXKey: 'SEABZ-R7CKF-56RJH-NMADQ-ECCZJ-W3FRG',
+  //无会员卡图片的默认会员卡图
+  cardPicUrl: host + '/Public/Home/images/docard3.png',
+  //默认首页banner图
+  bannerImg: host + '/Public/Home/images/home_banner.png',
+  //无上传项目图片的默认项目图片
+  projectImg: 'http://nwx.daqisoft.cn/uploads/j/jmprxe1453369563/6/e/6/a/thumb_59f7f2ece5a36.jpg',
+  //无房间图片的默认房间图片
+  roomDefaultImg: host + '/Public/Home/images/room.jpg'
+};
+
+/**
+ * 技术支持跳转
+ */
+function jishuzhichi() {
+  wx.navigateTo({
+    url: '../webView/webView',
+  });
+}
+
+/**
+ * 验证手机号码是否合法
+ **/
+function ismobile(value) {
+  var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(14[1-9]{1})|(17[0-9]{1})|(19[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+  return mobile.test(value);
+}
+/**
+ * 验证邮箱是否合法
+ **/
+function isemail(value) {
+  var email = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+  return email.test(value);
+}
+//验证是否是座机号
+function istel(tel) {
+  var telReg = /^\d{3,4}[-]\d{7,8}$/g;
+  return telReg.test(tel);
+}
+//验证是否是数字
+function isnumber(a) {
+  var reg = /^\d+$/g;
+  return (reg.test(a));
+}
+//验证金额是否正确
+function ismoney(money) {
+  var reg = /^\d+[\.]?\d+$|\d+$/;
+  return reg.test(money);
+}
+
+//检查功能是否开启或有权限
+function checkFun(id, authorizerId) {
+  wx.request({
+    url: host + '/index.php/Api/Base/checkFun',
+    data: {
+      'authorizerId': authorizerId,
+      'id': id
+    },
+    method: 'POST',
+    header: {
+      'content-type': 'application/json'
+    },
+    success: function (res) {
+      if (res.statusCode == 200 && res.data.status == 0) {
+        wx.redirectTo({
+          url: '/pages/component/pages/checkPrivilege/checkPrivilege?message=' + res.data.info
+        });
+      }
+    }
+  });
+}
+
+/**
+ * 获取所有门店信息
+ */
+function getStores(authorizerId, geocoder) {
+  var p = new Promise(function (resolve, reject) {
+    //获取所有门店信息
+    wx.request({
+      url: host + '/index.php/Api/Base/getStores',
+      data: {
+        'authorizerId': authorizerId,
+        'geocoder': geocoder
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        //返回成功
+        if (res.statusCode == 200) {
+          if (res.data.status == 1) {
+            resolve(res.data.info);
+          } else {
+            reject(res.data.info);
+          }
+
+        } else {
+          reject('请求失败');
+        }
+      }
+    });
+  });
+  return p;
+}
+
+/**
+ * 模糊查找
+ */
+function likeFind(str1, str2) {
+  var result = str2.indexOf(str1);
+  if (result != -1) {
+    return true;
+  } else {
+    return false;
+  }
+  return false;
+}
+
+/**
+   * 获取所有项目信息
+   * @param type $authorizerId        小程序APPID
+   * @param type $ShopNo               门店节点
+     * @param type $currPage             当前第几页
+     * @param type $totalPage            一页显示多少条     $currPage==0 && $totalPage==0不分页
+     * @param type $autoid              主键ID，0为查询所有
+     * @param type $categoryid              分类主键ID，0为查询所有
+   * 
+   */
+function getProjectInfo(authorizerId, ShopNo, currPage, totalPage, autoid, categoryid) {
+  var p = new Promise(function (resolve, reject) {
+    wx.request({
+      url: host + '/index.php/Api/Requestdata/getProjectInfo',
+      data: {
+        'authorizerId': authorizerId,
+        'ShopNo': ShopNo,
+        'currPage': currPage,
+        'totalPage': totalPage,
+        'autoid': autoid,
+        'categoryid': categoryid
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        //返回成功
+        if (res.statusCode == 200) {
+          if (res.data.status == 1) {
+            if (res.data.info) {
+              resolve(res.data.info);
+            } else {
+              reject('无项目信息');
+            }
+
+          } else {
+            reject(res.data.info);
+          }
+        } else {
+          reject('请求失败');
+        }
+      }
+    });
+  });
+  return p;
+}
+
+/**
+ * 保存prepay_id用于发送小程序模版信息
+ */
+function savePrepayId(authorizerId, openid, prepay_id) {
+  var p = new Promise(function (resolve, reject) {
+    wx.request({
+      url: host + '/index.php/Api/Requestdata/savePrepayId',
+      data: {
+        'prepay_id': prepay_id,
+        'openid': openid,
+        'authorizerId': authorizerId
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        //返回成功
+      }
+    });
+  });
+  return p;
+}
+
+/**
+   * 获取所有房间信息
+   * @param type $authorizerId        小程序APPID
+   * @param type $ShopNo               门店节点
+     * @param type $currPage             当前第几页
+     * @param type $totalPage            一页显示多少条     $currPage==0 && $totalPage==0不分页
+     * @param type $autoid              主键ID，0为查询所有
+     * @param type $categoryid              分类主键ID，0为查询所有
+   * 
+   */
+function getRoomInfo(authorizerId, ShopNo, currPage, totalPage, autoid, categoryid,pnum) {
+  var p = new Promise(function (resolve, reject) {
+    wx.request({
+      url: host + '/index.php/Api/Requestdata/getRoomInfo',
+      data: {
+        'authorizerId': authorizerId,
+        'ShopNo': ShopNo,
+        'currPage': currPage,
+        'totalPage': totalPage,
+        'autoid': autoid,
+        'categoryid': categoryid,
+        'pnum': pnum
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        //返回成功
+        if (res.statusCode == 200) {
+          if (res.data.status == 1) {
+            resolve(res.data);
+          } else {
+            reject(res.data.info);
+          }
+        } else {
+          reject('请求失败');
+        }
+      }
+    });
+  });
+  return p;
+}
+
+module.exports.config = config;
+module.exports.jishuzhichi = jishuzhichi;
+module.exports.ismobile = ismobile;
+module.exports.isemail = isemail;
+module.exports.istel = istel;
+module.exports.isnumber = isnumber;
+module.exports.ismoney = ismoney;
+module.exports.checkFun = checkFun;
+module.exports.getStores = getStores;
+module.exports.likeFind = likeFind;
+module.exports.getProjectInfo = getProjectInfo;
+module.exports.savePrepayId = savePrepayId;
+module.exports.getRoomInfo = getRoomInfo;

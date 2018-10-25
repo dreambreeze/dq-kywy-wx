@@ -1,0 +1,249 @@
+@import "../../../common/store-address.wxss";
+
+.contianer {
+  background: #eee;
+}
+
+.top-status {
+  position: relative;
+  height: 180rpx;
+  line-height: 180rpx;
+  text-align: center;
+  font-size: 34rpx;
+  color: #fff;
+  background: url(https://iservice.daqisoft.cn/Public/Home/images/top_type.png) no-repeat;
+  background-size: cover;
+}
+
+.finish-status{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 142rpx;
+  height: 142rpx;
+  background: url(https://iservice.daqisoft.cn/Public/Home/images/finish_status.png) no-repeat;
+  background-size: cover;
+  margin-top: -71rpx;
+  margin-left: -71rpx;
+}
+
+.pject-info {
+  background: #fff;
+  padding-top: 14rpx;
+}
+
+.order-info {
+  height: 184rpx;
+  background: #f1f1f1;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+}
+
+.oi-img {
+  width: 140rpx;
+  margin-right: 20rpx;
+  padding: 22rpx 0;
+}
+
+.oi-img image {
+  width: 140rpx;
+  height: 134rpx;
+}
+
+.oi-dil {
+  width: 340rpx;
+  padding: 22rpx 0;
+}
+
+.oi-name {
+  font-size: 32rpx;
+  color: #333;
+}
+
+.oi-time {
+  font-size: 24rpx;
+  color: #999;
+  margin: 8rpx 0 14rpx;
+}
+
+.oi-price {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.oi-price text:first-child {
+  font-size: 22rpx;
+  margin-right: 8rpx;
+}
+
+.oi-price text:last-child {
+  font-size: 24rpx;
+  color: #919090;
+}
+
+.oi-btn {
+  flex: 1;
+  text-align: right;
+}
+
+.oi-btn text {
+  display: inline-block;
+  width: 184rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  border: 1rpx solid #c59f68;
+  border-radius: 80rpx;
+  font-size: 28rpx;
+  color: #333;
+  margin-top: 56rpx;
+  margin-right: 20rpx;
+  text-align: center;
+  background: #ede9e3;
+}
+
+.order-qrcode {
+  position: relative;
+  display: inline-block;
+}
+
+.order-qrcode image {
+  width: 188rpx;
+  height: 184rpx;
+}
+
+.order-qrcode view {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 188rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 26rpx;
+  text-align: center;
+  color: #fff;
+  background: #be9e70;
+}
+
+.order-address {
+  margin-bottom: 20rpx;
+}
+
+.or-infos{
+  padding: 32rpx 20rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+
+.or-infos view{
+  font-size: 24rpx;
+  color: #666666;
+}
+
+.preca{
+  width: 124rpx;
+}
+
+.preca-con{
+  flex: 1;
+}
+
+.dil-oper{
+  height: 90rpx;
+  line-height: 90rpx;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  border-top: 1rpx solid #E2E2E2;
+  text-align: right;
+}
+
+.dil-oper text{
+  font-size: 26rpx;
+  display: inline-block;
+  min-width: 82rpx;
+  padding: 10rpx 30rpx;
+  line-height: 1;
+  text-align: center;
+  border-radius: 26rpx;
+  color: #333;
+}
+
+.dil-oper text.right-text{
+  border: 1rpx solid #c59f68;
+  margin-right: 46rpx;
+  background: #f3ece1;
+}
+
+.dil-oper button{
+  border: 1rpx solid #c59f68;
+  border-radius: 26rpx;
+  display: inline-block;
+  font-size: 26rpx;
+  line-height: 1;
+  min-width: 82rpx;
+  padding: 10rpx 20rpx;
+  box-sizing: initial;
+  margin: 18rpx 46rpx 0 40rpx;
+  background: #f3ece1;
+}
+
+.qrcode-box {
+  width: 600rpx;
+  height: 900rpx;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -450rpx;
+  margin-left: -300rpx;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.qrcode-title {
+  position: relative;
+  text-align: center;
+  color: #c4a06b;
+  padding: 40rpx 0 26rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+  font-size: 30rpx;
+}
+
+.qrcode-title view:nth-of-type(2) {
+  font-size: 26rpx;
+}
+
+.close-qrcode {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 44rpx;
+  color: #aaa9a9;
+}
+
+.qrcodes {
+  padding: 30rpx 0;
+  text-align: center;
+}
+
+.qr-t {
+  font-size: 22rpx;
+  color: #8f8f94;
+}
+
+.qrcodes image {
+  width: 570rpx;
+  height: 570rpx;
+  margin: 20rpx 0;
+}
+
+.coupon-num {
+  color: #333;
+  font-size: 32rpx;
+}

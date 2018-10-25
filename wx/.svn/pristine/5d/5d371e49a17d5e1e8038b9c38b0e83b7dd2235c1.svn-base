@@ -1,0 +1,228 @@
+
+.select-time {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 906rpx;
+  background-color: #fff;
+  box-shadow: -4rpx 2rpx 15rpx rgba(0, 0, 0, 0.2);
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-duration: .3s;
+  -webkit-animation-duration: .3s;
+  transform: translateY(906rpx);
+  -webkit-transform: translateY(906rpx);
+}
+
+.showIn{
+  animation-name: showIn;
+  -webkit-animation-name: showIn;
+}
+
+@keyframes showIn{
+  0%{transform: translateY(906rpx);-webkit-transform: translateY(906rpx);}
+  100%{transform: translateY(0rpx);-webkit-transform: translateY(0rpx);}
+}
+@-webkit-keyframes showIn{
+  0%{transform: translateY(906rpx);-webkit-transform: translateY(906rpx);}
+  100%{transform: translateY(0rpx);-webkit-transform: translateY(0rpx);}
+}
+
+.showOut{
+  animation-name: showOut;
+  -webkit-animation-name: showOut;
+}
+
+@keyframes showOut{
+  0%{transform: translateY(0rpx);-webkit-transform: translateY(0rpx);}
+  100%{transform: translateY(906rpx);-webkit-transform: translateY(906rpx);}
+}
+@-webkit-keyframes showOut{
+  0%{transform: translateY(0rpx);-webkit-transform: translateY(0rpx);}
+  100%{transform: translateY(906rpx);-webkit-transform: translateY(906rpx);}
+}
+
+.select-time-title {
+  height: 114rpx;
+  line-height: 114rpx;
+  text-align: center;
+  position: relative;
+}
+
+.select-time-title text {
+  display: inline-block;
+  font-size: 28rpx;
+}
+
+.select-time-title text:nth-of-type(1), .select-time-title text:nth-of-type(3) {
+  width: 174rpx;
+  border-bottom: 1rpx solid #000;
+  vertical-align: middle;
+}
+
+.select-time-title text:nth-of-type(2) {
+  margin: 0 20rpx;
+}
+
+.close-stime {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 80rpx;
+  height: 82rpx;
+  background: url(https://iservice.daqisoft.cn/Public/Home/images/close_time_icon.png) no-repeat;
+  background-size: contain;
+}
+
+.dates-box {
+  box-sizing: border-box;
+  padding: 34rpx 62rpx 0;
+}
+
+.date-item {
+  width: 128rpx;
+  position: relative;
+}
+
+.date-item view {
+  line-height: 1;
+  font-size: 28rpx;
+  color: #333;
+  text-align: center;
+}
+
+.date-item view:nth-of-type(2) {
+  margin-top: 10rpx;
+  padding-bottom: 16rpx;
+}
+
+.date-item .line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 10rpx;
+}
+
+.date-item.active view {
+  color: #be9e70;
+}
+
+.date-item.active .line {
+  width: 100%;
+  height: 6rpx;
+  background: #be9e70;
+}
+
+.date-item:nth-of-type(2) {
+  margin: 0 120rpx;
+}
+
+.am-pm {
+  height: 105rpx;
+  line-height: 105rpx;
+  border: 1rpx solid #e5e5e5;
+  border-left: none;
+  border-right: none;
+  margin: 0 62rpx;
+}
+
+.am-item, .pm-item {
+  width: 50%;
+  padding-left: 18rpx;
+  font-size: 28rpx;
+  color: #999;
+}
+
+.am-item.active, .pm-item.active {
+  color: #d0b389;
+}
+
+.am-item view, .pm-item view {
+  display: inline-block;
+  width: 34rpx;
+  height: 34rpx;
+  vertical-align: middle;
+  margin-right: 16rpx;
+  margin-top: -4rpx;
+}
+
+.am-item view {
+  background: url(https://iservice.daqisoft.cn/Public/Home/images/am_icon.png) no-repeat;
+  background-size: contain;
+}
+
+.am-item.active view {
+  background: url(https://iservice.daqisoft.cn/Public/Home/images/am_check_icon.png) no-repeat;
+  background-size: contain;
+}
+
+.pm-item view {
+  background: url(https://iservice.daqisoft.cn/Public/Home/images/pm_icon.png) no-repeat;
+  background-size: contain;
+}
+
+.pm-item.active view {
+  background: url(https://iservice.daqisoft.cn/Public/Home/images/pm_check_icon.png) no-repeat;
+  background-size: contain;
+}
+
+.times-con {
+  margin-top: 28rpx;
+}
+
+.times-con view {
+  float: left;
+  width: 158rpx;
+  height: 80rpx;
+  background: #eee;
+  border-radius: 6rpx;
+  text-align: center;
+  line-height: 80rpx;
+  margin: 0 15rpx 28rpx 15rpx;
+  font-size: 28rpx;
+}
+
+.select-info{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 220rpx;
+  border-top: 1rpx solid #e5e5e5;
+  width: 100%;
+}
+
+.select-pname{
+  font-size: 28rpx;
+  color: #333;
+  padding: 0 28rpx;
+  line-height: 1;
+  margin: 30rpx 0 14rpx;
+}
+
+.select-pname text{
+  font-size: 26rpx;
+  color: #cf6666;
+}
+
+.time-tips{
+  font-size: 22rpx;
+  color: #999999;
+  padding: 0 28rpx;
+}
+
+.confirm-btn{
+  margin: 15rpx 24rpx 0;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  font-size: 30rpx;
+  box-shadow: 0 6rpx 14rpx rgba(199, 162, 109, 0.4);
+  border-radius: 6rpx;
+  background-image: -webkit-linear-gradient(left, #c59f68 20%, #c6a16c 40%, #d2b78f 60%, #dfceb5 80%, #dfceb5 100%);
+  background-image: -o-linear-gradient(left, #c59f68 20%, #c6a16c 40%, #d2b78f 60%, #dfceb5 80%, #dfceb5 100%);
+  background-image: -moz-linear-gradient(left, #c59f68 20%, #c6a16c 40%, #d2b78f 60%, #dfceb5 80%, #dfceb5 100%);
+  background-image: -ms-linear-gradient(left, #c59f68 20%, #c6a16c 40%, #d2b78f 60%, #dfceb5 80%, #dfceb5 100%);
+  color: #292319;
+  font-weight: bold;
+}

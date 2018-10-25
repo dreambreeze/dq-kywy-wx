@@ -1,0 +1,20 @@
+<view class='shopcontainer'>
+  <view class='head'>
+      <view class='h-img'>
+        <image  src='{{compeleteimg}}'></image>
+      </view>
+      <view class='h-desc'>支付成功！</view>
+  </view>
+  
+  <view class="nav">
+      <view bindtap='toorder'>查看订单</view>
+      <navigator url='../shopindex/shopindex' open-type="reLaunch" hover-class="none">
+        <view>继续逛逛</view>
+      </navigator>
+  </view>
+
+  <view class="ad">
+     <image src='{{adimg}}'></image>
+  </view>
+</view>
+

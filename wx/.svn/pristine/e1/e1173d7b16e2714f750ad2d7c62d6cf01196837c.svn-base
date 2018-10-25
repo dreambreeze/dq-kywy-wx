@@ -1,0 +1,81 @@
+<import src="../../../common/reserve-stime.wxml" />
+<import src="../../../common/online-reserve.wxml"/>
+<view class="container">
+  <!-- 门店信息模版 -->
+  <template is="online-reserve" data="{{tabIdx: 2,locationStore: locationStore}}"/>
+
+  <view class="room-people">
+    <view class="flex-wrp">
+      <view class="room-num room-people-num">
+        <view class="room-box clear room-people-touch" bindtouchstart="roomPStart" bindtouchmove="roomPMove" bindtouchend="roomPEnd" style="left:{{roomPLeft}};{{roomBoxWN}}">
+          <view class="room-num-item {{index == roomNumIdx ? 'active' : ''}}" wx:for="{{roomNumRow}}" bindtap="changeRoomNum" data-idx="{{index}}">{{item}}
+            <text></text>
+          </view>
+        </view>
+      </view>
+      <view class="room-num-more {{pMactive}}" bindtap="roomPMore"></view>
+    </view>
+
+    <view class="room-people-more" style="display:{{pmoff ? 'none' : 'block' }}">
+      <scroll-view scroll-y style="height: 300rpx">
+        <view class="room-people-more-con clear">
+          <view class="flex-wrp" wx:for="{{roomNum}}">
+            <view class="rtype-item {{index == roomNumIdx ? 'active' : ''}}" wx:for="{{item}}" bindtap="changeRoomNum" data-idx="{{index}}">{{item}}</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view class="room-type">
+    <view class="flex-wrp">
+      <view class="room-num room-type-num">
+        <view class="room-box clear room-type-touch" bindtouchstart="roomTStart" bindtouchmove="roomTMove" bindtouchend="roomTEnd" style="left:{{roomTLeft}};{{roomBoxWT}}">
+          <view class="room-type-item {{index == 0 ? 'active' : ''}}" wx:for="{{roomTypeRow}}">{{item}}
+            <text></text>
+          </view>
+        </view>
+      </view>
+      <view class="room-num-more {{tMactive}}" bindtap="roomTMore"></view>
+    </view>
+
+    <view class="room-type-more" style="display:{{tmoff ? 'none' : 'block' }}">
+      <scroll-view scroll-y style="height: 300rpx">
+        <view class="room-people-more-con">
+          <view class="flex-wrp" wx:for="{{roomType}}">
+            <view class="rtype-item" wx:for="{{item}}">{{item}}</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <!-- 房间 -->
+  <view class="room-content clear">
+
+    <view class="room-item" wx:for="{{roomArr}}">
+      <view class="room-img" bindtap="toRoomDil" data-idx="{{index}}">
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/home_banner.png" lazy-load mode="aspectFill"></image>
+        <view class="room-info"><text>【SPA房】单人间</text></view>
+      </view>
+      <view class="reserve-room-p">
+        <icon type="success" size="20" color="green" style="{{hideIdx == index ? iconHide : ''}}"/>
+        <view class="reserve-room-btn btn-gradient" bindtap="reserveBtn" data-idx="{{index}}"  style="{{hideIdx == index ? reserveBtnHide : ''}}">预约</view>
+      </view>
+    </view>
+
+  </view>
+
+</view>
+<!-- 预约按钮 -->
+<view class="buy-bar" bindtap="reserveBtnTime">立即预约</view>
+
+<!-- 分享按钮 -->
+<view class="share-box">
+  <button hover-class="none" open-type="share">
+    <text>分享</text>
+  </button>
+</view>
+
+<!-- 选择时间模版 -->
+<template is="reserve-stime" data="{{maskDisplay: maskDisplay,showSelectTime: showSelectTime}}" />

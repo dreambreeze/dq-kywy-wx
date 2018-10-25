@@ -1,0 +1,10 @@
+<view class="success">
+  <icon type="warn" size="80" color="#f00"></icon>
+  <view class="success-tips">{{message}}</view>
+</view>
+<block wx:if="{{!notJump}}">
+  <view class="back-tips">
+    <text>{{timer}}s</text>后自动返回，或返回
+    <view bindtap="backHome">首页</view>
+  </view>
+</block>

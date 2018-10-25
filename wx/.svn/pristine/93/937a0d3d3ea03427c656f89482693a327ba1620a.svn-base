@@ -1,0 +1,45 @@
+<import src="../../../common/top-nav.wxml" />
+<import src="../../../common/coupons.wxml" />
+<view class="container">
+  <!-- 顶部导航模版 -->
+  <template is="top-nav" data="{{url:['../coupons/coupons','../coupons-pack/coupons-pack'],title:['领券','我的券包'],status: 1}}" />
+
+  <view class="coupon-box">
+    <block wx:if="{{coupons}}">
+      <!-- 卡券内容模版 -->
+      <template is="coupons" data="{{coupons:coupons,display:display,ishide:ishide,btnName: '立即使用',arrow: arrow}}" />
+    </block>
+    <block wx:else>
+      <view class="empty-coupon">
+        <icon type="warn" size="80" color="#d6d6d6"></icon>
+        <view class="empty-t">暂无优惠券</view>
+        <view class="empty-btn">
+          <navigator url="../coupons/coupons" open-type="redirect" hover-class="none">去领取</navigator>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="mask" style="display:{{qrDisplay}}"></view>
+
+  <view class="qrcode-box animatedSelf zoomIn" style="display:{{qrDisplay}}">
+    <view class="qrcode-title">{{type == 1 ? '￥' : ''}}
+      <text>{{amount}}</text>{{typename}}
+      <view class="close-qrcode" bindtap="closeQrcode">×</view>
+    </view>
+    <view class="lines"></view>
+    <view class="qrcodes">
+      <view class="qr-t">请出示二维码或券码</view>
+      <block wx:if="{{qrcodeurl}}">
+        <image src="{{showImgUrl + qrcodeurl}}" mode="aspectFit"></image>
+      </block>
+      <text class="coupon-num" space="nbsp" decode>{{numbering}}</text>
+    </view>
+  </view>
+
+  <view class="look-expired">
+    <text>没有更多的券了</text>
+    <text>|</text>
+    <text class="go-expired" bindtap="goExpired">查看已失效的券 ></text>
+  </view>
+</view>

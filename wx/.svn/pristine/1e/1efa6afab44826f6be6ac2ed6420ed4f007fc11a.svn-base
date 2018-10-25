@@ -1,0 +1,79 @@
+<import src="../../../common/amount.wxml" />
+<view class="container">
+  <view class="card-info">
+    <view class="flex-wrp">
+      <view class="flex-item">
+        <view class="info-l">
+          <image src="https://iservice.daqisoft.cn/Public/Home/images/docard1.png"></image>
+          <view class="card-type">银卡</view>
+          <view class="card-num text-ellipsis">20125484412154521</view>
+        </view>
+      </view>
+      <view class='flex-item'>
+        <view class="info-r">
+          <view>门店：和毅体育新城店</view>
+          <view>卡类型：铂金卡</view>
+          <view>卡号：20125484412154521</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="info-input">
+    <view class="input-item">
+      <view class="flex-wrp">
+        <view class="i-label">
+          <text>*</text>姓名</view>
+        <view class="i-input">
+          <input type="text" />
+        </view>
+      </view>
+    </view>
+    <view class="input-item">
+      <view class="flex-wrp">
+        <view class="i-label">
+          <text>*</text>手机</view>
+        <view class="i-input">
+          <input type="number" />
+        </view>
+      </view>
+    </view>
+    <view class="input-item">
+      <view class="flex-wrp">
+        <view class="verify-input">
+          <input type="number" />
+        </view>
+        <view class="get-verify btn-gradient">发送验证码</view>
+      </view>
+    </view>
+    <view class="input-item">
+      <view class="flex-wrp">
+        <view class="i-label">
+          <text>*</text>性别</view>
+        <view class="i-input" style="border-bottom: none;">
+          <radio-group class="radio-group">
+            <label class="radio">
+              <radio value="0" checked/>男
+            </label>
+            <label class="radio">
+              <radio value="0" />女
+            </label>
+          </radio-group>
+        </view>
+      </view>
+    </view>
+    <view class="input-item">
+      <view class="flex-wrp">
+        <view class="i-label">推销员工号</view>
+        <view class="i-input">
+          <input type="number" />
+        </view>
+      </view>
+    </view>
+
+    <!-- 充值金额模版 -->
+    <template is="amount" data="{{amountTitle: '选择充值金额',amountIdx: amountIdx}}"/>
+
+    <view class="dc-btn btn-gradient" bindtap="handleCard">确定</view>
+  </view>
+</view>

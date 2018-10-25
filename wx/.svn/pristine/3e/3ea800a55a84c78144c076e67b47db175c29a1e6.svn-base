@@ -1,0 +1,153 @@
+<import src="../common/engin-nav.wxml" />
+<!--index.wxml-->
+<view class="container">
+  <!-- 顶部会员卡 -->
+  <block wx:if="{{cardUrls.info != ''}}">
+    <view class="top-cards">
+      <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(0,0,0,0.4)" indicator-active-color="#C3AD8E" bindchange="topCardChange" previous-margin="120rpx" next-margin="120rpx">
+        <block wx:for="{{cardUrls.info}}" wx:for-index="idx" wx:for-item="cardImg">
+          <swiper-item class="card-item">
+            <view class="card-item-c {{nextCardSwiperItem == idx || prevCardSwiperItem == idx ? 'cardscale' : 'cardscaletransition' }} {{nextCardSwiperItem == idx ? 'nextCardSwiperItem' : ''}} {{prevCardSwiperItem == idx ? 'prevCardSwiperItem' : ''}}">
+              <view class="card-zh"></view>
+              <image src="{{!cardImg.PicUrl ? cardPicUrl : showImgUrl + cardImg.PicUrl}}" class="slide-image" />
+              <view class="card-type">{{cardImg.MembershipTypeName}}</view>
+              <view class="card-num">{{cardImg.CardNo}}</view>
+              <!-- 卡状态 -->
+              <block wx:if="{{cardImg.CardState != 0}}">
+                <block wx:if="{{cardImg.CardState == 1}}">
+                  <!-- <view class="card-state">{{cardImg.CardState == 1 ? '已锁定': cardImg.CardState == 2 ? '已挂失' : ''}}</view> -->
+                  <image src="https://iservice.daqisoft.cn/Public/Home/images/cardlock.png" class="cardlock"></image>
+                </block>
+                <block wx:elif="{{cardImg.CardState == 2}}">
+                  <image src="https://iservice.daqisoft.cn/Public/Home/images/cardloss.png" class="cardloss"></image>
+                </block>
+              </block>
+              <!-- 卡所属店名 -->
+              <view class="card-storename">{{cardImg.ShopName}}</view>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+
+      <view class="show-money">
+        <view class="balance">
+          <text>余额：</text>
+          <text>￥</text>
+          <text>{{balance}}</text>
+        </view>
+        <!-- <view class="balance">
+        <text>消费：</text>
+        <text>￥</text>
+        <text>{{consume}}</text>
+      </view> -->
+      </view>
+
+      <block wx:if="{{cardUrls.info.length > 1}}">
+        <view class="ption">
+          <block wx:for="{{cardUrls.info}}" wx:for-index="idx">
+            <block wx:if="{{idx==cardIdx}}">
+              <view class="p-item active"></view>
+            </block>
+            <block wx:else>
+              <view class="p-item"></view>
+            </block>
+          </block>
+        </view>
+      </block>
+
+    </view>
+  </block>
+  <block wx:else>
+    <!-- 无会员卡状态 -->
+    <view class="empty-box">
+      <view class="card-img">
+        <image src="{{host}}/Public/Home/images/empty-card-bg.png" lazy-load mode="scaleToFill"></image>
+      </view>
+      <view class="empty-docard-box">
+        <view class="empty-card-tips">暂无会员卡</view>
+        <view class="flex-wrp">
+          <view class="empty-docard-item" style="{{cardUrls.phone == '' ? '' : 'margin-left:0rpx;' }}" data-url="../component/pages/docard/docard?id=3" bindtap="jumpPage">立即办理</view>
+          <block wx:if="{{cardUrls.phone == ''}}">
+            <view class="empty-docard-item" data-url="/pages/ucentermodel/pages/infobind/infobind" bindtap="jumpPage">绑定会员卡</view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </block>
+  <!-- 九官格导航-->
+  <block wx:if="{{fmodule}}">
+    <view class="grid">
+      <view class="flex-wrp" wx:for="{{fmodule}}" wx:for-item="fitem">
+
+        <view class="flex-item" wx:for="{{fitem}}" data-url="{{item.applet_address}}" data-opened="{{item.is_opened}}" data-funname="{{item.fun_name}}" bindtap="jumpPage">
+          <image src="{{showImgUrl + item.fun_img}}"></image>
+          <view class="fun-title">{{item.fun_name}}</view>
+        </view>
+
+        <!-- <block wx:if="{{index == fitem.length && (fitem.length % 3) != 0 && isReceived}}">
+          <view class="flex-item" data-url="../component/pages/lqgiftcard/lqgiftcard" data-funname="领取转赠卡" bindtap="jumpPage">
+            <image src="https://iservice.daqisoft.cn/Public/Home/images/receive_transfe.png"></image>
+            <view class="fun-title">领取转赠卡</view>
+          </view>
+        </block> -->
+
+        <!-- <view class="flex-item" data-url="../component/pages/docard/docard" data-funname="我要办卡" bindtap="jumppage">
+          <image src="https://iservice.daqisoft.cn/Public/Home/images/docard_1.png"></image>
+          <view class="fun-title">我要办卡</view>
+        </view>
+
+        <view class="flex-item" data-url="../component/pages/recharge/recharge" data-funname="会员充值" bindtap="jumppage">
+          <image src="https://iservice.daqisoft.cn/Public/Home/images/docard_2.png"></image>
+          <view class="fun-title">会员充值</view>
+        </view>
+
+        <view class="flex-item" data-url="" data-funname="会员结账" bindtap="jumppage">
+          <image src="https://iservice.daqisoft.cn/Public/Home/images/docard_3.png"></image>
+          <view class="fun-title">会员结账</view>
+        </view> -->
+
+      </view>
+
+      <block wx:if="{{isReceived}}">
+        <view class="flex-wrp" wx:for="{{fmodule}}" wx:for-item="fitem">
+          <view class="flex-item" data-url="../component/pages/lqgiftcard/lqgiftcard" data-funname="领取转赠卡" bindtap="jumpPage">
+            <image src="https://iservice.daqisoft.cn/Public/Home/images/receive_transfe.png"></image>
+            <view class="fun-title">领取转赠卡</view>
+          </view>
+        </view>
+      </block>
+
+      <!-- <view class="flex-wrp">
+        <view class="flex-item" data-url="../component/pages/cardtrans/cardtrans" data-funname="会员卡转赠" bindtap="jumppage">
+          <image src="https://iservice.daqisoft.cn/Public/Home/images/docard_7.png"></image>
+          <view class="fun-title">会员卡转赠</view>
+        </view>
+
+        <block wx:if="{{isReceived}}">
+          <view class="flex-item" data-url="../component/pages/lqgiftcard/lqgiftcard" data-funname="领取转赠卡" bindtap="jumppage">
+            <image src="https://iservice.daqisoft.cn/Public/Home/images/receive_transfe.png"></image>
+            <view class="fun-title">领取转赠卡</view>
+          </view>
+        </block>
+
+      </view> -->
+    </view>
+  </block>
+  <block wx:else>
+    <view class="notmodule-box">
+      <icon type="warn" size="80" color="#F76260"></icon>
+      <view class="notmodule">{{info}}</view>
+    </view>
+  </block>
+  <view class="jishu-zhichi" bindtap="jishuzhichi">技术支持：大旗软件</view>
+</view>
+
+<!-- 导航公用模版 -->
+<template is="engin-nav" data="{{type:1,navArr: navTabBar,showImgUrl: showImgUrl}}" />
+
+<!-- 分享按钮 -->
+<view class="share-box" hidden>
+  <button hover-class="none" open-type="share">
+    <text>分享</text>
+  </button>
+</view>

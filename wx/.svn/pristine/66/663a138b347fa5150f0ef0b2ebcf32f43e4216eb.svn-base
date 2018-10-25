@@ -1,0 +1,52 @@
+.store-project {
+  padding: 0 28rpx;
+  height: 280rpx;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.project-item {
+  border-bottom: 1rpx solid #e6e5e5;
+  padding: 26rpx 0 22rpx;
+  box-sizing: border-box;
+}
+
+.p-img {
+  margin-right: 26rpx;
+}
+
+.p-img, .p-img image {
+  width: 90rpx;
+  height: 88rpx;
+}
+
+.p-info {
+  width: 360rpx;
+  margin-right: 26rpx;
+}
+
+.p-name {
+  font-size: 32rpx;
+  color: #333;
+}
+
+.p-desc {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 14rpx;
+}
+
+.p-price {
+  text-align: center;
+}
+
+.p-price view:first-child {
+  font-size: 32rpx;
+  color: #ef2928;
+}
+
+.p-price view:last-child {
+  font-size: 24rpx;
+  color: #b3b3b3;
+  margin-top: 14rpx;
+}

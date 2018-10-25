@@ -1,0 +1,24 @@
+<template name="order-nav">
+  <view class="top-nav">
+    <view class="flex-wrp">
+      <view class="nav-item {{tType == 0 ? 'active' : ''}}">
+        <navigator url="../all-order/all-order" hover-class="none" open-type="redirect">
+          全部
+          <text></text>
+        </navigator>
+      </view>
+
+      <view class="nav-item {{tType == 1 ? 'active' : ''}}">
+        <navigator url="../consume-order/consume-order" hover-class="none" open-type="redirect">待消费
+          <text></text>
+        </navigator>
+      </view>
+
+      <view class="nav-item {{tType == 2 ? 'active' : ''}}">
+        <navigator url="../assess-order/assess-order" hover-class="none" open-type="redirect">待评价
+          <text></text>
+        </navigator>
+      </view>
+    </view>
+  </view>
+</template>

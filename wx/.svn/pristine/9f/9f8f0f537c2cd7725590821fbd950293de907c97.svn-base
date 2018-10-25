@@ -1,0 +1,107 @@
+var app = getApp();
+var util = require('../../../../utils/util.js');
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    cart: {},
+    goods: {},
+    goodsList: {},
+    userinfo:{
+      username:'赵先生',
+      userphone:'18866667777',
+    },
+    arrivetime:5,
+    addr:'',
+    toright:'https://iservice.daqisoft.cn/Public/Home/images/amimgs/toright.png',
+    store:'https://iservice.daqisoft.cn/Public/Home/images/amimgs/store.png',
+    light:'https://iservice.daqisoft.cn/Public/Home/images/amimgs/light.png',
+    x: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/x.png',
+    seletedimg: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/selected.png',
+    note:'口味、偏好、要求等',
+    noteword:"",
+    payWayList:[
+      {id:1,name:'会员卡支付',pic:'https://iservice.daqisoft.cn/Public/Home/images/amimgs/mmcard.png' },
+      {id: 2,name: '微信支付', pic: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/wechat.png' },
+      ],
+    pwseleted:0,
+    showPayWay:false,
+  },
+
+  onLoad: function (options) {
+    this.setData({
+      cart: app.cart,
+      goods: app.goods,
+      goodsList: app.goodsList,
+      addr: app.addr,
+    });
+   
+  },
+
+  tonote:function(){
+    wx.setStorageSync("noteword", this.data.noteword)
+    wx.navigateTo({
+      url: '../note/note',
+    })
+  },
+  submit:function(){
+    this.setData({
+      showPayWay: true,
+    });
+   
+  },
+  onShow:function(){
+   /// console.log(this.data.cart);
+  },
+
+  hidePayWay: function () {
+    this.setData({
+      showPayWay: false
+    });
+   
+  },
+  selectPayWay:function(e){
+   
+    this.setData({
+      pwseleted: e.detail.value,
+    });
+    console.log(e.detail.value)
+    console.log(this.data.payWayList[e.detail.value-1].name)
+  },
+  // 付款
+  paysubmit:function(){
+    if (!this.data.pwseleted){
+       wx.showToast({
+         title: '请选择付款方式',
+         image: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/warn.png',
+       })
+        return false
+    }
+    const timstamp = Date.parse(new Date())/1000;
+    const fivemafter = timstamp + 5*60;
+    const five_date = new Date(fivemafter*1000);
+    var h = five_date.getHours() < 10 ? "0" + five_date.getHours() : five_date.getHours();
+    var m = five_date.getMinutes() < 10 ? "0" + five_date.getMinutes() : five_date.getMinutes();
+   
+    var preTime = h + ':' + m ;
+    var orderNO = timstamp+''+Math.ceil(Math.random()*(9999-1000)+1000)//随机数1000-9999 保持4位数
+    var orderTime = util.formatTime(new Date())
+    wx.setStorageSync("preTime", preTime)
+    wx.setStorageSync("orderNO", orderNO)
+    wx.setStorageSync("orderTime", orderTime)
+    wx.setStorageSync("noteword", this.data.noteword)
+    wx.setStorageSync("payWayList", this.data.payWayList[this.data.pwseleted-1])
+    wx.navigateTo({
+      url: '../paycomplete/paycomplete',
+    })
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
+ 
+})

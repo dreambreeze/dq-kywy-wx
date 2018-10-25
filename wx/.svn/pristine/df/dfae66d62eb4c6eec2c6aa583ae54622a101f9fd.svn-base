@@ -1,0 +1,40 @@
+
+Page({
+  data: {
+    imgUrls: [
+      'https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png',
+      'https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png',
+      'https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png',
+    ],
+    indicatorDots: false,
+    autoplay: false,
+    interval: 5000,
+    duration: 800,
+    selected:0,
+    imgCerts: [
+      'https://iservice.daqisoft.cn/Public/Home/images/techimgs/cert.png',
+      'https://iservice.daqisoft.cn/Public/Home/images/techimgs/cert.png',
+      'https://iservice.daqisoft.cn/Public/Home/images/techimgs/cert.png',
+      'https://iservice.daqisoft.cn/Public/Home/images/techimgs/cert.png',
+      'https://iservice.daqisoft.cn/Public/Home/images/techimgs/cert.png',
+      'https://iservice.daqisoft.cn/Public/Home/images/techimgs/cert.png',
+    ],
+  },
+  bindchange:function(e){
+    this.setData({
+      selected: e.detail.currentItemId
+    })
+    wx.setNavigationBarTitle({
+      title: e.detail.currentItemId+"号技师",
+    })
+  },
+
+  onLoad:function(options){
+    wx.setNavigationBarTitle({
+      title: this.data.selected + "号技师",
+    })
+  },
+  onShareAppMessage: function () {
+
+  }
+})

@@ -1,0 +1,48 @@
+<template name="coupons">
+  <view class="coupon-content {{cAction}}" wx:for="{{coupons}}">
+    <view class="coupon-noopen clear">
+      <view class="coupon-money">{{item.type == 1 ? '￥' : ''}}
+        <text>{{item.amount}}</text>{{item.typename}}</view>
+
+      <!-- 券起用时间和结束时间 -->
+      <block wx:if="{{item.begint && item.endt}}">
+        <block wx:if="{{item.get_limit > item.uccount}}">
+          <view class="now-use btn-gradient" bindtap="nowUse" style="{{cAction ? 'display:none' : ''}}" data-id="{{item.id}}">{{btnName}}</view>
+        </block>
+        <block wx:else>
+          <view class="Received">已领取</view>
+        </block>
+      </block>
+      <block wx:else>
+        <block wx:if="{{!item.begint}}">
+          <view class="Received">未到起用时间</view>
+        </block>
+        <block wx:if="{{!item.endt}}">
+          <view class="Received">券已过期</view>
+        </block>
+      </block>
+
+
+
+    </view>
+    <view class="lines"></view>
+    <view class="valid-period clear">
+      <view class="expiration">有效期至：{{item.end_time}}</view>
+      <view class="look-detail" bindtap="lookDetail" data-idx="{{index}}">详情
+        <view class="{{display == index && arrow == 0 ? 'arrowdown' : display == index && arrow == 1 ? 'arrowup' : 'arrowdown'}}"></view>
+      </view>
+    </view>
+    <view class="coupon-info" style="display:{{display == index && ishide ? 'block' : 'none'}}">
+      <view class="c-info-t">适用门店：</view>
+      <view class="c-info-content">{{item.store_name}}</view>
+      <block wx:if="{{item.notice}}">
+        <view class="c-info-t">使用须知：</view>
+        <view class="c-info-content">
+          <text>{{item.notice}}</text>
+        </view>
+      </block>
+      <view class="get_limit">每人限领{{item.get_limit}}张</view>
+    </view>
+    <view class="status-box status-endtime" style="{{cAction ? 'display:block' : 'display:none'}}"></view>
+  </view>
+</template>

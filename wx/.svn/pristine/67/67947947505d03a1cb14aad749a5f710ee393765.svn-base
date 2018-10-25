@@ -1,0 +1,25 @@
+.dc-store {
+  width: 30%;
+  background: #2e2e2e;
+  float: left;
+  height: 1106rpx;
+  padding-top: 4rpx;
+}
+
+.dc-store scroll-view {
+  height: 1106rpx;
+}
+
+.s-item {
+  padding: 34rpx 8rpx;
+  border-bottom: 1rpx solid #434343;
+  font-size: 28rpx;
+  color: #caa876;
+  text-align: center;
+  line-height: 30rpx;
+}
+
+.s-item.active {
+  background: #fff;
+  color: #333;
+}

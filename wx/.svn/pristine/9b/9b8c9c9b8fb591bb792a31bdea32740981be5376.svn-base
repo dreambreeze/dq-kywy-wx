@@ -1,0 +1,85 @@
+<import src="../../../common/storelist.wxml" />
+
+<view class="container">
+  <view class="dc-title">
+    <view class="t-l">
+      <view></view>选择</view>
+    <view class="t-r" bindtap="rules">
+      <icon type="info_circle" size="20" color="#333" />细则</view>
+  </view>
+
+  <view class="do-card clear" style="height:{{height}}px">
+    <!-- 门店列表模版 -->
+    <template is="storelist" data="{{height: height,dcStore: dcStore,storeIdx: storeIdx}}" />
+
+    <view class="dc-select">
+      <view class="d-cards" style="height:{{dcSHeight}}px">
+        <scroll-view scroll-y enable-back-to-top style="height:{{dcSHeight}}px">
+          <view class="select-c">
+            <view class="cards">
+              <navigator url="../../pages/now-docard/now-docard" hover-class="none">
+                <image src="https://iservice.daqisoft.cn/Public/Home/images/docard3.png" lazy-load></image>
+              </navigator>
+              <view>铂金卡需充值2000元以上</view>
+            </view>
+            <view class="cards">
+              <image src="https://iservice.daqisoft.cn/Public/Home/images/docard2.png" lazy-load></image>
+              <view>铂金卡需充值2000元以上</view>
+            </view>
+            <view class="cards">
+              <image src="https://iservice.daqisoft.cn/Public/Home/images/docard1.png" lazy-load></image>
+              <view>铂金卡需充值2000元以上</view>
+            </view>
+            <view class="cards">
+              <image src="https://iservice.daqisoft.cn/Public/Home/images/docard2.png" lazy-load></image>
+              <view>铂金卡需充值2000元以上</view>
+            </view>
+            <view class="cards">
+              <image src="https://iservice.daqisoft.cn/Public/Home/images/docard1.png" lazy-load></image>
+              <view>铂金卡需充值2000元以上</view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+      <view class="s-info">
+        <view class="s-info-c">
+          <view class="s-info-b">
+            <view>名称：和毅足道体育新城店</view>
+            <view>电话：400-2039-6739</view>
+            <view>地址：湖南省长沙市芙蓉区万家丽路宽寓大厦3206富士通邗晨</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+
+<view class="mask" style="display:{{showMask ? 'block' : 'none'}}"></view>
+
+<view class="rules" style="display:{{showMask ? 'block' : 'none'}}">
+  <scroll-view scroll-y enable-back-to-top>
+    <view class="close-r" bindtap="closeRules">×</view>
+    <view class="rules-con">
+      <view class="rules-t">金卡须知</view>
+      <view class="rules-c">1、凭本卡消费，敬请结账时出示并输入密码；</view>
+      <view class="rules-c">2、本卡可在和毅足道各直营子公司消费（详见店面海报）；</view>
+      <view class="rules-c">3、主项消费享受金卡会员价优惠；</view>
+      <view class="rules-c">4、本卡有效期为一年（以最后一次充值时间为起始日期）；</view>
+      <view class="rules-c">5、一经售出概不退换、不兑现、不找零；有效期满后由开卡门店提供激活服务；</view>
+      <view class="rules-c">6、本卡可按消费10元积1分参与积分奖励与兑换活动；</view>
+      <view class="rules-c">7、具体用卡规定详见前台《和毅足道贵宾卡使用指南》；</view>
+      <view class="rules-c">8、本店在法律许可范围内保留对此卡消费细则的最终解释权和修改权。</view>
+      <view class="rules-t">银卡须知</view>
+      <view class="rules-c">1、凭本卡消费，敬请结账时出示并输入密码；</view>
+      <view class="rules-c">2、本卡可在和毅足道各直营子公司消费（详见店面海报）；</view>
+      <view class="rules-c">3、主项消费享受金卡会员价优惠；</view>
+      <view class="rules-c">4、本卡有效期为一年（以最后一次充值时间为起始日期）；</view>
+      <view class="rules-c">5、一经售出概不退换、不兑现、不找零；有效期满后由开卡门店提供激活服务；</view>
+      <view class="rules-c">6、本卡可按消费10元积1分参与积分奖励与兑换活动；</view>
+      <view class="rules-c">7、具体用卡规定详见前台《和毅足道贵宾卡使用指南》；</view>
+      <view class="rules-c">8、本店在法律许可范围内保留对此卡消费细则的最终解释权和修改权。</view>
+    </view>
+  </scroll-view>
+</view>

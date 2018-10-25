@@ -1,0 +1,465 @@
+var app = getApp();
+var common = require('../../../../common.js');
+Page({
+  
+  data: {
+    myorder: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/myorder.png',
+    my: "我的订单",
+    mode:'aspectFit',
+    bespeak:'预约',
+    addrimg: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/addr.png',
+    searchimg: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/search.png',
+    noticeimg: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/msg.png',
+    text: '消费主项目才享受优惠商品，未消费不享受这样的优惠啊',
+    cartimg: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/cart.png',
+    warnimg: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/warn.png',
+    addr: '101',
+    addimg: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/add.png',
+    reduceimg: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/reduce.png',
+    clearimg: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/clear.png',
+    classifySeleted:'',
+    goods:{},
+    goodsList:[{}],
+    cart:{
+        count:0,
+        total:0,
+        list:{}
+    },
+    projects:{},
+    projectsList:[],
+    showMask: false,//公告查看
+    showCartDetail:false,
+    knowproject:false,
+
+
+
+    showImgUrl:'',
+  },
+  onLoad: function (options) {
+
+    console.log(options)
+    wx.showLoading({
+      title: '加载中...',
+    })
+    var that = this
+    //获取手机信息
+    var openid = wx.getStorageSync('openid')
+    if(!openid){
+      //调用获取openid
+      common.getLogin(app.globalData.authorizerId).then(function (data) {
+        console.log(data)
+        that.getPhoneInfo(data)
+      })
+    }else{
+      that.getPhoneInfo(openid)
+    }
+    
+    //判断是否存在 店铺号房间号
+    var ShopNoRoomNo = wx.getStorageSync("ShopNoRoomNo")
+    if (ShopNoRoomNo) {
+      let sceneArr = ShopNoRoomNo.split('@');
+      var ShopNo = sceneArr[0].split('=')[1];
+      var RoomNo = sceneArr[1].split('=')[1];
+    } else {
+      // wx.showModal({
+      //   title: '提示',
+      //   content: '未获取当前房间或位置，请点击确认扫描小程序码',
+      //   success:function(res){
+      //     if(res.confirm){
+      //       that.scancode()
+      //     }else{
+      //       return false
+      //     }
+      //   }
+      // })
+      
+    }
+
+
+    //再来一单
+    if (app.cart) {
+      console.log(app.cart)
+      var cart = app.cart
+      if (cart.list) {
+        that.setData({ cart: cart })
+      }
+    }
+    var ShopNo = ShopNo ? ShopNo : "DQT01"
+    var RoomNo = RoomNo ? RoomNo : "101"
+
+    wx.request({
+      url: common.config.host + '/index.php/Api/AutoMina/index',
+      data: {
+        "authorizer_appid": app.globalData.authorizerId, "shopno": ShopNo, "roomno": RoomNo
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+
+        if (res.data.status == 1) {
+
+          var goods = res.data.data
+          for (var i in goods) {
+            goods[i].itembaseprice = parseFloat(goods[i].itembaseprice)
+          }
+          var projects = res.data.projectdata
+          for (var i in projects) {
+            projects[i].pturn = parseFloat(projects[i].pturn)
+          }
+
+          that.setData({
+            goodsList: res.data.category,
+            goods: goods,
+            classifySeleted: res.data.category[0].id,
+            showImgUrl: common.config.showImgUrl,
+            addr: RoomNo,
+            projects: projects,
+            projectsList: res.data.dealprodata
+          })
+
+          wx.setStorageSync('store', res.data.store)
+
+        } else {
+
+          wx.showToast({
+            icon: "none",
+            title: res.data.info,
+          })
+        }
+        wx.hideLoading()
+      },
+
+    });
+
+
+  },
+  scancode:function(){
+    wx.scanCode({
+      onlyFromCamera: true,
+      scanType: [],
+      success: function(res) {
+        console.log(res)
+        wx.redirectTo({
+          url: res.result,
+        })
+      },
+      fail: function(res) {
+        wx.navigateBack({
+          delta:1
+        })
+      },
+      complete: function(res) {},
+    })
+  },
+  //设置默认选择项
+  onShow: function () {
+    var that = this
+     
+
+     //订单提交页  点击返回
+      if (app.cart) {
+       console.log(app.cart)
+       var cart = app.cart
+       if (cart.list) {
+         that.setData({ cart: cart })
+       }
+     }
+
+
+  
+  },
+  
+
+
+  //   添加购物车
+  tapAddCart: function (e) {
+    var id = e.target.dataset.id;
+    console.log(id)
+    var goods = this.data.goods[id];
+    console.log(goods)
+    var num = this.data.cart.list[id] || 0;
+   
+    if (num > 8 && goods.onlycash==0) {
+      wx.showToast({
+        title: '达到限定数量了',
+        image: '../../imgs/warn.png',
+        duration: 2000
+      })
+      return false;
+      
+    } else {
+      this.addCart(id); 
+    }
+   
+   
+  }, 
+  //从购物车减去
+  tapReduceCart:function(e){
+    this.reduceCart(e.target.dataset.id); 
+  },
+
+  // 内部函数 购物车操作 获取原始信息 
+  addCart:function(id){
+    var num = this.data.cart.list[id] || 0;
+    this.data.cart.list[id] = num+1;
+    this.countCart();
+    
+  },
+  //内部函数  ，减去商品
+  reduceCart:function(id){
+    var num = this.data.cart.list[id] || 0;
+    if(num <= 1){
+      delete this.data.cart.list[id];
+    }else{
+      this.data.cart.list[id] = num - 1;
+    }
+    this.countCart();
+  },
+  //内部函数 计算购物车数据
+  countCart: function () {
+    var count = 0,
+      total = 0;
+    console.log(this.data.cart.list)
+    for (var id in this.data.cart.list) {
+      console.log(id)
+      var goods = this.data.goods[id];
+     console.log(goods)
+      count += this.data.cart.list[id];
+      total += (goods.itembaseprice * this.data.cart.list[id])*1.00;
+    }
+   // total = total.toFixed(2)
+    this.data.cart.count = count;
+    this.data.cart.total = total;
+    //防止将购物车的商品减空之后，再次加入时出现 购物车详情
+    if (count<1){
+      this.setData({
+        showCartDetail: false,
+      });
+    }
+    this.setData({
+      cart: this.data.cart,  
+    });
+  },
+  //清空购物车
+  clear:function(){
+    var shopcart = this;
+    wx.showModal({
+      title: '清空购物车？',
+      content: '',
+      confirmText: '清空',
+      success: function (res) {
+        if (res.confirm) {
+          shopcart.setData({
+            cart: {
+              count: 0,
+              total: 0,
+              list: {}
+            },
+            showCartDetail: false,
+          });
+        } else if (res.cancel) {
+          return false;
+         
+        }
+      }
+    })
+   
+   
+  },
+  myorder:function(){
+    wx.navigateTo({
+      url: '../order/order',
+    })
+  },
+  goodsdetail:function(e){
+    var id = e.currentTarget.dataset.id;
+    console.log(this.data.goods[id]);
+    wx.setStorageSync("good", this.data.goods[id])
+    wx.setStorageSync("goods", this.data.goods)
+    app.cart = this.data.cart;
+    app.addr = this.data.addr;
+    wx.navigateTo({
+      url: '../gooddetail/gooddetail',
+    })
+  },
+
+  
+  
+
+  onGoodsScroll: function (e) {
+    var kp = this.data.knowproject;
+    if(!kp){
+    if (e.detail.scrollTop > 10 && !this.data.scrollDown) {
+      this.setData({
+        scrollDown: true
+      });
+    } else if (e.detail.scrollTop < 10 && this.data.scrollDown) {
+      this.setData({
+        scrollDown: false
+      });
+    }
+
+    var scale = e.detail.scrollWidth / 570,
+      scrollTop = e.detail.scrollTop / scale,
+      h = 0,
+      classifySeleted = this.data.goodsList[0].id ,
+      len = this.data.goodsList.length;
+    this.data.goodsList.forEach(function (classify, i) {
+      var _h = 70 + classify.goods.length * (46 * 3 + 20 * 2);
+      if (scrollTop >= h - 100 / scale) {
+      //if (scrollTop >= (h - 100 / scale)+240) {
+        classifySeleted = classify.id;
+        console.log(classify)
+        console.log(classify.id)
+      }
+      h += _h;
+    });
+    this.setData({
+      classifySeleted: classifySeleted
+      //classifySeleted: this.data.classifyViewed
+    });
+    }
+  },
+  tapClassify: function (e) {
+    wx.showLoading({
+      title: '加载中...',
+    })
+    var id = e.currentTarget.dataset.id;
+    if(id!='xm'){
+      this.setData({
+        knowproject:false,
+      })
+    }else{
+      this.setData({
+        knowproject: true,
+      })
+    }
+  
+    this.setData({
+      classifyViewed: id
+    });
+   
+    var self = this;
+    setTimeout(function () {
+      self.setData({
+        classifySeleted: id
+      });
+    }, 10);
+   wx.hideLoading()
+  },
+  showCartDetail: function () {
+    //改进展示购物车的方法
+    var num = this.data.cart.count ;
+    if(num>0){
+      this.setData({
+        showCartDetail: !this.data.showCartDetail
+      });
+    }
+  },
+  hideCartDetail: function () {
+    this.setData({
+      showCartDetail: false
+    });
+  },
+  
+  selsize: function(e){
+    console.log(e.currentTarget.dataset.id);
+    var that =this;
+    var gname = that.data.goods[e.currentTarget.dataset.id].name;
+
+    wx.showModal({
+      title: '',
+      content: gname,
+      showCancel:false,
+      confirmText:'',
+    })
+  },
+  
+  submit:function(e){
+    app.goodsList = this.data.goodsList;
+    app.goods = this.data.goods;
+    app.cart = this.data.cart;
+    app.addr = this.data.addr;
+    wx.setStorageSync("goods", this.data.goods)
+    wx.navigateTo({
+      url: '../commit/commit',
+    })
+    
+  },
+  
+/**
+ * 用户点击右上角分享
+ */
+  onShareAppMessage: function () {
+    return {
+      title: '客源无忧微信营销平台'
+    }
+  },
+
+  
+
+
+
+  //获取手机号码
+  getPhoneInfo: function (openid){
+  
+    var that = this;
+    wx.request({
+      url: common.config.host + '/index.php/Api/Base/getUserInfo',
+      data: {
+        'openid': openid,
+        'field': 'names,phone',
+        'authorizerId': app.globalData.authorizerId
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.hideLoading();
+        if (res.statusCode == 200 && res.data.status == 1) {
+          wx.setStorageSync("phoneinfo", res.data.info)
+
+          that.setData({
+            phoneinfo: res.data.info
+          });
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: res.data.info,
+            showCancel: false
+          });
+        }
+      }
+    });
+  },
+
+
+  //项目预约
+  toyy:function(){
+    wx.navigateTo({
+      url: '../../../reserve/pages/reserve-project/reserve-project',
+    })
+  },
+
+
+  /**
+   * 点击查看办卡细则
+   */
+  rules: function () {
+    this.setData({
+      showMask: true
+    });
+  },
+  /**
+   * 关闭办卡细则
+   */
+  closeRules: function () {
+    this.setData({
+      showMask: false
+    });
+  },
+
+})

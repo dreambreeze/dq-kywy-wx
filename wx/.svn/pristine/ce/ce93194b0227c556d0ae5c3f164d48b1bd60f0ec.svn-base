@@ -1,0 +1,27 @@
+<import src="../../../common/storelist.wxml" />
+<view class="dc-title">
+  <view></view>选择要转赠的会员卡
+</view>
+<view class="do-card clear" style="height:{{height}}px">
+  <!-- 门店列表模版 -->
+  <template is="storelist" data="{{height: height,dcStore: dcStore,storeIdx: storeIdx}}" />
+
+  <view class="dc-select" style="height:{{height}}px">
+    <scroll-view scroll-y enable-back-to-top style="height:{{height}}px">
+      <view class="select-c">
+        <block wx:for="{{cardType}}">
+          <view class="cards" data-url="../../pages/cardtrans-amount/cardtrans-amount?cardno={{item.CardNo}}&shopno={{item.ShopNo}}" bindtap="jumpurl">
+            <image src="{{!item.PicUrl ? cardPicUrl : showImgUrl + item.PicUrl}}" lazy-load></image>
+            <view class="balance">余额：¥{{item.Balance}}</view>
+            <view class="card-type">{{item.MembershipTypeName}}</view>
+            <view class="card-num">{{item.CardNo}}</view>
+            <block wx:if="{{item.CardState != 0}}">
+              <view class="card-state">{{item.CardState == 1 ? '已锁定': item.CardState == 2 ? '已挂失' : ''}}</view>
+            </block>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+
+  </view>
+</view>

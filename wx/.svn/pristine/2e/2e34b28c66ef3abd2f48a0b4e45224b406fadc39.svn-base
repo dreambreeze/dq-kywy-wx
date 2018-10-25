@@ -1,0 +1,117 @@
+@import "../../../common/assess.wxss";
+
+.container {
+  background: #eee;
+  padding-top: 110rpx;
+}
+
+.top-nav {
+  width: 100%;
+  height: 98rpx;
+  line-height: 98rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.nav-item {
+  width: 25%;
+  text-align: center;
+}
+
+.nav-item text {
+  display: inline-block;
+  width: 144rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  color: #333;
+  font-size: 32rpx;
+  border-radius: 30rpx;
+}
+
+.nav-item text.active {
+  background-image: -webkit-linear-gradient(300deg, #e9c28a 20%, #e1b880 40%, #d0a76d 60%, #c5995f 80%, #bc9055 100%) !important;
+  background-image: -o-linear-gradient(300deg, #e9c28a 20%, #e1b880 40%, #d0a76d 60%, #c5995f 80%, #bc9055 100%) !important;
+  background-image: -moz-linear-gradient(300deg, #e9c28a 20%, #e1b880 40%, #d0a76d 60%, #c5995f 80%, #bc9055 100%) !important;
+  background-image: -ms-linear-gradient(300deg, #e9c28a 20%, #e1b880 40%, #d0a76d 60%, #c5995f 80%, #bc9055 100%) !important;
+  color: #fff;
+  box-shadow: 0 4rpx 10rpx rgba(205, 170, 120, 0.4);
+}
+
+.assess {
+  padding-bottom: 30rpx;
+}
+
+.assess-item:last-child {
+  border: none;
+}
+
+
+.load-more{
+  padding: 30rpx 0;
+  font-size: 24rpx;
+  color: #848484;
+  text-align: center;
+  background-color: #fff;
+}
+
+.assess-btn{
+  position: fixed;
+  left: 10rpx;
+  bottom: 120rpx;
+  text-align: center;
+}
+
+.assess-btn text {
+  display: inline-block;
+  line-height: 1;
+  margin-top: 66rpx;
+}
+
+.assess-btn view {
+  display: inline-block;
+  width: 120rpx;
+  height: 120rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #c7b498;
+  border-radius: 50%;
+  box-sizing: initial;
+  box-shadow: 0 4rpx 12rpx rgba(88, 88, 88, 0.4);
+  background: #585858 url(https://iservice.daqisoft.cn/Public/Home/images/assess_icon.png) no-repeat center 20rpx;
+  background-size: 32%;
+}
+
+.get-user-info{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 99999;
+  width: 350rpx;
+  height: 300rpx;
+  padding: 20rpx;
+  border-radius: 6rpx;
+  margin-left: -175rpx;
+  margin-top: -150rpx;
+  box-shadow: 1rpx 2rpx 10rpx rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+}
+
+.getui-title{
+  text-align: center;
+  font-size: 34rpx;
+  padding: 30rpx 0 60rpx;
+}
+
+.get-user-info button{
+   background-color: #F76260;
+   color: #fff;
+}
+
+.selfAssess{
+  margin-bottom: 20rpx;
+}

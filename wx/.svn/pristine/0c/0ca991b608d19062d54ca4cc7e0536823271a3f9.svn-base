@@ -1,0 +1,37 @@
+<view class="project-info">
+  <view class="flex-wrp">
+    <image class="p-img" src="https://iservice.daqisoft.cn/Public/Home/images/home_banner.png" lazy-load></image>
+    <view class="p-info">
+      <!-- <view class="p-name">棋牌房</view> -->
+      <view class="p-store">
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/order_store_icon.png" lazy-load></image>和毅足道滨江店</view>
+      <view class="p-time">
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/order_time_icon.png" lazy-load></image>
+        <text space="nbsp" decode>预约今天01-25 17:00</text>
+      </view>
+      <view class="p-time">
+        <!-- <image src="https://iservice.daqisoft.cn/Public/Home/images/location_icon_1.png" lazy-load></image> -->
+        <text space="nbsp" decode>长沙市雨花区人民东路与万家丽</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="selecter-iner">预约技师：
+  <view class="select-tips">102号</view>
+</view>
+
+<view class="selecter-iner">预约房间：
+  <view class="select-tips">888房</view>
+</view>
+
+<view class="selecter-iner">预约项目：
+  <view class="select-tips">60分钟飘然若仙</view>
+</view>
+
+<view class="input-box">
+  <textarea maxlength="50" placeholder="备注：可将您其它要求告知我们" cursor-spacing="50" bindinput="remarks"></textarea>
+  <view class="input-limit">{{inputLimit}}</view>
+</view>
+
+<view class="order-bar" bindtap="toSuccess">确定下单</view>

@@ -1,0 +1,162 @@
+var app = getApp();
+var common = require('../../../../common.js');
+//所有卡类型
+var cardType;
+//当前要结账的卡
+var checkoutCard;
+//切换选择的卡
+var selectCard;
+//选择的卡下标
+var selectCardIndex = 0;
+
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    //图片地址前缀
+    showImgUrl: common.config.showImgUrl,
+    //无会员卡图片的默认会员卡图
+    cardPicUrl: common.config.cardPicUrl,
+    //所有卡类型
+    cardType: cardType,
+    selectCardDisplay: 'display:none;'
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var _this = this;
+    // wx.showModal({
+    //   title: '参数',
+    //   content: decodeURIComponent(options.scene)
+    // });
+    this.getOpenCardType();
+
+  },
+
+  /**
+   * 获取当前用户所有卡类型
+   */
+  getOpenCardType: function () {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    });
+    var openid = wx.getStorageSync('openid')
+      , _this = this;
+
+    wx.request({
+      url: common.config.host + '/index.php/Api/Base/getVipCard',
+      data: {
+        'authorizerId': app.globalData.authorizerId,
+        'openid': openid,
+        'type': 2
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.hideLoading();
+        if (res.statusCode == 200) {
+          if (res.data.status == 1) {
+            if (res.data.info == '') {
+              wx.showModal({
+                title: '提示',
+                content: '您还没有会员卡，现在去办卡',
+                success: function (e) {
+                  if (e.confirm) {
+                    wx.redirectTo({
+                      url: '../docard/docard?id=3',
+                    });
+                  }else if(e.cancel){
+                    wx.navigateBack();
+                  }
+                }
+              });
+            } else {
+              //获取会员卡数据以切换门店使用
+              cardType = res.data.info;
+              //充值金额与充值赠送金额合计成余额
+              for (var i = 0; i < cardType.length; i++) {
+                cardType[i]['Balance'] = (parseFloat(cardType[i].CardNum) + parseFloat(cardType[i].SendNum));
+              }
+              
+              checkoutCard = cardType[0];
+              selectCard = cardType[0];
+
+              _this.setData({
+                cardType: cardType,
+                checkoutCard: checkoutCard,
+                selectCard: selectCard
+              });
+            }
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: res.data.info,
+              showCancel: false
+            });
+          }
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '请求失败，服务器错误',
+            showCancel: false
+          });
+        }
+      }
+    });
+  },
+
+  /**
+   * 切换选卡事件
+   */
+  bindChange: function (e) {
+    const val = e.detail.value;
+    selectCardIndex = val[0];
+
+    this.setData({
+      selectCard: cardType[val[0]]
+    });
+  },
+
+  /**
+   * 点击选卡
+   */
+  switching: function(){
+    this.setData({
+      selectCardDisplay: 'display:block;'
+    });
+  },
+
+  /**
+   * 点击关闭选卡
+   */
+  closeSelectCard: function(){
+    this.setData({
+      selectCardDisplay: 'display:none;'
+    });
+  },
+
+  /**
+   * 确定选卡
+   */
+  carry: function () {
+    checkoutCard = cardType[selectCardIndex];
+    this.setData({
+      selectCardDisplay: 'display:none;',
+      checkoutCard: checkoutCard
+    });
+  },
+
+  /**
+   * 确定付款
+   */
+  nowPay: function(){
+    console.log(checkoutCard);
+  }
+})

@@ -1,0 +1,39 @@
+.top-nav {
+  width: 100%;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: #2e2e2e;
+  margin-bottom: 18rpx;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.nav-item {
+  width: 33.3333%;
+  text-align: center;
+  font-size: 30rpx;
+  color: #d2b790;
+  position: relative;
+}
+
+.nav-item text {
+  display: none;
+}
+
+.nav-item.active {
+  color: #d2b790;
+}
+
+.nav-item.active text {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 100rpx;
+  margin-left: -50rpx;
+  height: 8rpx;
+  background: #d2b790;
+  border-radius: 10rpx;
+}

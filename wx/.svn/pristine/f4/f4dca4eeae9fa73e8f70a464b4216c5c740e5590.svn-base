@@ -1,0 +1,12 @@
+<template name="store-address">
+  <view class="store-address">
+    <view class="flex-wrp">
+      <view class="aress-item">
+        <view>{{storename}}</view>
+        <view class="text-ellipsis">{{storeaddress}}</view>
+      </view>
+      <view class="aress-item"></view>
+      <view class="aress-item"></view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,109 @@
+
+<view class='amcontainer'>
+ <scroll-view scroll-y style='height:100%'>
+  <view class='head'>
+    <image src='{{good.pic}}' mode="aspectFill"></image>
+  </view>
+
+  <view class='info'>
+    <view class='i-name'>{{good.name}}</view>
+    <view class='i-price'>￥{{good.price}}</view>
+    
+    <view class='i-add' >
+     <block wx:for="{{cart.list}}" wx:for-index="oid" wx:for-item="num" wx:key="oid">
+      <view class="reduce" wx:if="{{good.id==oid && num!=0}}"  data-id="{{good.id}}" bindtap="tapReduceCart">
+        <image class="addimg" src='{{reduceimg}}' mode="{{mode}}" data-id="{{good.id}}" ></image>
+      </view>
+     
+		  <view class="num" wx:if="{{good.id==oid && num!=0}}"  >{{good.id==oid?num:''}}</view>
+     </block>
+   
+        <!-- <image class='a-img' catchtap='tapAddCart'    data-id="{{good.id}}" src="../../imgs/myorder.png"></image> -->
+
+        <view class='a-add' catchtap='tapAddCart'  data-id="{{good.id}}" >
+          加入购物车
+        </view>
+    </view>
+  </view>
+
+  <view class='fline'></view>
+
+  <view class='introduce'>
+    <view>商品介绍</view>
+    <view>{{good.desc}}</view>
+  </view>
+
+ <view class='sline'></view>
+
+ <view class='evaluation'>
+    <view class='ehead'>
+     <text>用户评价</text>
+     <text class='seeall'>查看全部(10)</text>
+     <image class='torightimg' src='{{toright}}'></image>
+    </view>
+
+    <view class='e-content'>
+      <view class='c-head'>
+      <image class='userimg' src="{{pic}}" ></image>
+      <text class='username'>逆***风</text>
+      <text class='userstar'>逆***风</text>
+      <text class='usertime'>2017-12-20</text>
+      </view>
+      <view class='c-content'>红烧肉红烧肉红烧肉肉红烧肉肉红烧肉肉红烧肉肉红烧肉肉红烧肉肉红烧肉肉红烧肉肉红烧肉肉红烧肉肉红烧肉肉红烧肉肉红烧肉</view>
+    </view>
+
+     <view class='e-content'>
+      <view class='c-head'>
+      <image class='userimg' src="{{pic}}" ></image>
+      <text class='username'>逆***风</text>
+      <text class='userstar'>
+        <image src="{{app.startgray}}"> </image>
+      </text>
+      <text class='usertime'>2017-12-20</text>
+      </view>
+      <view class='c-content'>红烧肉红烧肉红烧肉肉红烧肉肉红烧肉肉红烧肉肉红烧肉肉红烧肉肉红烧肉肉红烧肉肉红烧肉肉红烧肉肉红烧肉肉红烧肉肉红烧肉</view>
+    </view>
+
+    
+  </view>
+</scroll-view>
+  <!-- hidden="{{!showCartDetail||!cart.count}}" -->
+  <view class="cart-detail" hidden="{{!showCartDetail||!cart.count}}" >
+		<view class="mask" bindtap="hideCartDetail"></view>
+		<view class="list">
+     <view class="clear" bindtap="clear">
+     	<view class="desc">共{{cart.count}}件商品</view>
+        <image class="clearimg" src='{{clearimg}}' mode="{{mode}}"   ></image>
+        清空
+     </view>
+
+			<view class="item" wx:for="{{cart.list}}" wx:for-index="id" wx:for-item="num" wx:key="id">
+				<view class="name ellipsis">{{goods[id].name}}</view>
+				<view class="total">￥{{goods[id].price*cart.list[id]}}</view>
+				<view class="reduce" data-id="{{id}}" bindtap="tapReduceCart">
+            <image class="addimg" src='{{reduceimg}}' mode="{{mode}}" data-id="{{id}}"  ></image>
+        </view>
+				<view class="num">{{num}}</view>
+				<view class="add" data-id="{{id}}" bindtap="tapAddCart"> 
+          <image class="addimg" src='{{addimg}}' mode="{{mode}}" data-id="{{id}}"  ></image>
+        </view>
+			</view>
+		</view>
+	</view>
+
+	<view class="cart" hidden="{{classifySeleted=='xm'}}">
+		<view class="data" bindtap="showCartDetail">
+			<view class="icon">
+				<image class='cartimg' src="{{cartimg}}"></image>
+				<view class="count">{{cart.count}}</view>
+			</view>
+			<view class="total">￥{{cart.total}}</view>
+		</view>
+		<form bindsubmit="submit" report-submit="true">
+			<!--<view formType="submit" class="submit">去结算 {{classifySeleted=='xm'}}</view>-->
+			<button class="blue {{cart.count?'':'disabled'}}" 
+      formType="submit" disabled="{{!cart.count}}">确定下单</button>
+		</form>
+	</view>
+
+</view>

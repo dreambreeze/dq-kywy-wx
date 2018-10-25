@@ -1,0 +1,201 @@
+var common = require('../../../../common.js');
+var app = getApp()
+Page({
+  data: {
+    compeleteimg:'https://iservice.daqisoft.cn/Public/Home/images/amimgs/complete.png',
+    isshow:"true",
+    whypng:"https://iservice.daqisoft.cn/Public/Home/images/why.png"
+  },
+  onLoad:function(options){
+    var that = this
+    this.setData({ orderno: options.orderno, groupno: options.groupno})
+    var orderno = options.orderno
+    var groupno = options.groupno
+
+    var multiinfo = wx.getStorageSync("grproject")
+    that.setData({
+      store: multiinfo,
+      project: multiinfo.project[0],
+     
+    })
+    //项目订单
+    common.getGroupOrders(app.globalData.authorizerId, '', '', "", "", groupno).then(function (data) {
+      if (data.status == 1) {
+        var ordersData=data.info
+        let lux =new Array
+        for (var i = 0; i < ordersData[groupno].nums; i++){
+          console.log(i)
+          lux.push(i)
+        }
+       
+        that.setData({
+          mutiple: data.mutiple,
+          num: data.length,
+          ordersData: data.info,
+          lux:lux
+        })
+        that.countDown()
+      }
+    }).catch(function (data) {
+    });
+
+    //获取小程序广告
+    common.getAppletAd().then(function (data) {
+      that.setData({
+        ad: data.info
+      });
+    }).catch(function (data) {
+      that.setData({
+        ad: false
+      });
+    });
+  },
+
+  toorder:function(){
+    wx.navigateTo({
+      url: '../orderdetail/orderdetail?orderno=' + this.data.orderno,
+    })
+  },
+
+  gobuy: function (e) {
+    var pid = e.currentTarget.dataset.id
+    var gropupno = e.currentTarget.dataset.gropupno
+    wx.navigateTo({
+      url: '../group-commit/group-commit?gropupno=' + gropupno + '&pid=' + pid + '&buytype=3',
+    })
+  },
+  /**
+  * 点击广告跳转链接
+  */
+  jumpAd: function (e) {
+    let adurl = e.currentTarget.dataset.adurl;
+    if (adurl) {
+      common.jishuzhichi(adurl);
+    }
+  },
+
+
+  /**
+  * 监听页面分享  单聊不可获取shareTickets   群聊可以
+  */
+  onShareAppMessage: function (options) {
+    let that = this;
+    that.setData({ isshow:false})
+    console.log(that.data.isshow)
+
+    return {
+      title: '老表叫你来拼团啊',
+      path: 'pages/transbuy/pages/group-paycomplete/group-paycomplete?groupno=123&pid=2',
+      success: function (res) {
+        console.log(res)
+        that.setData({ isshow: true })
+        
+      },
+      fail:function(res){
+        console.log(res)
+        that.setData({ isshow:true })
+      }
+    }
+
+
+    var sharefrom = options.from
+    if (sharefrom == "menu") {//button：页面内转发按钮；menu：右上角转发菜单
+      sharefrom = "menu"
+    } else {
+      sharefrom = "button"
+    }
+    var shareObj = new Object
+
+    shareObj = {
+      title: '客源无忧微信营销平台',
+      url: "pages/index/index",
+      success: function (res) {
+        that.setData({ chakan: "查看订单1" })
+        console.log(res)
+        if (res.shareTickets) {//群聊
+          wx.getShareInfo({
+            shareTicket: res.shareTickets[0],
+            success: function (res) {
+              console.log(res)
+            },
+            fail: function (res) {
+              console.log(res)
+            },
+            complete: function (res) { }
+          })
+        } else {//单聊
+          //
+        }
+
+      
+
+      },
+      fail: function () {
+        console.log("取消")
+        that.setData({ chakan: "查看订单1" })
+        wx.showToast({
+          icon: 'none',
+          title: '您取消了分享',
+        })
+
+      },
+    }
+    
+   // return shareObj
+    
+  },
+
+
+  /**
+ * 倒计时
+ */
+  countDown() {
+    let that = this;
+    let ordersData = that.data.ordersData
+
+    function nowTime() {//时间函数
+      // console.log(a)
+      for (var i in ordersData) {
+       
+        var intDiff = ordersData[i].limittime;//获取数据中的时间戳
+        // console.log(intDiff)
+        var day = 0, hour = 0, minute = 0, second = 0;
+        if (intDiff > 0) {//转换时间
+          day = Math.floor(intDiff / (60 * 60 * 24));
+          hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+          minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+          second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+          if (hour <= 9) hour = '0' + hour;
+          if (minute <= 9) minute = '0' + minute;
+          if (second <= 9) second = '0' + second;
+          ordersData[i].limittime--;
+          var str = hour + ':' + minute + ':' + second
+          // console.log(str)    
+
+        } else {
+          var str = "已结束！";
+          //delete ordersData[i]
+          //clearInterval(timer);
+        }
+        // console.log(str);
+        ordersData[i].difftime = str;//在数据中添加difftime参数名，把时间放进去
+        ordersData = ordersData
+      }
+     
+   
+      if (ordersData[i].limittime>0){
+        
+        that.setData({
+          ordersData: ordersData
+        })
+      }
+      
+    }
+    
+ 
+      nowTime();
+      var timer = setInterval(nowTime, 1000);
+    
+   
+  },
+})

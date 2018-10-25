@@ -1,0 +1,169 @@
+<!--pages/detail/detail.wxml-->
+<view class='amcontainer'>
+   <!--头部  -->
+  <view class="d-top " >
+    <view class='topaddr' >
+        <image class='topimg ' src='{{addrimg}}' mode="{{mode}}" ></image>
+        当前房间：{{addr}}
+    </view>
+    
+     <view class='topmyorder' bindtap='myorder' >
+        <image class='myorderimg ' src='{{myorder}}'  mode="{{mode}}" ></image>
+        <view class='myorder' >{{my}}</view> 
+    </view>
+  </view> 
+  <!--内容 start  -->
+    <view class=" {{classifySeleted=='xm'?'newcontent':'content'}}" >
+      <!--左边菜单  -->
+
+        <scroll-view class="sv-classify" scroll-y="true">
+        <!-- 了解项目 -->
+          <view class="classify  {{classify.id=='xm'?'xmactive':''}}" wx:for="{{projectsList}}" wx:for-item="classify" wx:key="id" data-id="{{classify.id}}"bindtap="tapClassify">
+				    <view class="name">{{classify.classifyname}}</view>
+			    </view>
+         	<view class="classify {{classifySeleted==classify.id?'active':''}} " wx:for="{{goodsList}}" wx:for-item="classify" wx:key="id" data-id="{{classify.id}}" bindtap="tapClassify">
+				    <view class="name">{{classify.classifyname}}</view>
+			    </view>
+        </scroll-view>
+
+      <!--右边 项 scroll-into-view="cate{{classifyViewed}}"  -->
+        	<scroll-view class="sv-goods" scroll-y="true"  >
+          <!--公告  -->
+          {{classify.id}}
+          <block  wx:if="{{classify.id!='xm'}}" >
+              <view class='notice' id="note" >
+                <image class='noticeimg' src="{{noticeimg}}"></image>
+                <!-- <text class='note'>{{notice}}</text> -->
+                <view class='note' bindtap="rules">                                  
+                
+                      <text>{{text}}</text>
+                    
+                </view>
+
+              </view>
+          </block>
+
+          <!-- 内容主项  -->
+			<view wx:for="{{knowproject?projectsList:goodsList}}" wx:for-item="classify" wx:key="" id="cate{{classify.id}}"  >
+
+         <block  wx:if="{{classify.id!='xm'}}" >
+            <view class="title"  wx:if="{{classify.id == classifySeleted}}" >{{classify.classifyname}}</view>
+           <view class="goods" wx:for="{{classify.goods}}" wx:if="{{goods[id].servicecategoryno == classifySeleted}}" wx:for-item="id" wx:key="" bindtap='goodsdetail' data-id="{{id}}" >
+                <image class="pic"  src="{{goods[id].picurl[0]?showImgUrl+goods[id].picurl[0]:fooddefpic}}"></image>
+                <view class="name {{goods[id].onlycash==1?'gflex':''}}">
+                  <view class='gname'>{{goods[id].serviceitemname}}</view>
+                  <view class='novip' wx:if="{{goods[id].onlycash==1}}">
+                    不可用会员卡
+                  </view>
+                </view>
+                <view class="desc">{{goods[id].mminfo?goods[id].mminfo:""}}</view>
+                <view class="price">
+                  ￥{{goods[id].itembaseprice*1}}
+                 
+                  <!-- {{goods[id].onlycash==0?"会员":"现金"}} -->
+                </view>
+                <!-- <view class="oldprice">￥{{goods[id].oldprice}}</view> -->
+
+                <block wx:if="{{!goods[id].size}}">
+                <view class='addorreduce'>
+                    <block  wx:for="{{cart.list}}" wx:for-index="oid" wx:for-item="num" wx:key="oid"> 
+                      <view class="addorreduce" wx:if="{{oid == id}}">
+                        <view class="reduce" catchtap  ="tapReduceCart" data-id="{{id}}" >
+                          <image class="addimg" src='{{reduceimg}}' mode="{{mode}}" data-id="{{id}}" ></image>
+                        </view>
+                        <view class="num">{{num}}</view>
+                      </view>
+                    </block>
+                  <view class="addCart" catchtap ="tapAddCart"  data-id="{{id}}" >
+                    <image class="addimg" src='{{addimg}}' mode="{{mode}}" data-id="{{id}}"  ></image>
+                  </view>
+                </view>
+                </block>
+
+				      </view>
+            </block>
+
+            <!--了解项目 START  -->
+            <block  wx:if="{{classify.id=='xm'}}"  >
+                <view class="title"  >{{classify.classifyname}}</view>
+                <view class="goods" wx:for="{{classify.projects}}" wx:for-item="id" wx:key=""    bindtap='toyy'>
+                    <!-- <image class="pic" src="{{goods[id].pic}}"></image> -->
+                    <view class="name ">{{projects[id].serviceitemname}}</view>
+                    <view class="desc ">{{projects[id].mminfo?projects[id].mminfo:""}}</view>
+                    <view class="price">￥{{projects[id].pturn}}</view>
+                    <!-- <view class='addorreduce bespeakview '>
+                       <view class='bespeak'>预约</view>
+                    </view> -->
+                  </view>
+            </block>
+             <!--了解项目 END  -->
+			</view>
+       <view class='deadline'>人家也是有底线的哦</view>
+		</scroll-view>
+    </view>
+
+  <!-- hidden="{{!showCartDetail||!cart.count}}" -->
+  <view class="cart-detail" hidden="{{!showCartDetail||!cart.count}}" >
+		<view class="mask" bindtap="hideCartDetail"></view>
+		<view class="list">
+     <view class="clear" bindtap="clear">
+     	<view class="desc">共{{cart.count}}件商品</view>
+        <image class="clearimg" src='{{clearimg}}' mode="{{mode}}"   ></image>
+        清空
+     </view>
+
+			<view class="item" wx:for="{{cart.list}}" wx:for-index="id" wx:for-item="num" wx:key="id">
+				<view class="name ellipsis">{{goods[id].serviceitemname}}</view>
+				<view class="total">￥{{goods[id].itembaseprice*cart.list[id]}}</view>
+				<view class="reduce" data-id="{{id}}" bindtap="tapReduceCart">
+            <image class="addimg" src='{{reduceimg}}' mode="{{mode}}" data-id="{{id}}"  ></image>
+        </view>
+				<view class="num">{{num}}</view>
+				<view class="add" data-id="{{id}}" bindtap="tapAddCart"> 
+          <image class="addimg" src='{{addimg}}' mode="{{mode}}" data-id="{{id}}"  ></image>
+        </view>
+			</view>
+		</view>
+	</view>
+
+	<view class="cart" hidden="{{classifySeleted=='xm'}}">
+		<view class="data" bindtap="showCartDetail">
+			<view class="icon">
+				<image class='cartimg' src="{{cartimg}}"></image>
+				<view class="count">{{cart.count}}</view>
+			</view>
+			<view class="total">￥{{cart.total}}</view>
+		</view>
+		<form bindsubmit="submit" report-submit="true">
+			<!--<view formType="submit" class="submit">去结算 {{classifySeleted=='xm'}}</view>-->
+			<button class="blue {{cart.count?'':'disabled'}}" 
+      formType="submit" disabled="{{!cart.count}}">确定下单</button>
+		</form>
+	</view>
+
+
+
+<!--公告  -->
+<view class="mask" style="display:{{showMask ? 'block' : 'none'}}" bindtap="closeRules"></view>
+
+<view class="rules" style="display:{{showMask ? 'block' : 'none'}}">
+  <view class="close-r" bindtap="closeRules">×</view>
+  <scroll-view scroll-y enable-back-to-top>
+    <view class="rules-con">
+      <view class="rules-t">{{currentCard.MembershipTypeName}}公告</view>
+      <view class="rules-c">{{text}}</view>
+    </view>
+  </scroll-view>
+</view>
+
+</view>
+
+<!-- 返回首页按钮 
+<view class="backhome-btn">
+  <view>
+    <navigator url="/pages/index/index" hover-class="none" open-type="reLaunch">
+      <text>返回首页</text>
+    </navigator>
+  </view>
+</view>
+-->

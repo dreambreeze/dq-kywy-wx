@@ -1,0 +1,39 @@
+<template name="assess">
+  <view class="assess-item" wx:for="{{assess}}">
+    <view class="head-user clear">
+      <image src="{{item.avatarurl ? item.avatarurl : 'https://iservice.daqisoft.cn/Public/DaqiAdmin/images/default_po.png'}}" class="head-img"></image>
+      <view class="user-name">{{item.nickname}}</view>
+      <view class="star clear">
+        <image wx:for="{{item.star}}" src="https://iservice.daqisoft.cn/Public/Home/images/star_check.png" lazy-load></image>
+        <image wx:for="{{5 - item.star}}" src="https://iservice.daqisoft.cn/Public/Home/images/star.png" lazy-load></image>
+      </view>
+    </view>
+
+    <view class="assess-con">{{item.assess_val}}</view>
+    <block wx:if="{{item.assessimg}}">
+      <view class="assess-img">
+        <image wx:for="{{item.assessimg}}" wx:for-item="itemimg" src="{{itemimg}}" lazy-load bindtap="previewImg" data-urlarr="{{item.assessimg}}" data-currentimg="{{itemimg}}"></image>
+      </view>
+    </block>
+
+    <block wx:if="{{item.reply}}">
+      <!-- 显示回复内容 -->
+      <view class="assess-reply">
+        <view class="reply-con">
+          <text>商家回复：</text>{{item.reply}}</view>
+      </view>
+    </block>
+
+    <view class="assess-info clear">
+      <view>{{item.create_time}}</view>
+      <block wx:if="{{isStore}}">
+        <view>{{item.project_name}}</view>
+      </block>
+      <block wx:else>
+        <view>
+          <navigator url="../project-detail/project-detail?pid={{item.pid}}&nodeid={{item.nodeid}}" hover-class="none">{{item.project_name}}</navigator>
+        </view>
+      </block>
+    </view>
+  </view>
+</template>

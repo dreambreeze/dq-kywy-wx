@@ -1,0 +1,250 @@
+page{
+  background-color: #eee;
+}
+.forscroll{
+  height: 100%;
+  width: 100%;
+}
+
+
+.head{
+  height: 90rpx;
+  background-color: #cf0100;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  color: #fff;
+  font-size: 30rpx;
+  padding-bottom: 7rpx
+}
+.head view{
+  width: 20%;
+  height:54rpx;
+  text-align: center
+}
+
+.head .active::after{
+content:" ";
+display:block;
+height:6px;
+margin:0 auto;
+transition:width 0.3s ease 0s;
+width:30%;
+margin-top:0px;
+border-bottom:6rpx solid #fff;
+border-radius: 2rpx;
+}
+.orderitem{
+  background-color: #fff;
+  margin-bottom: 20rpx;
+
+}
+.orderitem .o-head{
+  border-bottom: 1rpx solid rgba(0,0,0,0.1);
+  justify-content: space-between;
+  height: 56rpx;
+  padding: 0 24rpx;
+}
+.orderitem .o-head .o-oid{
+  font-size: 24rpx;
+  color: #999
+}
+.orderitem .o-head .o-ostatus{
+  font-size: 26rpx;
+  color: #f56708
+}
+.orderitem image{
+  width: 136rpx;
+  height: 136rpx
+}
+.orderitem .o-goods{
+  padding: 24rpx 16rpx;
+  border-bottom: 1rpx solid rgba(0,0,0,0.1);
+}
+.orderitem .goodsinfo{
+  width: 100%;
+
+  margin-left: 16rpx
+}
+.orderitem .goodsinfo .g-desc{font-size: 22rpx;color: #999;margin-top: 3rpx}
+/* .cartitem .goodsinfo .g-name{height: 76rpx;} */
+.orderitem .goodsinfo .g-price{font-size: 26rpx;color: #d21717;flex: 1;margin-top: 6rpx}
+.orderitem .goodsinfo .g-num{font-size: 24rpx;color: #666;margin-right: 26rpx}
+.o-foot{
+  padding: 22rpx;
+  justify-content: flex-end
+}
+.o-foot .f-total,.o-foot .operation {
+  justify-content: flex-end
+}
+.o-foot .f-total{
+  font-size: 24rpx;
+}
+.o-foot .operation{
+  margin-top: 20rpx
+}
+.operation .cancel,.operation .pay{
+  width: 140rpx;
+  height: 56rpx;
+  font-size: 26rpx;
+  border-radius: 40rpx;
+  margin: 0 12rpx;
+  color: #666
+}
+.operation .cancel{
+  border: 1rpx solid rgba(0,0,0,0.4)
+}
+.operation .pay{
+  border: 1rpx solid #d21717;
+  color: #d21717
+}
+.noorder {
+width:100%;
+height:auto;
+display:flex;
+justify-content:center;
+margin-top: 120rpx;
+}
+.noorder image{
+height:150rpx;
+width:346rpx;
+}
+.goshop{
+width: 100%;
+margin-top: 90rpx;
+font-size:32rpx;
+color:#fff;
+font-weight:bold;
+display:flex;
+justify-content:center;
+}
+.goshop text{
+width: 312rpx;
+height: 88rpx;
+display:flex;
+justify-content:center;
+align-items:center;
+border-radius:46rpx;
+background-image:-webkit-linear-gradient(to bottom right, #dfceb5 , #c59f68); 
+background-image:linear-gradient(to bottom  right,#dfceb5 , #c59f68);
+}
+
+.nullorder{
+  margin-top: 100rpx;
+  width: 100%;
+}
+.nullorder image{
+  width: 520rpx;
+  height: 284rpx
+}
+
+.nomore{
+  justify-content: center;
+  color: #666;
+  font-size: 22rpx;
+  margin: 30rpx 0
+}
+
+
+
+/*付款  */
+/*选择支付方式  */
+.payway, .payway .mask {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+  
+}
+.payway{
+  z-index: 3
+}
+.payway .mask {
+	background: rgba(0,0,0,0.7);
+}
+.payway .list {
+	position: fixed;
+	left: 0;
+	bottom: 0rpx;
+	width: 100%;
+	background: #f7f7f7;
+	padding: 0rpx 0 50rpx 0;
+
+
+}
+.list .listhead{
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom:1rpx solid rgba(0,0,0,0.1);
+}
+.listhead .ximg{
+  width: 100rpx;
+  height: 80rpx;
+  position:absolute;
+  left: 0;
+  line-height:80rpx;
+}
+.ximg image{
+  width: 22rpx;
+  height: 22rpx;
+}
+.head .desc{
+  font-size:32rpx;
+  color: #333;
+}
+
+.list .price{
+  height:210rpx;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:62rpx;
+color:#333;
+} 
+.list .item{
+display: flex;
+display: -webkit-flex;
+align-items: center;
+height: 100rpx;
+border-bottom: 1rpx solid rgba(0,0,0,0.1);
+margin: 0 20rpx;
+font-size: 30rpx;
+color: #333;
+}
+.item .pwl-name{
+  flex: 2;
+}
+.item .pwl-img{
+  width: 62rpx;
+  height: 48rpx;
+  padding: 0 28rpx 0 12rpx;
+}
+.item .pwl-lightimg{
+  width: 12rpx;
+  height: 18rpx;
+  position: absolute;
+  right: 38rpx;
+}
+.item .pwl-lightimg.seleted-img{
+  width: 26rpx;
+  height: 26rpx;
+}
+.payway .pw-sub{
+  height: 96rpx;
+  width: 100%;
+  margin-top: 200rpx;
+  display: flex;
+  justify-content: center;
+}
+.pw-sub .blue{
+  width: 660rpx;
+  color: #fff;
+  font-size: 34rpx;
+  font-weight: bold;
+background-image:-webkit-linear-gradient(to bottom right, #e23f19 , #d52f2e); 
+background-image:linear-gradient(to bottom  right, #e23f19 , #d52f2e);
+}

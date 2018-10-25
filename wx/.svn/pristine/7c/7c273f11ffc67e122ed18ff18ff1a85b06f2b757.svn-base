@@ -1,0 +1,81 @@
+Page({
+  data: {
+    startgray:'https://iservice.daqisoft.cn/Public/Home/images/amimgs/startgray.png',
+    startfull: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/startfull.png',
+    pic: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/pic.png',
+    camera:'https://iservice.daqisoft.cn/Public/Home/images/amimgs/camera.png',
+    imageList: [],
+    estar:[
+      {
+        id:0,
+        name: "差",
+      },
+      {
+        id: 1,
+        name: "一般",
+      },
+      {
+        id: 2,
+        name: "还不错",
+      },
+      {
+        id: 3,
+        name: "很满意",
+      },
+      {
+        id: 4,
+        name: "强烈推荐",
+      },
+    ],
+    egraySrc: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/stargray.png',
+    esfullSrc: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/starfull.png',
+    ekey: 5,//评分
+    evaluation:'强烈推荐',
+  },
+
+  takePhoto() {
+    wx.chooseImage({
+      count: 4, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths
+      }
+    })
+  },
+
+  chooseImage: function () {
+    var that = this
+    wx.chooseImage({
+      sourceType: ['album', 'camera'], 
+      sizeType: ['original', 'compressed'], 
+      count: 4,
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          imageList: res.tempFilePaths
+        })
+      }
+    })
+  },
+  previewImage: function (e) {
+    var current = e.target.dataset.src
+    wx.previewImage({
+      current: current,
+      urls: this.data.imageList
+    })
+  },
+  //终极,整颗星
+  selected: function (e) {
+    console.log(e);
+    var key = e.currentTarget.dataset.id
+    var eva = this.data.estar[key - 1].name;
+    console.log("得" + key + "分" + eva)
+    this.setData({
+      ekey: key,
+      evaluation: eva,
+    })
+  }
+
+})

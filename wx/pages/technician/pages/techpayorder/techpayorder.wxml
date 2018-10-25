@@ -1,0 +1,65 @@
+<!--q确认下单  -->
+<view class='copntainer'>
+  <view class='head'>
+    <view class='item '>
+      <view class='h-img'>
+        <image src='https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png'></image>
+      </view>
+      <view class='h-content'>
+        <view class='c-head'>102号</view>
+      </view>
+    </view>
+  </view>
+
+
+
+
+
+  <view class='td-line'></view>
+
+   <view class='input'>
+      <textarea  bindinput='bindinput'  class='ta'
+       placeholder='请输入备注信息' maxlength='50' placeholder-class='p-class' value="{{content}}">
+      </textarea>
+      <text class='talength'>{{talength}}/50</text>
+  </view>
+
+  <view class='payorder' bindtap="submit">
+      <view class='total'>合计：<text>￥555.00</text></view>
+      <view class='topay'>确定下单</view>
+  </view>
+
+
+    <!-- 选择结账方式界面 -->
+  <view class="payway" hidden="{{!showPayWay}}">
+		<view class="mask" bindtap="hidePayWay"></view>
+		<view class="list">
+      <view class="l-head">
+          <image class="ximg" src='https://iservice.daqisoft.cn/Public/Home/images/techimgs/x.png' bindtap="hidePayWay"></image>
+          <view class="desc">确认付款</view>
+      </view>
+
+      <view class="price">
+         ￥555.00
+      </view>
+      <radio-group bindchange="selectPayWay">
+        <label class="item" wx:for="{{payWayList}}" wx:key="{{item.id}}">
+          <image src='{{item.pic}}' class="pwl-img"></image>
+          <view class='pwl-name'>{{item.name}}</view>
+          <view class="pwl-select">
+            <radio value="{{item.id}}" checked="{{item.id==pwseleted}}"/>
+          </view>
+         
+        </label>
+      </radio-group>
+
+      <view class='pw-sub'>
+        <form bindsubmit="paySubmit" report-submit="true">
+          <button class="blue" formType="submit" >付款</button>
+        </form>
+      </view>
+		</view>
+	</view>
+
+
+</view>

@@ -1,0 +1,90 @@
+<view class="qrcode-content">
+  <view class="con-box">
+    <view class="head-info flex-wrp">
+      <image src="{{orderData.imgurl[0]}}" lazy-load mode="aspectFill"></image>
+      <view class="infos">
+        <view class="ptitle">{{orderData.project_name}}</view>
+        <view class="pstore">门店：{{orderData.store_name}}</view>
+        <block wx:if="{{orderData.address_detail}}">
+          <view class="pstore">地址：{{orderData.address_detail}}</view>
+        </block>
+      </view>
+    </view>
+
+    <view class="qrcode-box">
+      <image src="{{orderData.qrcode_url}}" lazy-load></image>
+
+      <view class="sumption-tips">出示二维码消费</view>
+      <view class="verify-code">{{orderData.order_num}}</view>
+      <block wx:if="{{orderData.is_use == 1}}">
+        <view class="useed"></view>
+      </block>
+
+    </view>
+  </view>
+
+  <block wx:if="{{orderData.is_use == 1}}">
+    <view class="again-reserve">
+      <view bindtap="jumpPage" data-url="/pages/transbuy/pages/project-detail/project-detail?pid={{orderData.pid}}&nodeid={{orderData.nodeid}}">再次购买</view>
+      <block wx:if="{{orderData.is_assess == 0}}">
+        <view class="active" bindtap="jumpPage" data-url="/pages/transbuy/pages/assess/assess?pid={{orderData.pid}}&nodeid={{orderData.nodeid}}&id={{orderData.id}}">评价</view>
+      </block>
+    </view>
+  </block>
+</view>
+
+<view class="bottom-con">
+  <view class="order-infos">
+    <view class="order-title">订单信息</view>
+    <view class="order-info-con">
+      <view>
+        <text>订单状态：</text>{{orderData.is_use == 1 ? '已消费' : '待消费...'}}</view>
+      <view>
+        <text>实付金额：</text>￥{{orderData.project_price}}</view>
+      <!-- <view>
+        <text>备注信息：</text>肩颈痛</view> -->
+      <view>
+        <text>订 单 号：</text>{{orderData.order_num}}</view>
+      <view>
+        <text>下单时间：</text>{{orderData.create_time}}</view>
+      <block wx:if="{{orderData.petime}}">
+        <view>
+          <text>有效期至：</text>{{orderData.petime}}</view>
+      </block>
+      <block wx:if="{{orderData.is_use == 1}}">
+        <view>
+          <text>消费时间：</text>{{orderData.use_time}}</view>
+      </block>
+    </view>
+  </view>
+
+  <view class="top-store-address">
+    <view class="store-name">{{orderData.store_name}}</view>
+    <view class="flex-wrp">
+      <view class="address text-ellipsis">
+        {{orderData.address_detail ? orderData.address_detail : '未设置门店地址'}}
+      </view>
+      <view class="location" data-address="{{orderData.address_detail}}" data-sname="{{orderData.store_name}}" bindtap="location">{{distance}}
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/location_icon_2.png" lazy-load></image>
+      </view>
+      <view class="telphone" data-tel="{{orderData.tel}}" bindtap="callphone">
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/telphone_icon_1.png" lazy-load></image>
+      </view>
+    </view>
+  </view>
+
+  <block wx:if="{{ad}}">
+    <view class="ad-box">
+      <image src="{{ad.adimg}}" lazy-load bindtap="jumpAd" data-adurl="{{ad.adurl}}"  mode="aspectFill"></image>
+    </view>
+  </block>
+</view>
+
+<!-- 返回首页按钮 -->
+<view class="backhome-btn">
+  <view>
+    <navigator url="/pages/index/index" hover-class="none" open-type="reLaunch">
+      <text>返回首页</text>
+    </navigator>
+  </view>
+</view>

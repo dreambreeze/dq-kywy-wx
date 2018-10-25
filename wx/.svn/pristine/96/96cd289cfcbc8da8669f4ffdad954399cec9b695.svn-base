@@ -1,0 +1,71 @@
+@import "../../../common/top-nav.wxss";
+
+.container {
+  background: #eee;
+  min-height: 1194rpx;
+}
+
+.his-tab {
+  margin-top: 10rpx;
+  padding: 0 10rpx;
+}
+
+.his-title {
+  height: 66rpx;
+  line-height: 66rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  padding: 0 12rpx;
+  color: #caa876;
+}
+
+.tables {
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.flex-title {
+  background: #caa876;
+}
+
+.flex-title .tab-item {
+  height: 54rpx;
+  line-height: 54rpx;
+  color: #fff;
+}
+
+.flex-title .tab-item:nth-of-type(1){
+  border-color: #caa876;
+}
+
+.flex-title .tab-item:last-child{
+  border-right-color: #caa876;
+}
+
+.tab-item {
+  border-left: 1rpx solid #bcbcbc;
+  border-bottom: 1rpx solid #bcbcbc;
+  text-align: center;
+  font-size: 26rpx;
+  line-height: 1;
+  color: #333;
+  word-break: break-all;
+  padding: 22rpx 4rpx;
+}
+
+.tab-item:nth-of-type(1) {
+  width: 170rpx;
+}
+
+.tab-item:nth-of-type(2) {
+  width: 126rpx;
+}
+
+.tab-item:nth-of-type(3) {
+  width: 254rpx;
+}
+
+.tab-item:nth-of-type(4) {
+  border-right: 1rpx solid #bcbcbc;
+  flex: 1;
+}

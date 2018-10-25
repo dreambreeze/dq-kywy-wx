@@ -1,0 +1,37 @@
+<view class='amcontainer'>
+ <form bindsubmit="submit">
+  <view class='input'>
+      <!-- <textarea  bindinput='bindinput' show-confirm-bar="false" class='ta'
+       placeholder='请输入备注信息' maxlength='50' placeholder-class='p-class' value="{{content}}">
+      </textarea>
+      <text class='talength'>{{talength}}/50</text> -->
+      <view class='i-title flex'>提示：每条备注最多输入20字</view>
+      <view class='item flex' wx:for="{{choosegoods}}" wx:key="">
+        <view class='gname'>{{item.serviceitemname}}</view>
+        <view class='gnote'><input bindfocus="bindinput" cursor-spacing="4" data-id="{{index}}" type="text" value="{{item.note}}" name="{{item.serviceitemno}}" maxlength='20'/></view>
+      </view>
+     
+  </view>
+  <view class='auto'>
+      <text class='a-title'>快捷标签</text>
+      <view class='items'>
+        <block  wx:for="{{autoList}}" wx:for-index="id" wx:for-item="sign" wx:key="a-id">
+        <!-- <block  wx:for="{{autodone}}" wx:for-index="adid" wx:for-item="adone" wx:key="ad-id"> -->
+              <view class="a-item " hover-class="active" hover-stay-time="50000" data-id="{{id}}"   bindtap='getinfo'>{{sign.name}}</view>
+           <!-- </block> -->
+        </block>
+      </view>
+  </view>
+  <!-- <view class='complete' bindtap='bindcomplete'>
+      <view class='c-name'>完成</view>
+      
+  </view> -->
+  <!-- <view class='complete'>
+      <button class='c-name'  formType="submit">完成</button>
+  </view> -->
+  
+      <button class='complete'  formType="submit">完成</button>
+
+   
+ </form>
+</view>

@@ -1,0 +1,101 @@
+.amcontainer{
+  height: 100%;
+}
+.container .swiper{
+  height: 450rpx;
+  background: #353535;
+}
+.swiper swiper{
+  height: 450rpx;
+}
+.swiper swiper-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding-right:32rpx; */
+}
+.swiper image{
+  width: 320rpx;
+  height: 350rpx;
+}
+.swiper .active{
+  width: 374rpx;
+  height: 385rpx;
+}
+
+.techinfo{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:36rpx;
+font-size: 28rpx;
+}
+.techinfo .t-no{
+  font-size:34rpx;
+font-weight:bold;
+}
+.techinfo .t-no text{
+  font-size: 24rpx;
+  color: #666;
+}
+
+.techinfo .t-qualification{
+  color: #f8ab11;
+  display: flex;
+  align-items: center;
+  padding: 12rpx 0 20rpx 0; 
+}
+.t-qualification image{
+  width: 23rpx;
+  height: 27rpx;
+  margin-right: 10rpx;
+}
+.techinfo .t-describable{
+  color: #666;
+}
+
+.td-line{
+  height: 20rpx;
+  background-color: #eee;
+}
+.techdetail{
+  padding-bottom: 200rpx;
+}
+.td-intro{
+  padding: 28rpx 20rpx 18rpx 20rpx;
+}
+.td-head{
+  height:50rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+.td-head view{
+width:10rpx;
+height:25rpx;
+background-color:#caa876;
+margin-right: 8rpx;
+border-radius: 8rpx;
+}
+.td-desc{
+  margin-top:10rpx;
+  line-height: 36rpx;
+  font-size: 26rpx;
+  text-indent: 54rpx;
+}
+.td-swiper swiper{
+  height: 332rpx;
+}
+.td-swiper swiper-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right:2rpx;
+}
+.td-swiper image{
+  width: 228rpx;
+  height: 297rpx;
+}
+

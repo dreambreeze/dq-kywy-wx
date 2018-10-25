@@ -1,0 +1,23 @@
+<template name="project">
+  <view class="store-project" style="height:{{isHeight ? heightIdx == sIdx && heightOff ? height : '280rpx' : 'auto'}}">
+
+    <view class="project-item" wx:for="{{projectArr}}" wx:for-index="idx" wx:for-item="project">
+      <navigator url="../project-detail/project-detail" hover-class="none">
+        <view class="flex-wrp">
+          <view class="p-img">
+            <image src="https://iservice.daqisoft.cn/Public/Home/images/cbd.jpg" lazy-load></image>
+          </view>
+          <view class="p-info">
+            <view class="p-name">美丽佳人（90分钟）</view>
+            <view class="p-desc text-ellipsis">开背放松5分钟+肩颈腰背臀部35肩颈腰背臀部35</view>
+          </view>
+          <view class="p-price">
+            <view>￥339.00</view>
+            <view>门市价:￥499.00</view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+
+  </view>
+</template>

@@ -1,0 +1,223 @@
+@import "/pages/common/lib/animate.wxss";
+.order-item {
+  margin-bottom: 12rpx;
+}
+
+.order-title {
+  height: 64rpx;
+  line-height: 64rpx;
+  background: #fff;
+  padding: 0 20rpx;
+}
+
+.order-title image {
+  width: 26rpx;
+  height: 24rpx;
+  margin-right: 16rpx;
+  vertical-align: middle;
+}
+
+.order-item text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.order-info {
+  height: 164rpx;
+  background: #f1f1f1;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+}
+
+.oi-img {
+  width: 140rpx;
+  margin-right: 20rpx;
+  padding: 16rpx 0;
+}
+
+.oi-img image {
+  width: 140rpx;
+  height: 134rpx;
+}
+
+.oi-dil {
+  width: 340rpx;
+  padding: 16rpx 0;
+}
+
+.oi-name {
+  font-size: 32rpx;
+  color: #333;
+}
+
+.oi-time {
+  font-size: 24rpx;
+  color: #999;
+  margin: 8rpx 0 14rpx;
+}
+
+.oi-price {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.oi-price text:first-child {
+  font-size: 22rpx;
+  margin-right: 8rpx;
+}
+
+.oi-price text:last-child {
+  font-size: 24rpx;
+  color: #919090;
+}
+
+.oi-btn {
+  flex: 1;
+  text-align: right;
+}
+
+.oi-btn text {
+  display: inline-block;
+  width: 152rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 80rpx 0 0 80rpx;
+  font-size: 28rpx;
+  color: #fff;
+  margin-top: 52rpx;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 4rpx 12rpx rgba(199, 156, 98, 0.5);
+}
+
+.oi-btn text.active{
+  border: none;
+  color: #bd9256;
+  box-shadow: none;
+  background-image: none !important;
+  font-weight: normal;
+}
+
+.order-oper {
+  height: 78rpx;
+  line-height: 78rpx;
+  padding: 0 20rpx;
+  background: #fff;
+}
+
+.oper-l {
+  float: left;
+  font-size: 24rpx;
+  color: #333;
+}
+.oper-l.active{
+  color: #999999;
+  padding-right: 10rpx;
+}
+.oper-r {
+  float: right;
+  font-size: 24rpx;
+  color: #333;
+  line-height:78rpx;
+}
+
+.oper-r text {
+  display: inline-block;
+  border: 1rpx solid #8a8a8a;
+  border-radius: 30rpx;
+  padding: 8rpx 30rpx;
+  line-height: 1;
+}
+
+.oper-r text:last-child {
+  margin-left: 24rpx;
+  border-color: #c59f68;
+  background: #f3ece1;
+}
+
+
+.qrcode-box {
+  width: 600rpx;
+  height: 900rpx;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -450rpx;
+  margin-left: -300rpx;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.qrcode-title {
+  position: relative;
+  text-align: center;
+  color: #c4a06b;
+  padding: 40rpx 0 26rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+  font-size: 30rpx;
+}
+
+.qrcode-title view:nth-of-type(2) {
+  font-size: 26rpx;
+}
+
+.close-qrcode {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 44rpx;
+  color: #aaa9a9;
+}
+
+.qrcodes {
+  padding: 30rpx 0;
+  text-align: center;
+}
+
+.qr-t {
+  font-size: 22rpx;
+  color: #8f8f94;
+}
+
+.qrcodes image {
+  width: 570rpx;
+  height: 570rpx;
+  margin: 20rpx 0;
+}
+
+.coupon-num {
+  color: #333;
+  font-size: 32rpx;
+}
+
+.empty-order{
+  text-align: center;
+  margin-top: 166rpx;
+}
+
+.empty-order image{
+  width: 106rpx;
+  height: 96rpx;
+}
+
+.empty-tips{
+  color: #666;
+  font-size: 34rpx;
+  margin: 22rpx 0 86rpx;
+}
+
+.empty-buy{
+  font-size: 32rpx;
+  color: #fff;
+  width: 312rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  margin: 0 auto;
+  border-radius: 50rpx;
+  box-shadow: 0 2rpx 12rpx rgba(198,161,108,0.5);
+}

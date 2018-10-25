@@ -1,0 +1,19 @@
+<import src="../../../common/coupons.wxml" />
+
+<view class="container">
+  <view class="coupon-box">
+    <block wx:if="{{coupons}}">
+      <!-- 卡券内容模版 -->
+      <template is="coupons" data="{{coupons:coupons,display:display,ishide:ishide,btnName: '立即使用',arrow: arrow,cAction: 'active'}}" />
+    </block>
+    <block wx:else>
+      <view class="empty-coupon">
+        <icon type="warn" size="50" color="#d6d6d6"></icon>
+        <view class="empty-t">暂无失效优惠券</view>
+        <view class="empty-btn">
+          <navigator url="../coupons/coupons" open-type="redirect" hover-class="none">去领取</navigator>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

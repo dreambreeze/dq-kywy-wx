@@ -1,0 +1,49 @@
+<import src="../common/shop-nav.wxml" />
+<view class="shopcontainer">
+  <view class='page-head'>
+    <view class='h-red'></view>
+    <view class='h-white'></view>
+    <view class='h-search flex'>
+      <view class='searchimg flex'>
+        <image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/search.png'></image>
+      </view>
+      <input type='text' bindfocus='bindfocus' placeholder='请输入商品关键字'></input>
+      <view class='searchsubmit flex'>搜索</view>
+    </view>
+  </view>
+
+  <view class='page-body'>
+    <!--左边分类  --> 
+    <scroll-view class="sv-classify" scroll-y="true">
+      <view class='line'></view>
+      <view class="classify {{classifySeleted==classify.id?'active':''}} " wx:for="{{goodsList}}" wx:for-item="classify" wx:key="" data-id="{{classify.id}}" bindtap="tapClassify">
+        <view class='activeline'  wx:if="{{classifySeleted==classify.id}}"></view>
+        <view class="name">{{classify.classifyname}}</view>
+      </view>
+    </scroll-view>
+    <!--右邊數據  -->
+    <scroll-view class="sv-goods" scroll-y="true" scroll-into-view="{{classifyViewed}}" bindscroll="onGoodsScroll">
+      <block  wx:for="{{goodsList}}" wx:for-item="classify" wx:key="gid">
+      <view class='allcategory flex' bindtap='toall' wx:if="{{classifySeleted==classify.id}}" data-name="{{classifySeleted==classify.id?classify.classifyname:''}}" data-id='{{classifySeleted}}'>
+     
+        <image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/all.png'></image>
+        <view class='desc'>全部</view>
+        <image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/allright.png'></image>
+      </view>
+       </block>
+      <block wx:for="{{goodsList}}" wx:for-item="classify" wx:key="" >
+        <view class='catelist flex' wx:if="{{classifySeleted==classify.id}}" data-id="{{classify.id}}">
+            <view class="categoryitem flex"  wx:for="{{goods}}" wx:if="{{item.type==classifySeleted}}" wx:key="" bindtap='typedetail' data-id="{{index}}" >
+              <image src='{{showImgUrl}}{{item.image}}'></image>
+              {{item.name}}
+            </view>
+        </view>
+      </block>
+    </scroll-view>
+    
+  </view>
+
+<!-- 导航公用模版 -->
+<template is="shop-nav" data="{{type: 1,navArr: navTabBar,showImgUrl: showImgUrl1}}" />
+
+</view>

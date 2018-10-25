@@ -1,0 +1,137 @@
+//app.js
+var common = require('./common.js');
+App({
+  onLaunch: function (op) {
+    var _this = this;
+    //获取系统（当前小程序）唯一ID
+    let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+    _this.globalData.authorizerId = extConfig.authorizer_appid;
+    //获取本地storage保存的openid
+    var openid = wx.getStorageSync('openid');
+    //检查是否在登录态
+    wx.checkSession({
+      success: function (res) {
+        //用户openid未保存在本地时重新登录
+        if (!openid) {
+          wx.login({
+            success: function (res) {
+              wx.request({
+                url: common.config.host + '/index.php/Api/Base/jscode_session',
+                data: {
+                  'code': res.code,
+                  'openid': openid,
+                  'authorizerId': _this.globalData.authorizerId
+                },
+                method: 'POST',
+                header: {
+                  'content-type': 'application/json'
+                },
+                success: function (res) {
+                  if (res.statusCode == 200 && res.data.status == 1) {
+                    wx.setStorageSync('openid', res.data.info);
+                    openid = res.data.info;
+                  }else{
+                    wx.removeStorageSync('openid');
+                  }
+                }
+              });
+            }
+          });
+        }
+      },
+      fail: function () {
+        wx.login({
+          success: function (res) {
+            wx.request({
+              url: common.config.host + '/index.php/Api/Base/jscode_session',
+              data: {
+                'code': res.code,
+                'openid': openid,
+                'authorizerId': _this.globalData.authorizerId
+              },
+              method: 'POST',
+              header: {
+                'content-type': 'application/json'
+              },
+              success: function (res) {
+                if (res.statusCode == 200 && res.data.status == 1) {
+                  wx.setStorageSync('openid', res.data.info);
+                  openid = res.data.info;
+                } else {
+                  wx.removeStorageSync('openid');
+                }
+              }
+            });
+          }
+        });
+      }
+    });
+
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userInfo']) {
+          wx.authorize({
+            scope: 'scope.userInfo',
+            success(res) {
+              // 用户已经同意
+            }
+          })
+        }
+      },
+      complete: function () {
+        wx.getUserInfo({
+          withCredentials: true,
+          success: function (res) {
+            console.log(res);
+            _this.globalData.wXUserInfo = res.userInfo;
+            setTimeout(function () {
+              wx.request({
+                url: common.config.host + '/index.php/Api/Base/saveUserInfo',
+                data: {
+                  'openid': openid,
+                  'authorizerId': _this.globalData.authorizerId,
+                  'encryptedData': res.encryptedData,
+                  'iv': res.iv,
+                  'type': 1
+                },
+                method: 'POST',
+                header: {
+                  'content-type': 'application/json'
+                },
+                success: function (res) {
+                }
+              });
+            }, 500);
+          }
+        });
+      }
+    });
+
+  },
+  globalData: {
+    wXUserInfo: null,
+    authorizerId: '',
+    userinfo: {
+      username: '赵先生',
+      userphone: '18866667777',
+    },
+    arrivetime: 5,
+    startgray: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/startgray.png',
+    startfull: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/startfull.png',
+    addimg: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/add.png',
+    reduceimg: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/reduce.png',
+  },
+
+
+  //去除数组重复数据  
+  unique(arr) {
+    return Array.from(new Set(arr))
+  },
+
+  /**
+   * 监听小程序隐藏
+   */
+  onHide: function () {
+    wx.removeStorageSync('nav');
+  }
+})

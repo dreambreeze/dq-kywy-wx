@@ -1,0 +1,104 @@
+.info-input {
+  margin-top: 30rpx;
+  padding: 25rpx 42rpx;
+  background: #fff;
+}
+
+.input-item {
+  margin-bottom: 28rpx;
+  box-sizing: border-box;
+}
+
+.i-label {
+  font-size: 28rpx;
+  width: 156rpx;
+  color: #666666;
+  line-height: 72rpx;
+}
+
+.i-label text {
+  font-weight: bold;
+  font-size: 28rpx;
+  /* font-family: tahoma, verdana; */
+  color: #ed0f10;
+  vertical-align: bottom;
+  display: inline-block;
+  margin-right: 2px;
+}
+
+.i-input {
+  border-bottom: 1rpx solid #ccc;
+  flex: 1;
+}
+
+.phone-input{
+  width: 330rpx;
+  border-bottom: 1rpx solid #ccc;
+}
+
+.getPhoneNumber{
+  flex: 1;
+  border-bottom: 1rpx solid #ccc;
+}
+
+.getPhoneNumber button{
+   width: 150rpx; 
+  background-color: #51C332;
+  color: #fff;
+  margin: 0;
+  padding: 12rpx 10rpx;
+  line-height: 1;
+  font-size: 28rpx;
+  border-radius: 3rpx;
+}
+
+.i-input input, .verify-input input ,.phone-input{
+  line-height: 72rpx;
+  font-size: 28rpx;
+  height: 72rpx;
+  padding: 0 20rpx;
+}
+
+.verify-input {
+  width: 306rpx;
+  border-bottom: 1rpx solid #ccc;
+}
+
+.get-verify {
+  width: 164rpx;
+  font-size: 24rpx;
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  border-radius: 3px;
+  margin-left: 10rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  margin-top: 10rpx;
+}
+
+.get-verify.seconds{
+  background-color: #ccc
+}
+
+.dc-btn {
+  width: 576rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  color: #fff;
+  box-shadow: 0 0 14px rgba(189, 144, 85, 0.4);
+  text-align: center;
+  border-radius: 3px;
+  font-size: 34rpx;
+  font-weight: 500;
+  margin: 200rpx auto 0;
+  /* position: fixed;
+  bottom: 70rpx;
+  left: 50%; */
+  /* margin-left: -288rpx; */
+}
+
+.radio {
+  font-size: 28rpx;
+  margin-right: 35rpx;
+}

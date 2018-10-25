@@ -1,0 +1,73 @@
+<view class="amcontainer">
+  <view class='head'>
+    <view class='black'></view>
+    <view class='white'></view>
+    <view class='h-content'>
+      <view class='h-in'>
+        <view class='h-time' >{{preTime}}</view>
+        <view class='h-desc'>预计送达时间</view>
+      </view>
+    </view>
+   
+  </view>
+  <view class='orderstatus'>已接单,准备中...</view>
+  <view class='orderfast'><text>催单</text></view>
+  
+   <view class="nav" hidden='true'>
+      <view bindtap='toorder'>再来一单</view>
+      <navigator url='../detail/detail' open-type="redirect" hover-class="none">
+        <view>评价</view>
+      </navigator>
+  </view>
+
+  <view class='line'></view>
+
+   <view class='content'>
+    <view class='c-head'>
+        <image class='c-img' src="{{store}}"> </image>
+        养生足浴
+        <image class='c-img1' src="{{toright}}"> </image>
+    </view>
+    <view class='c-list' >
+        <view class='c-item'  wx:for="{{cart.list}}" wx:for-index="id" wx:for-item="num" wx:key="c-id">
+            <image class='i-img' src = "{{goods[id].pic}}"></image>
+            <view class='i-name'>{{goods[id].name}}</view>
+            <view class="i-num">x {{num}}</view>
+            <view class="i-total">￥{{goods[id].price*cart.list[id]}}</view>
+        </view>
+    </view>
+    <view class='c-foot'>
+        <view class='f-all'>共{{cart.count}}件商品</view>
+        <view class='f-pay '>应付：<text class='f-money'>￥{{cart.total}}</text></view>
+    </view>
+  </view>
+
+   <view class='line'></view>
+
+  <view class='order-info'>
+    <view class='o-head'>订单信息</view>
+    <view class='o-content'>
+        <view class='o-left'>
+          <view>订单状态：</view>
+          <view>收货信息：</view>
+          <view></view>
+          <view></view>
+          <view>订 单 号：</view>
+          <view>支付方式：</view>
+          <view>下单时间：</view>
+          <view>订单备注：</view>
+        </view>
+         <view class='o-right'>
+          <view>已接单,准备中...</view>
+          <view>{{userinfo.username}}</view>
+          <view>{{userinfo.userphone}}</view>
+          <view>2号SPA房</view>
+          <view>{{orderNO}}</view>
+          <view>{{payWayList.name}}</view>
+          <view>{{orderTime}}</view>
+          <view>{{noteword}}</view>
+        </view>
+    </view>
+  </view>
+</view>
+      

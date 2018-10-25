@@ -1,0 +1,87 @@
+<import src="../../../common/online-reserve.wxml"/>
+<import src="../../../common/reserve-stime.wxml" />
+<view class='container'>
+<!-- 门店信息模版 -->
+  <template is="online-reserve" data="{{tabIdx: 1,locationStore: locationStore}}"/>
+  <!-- <view class='head'>
+    <view class='shopimg'> <image src="https://iservice.daqisoft.cn/Public/Home/images/techimgs/shop.png"></image></view>
+    <view class='shopname'>
+      <view >Healthy体育新城店</view>
+      <view>您有1张优惠券待领取</view>
+    </view>
+    <view class='changeshop'>
+      切换门店 <image src ="https://iservice.daqisoft.cn/Public/Home/images/techimgs/arrow.png"></image>
+    </view>
+  </view>
+  
+  <view class='shopinfo'>
+    <view class='s-addr'>
+        <image src ="https://iservice.daqisoft.cn/Public/Home/images/techimgs/addr.png"></image>
+        长沙市芙蓉区万家丽中路1369号
+    </view>
+    <view class='s-distance'>
+    1369km
+    <image src = "https://iservice.daqisoft.cn/Public/Home/images/techimgs/direc.png"></image>
+    </view>
+    <view class='s-phone'>
+      <image src = "https://iservice.daqisoft.cn/Public/Home/images/techimgs/phone.png"></image>
+    </view>
+  </view>
+
+  <view class='t-line'></view> -->
+
+  <view class='content'>
+      <!-- <view class='c-search'>
+        <input type='text' confirm-type='search' placeholder='请输入技师号' placeholder-class='plhc' cursor='50' bindfocus='bindfocus' value='{{techNODefault}}'></input>
+      </view> -->
+      
+        <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
+        <view class='c-class' >
+        <view class='c-item {{typeDefault==0?"active":""}}' data-id="0" bindtap='typeSelect'>全部</view>
+        <block wx:for="{{typeLists}}" wx:for-index="tl" wx:key="tlid">
+        <view class='c-item {{typeDefault==item.techniciantypeno?"active":""}}' data-id="{{item.techniciantypeno}}" bindtap='typeSelect'>{{item.techniciantypename}}</view>
+        </block>
+        </view>
+        </scroll-view>
+      
+
+      <view class='t-info'>
+        <view class='t-item' wx:for="{{data}}" wx:key="" catchtap='toTechdetail' data-id='{{item.staffworkno}}'>
+            <view class='i-img'>
+              <block wx:if="{{item.picurl}}">
+               <image src='{{showImgUrl}}{{item.picurl[0]}}'></image>
+              </block>
+              <block wx:else>
+               <image src='https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png'></image>
+              </block>
+             
+            </view>
+            <view class='i-no'>{{item.staffworkno}}号</view>
+            <!--26岁/  -->
+            <view class='i-detail text-ellipsis'>{{item.staffsex==0?"女":"男"}}/{{item.serviceitems}}</view>
+            <!-- <view class="i-today"></view> -->
+            <view class="reserve-room-p" catchtap="reserveBtn" data-idx="{{item.staffworkno}}" >
+              <icon type="success" size="20" color="rgb(202,168,118)" style="{{  item.selected ? iconHide : ''}}"/>
+              <view class="reserve-room-btn btn-gradient"   style="{{item.selected ? reserveBtnHide : ''}}">选择</view>
+            </view>
+        </view>
+
+        
+      </view>
+  </view>
+  <view class='nomore'>没有更多了</view>
+</view>
+<!-- 预约按钮 -->
+<view class="buy-bar" bindtap="reserveBtnTime">立即预约</view>
+
+<!-- 选择时间模版 -->
+<template is="reserve-stime" data="{{maskDisplay: maskDisplay,showSelectTime: showSelectTime}}" />
+
+<!-- 返回首页按钮 -->
+<view class="backhome-btn">
+  <view>
+    <navigator url="/pages/index/index" hover-class="none" open-type="reLaunch">
+      <text>返回首页</text>
+    </navigator>
+  </view>
+</view>

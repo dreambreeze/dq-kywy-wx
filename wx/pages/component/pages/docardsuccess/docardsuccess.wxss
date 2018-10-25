@@ -1,0 +1,44 @@
+.success-ico{
+  width: 540rpx;
+  height: 290rpx;
+  margin: 0 auto;
+  text-align: center;
+  border-bottom: 1rpx solid #cccccc;
+}
+.success-ico icon{
+  margin: 68rpx 0 30rpx;
+}
+.success-ico view{
+  font-size: 32rpx;
+  color: #333;
+}
+.success-info{
+  width: 540rpx;
+  padding-top: 68rpx;
+  font-size: 28rpx;
+  color: #333;
+  margin: 0 auto;
+}
+.success-info view{
+  margin-bottom: 16rpx;
+  padding-left: 116rpx;
+  word-break: break-all;
+}
+.success-info text{
+  display: inline-block;
+  color: #666666;
+}
+.back-home{
+  width: 100rpx;
+  height: 70rpx;
+  margin: 242rpx auto 0;
+  font-size: 24rpx;
+  color: #333;
+}
+.back-home view:first-child{
+  width: 33rpx;
+  height: 33rpx;
+  background: url(https://iservice.daqisoft.cn/Public/Home/images/arrowleft-o.png) no-repeat;
+  background-size: contain;
+  margin: 0 auto 15rpx;
+}

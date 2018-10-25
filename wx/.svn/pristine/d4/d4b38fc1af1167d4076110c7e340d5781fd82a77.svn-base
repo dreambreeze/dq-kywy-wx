@@ -1,0 +1,22 @@
+@import "../../../common/top-nav.wxss";
+@import "../../../common/coupons.wxss";
+.container {
+  background: #eee;
+}
+
+.coupon-box {
+  margin: 24rpx;
+  overflow: hidden;
+  min-height: 1050rpx;
+}
+
+.empty-coupon{
+  text-align: center;
+  font-size: 32rpx;
+  color: #999999;
+  margin-top: 156rpx;
+}
+
+.empty-t{
+  margin-top: 10rpx;
+}

@@ -1,0 +1,62 @@
+.success {
+  text-align: center;
+  margin-top: 214rpx;
+}
+
+.success-tips {
+  font-size: 32rpx;
+  color: #333;
+  margin-top: 32rpx;
+}
+
+.back-tips {
+  text-align: center;
+  font-size: 30rpx;
+  color: #666;
+  margin-top: 88rpx;
+}
+
+.back-tips view {
+  display: inline-block;
+  background: #eee;
+  padding: 0 10rpx;
+  margin-left: 10rpx;
+}
+
+.back-tips text {
+  color: #0440a2;
+  margin-right: 10rpx;
+}
+
+.again-reserve{
+  text-align: center;
+  margin: 64rpx 0;
+}
+
+.again-reserve-btn{
+  display: inline-block;
+  width: 238rpx;
+  height: 74rpx;
+  line-height: 74rpx;
+  text-align: center;
+  font-size: 30rpx;
+  border: 1rpx solid #caa876;
+  color: #333;
+  border-radius: 6rpx;
+  vertical-align: top;
+}
+
+button.again-reserve-btn::after{
+  content: normal;
+}
+
+.again-reserve-btn.active{
+  background-color: #caa876;
+  color: #fff;
+}
+
+.share-tips{
+  font-size: 24rpx;
+  color: #a2a0a0;
+  margin-top: 8rpx;
+}

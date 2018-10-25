@@ -1,0 +1,137 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/ucenter/ucenter",
+    "pages/vip-center/vip-center",
+    "pages/promotions/promotions",
+    "pages/webView/webView"
+  ],
+  "subPackages": [
+    {
+      "root": "pages/component/",
+      "pages": [
+        "pages/now-docard/now-docard",
+        "pages/docardsuccess/docardsuccess",
+        "pages/recharge/recharge",
+        "pages/recharge-amount/recharge-amount",
+        "pages/coupons/coupons",
+        "pages/coupons-pack/coupons-pack",
+        "pages/expired-coupon/expired-coupon",
+        "pages/cardtrans/cardtrans",
+        "pages/cardtrans-amount/cardtrans-amount",
+        "pages/cardtrans-success/cardtrans-success",
+        "pages/historycons/historycons",
+        "pages/hisannal/hisannal",
+        "pages/docard/docard",
+        "pages/checkPrivilege/checkPrivilege",
+        "pages/lqgiftcard/lqgiftcard",
+        "pages/cardReceive/cardReceive"
+      ]
+    },
+    {
+      "root": "pages/transbuy/",
+      "pages": [
+        "pages/group-buy/group-buy",
+        "pages/project-search/project-search",
+        "pages/project-store/project-store",
+        "pages/all-assess/all-assess",
+        "pages/project-detail/project-detail",
+        "pages/buy-car/buy-car",
+        "pages/all-order/all-order",
+        "pages/consume-order/consume-order",
+        "pages/assess-order/assess-order",
+        "pages/order-detail/order-detail",
+        "pages/buy-success/buy-success",
+        "pages/assess/assess"
+      ]
+    },
+    {
+      "root": "pages/reserve/",
+      "pages": [
+        "pages/reserve-project/reserve-project",
+        "pages/project-detail/project-detail",
+        "pages/order-confirm/order-confirm",
+        "pages/search-project/search-project",
+        "pages/select-tech/select-tech",
+        "pages/select-coupon/select-coupon",
+        "pages/pay-success/pay-success",
+        "pages/select-store/select-store",
+        "pages/reserve-room/reserve-room",
+        "pages/room-detail/room-detail",
+        "pages/room-order-confirm/room-order-confirm",
+        "pages/store-assess/store-assess",
+        "pages/assess/assess"
+      ]
+    },
+    {
+      "root": "pages/automina/",
+      "pages": [
+        "pages/detail/detail",
+        "pages/gooddetail/gooddetail",
+        "pages/evaluation/evaluation",
+        "pages/orderdetail/orderdetail",
+        "pages/order/order",
+        "pages/paycomplete/paycomplete",
+        "pages/commit/commit",
+        "pages/note/note"
+       
+      ]
+    },
+    {
+      "root": "pages/technician/",
+      "pages": [
+        "pages/techindex/techindex",
+        "pages/techproject/techproject",
+        "pages/techpaycomplete/techpaycomplete",
+        "pages/techcoupon/techcoupon",
+        "pages/techpayorder/techpayorder",
+        "pages/techpjdetail/techpjdetail",
+        "pages/techdetail/techdetail",
+        "pages/index/index",
+        "pages/techorder/techorder",
+        "pages/techsearch/techsearch"
+      ]
+    },
+    {
+      "root": "pages/ucentermodel",
+      "pages": [
+        "pages/orders/orders",
+        "pages/infobind/infobind",
+        "pages/orderdetail/orderdetail",
+        "pages/reserveorderdetail/reserveorderdetail",
+        "pages/hislist/hislist",
+        "pages/hisdetail/hisdetail",
+        "pages/docardOrderdetail/docardOrderdetail"
+      ]
+    },
+    {
+      "root": "pages/shop",
+      "pages": [
+        "pages/shopindex/shopindex",
+        "pages/shoptype/shoptype",
+        "pages/goodsdetail/goodsdetail",
+        "pages/shopmine/shopmine",
+        "pages/shopmineorder/shopmineorder",
+        "pages/shoporderdetail/shoporderdetail",
+        "pages/shoplogin/shoplogin",
+        "pages/shopcategory/shopcategory",
+        "pages/shopsearch/shopsearch",
+        "pages/shopfailcoupon/shopfailcoupon",
+        "pages/shopminecoupon/shopminecoupon",
+        "pages/shopcart/shopcart",
+        "pages/shopaddr/shopaddr",
+        "pages/shopaddradd/shopaddradd",
+        "pages/shopaddredit/shopaddredit",
+        "pages/shoppaycomplete/shoppaycomplete",
+        "pages/shopcommit/shopcommit",
+        "pages/index/index"
+      ]
+    }
+  ],
+  "networkTimeout": {
+    "request": 8000,
+    "downloadFile": 8000,
+    "uploadFile": 8000
+  },
+  "debug": true
+}

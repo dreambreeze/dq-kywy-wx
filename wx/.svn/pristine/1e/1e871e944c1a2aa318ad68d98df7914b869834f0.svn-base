@@ -1,0 +1,114 @@
+<import src="../common/engin-nav.wxml" />
+<!--index.wxml-->
+<view class="container">
+  <!-- 顶部会员卡 -->
+  <view class="top-cards">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(0,0,0,0.4)" indicator-active-color="#C3AD8E" bindchange="topCardChange">
+      <block wx:for="{{cardUrls}}" wx:for-index="idx" wx:for-item="cardImg">
+        <swiper-item class="card-item">
+          <view class="card-item-c">
+            <image src="{{cardImg.img}}" class="slide-image" />
+            <view class="card-type">{{cardImg.cardtype}}</view>
+            <view class="card-num">{{cardImg.cardnum}}</view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <view class="show-money">
+      <view class="balance">
+        <text>余额：</text>
+        <text>￥</text>
+        <text>{{balance}}</text>
+      </view>
+      <view class="balance">
+        <text>消费：</text>
+        <text>￥</text>
+        <text>{{consume}}</text>
+      </view>
+    </view>
+
+    <view class="ption">
+      <block wx:for="{{cardUrls}}" wx:for-index="idx">
+        <block wx:if="{{idx==cardIdx}}">
+          <view class="p-item active"></view>
+        </block>
+        <block wx:else>
+          <view class="p-item"></view>
+        </block>
+      </block>
+    </view>
+  </view>
+  <!-- 九官格导航-->
+  <view class="grid">
+    <view class="flex-wrp">
+      <view class="flex-item">
+        <navigator url="../component/pages/docard/docard" hover-class="navigator-hover">
+          <image src="https://iservice.daqisoft.cn/Public/Home/images/docard_1.png"></image>
+          <view class="fun-title">我要办卡</view>
+        </navigator>
+      </view>
+      <view class="flex-item">
+        <navigator url="../component/pages/recharge/recharge" hover-class="navigator-hover">
+          <image src="https://iservice.daqisoft.cn/Public/Home/images/docard_2.png"></image>
+          <view class="fun-title">会员充值</view>
+        </navigator>
+      </view>
+      <view class="flex-item">
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/docard_3.png"></image>
+        <view class="fun-title">会员结账</view>
+      </view>
+    </view>
+    <!-- <view class="flex-wrp"> -->
+      <!-- <view class="flex-item">
+        <navigator url="../component/pages/coupons/coupons" hover-class="navigator-hover">
+          <image src="https://iservice.daqisoft.cn/Public/Home/images/docard_4.png"></image>
+          <view class="fun-title">免费抢券</view>
+        </navigator>
+      </view> -->
+      <!-- <view class="flex-item">
+        <navigator url="../transbuy/pages/group-buy/group-buy" hover-class="navigator-hover">
+          <image src="https://iservice.daqisoft.cn/Public/Home/images/docard_5.png"></image>
+          <view class="fun-title">E团购</view>
+        </navigator>
+      </view> -->
+      <!-- <view class="flex-item">
+        <navigator url="../component/pages/coupons-pack/coupons-pack" hover-class="navigator-hover">
+          <image src="https://iservice.daqisoft.cn/Public/Home/images/docard_6.png"></image>
+          <view class="fun-title">我的券包</view>
+        </navigator>
+      </view> -->
+    <!-- </view> -->
+    <view class="flex-wrp" style="border:none;">
+      <view class="flex-item">
+        <navigator url="../component/pages/cardtrans/cardtrans" hover-class="navigator-hover">
+          <image src="https://iservice.daqisoft.cn/Public/Home/images/docard_7.png"></image>
+          <view class="fun-title">会员卡转赠</view>
+        </navigator>
+      </view>
+      <view class="flex-item">
+        <navigator url="../component/pages/historycons/historycons" hover-class="navigator-hover">
+          <image src="https://iservice.daqisoft.cn/Public/Home/images/docard_8.png"></image>
+          <view class="fun-title">历史消费</view>
+        </navigator>
+      </view>
+      <!-- <view class="flex-item">
+        <navigator url="../reserve/pages/engineer/engineer" hover-class="navigator-hover">
+          <image src="https://iservice.daqisoft.cn/Public/Home/images/docard_9.png"></image>
+          <view class="fun-title">快速预约</view>
+        </navigator>
+      </view> -->
+    </view>
+  </view>
+  <!-- 个人设置按钮 -->
+  <!-- <view class="ucenter-set"></view> -->
+  <view class="jishu-zhichi">技术支持：大旗软件</view>
+</view>
+
+<!-- 导航公用模版 -->
+<template is="engin-nav" data="{{type:1,navArr: navArr,showImgUrl: showImgUrl}}" />
+
+<!-- 分享按钮 -->
+  <view class="share-box">
+    <button hover-class="none" open-type="share"><text>分享</text></button>
+  </view>

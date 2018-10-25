@@ -1,0 +1,78 @@
+<template name="order-item">
+  <block wx:if="{{order.length > 0}}">
+
+    <view class="order-item" wx:for="{{order}}">
+      <view class="order-title">
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/store_ico1.png" lazy-load></image>
+        <text>{{item.store_name}}</text>
+      </view>
+
+      <view class="order-info" catchtap="orderDilTo" data-id="{{item.id}}">
+        <view class="flex-wrp">
+          <view class="oi-img">
+            <image src="{{item.imgurl[0]}}" lazy-load></image>
+          </view>
+
+          <view class="oi-dil">
+            <view class="oi-name">{{item.project_name}}</view>
+            <view class="oi-time">{{item.project_time}}分钟</view>
+            <view class="oi-price">
+              <text>¥</text>{{item.project_price}}
+              <!-- <text>×1</text> -->
+            </view>
+          </view>
+
+          <view class="oi-btn">
+            <text class="btn-gradient {{item.is_use == 0 ? '' : 'active'}}" data-qrcode="{{item.qrcode_url}}" data-pname="{{item.project_name}}" data-price="{{item.project_price}}" data-orderno="{{item.order_num}}" catchtap="{{item.is_use == 0 ? 'showConsume' : ''}}">{{item.is_use == 0 ? '消费' : ''}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="order-oper clear">
+        <block wx:if="{{item.is_use == 0}}">
+          <view class="oper-l">
+            {{item.is_use == 0 && item.petime ? '有效期至：' + item.petime : ''}}
+          </view>
+        </block>
+        <block wx:else>
+          <view class="oper-l active" bindtap="delOrderItem" data-id="{{item.id}}">删除</view>
+        </block>
+
+        <block wx:if="{{item.is_use == 1}}">
+          <view class="oper-r">
+            <text bindtap="againBuy" data-pid="{{item.pid}}" data-nodeid="{{item.nodeid}}">再次购买</text>
+            <block wx:if="{{item.is_assess == 0}}">
+              <text bindtap="assess" data-pid="{{item.pid}}" data-nodeid="{{item.nodeid}}" data-id="{{item.id}}">评价</text>
+            </block>
+          </view>
+        </block>
+
+      </view>
+    </view>
+
+  </block>
+  <block wx:else>
+    <view class="empty-order">
+      <image src="https://iservice.daqisoft.cn/Public/Home/images/empty_order.png" lazy-load></image>
+      <view class="empty-tips">您暂时没有相关订单哦</view>
+      <view class="empty-buy btn-gradient">
+        <navigator url="../group-buy/group-buy" hover-class="none" open-type="redirect">立即下单</navigator>
+      </view>
+    </view>
+  </block>
+
+  <view class="mask" style="display:{{qrDisplay}}"></view>
+
+  <view class="qrcode-box animatedSelf zoomIn" style="display:{{qrDisplay}}">
+    <view class="qrcode-title">
+      <view>{{showQrcode.pname}}</view>
+      <view>￥{{showQrcode.price}}</view>
+      <view class="close-qrcode" bindtap="closeQrcode">×</view>
+    </view>
+    <view class="qrcodes">
+      <view class="qr-t">请出示二维码或券码</view>
+      <image src="{{showQrcode.qrcode}}" mode="aspectFit"></image>
+      <text class="coupon-num" space="nbsp" decode>{{showQrcode.orderno}}</text>
+    </view>
+  </view>
+</template>

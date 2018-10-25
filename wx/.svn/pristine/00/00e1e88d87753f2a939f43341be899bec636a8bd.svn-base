@@ -1,0 +1,38 @@
+<import src="../../../common/project.wxml" />
+<import src="../../../common/store-address.wxml" />
+<import src="../../../common/assess.wxml" />
+<view class="container">
+  <view class="banner">
+    <swiper indicator-dots="true" autoplay="true" interval="3000" duration="400" indicator-color="rgba(255, 255, 255, .5)" indicator-active-color="#caa876">
+      <block wx:for="{{banner}}">
+        <swiper-item>
+          <image src="{{item}}" class="item-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <!-- 门店地址模版 -->
+  <template is="store-address" data="{{storename: '和毅人民路店',storeaddress: '岳麓区当代滨江MOMA四楼当代滨江MOMA四楼'}}" />
+
+  <view class="s-project">
+    <!-- 项目模版 -->
+    <template is="project" data="{{isHeight: false,projectArr: [0,1,2,3,4]}}" />
+  </view>
+
+  <view class="assess">
+    <view class="assess-title clear">
+      <text>用户评论</text>
+      <view bindtap="lookAllAssess">查看全部(4)
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/arrowright1.png"></image>
+      </view>
+    </view>
+
+    <!-- 评论模版 -->
+    <template is="assess" data="{{assess: [0,1,2]}}" />
+
+    <view class="look-all" bindtap="lookAllAssess">查看全部</view>
+  </view>
+
+
+</view>

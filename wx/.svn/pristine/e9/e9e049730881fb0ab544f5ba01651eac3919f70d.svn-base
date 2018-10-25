@@ -1,0 +1,80 @@
+.search-box {
+  width: 100%;
+  height: 88rpx;
+  background: #333;
+  position: relative;
+}
+
+.search-con {
+  width: 588rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  position: absolute;
+  bottom: -40rpx;
+  left: 50%;
+  margin-left: -294rpx;
+  box-shadow: 2rpx 10rpx 12rpx rgba(207, 178, 135, 0.3);
+  background-color: #fff;
+  border-radius: 50rpx;
+  font-size: 28rpx;
+}
+
+.search-con input {
+  display: inline-block;
+  width: 416rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-left: 44rpx;
+  color: #cbab7b;
+}
+
+.search-con text {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 126rpx;
+  text-align: center;
+  color: #be9e70;
+  font-weight: bold;
+  background: #eeeeee;
+  border-radius: 0 50rpx 50rpx 0;
+}
+
+.history-search{
+  margin-top: 100rpx;
+}
+
+.his-title{
+  font-size: 28rpx;
+  color: #666666;
+  padding: 0 30rpx;
+}
+
+.his-title image{
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+  vertical-align: middle;
+  margin-top: -6rpx;
+}
+
+.his-title image.emptied_icon{
+  float: right;
+  margin-top: 6rpx;
+}
+
+.tips-con{
+  margin-top: 32rpx;
+  padding-left: 30rpx;
+}
+
+.tips-con view{
+  float: left;
+  padding: 14rpx 30rpx;
+  background: #EEEEEE;
+  border-radius: 3px;
+  font-size: 30rpx;
+  color: #333;
+  margin-right: 40rpx;
+  margin-bottom: 24rpx;
+}

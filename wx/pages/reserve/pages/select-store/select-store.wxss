@@ -1,0 +1,113 @@
+.search-box {
+  width: 100%;
+  height: 140rpx;
+  background: #333;
+  position: relative;
+}
+
+.search-con {
+  width: 588rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -40rpx;
+  margin-left: -294rpx;
+  background-color: #484848;
+  border-radius: 50rpx;
+  font-size: 28rpx;
+}
+
+.search-con input {
+  display: inline-block;
+  width: 416rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-left: 44rpx;
+  color: #999999;
+}
+
+.search-con text {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 126rpx;
+  text-align: center;
+  color: #be9e70;
+  font-weight: bold;
+  background: #5b5b5b;
+  border-radius: 0 50rpx 50rpx 0;
+}
+
+.location-near{
+  height: 108rpx;
+  line-height: 108rpx;
+  padding: 0 40rpx;
+  font-size: 28rpx;
+  border-bottom: 10rpx solid #eeeeee;
+}
+
+.location-near image{
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+  margin-left: 12rpx;
+}
+
+.location-near view:nth-of-type(1){
+  display: inline-block;
+  color: #be9e70;
+}
+
+.near-store{
+  display: inline-block;
+  line-height: 64rpx;
+  color: #333333;
+  margin-left: 46rpx;
+  background: #eeeeee;
+  border-radius: 6rpx;
+  padding: 0 30rpx;
+}
+
+.area-item{
+  padding-left: 40rpx;
+  border-bottom: 10rpx solid #eeeeee;
+  margin-top: 50rpx;
+}
+
+.area-title{
+  font-size: 28rpx;
+  height: 92rpx;
+  line-height: 92rpx;
+  color: #be9e70;
+}
+
+
+.area-con view{
+  float: left;
+  line-height: 1;
+  font-size: 28rpx;
+  padding: 18rpx 30rpx;
+  background: #eeeeee;
+  color: #333333;
+  margin-right: 30rpx;
+  margin-bottom: 30rpx;
+  border-radius: 6rpx;
+}
+
+.area-con view.active{
+  color: #fff;
+  background: #caa876;
+}
+
+.area-item:last-child{
+  border: none;
+}
+
+.emptyMsg{
+  text-align: center;
+  font-size: 26rpx;
+  padding: 15rpx 0;
+  color: #999999
+}

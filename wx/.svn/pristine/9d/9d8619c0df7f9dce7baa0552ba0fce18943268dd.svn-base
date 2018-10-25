@@ -1,0 +1,81 @@
+
+.hdflex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.head .store{
+  font-size: 32rpx;
+  margin: 30rpx 0;
+}
+.head .store image{
+  width: 64rpx;
+  height: 64rpx;
+  margin: 0 20rpx
+}
+
+.head .opmoney{
+  font-size: 60rpx;
+  font-weight: bold
+}
+.head .state{
+  margin-top: 12rpx;
+  font-size: 30rpx;
+  color: #646464;
+}
+
+.middle{
+  margin-top: 78rpx;
+  border-top: 1rpx solid rgba(0,0,0,0.078);
+  padding: 0 34rpx;
+}
+.middle .mitem{
+  color: #646464;
+  font-size: 28rpx;
+  padding: 8rpx 0
+}
+.middle .mitem.hdflex{
+  justify-content: space-between
+}
+
+.middle .bill{
+  display: flex;
+  align-items:flex-start;
+  padding: 10rpx 0 18rpx 0;
+  justify-content:space-between;
+  color: #646464;
+  font-size: 28rpx;
+}
+.middle .bill .mright{
+  text-align: right;
+}
+.middle view .bill:last-child{
+  border-bottom: 1rpx solid rgba(0,0,0,0.078)
+}
+.ptable{
+  border-top: 1rpx solid rgba(0,0,0,0.078);
+  margin-top:72rpx ;
+  font-size: 26rpx;
+  color: #646464;
+}
+
+.ptable .projects.hdflex{
+  padding: 10rpx;
+  justify-content: space-around;
+  color: #333;
+}
+
+.ptable .phead.hdflex {
+  padding: 10rpx;
+  justify-content: space-around;
+  color: #646464;
+}
+.ptable .phead.hdflex view,.ptable .projects.hdflex view{
+    width: 15%;
+   text-align: center
+}
+.ptable .phead.hdflex .p1,.ptable .projects.hdflex .p1{
+  width: 25%;
+  text-align: left;
+  padding-left: 15rpx;
+}

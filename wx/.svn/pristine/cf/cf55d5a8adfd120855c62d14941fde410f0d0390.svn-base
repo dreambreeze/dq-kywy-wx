@@ -1,0 +1,133 @@
+<view class="top-type">
+  <view class="main-type">
+    <view class="flex-wrp">
+      <view class="main-item {{tIdx == 1 || !tIdx ? 'active' : ''}}" bindtap="orderTypeTitleChange" data-idx="1">全部订单
+        <view class="line"></view>
+      </view>
+      <view class="main-item {{tIdx == 2 ? 'active' : ''}}" bindtap="orderTypeTitleChange" data-idx="2">{{tname}}
+        <view class="line"></view>
+      </view>
+    </view>
+    <view class="type-order clear" style="{{typeOrderDisplay}}">
+      <view class="type-item" wx:for="{{orderType}}" bindtap="orderTypeChange" data-tname="{{item}}">{{item}}</view>
+    </view>
+  </view>
+  <view class="small-type">
+    <view class="flex-wrp">
+
+      <view class="small-item {{!sIdx && index == 0 ? 'active' : index == sIdx ? 'active' : ''}}" wx:for="{{orderState}}" bindtap="orderStateChange" data-idx="{{index}}">{{item}}
+        <view class="line"></view>
+      </view>
+      
+    </view>
+  </view>
+</view>
+
+<view class="orders-con">
+  <view class="order-item">
+    <view class="flex-wrp" catchtap="toOrderDetail">
+      <image src="http://nwx.daqisoft.cn/uploads/j/jmprxe1453369563/2/3/b/6/thumb_59f7ee1141ddc.jpg" lazy-load class="order-pic"></image>
+      <view class="order-info">
+        <view class="name">60分钟飘然若仙</view>
+        <view class="type-name">技师：102号</view>
+        <view class="type-name">预约到店时间：02-05 17:00</view>
+        <view class="type-name">门店：和毅足道滨江店</view>
+      </view>
+
+      <view class="order-right">
+        <view class="state-tips">待消费</view>
+        <view class="consum-btn btn-gradient" catchtap="lijixiaofei">立即消费</view>
+      </view>
+    </view>
+
+    <view class="total-price">合计：￥280.00</view>
+  </view>
+
+  <view class="order-item">
+    <view class="flex-wrp" catchtap="toOrderDetail">
+      <image src="http://nwx.daqisoft.cn/uploads/j/jmprxe1453369563/2/3/b/6/thumb_59f7ee1141ddc.jpg" lazy-load class="order-pic"></image>
+      <view class="order-info">
+        <view class="name">60分钟飘然若仙</view>
+        <view class="type-name">技师：102号</view>
+        <view class="type-name">预约到店时间：02-05 17:00</view>
+        <view class="type-name">门店：和毅足道滨江店</view>
+      </view>
+
+      <view class="order-right">
+        <view class="state-tips">待评价</view>
+        <!-- <view class="consum-btn btn-gradient">立即消费</view> -->
+      </view>
+    </view>
+
+    <view class="total-price">合计：￥280.00</view>
+    <view class="order-oper">
+      <view class="del-order">删除</view>
+      <view class="again-reserve">再次预约</view>
+      <view class="evaluation" bindtap="evaluation">评价</view>
+    </view>
+  </view>
+
+
+  <view class="order-item">
+    <view class="flex-wrp" catchtap="toOrderDetail">
+      <image src="http://nwx.daqisoft.cn/uploads/j/jmprxe1453369563/2/3/b/6/thumb_59f7ee1141ddc.jpg" lazy-load class="order-pic"></image>
+      <view class="order-info">
+        <view class="name">102号技师</view>
+        <view class="type-name">项目：60分钟飘然若仙</view>
+        <view class="type-name">预约到店时间：02-05 17:00</view>
+        <view class="type-name">门店：和毅足道滨江店</view>
+      </view>
+
+      <view class="order-right">
+        <view class="state-tips">待评价</view>
+        <!-- <view class="consum-btn btn-gradient">立即消费</view> -->
+      </view>
+    </view>
+
+    <view class="total-price">合计：￥280.00</view>
+    <view class="order-oper">
+      <view class="del-order">删除</view>
+      <view class="again-reserve">再次预约</view>
+      <view class="evaluation" bindtap="evaluation">评价</view>
+    </view>
+  </view>
+
+
+
+  <view class="order-item">
+    <view class="flex-wrp" catchtap="toOrderDetail">
+      <image src="http://nwx.daqisoft.cn/uploads/j/jmprxe1453369563/2/3/b/6/thumb_59f7ee1141ddc.jpg" lazy-load class="order-pic"></image>
+      <view class="order-info">
+        <view class="name">60分钟飘然若仙</view>
+        <view class="type-name">技师：102号</view>
+        <view class="type-name">预约到店时间：02-05 17:00</view>
+        <view class="type-name">门店：和毅足道滨江店</view>
+      </view>
+
+      <view class="order-right">
+        <view class="state-tips">交易成功</view>
+      </view>
+    </view>
+
+    <view class="total-price">合计：￥280.00</view>
+    <view class="order-oper">
+      <view class="del-order">删除</view>
+      <view class="again-reserve">再次预约</view>
+    </view>
+  </view>
+</view>
+
+<view class="mask" style="{{!qrDisplay ? 'display:none' : qrDisplay}}"></view>
+
+<view class="qrcode-box animatedSelf zoomIn" style="{{!qrDisplay ? 'display:none' : qrDisplay}}">
+  <view class="qrcode-title">
+    <view>中医足浴</view>
+    <view>￥20.00</view>
+    <view class="close-qrcode" bindtap="closeQrcode">×</view>
+  </view>
+  <view class="qrcodes">
+    <view class="qr-t">请出示二维码或券码</view>
+    <image src="https://iservice.daqisoft.cn/Public/Home/images/coupon.png" mode="aspectFit"></image>
+    <text class="coupon-num" space="nbsp" decode>2011 5210 2352</text>
+  </view>
+</view>

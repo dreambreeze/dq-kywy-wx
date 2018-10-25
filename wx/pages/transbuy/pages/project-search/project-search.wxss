@@ -1,0 +1,103 @@
+.container {
+  background-color: #eee;
+}
+
+.top-search {
+  height: 88rpx;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 12rpx;
+}
+
+.searchs {
+  width: 480rpx;
+  height: 62rpx;
+  line-height: 62rpx;
+  border-radius: 40rpx;
+  margin: 13rpx auto 0;
+  background: #e6e4e5;
+  font-size: 26rpx;
+  text-align: center;
+  color: #333;
+}
+
+.searchs input {
+  width: 420rpx;
+  height: 62rpx;
+  line-height: 62rpx;
+  margin: 0 auto;
+  color: #caa876;
+}
+
+.region {
+  height: 62rpx;
+  line-height: 62rpx;
+  position: absolute;
+  top: 13rpx;
+  left: 26rpx;
+  color: #caa876;
+  font-size: 30rpx;
+}
+
+.region view {
+  width: 0;
+  height: 0;
+  display: inline-block;
+  border-width: 4px 4px 0 4px;
+  border-style: solid;
+  border-color: #caa876 transparent transparent transparent;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+.search-tips {
+  padding: 38rpx 0;
+  background: #fff;
+}
+
+.tips-item {
+  margin-bottom: 38rpx;
+}
+
+.tips-title {
+  font-size: 26rpx;
+  color: #333;
+  line-height: 32rpx;
+  padding: 0 27rpx;
+  margin-bottom: 32rpx;
+}
+
+.hot-search, .his-search {
+  display: inline-block;
+  width: 28rpx;
+  height: 32rpx;
+  margin-right: 18rpx;
+  vertical-align: middle;
+  margin-top: -7rpx;
+}
+
+.hot-search {
+  background: url(https://iservice.daqisoft.cn/Public/Home/images/hot_search.png) no-repeat;
+  background-size: contain;
+}
+
+.his-search {
+  background: url(https://iservice.daqisoft.cn/Public/Home/images/his_search1.png) no-repeat;
+  background-size: contain;
+}
+
+.tips-con{
+  padding-left: 27rpx;
+}
+
+.tips-con view{
+  float: left;
+  padding: 14rpx 30rpx;
+  background: #EEEEEE;
+  border-radius: 3px;
+  font-size: 30rpx;
+  color: #333;
+  margin-right: 40rpx;
+  margin-bottom: 24rpx;
+}

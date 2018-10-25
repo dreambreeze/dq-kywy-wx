@@ -1,0 +1,332 @@
+.project-info {
+  padding: 24rpx 30rpx;
+  border-bottom: 30rpx solid #eee;
+}
+
+.p-img {
+  width: 205rpx;
+  height: 160rpx;
+  margin-right: 32rpx;
+}
+
+.p-info {
+  flex: 1;
+  line-height: 1;
+}
+
+.p-name,.p-store {
+  font-size: 34rpx;
+  color: #333;
+  padding: 18rpx 0 26rpx;
+}
+
+.p-time {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 14rpx;
+}
+
+.p-time image {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 14rpx;
+}
+
+.p-store image {
+  width: 23rpx;
+  height: 21rpx;
+  margin-right: 14rpx;
+  vertical-align: middle;
+  margin-top: -2rpx;
+}
+
+.input-box {
+  padding: 30rpx;
+  background: #fff;
+  position: relative;
+  margin-bottom: 150rpx
+}
+
+.input-box textarea {
+  width: 94%;
+  border: 1rpx solid #ccc;
+  border-radius: 6rpx;
+  height: 134rpx;
+  font-size: 24rpx;
+  padding:14rpx 3%; 
+}
+
+.input-limit {
+  position: absolute;
+  right: 44rpx;
+  bottom: 44rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.order-bar{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1rpx solid #d6d6d6;
+  box-sizing: border-box;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 34rpx;
+  background: #353535;
+  font-weight: 500;
+  color: #be9e70;
+  text-align: center;
+}
+
+.selecter-iner {
+  padding: 0 30rpx;
+  background: #fff;
+  height: 90rpx;
+  line-height: 90rpx;
+  color: #333;
+  font-size: 28rpx;
+  border-bottom: 14rpx solid #eee;
+}
+
+.select-tips {
+  float: right;
+  font-size: 22rpx;
+  color: #999;
+}
+.select-active{
+  font-size: 28rpx;
+  color: #333;
+}
+
+.selecter-iner:nth-of-type(4){
+  border-bottom: 26rpx solid #eee;
+}
+
+.yyinfo{
+padding:10rpx 30rpx ;
+background:#fff;
+color:#333;
+font-size:28rpx;
+border-bottom:14rpx solid #eee;
+}
+.yyinfo.yynp{
+border-bottom:20rpx solid #eee;
+}
+.yyinfo .yytitle{
+  padding:14rpx 0;
+  display: flex;
+justify-content:flex-start;
+align-items:center;
+}
+.yyinfo .yytitle .ltitle{
+min-width: 160rpx
+}
+.yyinfo .yytech{
+  justify-content: space-between
+}
+.yytech .technos{
+  color: #be9e70
+}
+.yytech .rtitle .rword{
+  color: #999;
+  font-size: 22rpx;
+  display:flex;
+align-items:center;
+}
+.rword image{
+  width: 26rpx;
+  height: 26rpx
+}
+
+.yyinfo .yytitle .yyleft{
+  color: #666
+}
+.yyinfo .yytitle .yyright{
+  border-bottom:1rpx solid rgba(0,0,0,0.1)
+}
+.yyright input{
+  width: 320rpx;
+  padding: 0 20rpx;
+}
+.yyinfo  .item{
+display:flex;
+justify-content:flex-start;
+align-items:center;
+height:182rpx;
+border-bottom:1rpx solid rgba(0,0,0,0.1);
+padding:10rpx;
+
+}
+.yyinfo  .item:last-child{
+  border-bottom: none
+}
+.yyinfo  .item .h-img image{
+width:162rpx;
+height:156rpx;
+margin-right: 30rpx
+}
+.yyinfo  .item .h-img.roomimg image{
+width:205rpx;
+height:156rpx;
+margin-right: 30rpx
+}
+.yyright .getPhoneNumber{
+  position:absolute;
+  right:40rpx;
+}
+.yyright .getPhoneNumber button{
+  font-size: 24rpx; color: #fff; 
+  background-image:linear-gradient(to bottom right,#dfceb5,#c59f68);
+  margin: -58rpx 0 0 0;
+  border-radius: 40rpx
+}
+
+/*选择预约时间  */
+.tp-time, .tp-time .mask {
+   position: fixed; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.tp-time .mask {
+  background: rgba(0, 0, 0, 0.7);
+  
+}
+
+.tp-time .timeinfo {
+  position: absolute;
+  left: 0;
+  bottom: 0rpx;
+  width: 100%;
+  background: #fff;
+  padding: 0rpx 0 30rpx 0;
+  font-size: 28rpx;
+}
+
+.timeinfo .ti-head {
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ti-head .ti-hline {
+  width: 20%;
+  height: 2rpx;
+  background-color: rgba(0, 0, 0, 0.6);
+  margin: 0 18rpx;
+}
+
+.ti-head image {
+  width: 80rpx;
+  height: 80rpx;
+  position: absolute;
+  right: 0;
+}
+
+.ti-date {
+  display: flex;
+  justify-content: space-between;
+  margin: 20rpx 96rpx 5rpx 96rpx;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
+}
+
+.ti-date .d-item {
+  width: 126rpx;
+  height: 84rpx;
+  text-align: center;
+}
+
+.ti-date .d-item.active {
+  color: #caa876;
+}
+
+.ti-date .d-item.active::after {
+  content: "";
+  height: 8rpx;
+  background-color: #caa876;
+  display: block;
+  width: 100%;
+  border-radius: 4rpx;
+}
+
+.ti-date .dt-item {
+  width: 220rpx;
+  height: 84rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.ti-date .dt-item.active {
+  color: #caa876;
+}
+
+.ti-date .dt-day image {
+  width: 32rpx;
+  height: 32rpx;
+  margin: 0rpx 5rpx;
+}
+
+.selecttime {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 30rpx;
+  border-bottom: 1rpx solid rgba(0,0,0,0.1)
+}
+.selecttime .slt-item{
+  margin: 8rpx 6rpx;
+  /* width: 320rpx; */
+  width: 200rpx;
+  height: 80rpx;
+  border-radius: 8rpx;
+  background-color: #eee;
+  line-height: 80rpx;
+  text-align: center;
+}
+.selecttime .not{
+  background-color: #ccc;
+}
+.selecttime .slt-item.active{
+  background-color: #e6e2d6;
+  color: #caa876;
+}
+.result {
+  padding:32rpx;
+}
+.result .projectres{
+  display: flex;
+  font-size: 30rpx;
+}
+.projectres .pprice{
+  color: #db0000;
+}
+.result  .timeres{
+color: #666;
+font-size: 26rpx;
+margin-top: 10rpx;
+}
+
+.timesubmit {
+padding:10rpx 40rpx;
+height:88rpx;
+display:flex;
+align-items:center;
+text-align:center;
+
+}
+.timesubmit view{
+width:100%;
+height:100%;
+line-height:88rpx;
+font-size:34rpx;
+font-weight:300;
+background-image: linear-gradient(to bottom right  , #c59f68,#dfceb5);
+border-radius: 8rpx;
+}

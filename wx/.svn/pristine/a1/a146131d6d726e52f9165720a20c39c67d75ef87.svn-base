@@ -1,0 +1,54 @@
+<import src="../../../common/reserve-stime.wxml"/>
+<import src="../../../common/online-reserve.wxml"/>
+<view class="container">
+  <!-- 门店信息模版 -->
+  <template is="online-reserve" data="{{tabIdx: 3}}"/>
+
+  <!-- <view class="project-search-box">
+    <view class="project-search" bindtap="toSearchProject">
+      <image src="https://iservice.daqisoft.cn/Public/Home/images/search.png" lazy-load></image>请输入关键字</view>
+  </view> -->
+  <view class="category-project-box">
+    <view class="category-project">
+      <view class="category-project-flex room-people-touch" bindtouchstart="roomPStart" bindtouchmove="roomPMove" bindtouchend="roomPEnd" style="left:{{roomPLeft}}">
+        <view wx:for="{{ptype}}" data-idx="{{index}}" catchtap="changePType" class="cate-item {{index == ptypeIdx ? 'active' : ''}}">{{item}}
+          <view></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="project-box">
+  
+    <view class="project-item" catchtap="navigatordetail" wx:for="{{proData}}" data-idx="{{index}}">
+      <view class="flex-wrp">
+        <image class="project-img" src="https://iservice.daqisoft.cn/Public/Home/images/home_banner.png" lazy-load mode="aspectFill"></image>
+        <view class="pject-info">
+          <view class="pject-name text-ellipsis">60分钟飘然若仙
+            <!-- <text>限女生</text> -->
+          </view>
+          <view class="pject-intr text-ellipsis">介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍</view>
+          <view class="pject-price">￥250.00</view>
+        </view>
+        <view class="pject-reserve">
+            <icon type="success" size="20" color="green" style="{{hideIdx == index ? iconHide : ''}}"/>
+           <view class="pject-reserve-btn btn-gradient" catchtap="reserveBtn" data-idx="{{index}}"  style="{{hideIdx == index ? reserveBtnHide : ''}}">预约</view>
+        </view>
+      </view>
+    </view>
+    
+  </view>
+</view>
+
+<!-- 预约按钮 -->
+<view class="buy-bar" bindtap="reserveBtnTime">立即预约</view>
+
+<!-- 分享按钮 -->
+<view class="share-box">
+  <button hover-class="none" open-type="share">
+    <text>分享</text>
+  </button>
+</view>
+
+<!-- 选择时间模版 -->
+<template is="reserve-stime" data="{{maskDisplay: maskDisplay,showSelectTime: showSelectTime}}" />

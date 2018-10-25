@@ -1,0 +1,15 @@
+<template name="starsTpl">  
+<!-- 这里要声明这个模板的名字 -->  
+    <view class="rankcontauber">  
+    <!-- 模板从这里开始的，每一个view在新家的时候工具会自动加一个classname，这里按自己喜欢修改一下 -->  
+        <view class="rankstars">  
+        <!-- 这是我们左边的星星数，我们先放5个星星全满的，用的静态数据，我们先看界面怎么编写 -->  
+			<block wx:for="{{starsArr}}" wx:for-item="item">
+        <image wx:if="{{item===1}}" src="../../imgs/starfull.png"></image>  
+				<image wx:if="{{item===0}}" src="../../imgs/stargray.png"></image>  	
+			</block>
+        </view>  
+        <!-- 右边的成绩，看得出来和上面的星星是左右布局的 -->  
+        <text class="rankscore">{{starScore}}</text>  
+    </view>  
+</template>  

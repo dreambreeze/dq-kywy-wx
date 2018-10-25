@@ -1,0 +1,40 @@
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    amountIdx: 0
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    console.log(getCurrentPages());
+  },
+  /**
+   * 点击切换金额
+   */
+  changeAmount: function (e) {
+    this.setData({
+      amountIdx: e.target.dataset.idx
+    });
+  },
+  /**
+   * 输入框聚焦
+   */
+  changeAmountFocus: function (e) {
+    this.setData({
+      amountIdx: e.target.dataset.idx
+    });
+  },
+  /**
+   * 点击确定按钮
+   */
+  handleCard: function(){
+    wx.redirectTo({
+      url: '../docardsuccess/docardsuccess?type=docard',
+    });
+  }
+})

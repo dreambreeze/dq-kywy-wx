@@ -1,0 +1,262 @@
+var common = require('../../common.js');
+//获取应用实例
+const app = getApp();
+//会员卡数据
+var cmArr = [];
+
+var CardSwiperItem = 0;
+
+Page({
+  data: {
+    //顶部会员卡数据
+    cardUrls: {
+      info: []
+    },
+    indicatorDots: false,
+    autoplay: false,
+    interval: 5000,
+    duration: 200,
+    balance: 0,
+    cardIdx: 0,
+    funClassName: '',
+    //图片地址前缀
+    showImgUrl: common.config.showImgUrl,
+    //主机域名
+    host: common.config.host,
+    //无会员卡图片的默认会员卡图
+    cardPicUrl: common.config.cardPicUrl
+  },
+
+  //监听下拉刷新
+  onPullDownRefresh: function () {
+    this.getVipCard();
+  },
+
+  /**
+   * 用户分享事件
+   */
+  onShareAppMessage: function () {
+    return {
+      title: '客源无忧微信营销平台'
+    }
+  },
+  /**
+   * 页面加载事件
+   */
+  onLoad: function () {
+    var _this = this;
+    //请求分配功能菜单
+    var nav = wx.getStorageSync('nav');
+    //分配功能菜单不存在本地时请求云服务
+    if (!nav) {
+      wx.showLoading({
+        title: '加载中',
+        mask: true
+      });
+      //获取分配的功能
+      wx.request({
+        url: common.config.host + '/index.php/Api/Base/getAppletFun',
+        data: {
+          'authorizerId': app.globalData.authorizerId
+        },
+        method: 'POST',
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          wx.hideLoading();
+          if (res.statusCode != 200) {
+            wx.showModal({
+              title: '提示',
+              content: '网络请求失败',
+            });
+          } else {
+            if (res.data.status == 0) {
+              wx.showModal({
+                title: '提示',
+                content: res.data.info,
+              });
+            } else {
+              wx.setStorageSync('nav', res.data.info);
+              // return res.data.info;
+              _this.setData({
+                navArr: res.data.info
+              });
+            }
+          }
+        }
+      });
+    } else {
+      _this.setData({
+        navArr: nav
+      });
+    }
+
+    //获取当前用户会员卡信息
+    this.getVipCard();
+  },
+
+  /**
+   * 页面显示事件
+   */
+  onShow: function () {
+  },
+  /**
+   * 点击底部导航
+   */
+  enginNav: function (e) {
+    var url = e.currentTarget.dataset.url;
+    var isOpen = e.currentTarget.dataset.isopen;
+    if (isOpen == 0) {
+      wx.showToast({
+        title: '功能暂未开通',
+        icon: 'none',
+        mask: true
+      });
+    } else {
+      wx.redirectTo({
+        url: url,
+      });
+    }
+  },
+  /**
+   * 技术支持跳转
+   */
+  jishuzhichi: function () {
+    common.jishuzhichi();
+  },
+
+  /**
+   * 获取当前用户所有会员卡和绑定的手机号
+   */
+
+  getVipCard: function () {
+    var openid = wx.getStorageSync('openid')
+      , _this = this;
+    if (!openid) {
+      //本地无openid重新登录获取openid
+      wx.login({
+        success: function (res) {
+          wx.request({
+            url: common.config.host + '/index.php/Api/Base/jscode_session',
+            data: {
+              'code': res.code,
+              'openid': openid,
+              'authorizerId': app.globalData.authorizerId
+            },
+            method: 'POST',
+            header: {
+              'content-type': 'application/json'
+            },
+            success: function (res) {
+              if (res.statusCode == 200) {
+                if (res.data.status == 1) {
+                  wx.setStorageSync('openid', res.data.info);
+                  openid = res.data.info;
+                } else {
+                  wx.showModal({
+                    title: '提示',
+                    content: res.data.info,
+                    showCancel: false
+                  });
+                }
+              } else {
+                wx.removeStorageSync('openid');
+              }
+            }
+          });
+        }
+      });
+    }
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    });
+    //请求会员卡和绑定的手机号
+    wx.request({
+      url: common.config.host + '/index.php/Api/Base/getVipCard',
+      data: {
+        'authorizerId': app.globalData.authorizerId,
+        'openid': openid,
+        'type': 2
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.hideLoading();
+        wx.stopPullDownRefresh();
+        if (res.statusCode == 200) {
+          if (res.data.status == 1) {
+            cmArr = res.data.info;
+            _this.setData({
+              cardUrls: res.data,
+              balance: res.data.info != '' ? (parseFloat(res.data.info[CardSwiperItem].CardNum) + parseFloat(res.data.info[CardSwiperItem].SendNum)) : 0
+            });
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: res.data.info,
+              showCancel: false
+            });
+          }
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '请求失败，服务器错误',
+            showCancel: false
+          });
+        }
+      }
+    });
+  },
+
+  //监听滑动顶部会员卡事件
+  topCardChange: function (e) {
+    CardSwiperItem = e.detail.current;
+    this.setData({
+      balance: (parseFloat(cmArr[e.detail.current].CardNum) + parseFloat(cmArr[e.detail.current].SendNum)),
+      cardIdx: e.detail.current
+    });
+  },
+
+  //页面跳转
+  jumppage: function (e) {
+    if (e.currentTarget.dataset.url) {
+      wx.navigateTo({
+        url: e.currentTarget.dataset.url,
+      });
+    }
+
+  //    else if (e.currentTarget.dataset.funname && e.currentTarget.dataset.funname == '会员结账') {
+  //   wx.scanCode({
+  //     onlyFromCamera: true,
+  //     success: function (res) {
+  //       if (res.path) {
+  //         try {
+  //           wx.navigateTo({
+  //             url: '/' + res.path,
+  //           });
+  //         } catch (e) {
+  //           wx.showModal({
+  //             title: '提示',
+  //             content: '获取地址失败，无法跳转',
+  //             showCancel: false
+  //           })
+  //         }
+  //       }
+  //     },
+  //     fail: function (res) {
+  //       wx.showModal({
+  //         title: '提示',
+  //         content: '调起客户端扫码界面失败',
+  //         showCancel: false
+  //       })
+  //     }
+  //   });
+  // }
+
+  }
+
+});

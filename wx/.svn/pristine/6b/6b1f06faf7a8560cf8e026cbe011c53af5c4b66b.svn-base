@@ -1,0 +1,47 @@
+<!-- 在线预约顶部公用 -->
+<template name="online-reserve">
+  <view class="top-store">
+    <view class="flex-wrp">
+      <image class="store-img" src="https://iservice.daqisoft.cn/Public/Home/images/home_banner.png" lazy-load mode="aspectFill"></image>
+      <view class="store-name">
+        <view class="s-name">和毅足道滨江店</view>
+        <view class="s-coupon">
+          <image src="https://iservice.daqisoft.cn/Public/Home/images/bulletin_icon.png" lazy-load></image>
+          您有一张优惠券待领取</view>
+      </view>
+      <view class="change-store">
+        <view class="change-store-btn btn-gradient" bindtap="changeStoreBtn">切换门店
+          <image src="https://iservice.daqisoft.cn/Public/Home/images/double_arrow_icon.png" lazy-load></image>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="top-store-address">
+    <view class="flex-wrp">
+      <view class="address text-ellipsis">
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/location_icon_1.png" lazy-load></image>
+        长沙市雨花区人民东路与万家丽
+      </view>
+      <view class="location" bindtap="location">699.3km
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/location_icon_2.png" lazy-load></image>
+      </view>
+      <view class="telphone" data-phone="4001818358" bindtap="phoneCall">
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/telphone_icon_1.png" lazy-load></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="reserve-tab">
+    <view class="flex-wrp">
+      <view class="tab-con">
+        <view class="flex-wrp">
+          <view class="tab-item {{tabIdx == 1 ? 'active' : ''}}" data-url="/pages/technician/pages/techindex/techindex" bindtap="onlineReserevTabJump">技师</view>
+          <view class="tab-item {{tabIdx == 2 ? 'active' : ''}}" data-url="/pages/reserve/pages/reserve-room/reserve-room" bindtap="onlineReserevTabJump">房间</view>
+          <view class="tab-item {{tabIdx == 3 ? 'active' : ''}}" data-url="/pages/reserve/pages/reserve-project/reserve-project" bindtap="onlineReserevTabJump">项目</view>
+        </view>
+      </view>
+      <!-- <view class="tab-search"></view> -->
+    </view>
+  </view>
+</template>

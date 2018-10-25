@@ -1,0 +1,92 @@
+// pages/note/note.js
+Page({
+
+  data: {
+      talength:0,
+      content:"",
+      autoList:[
+        {
+          id:1,
+          name:"免辣",
+        },
+        {
+          id: 2,
+          name: "少辣",
+        },
+        {
+          id: 3,
+          name: "不要葱蒜",
+        },
+        {
+          id: 4,
+          name: "不要香菜",
+        },
+        {
+          id: 5,
+          name: "多辣",
+        },
+        {
+          id: 6,
+          name: "不要酱油",
+        },
+      ],
+      autodone:[{}],
+  },
+
+  onLoad:function(){
+    var noteword = wx.getStorageSync("noteword")
+    if (noteword){
+      this.setData({
+        content: noteword
+      })
+    }
+    console.log(this.data.content)
+  },
+ 
+  getinfo:function(e){
+    var id = e.target.dataset.id;
+    var list = this.data.autoList;
+    var content = list[id].name;
+    var newcontent = this.data.content + ' ' + content;
+    if (newcontent.length>50){
+        wx.showToast({
+          title: '最多50字哦',
+        })
+        var newcontent = this.data.content ;
+        return false;
+    }
+    this.setData({ 
+      content: newcontent,
+      talength:newcontent.length,
+    })
+
+  },
+  bindcomplete:function(){
+    var pages = getCurrentPages();
+    //var currPage = pages[pages.length - 1];   //当前页面
+    var prevPage = pages[pages.length - 2];  //上一个页面
+    //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
+    prevPage.setData({
+      noteword: this.data.content,
+    })
+    wx.navigateBack(prevPage);
+  },
+
+  bindinput:function (e) {
+    this.setData({
+      talength:e.detail.cursor,
+      content: e.detail.value
+      })
+   
+  },
+ 
+ 
+ 
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+  
+  }
+})

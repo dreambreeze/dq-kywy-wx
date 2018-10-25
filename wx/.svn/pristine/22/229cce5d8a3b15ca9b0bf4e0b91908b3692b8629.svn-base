@@ -1,0 +1,56 @@
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    buyNavType: 'order',
+    qrDisplay: 'none'
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
+  },
+  /**
+   * 显示二维码
+   */
+  showConsume: function () {
+    this.setData({
+      qrDisplay: 'block'
+    });
+  },
+  /**
+   * 关闭二维码
+   */
+  closeQrcode: function () {
+    this.setData({
+      qrDisplay: 'none'
+    });
+  },
+  /**
+   * 跳转至订单详情
+   */
+  orderDilTo: function (e) {
+    var idx = e.currentTarget.dataset.idx;
+    if (idx == 0) {
+      wx.navigateTo({
+        url: '../order-detail/order-detail?t=0',
+      });
+    } else {
+      wx.navigateTo({
+        url: '../order-detail/order-detail?t=1',
+      });
+    }
+  },
+  /**
+   * 评价页
+   */
+  assess: function () {
+    wx.navigateTo({
+      url: '../assess/assess',
+    })
+  }
+})

@@ -1,0 +1,36 @@
+// pages/tabBar/ucenter/index.js
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var query = wx.createSelectorQuery();
+    var minHeight = 0,
+      _this = this,
+      setHeightTimer = null;
+    query.selectViewport().boundingClientRect(function (rect) {
+      minHeight = rect.height;
+    }).exec();
+
+    clearTimeout(setHeightTimer);
+    setHeightTimer = setTimeout(function () {
+      _this.setData({
+        // minHeight: minHeight + 'px'
+      });
+    }, 1000);
+  },
+  /**
+   * 监听页面分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

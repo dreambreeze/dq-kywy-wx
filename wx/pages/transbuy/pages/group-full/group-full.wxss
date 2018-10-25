@@ -1,0 +1,140 @@
+
+.amcontainer{
+  background-color: #fff;
+  padding-bottom:100rpx; 
+} 
+.head {
+  background-color: #fff;
+  height: 260rpx;
+  margin: 24rpx 34rpx;
+  border-radius: 20rpx;
+}
+.head .h-img{
+  display: flex;
+  justify-content: center;
+}
+.h-img image{
+  width: 126rpx;
+  height: 138rpx;
+}
+.head .h-desc{
+  color: #333;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  margin-top: 38rpx;
+  justify-content: center;
+}
+.head .h-time{
+  color: #666;
+  font-size: 26rpx;
+  display: flex;
+  align-items: center;
+  margin-top: 46rpx;
+  justify-content: center;
+}
+.h-time text{
+  font-size: 28rpx;
+  color: #ff8b24;
+  padding: 0 6rpx;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  font-size: 26rpx;
+  margin-bottom: 50rpx;
+}
+.nav view{
+  height: 70rpx;
+  width: 248rpx;
+  border: 1rpx solid rgba(0, 0, 0, 0.3);
+  border-radius: 8rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #666;
+  margin: 0 40rpx ;
+}
+.nav view:last-child{
+   border: 1rpx solid #caa876;
+   background-color: #e6e3d6;
+}
+
+.ad-box{
+  margin-top: 104rpx;
+}
+
+
+
+
+/* 头像 */
+.avatar{
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+.avatar  image{
+
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-left: 18rpx;
+  border: 1rpx solid rgba(255,255,255,1);
+  box-shadow:0 2rpx 8rpx 2rpx rgba(0,0,0,0.1);
+
+}
+.avatar  image:first-child{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  border: 1rpx solid rgba(255,255,255,1);
+}
+.avatar .why {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-left: 18rpx;
+  border: 1rpx dashed rgba(0,0,0,0.2);
+  box-shadow:0 2rpx 8rpx 2rpx rgba(0,0,0,0.081);
+  
+}
+.avatar .why .whypng{
+  width: 42rpx;
+  height: 42rpx;
+  margin-left: 0rpx;
+  box-shadow:0 0rpx 0rpx 0rpx rgba(0,0,0,0.1);
+}
+
+.share {
+  margin-bottom:50rpx; 
+}
+.share button{
+  
+  width: 420rpx;
+  height: 92rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  padding: 0;
+  box-sizing: initial;
+  box-shadow: 0 2px 6px rgba(88, 88, 88, 0.3);
+  background-image: linear-gradient(to right bottom,#e0d8cb,#caa876)
+}
+
+.pinfo{
+  padding: 10rpx 20rpx;
+  font-size: 28rpx;
+}
+.pinfo .pname{
+  justify-content: space-between;
+  border-top: 1rpx solid rgba(0,0,0,0.1);
+  padding: 20rpx 0;
+}
+.pinfo .pname .right{
+  color: #999;
+  font-size: 26rpx
+}

@@ -1,0 +1,65 @@
+<view class='amcontainer'>
+
+  <view class='head'>
+      <view class='h-img'>
+        <image  src='{{compeleteimg}}'></image>
+      </view>
+      <view class='h-desc'>拼团成功!</view>
+       <!-- <view class='h-time'>预计<text >{{arrivetime}}分钟</text>送达</view> -->
+  </view>
+  
+  <view class="nav">
+      <view bindtap='toorder' data-id='{{project.id}}' data-nodeid='{{store.nodeid}}' data-orderno='{{orderno}}'>查看订单</view>
+      <navigator url='../../../index/index' open-type="redirect" hover-class="none">
+        <view>返回首页</view>
+      </navigator>
+  </view>
+
+  
+
+  <view class='td-line'></view>
+
+  <view class='avatar flex'>
+    <view class='' wx:for="{{ordersData[groupno].pavatar}}">
+      <image src='{{item}}'></image>
+    </view>
+    <view class='why flex' wx:for="{{lux}}">
+      <image class='whypng' src="{{whypng}}"></image>
+    </view>
+  </view>
+
+ 
+  <!-- 商品信息 -->
+  <view class="pinfo"  >
+   <view class='pname flex'>
+      <view class='left'>项目名称</view>
+      <view class='right'>{{project.project}}</view>
+   </view>
+   <view class='pname flex'>
+      <view class='left'>拼单时间</view>
+      <view class='right'>{{ordersData[groupno].ptime}}</view>
+   </view>
+  
+  </view>
+ 
+
+   <view class='td-line'></view>
+
+  
+  <block wx:if="{{ad}}">
+    <view class="ad-box">
+      <image src="{{ad.adimg}}" lazy-load bindtap="jumpAd" data-adurl="{{ad.adurl}}" mode="aspectFill"></image>
+    </view>
+  </block>
+
+</view>
+
+ <!-- //返回首页按钮  -->
+<view class="backhome-btn">
+  <view>
+    <navigator url="/pages/index/index" hover-class="none" open-type="reLaunch">
+      <text>返回首页</text>
+    </navigator>
+  </view>
+</view>
+

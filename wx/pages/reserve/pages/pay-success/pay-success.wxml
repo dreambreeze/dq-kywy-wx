@@ -1,0 +1,16 @@
+<view class="container" style="min-height:{{minHeight}}">
+  <view class="success-box">
+    <image src="https://iservice.daqisoft.cn/Public/Home/images/pay_success_icon.png" lazy-load></image>
+    <view class="pay-tips">支付成功！</view>
+    <view class="tips">请于7月14日14:00前抵达门店</view>
+  </view>
+
+  <view class="oper-btn">
+    <view>查看订单</view>
+    <view class="continue-booking" bindtap="continueBooking">继续预约</view>
+  </view>
+
+  <view class="ad-box">
+    <image src="https://iservice.daqisoft.cn/Public/Home/images/ad.png" lazy-load></image>
+  </view>
+</view>

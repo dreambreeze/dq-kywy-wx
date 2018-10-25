@@ -1,0 +1,95 @@
+<import src="../common/shop-nav.wxml" />
+<view class="shopcontainer">
+  <view class='page-head flex' >
+  <block wx:if="{{isLogin}}">
+
+    <open-data class="avatar" type="userAvatarUrl"></open-data>
+    <view class='m-userinfo'>
+      <view class='u-name'><open-data type="userNickName"></open-data></view>
+      <view class='u-phone'></view>
+    </view>
+    <view class='m-member flex'><text>铂金会员</text></view>
+  </block>
+   <block wx:else>
+   <view class='tologin' bindtap="gologin">
+      <view class='logintitle '>登录/注册</view>
+      <view class='logindesc'>登录/注册后体验更多权益</view>
+   </view>
+   </block>
+  </view>
+
+  <!--主体内容  -->
+  <view class='page-body'>
+  <!--我的订单 START  -->
+    <view class='myorder' wx:if="{{isLogin}}">
+     <navigator url='../shopmineorder/shopmineorder'>
+      <view class='m-otitle flex'>
+        <view class='ot-desc'>我的订单</view>
+        <view class='lookmore flex'>查看更多订单<image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/mineright.png'></image></view>
+      </view>
+      </navigator>
+      <view class='m-oall flex'>
+        <view class='o-item flex' data-status='1' bindtap='vieworder'>
+        <block wx:for="{{orderNum}}" wx:key=""> 
+          <view class='count flex'  wx:if="{{item.status==1}}">{{item.count}}</view>
+        </block>
+          <image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/minedfk.png'></image>
+          待付款
+        </view>
+         <view class='o-item flex' data-status='2' bindtap='vieworder'>
+          <block wx:for="{{orderNum}}" wx:key=""> 
+            <view class='count flex'  wx:if="{{item.status==2}}">{{item.count}}</view>
+          </block>
+          <image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/minedfh.png'></image>
+          待发货
+        </view>
+         <view class='o-item flex' data-status='3' bindtap='vieworder'>
+          <block wx:for="{{orderNum}}" wx:key=""> 
+          <view class='count flex'  wx:if="{{item.status==3}}">{{item.count}}</view>
+          </block>
+          <image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/minedsh.png'></image>
+          待收货
+        </view>
+         <view class='o-item flex' data-status='4' bindtap='vieworder'>
+         <block wx:for="{{orderNum}}" wx:key=""> 
+          <view class='count flex'  wx:if="{{item.status==4}}">{{item.count}}</view>
+         </block>
+          <image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/minedpj.png'></image>
+          待评价
+        </view>
+      </view>
+    </view>
+  
+  <!--优惠券 管理地址  -->
+  <view class='config'>
+    <block wx:if="{{isLogin}}">
+    <view class='c-coupon' bindtap='minecoupon'>
+      <image class='minecoupon' src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/minecoupon.png'></image> 
+      <view class='sc-title'>我的优惠券</view>
+      <view class='sc-num flex'>2</view>
+      <view class='sc-right'><image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/scright.png'></image></view>
+    </view>
+    <view class='c-takeway c-coupon'  bindtap='mineaddr'>
+      <image  class='mineaddr' src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/mineaddr.png'></image> 
+      <view class='sc-title'>管理收货地址</view>
+      <view class='sc-right'><image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/scright.png'></image></view>
+    </view>
+    </block>
+     <view class='c-takeway c-coupon c-cus'>
+      <image  class='minecus' src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/minecus.png'></image> 
+      <view class='sc-title'>客服电话</view>
+       <view class='sc-num cus-phone flex' bindtap='makePhoneCall'>13983677077</view>
+    </view>
+  </view>
+
+  <block wx:if="{{isLogin}}">
+      <view class='loginout flex' bindtap='loginout' >退出账号</view>
+  </block>
+  
+  </view>
+ 
+  
+<!-- 导航公用模版 -->
+<template is="shop-nav" data="{{type: 3,navArr: navTabBar,showImgUrl: showImgUrl1}}" />
+
+</view>

@@ -1,0 +1,19 @@
+Page({
+  data: {
+    compeleteimg: 'https://iservice.daqisoft.cn/Public/Home/images/techimgs/complete.png',
+    adimg: 'https://iservice.daqisoft.cn/Public/Home/images/techimgs/ad.png',
+    arrivetime: 5,
+    orderTime:0,
+  },
+  onLoad: function (options) {
+    this.setData({
+      orderTime: wx.getStorageSync("orderTime")
+    })
+  },
+  toorder: function () {
+    wx.reLaunch({
+      url: '../techindex/techindex',
+    })
+  },
+
+})

@@ -1,0 +1,74 @@
+var storeProjectArr = [];
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    storeProjectArr = [
+      {
+        store: '和毅人民路店',
+        project: [0, 1, 2]
+      },
+      {
+        store: '和毅体育新城店',
+        project: [0, 1, 2, 3, 4]
+      }
+    ];
+    this.setData({
+      storeProject: storeProjectArr
+    });
+  },
+  /**
+   * 点击查看更多项目
+   */
+  lookMore: function (e) {
+    var idx = e.currentTarget.dataset.idx;
+    var query = wx.createSelectorQuery();
+    var _this = this;
+    var _heightOff = null;
+    query.selectAll('.store-project').boundingClientRect(function (res) {
+      if (res[idx].height > 140) {
+        _heightOff = false;
+        _this.setData({
+          heightOff: false
+        });
+      } else {
+        _heightOff = true;
+        _this.setData({
+          heightOff: true
+        });
+      }
+    }).exec();
+
+    query.select('.project-item').boundingClientRect(function (res) {
+      if (_heightOff) {
+        _this.setData({
+          height: res.height * storeProjectArr[idx].project.length + 'px'
+        });
+      } else {
+        _this.setData({
+          height: '280rpx'
+        });
+      }
+    }).exec();
+
+    _this.setData({
+      heightIdx: idx
+    });
+  },
+  /**
+   * 跳转至门店详情页
+   */
+  goProjectStore: function () {
+    wx.navigateTo({
+      url: '../project-store/project-store',
+    })
+  }
+})

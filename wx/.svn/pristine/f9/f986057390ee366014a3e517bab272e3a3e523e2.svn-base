@@ -1,0 +1,83 @@
+@import "../../../common/storelist.wxss";
+
+/* 充值卡顶部标题 */
+
+.dc-title {
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 32rpx;
+  color: #caa876;
+}
+
+.dc-title view {
+  display: inline-block;
+  width: 6px;
+  height: 16px;
+  vertical-align: -2rpx;
+  background: #caa976;
+  margin-right: 10px;
+}
+
+.do-card {
+  overflow: hidden;
+}
+
+.dc-select {
+  width: 70%;
+  height: 1106rpx;
+  float: left;
+}
+
+.dc-select scroll-view {
+  height: 1106rpx;
+}
+
+.cards {
+  width: 332rpx;
+  margin: 0 auto 124rpx;
+  position: relative;
+}
+
+.card-type, .card-num ,.card-state{
+  position: absolute;
+  left: 74rpx;
+  color: #fff;
+}
+
+.card-type{
+  font-size: 30rpx;
+  top: 24rpx;
+}
+.card-num{
+  font-size: 24rpx;
+  top: 60rpx;
+}
+
+.card-state{
+  font-size: 24rpx;
+  color: #575757;
+  bottom: 20rpx;
+}
+
+.cards image {
+  width: 332rpx;
+  height: 198rpx;
+}
+
+.balance {
+  position: absolute;
+  bottom: -38rpx;
+  left: -8rpx;
+  background: #2e2e2e;
+  color: #caa876;
+  text-align: center;
+  height: 48rpx;
+  line-height: 48rpx;
+  font-size: 26rpx;
+  width: 348rpx;
+  border-radius: 24rpx;
+  box-shadow: 0 1px 8px rgba(46,46,46,0.5);
+}
+.select-c{
+  overflow: hidden;
+}

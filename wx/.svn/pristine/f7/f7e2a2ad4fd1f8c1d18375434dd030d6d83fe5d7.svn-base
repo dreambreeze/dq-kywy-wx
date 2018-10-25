@@ -1,0 +1,99 @@
+.project-info {
+  padding: 24rpx 30rpx;
+  border-bottom: 30rpx solid #eee;
+}
+
+.p-img {
+  width: 205rpx;
+  height: 160rpx;
+  margin-right: 32rpx;
+}
+
+.p-info {
+  flex: 1;
+  line-height: 1;
+}
+
+.p-name,.p-store {
+  font-size: 34rpx;
+  color: #333;
+  padding: 18rpx 0 26rpx;
+}
+
+.p-time {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 14rpx;
+}
+
+.p-time image {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 14rpx;
+}
+
+.p-store image {
+  width: 23rpx;
+  height: 21rpx;
+  margin-right: 14rpx;
+  vertical-align: middle;
+  margin-top: -2rpx;
+}
+
+.input-box {
+  padding: 30rpx;
+  background: #fff;
+  position: relative;
+}
+
+.input-box textarea {
+  width: 100%;
+  border: 1rpx solid #ccc;
+  border-radius: 6rpx;
+  height: 134rpx;
+  font-size: 24rpx;
+}
+
+.input-limit {
+  position: absolute;
+  right: 44rpx;
+  bottom: 44rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.order-bar{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1rpx solid #d6d6d6;
+  box-sizing: border-box;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 34rpx;
+  background: #353535;
+  font-weight: 500;
+  color: #be9e70;
+  text-align: center;
+}
+
+.selecter-iner {
+  padding: 0 30rpx;
+  background: #fff;
+  height: 90rpx;
+  line-height: 90rpx;
+  color: #333;
+  font-size: 28rpx;
+  border-bottom: 14rpx solid #eee;
+}
+
+.select-tips {
+  float: right;
+  font-size: 30rpx;
+  color: #be9e70;
+}
+
+.selecter-iner:nth-of-type(4){
+  border-bottom: 26rpx solid #eee;
+}

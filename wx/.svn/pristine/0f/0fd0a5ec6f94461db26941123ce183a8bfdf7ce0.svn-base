@@ -1,0 +1,16 @@
+<import src="../../../common/top-nav.wxml" />
+<import src="../../../common/coupons.wxml" />
+<view class="container">
+  <!-- 顶部导航模版 -->
+  <template is="top-nav" data="{{url:['../coupons/coupons','../coupons-pack/coupons-pack'],title:['领券','我的券包'],status: 0}}" />
+
+  <view class="coupon-box">
+    <!-- 卡券内容模版 -->
+    <template is="coupons" data="{{coupons:coupons,display:display,ishide:ishide,btnName: '立即领取',arrow: arrow}}" />
+
+    <view class="empty-coupon" style="display:none">
+      <icon type="warn" size="50" color="#d6d6d6"></icon>
+      <view class="empty-t">暂无优惠券</view>
+    </view>
+  </view>
+</view>

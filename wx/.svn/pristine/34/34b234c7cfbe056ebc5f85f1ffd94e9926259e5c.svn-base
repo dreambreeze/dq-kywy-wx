@@ -1,0 +1,144 @@
+@import "../common/engin-nav.wxss";
+/**index.wxss**/
+.container {
+  background-color: #eee;
+  min-height: 1182rpx;
+}
+swiper {
+  height: 336rpx;
+}
+
+.top-cards {
+  background: #2e2e2e;
+  padding: 36rpx 0 26rpx;
+}
+
+.card-item {
+  text-align: center;
+}
+
+.card-item-c {
+  width: 560rpx;
+  height: 336rpx;
+  display: inline-block;
+  position: relative;
+  color: #fff;
+}
+
+.card-item-c view {
+  position: absolute;
+  left: 120rpx;
+}
+
+.card-type {
+  top: 45rpx;
+  font-size: 34rpx;
+}
+
+.card-num {
+  top: 89rpx;
+  font-size: 28rpx;
+}
+
+.card-item-c .slide-image {
+  width: 100%;
+  height: 100%;
+}
+
+.show-money {
+  width: 560rpx;
+  background: #3d3c38;
+  color: #fff;
+  margin: 25rpx auto 0;
+  line-height:0.1;
+}
+
+.show-money view {
+  display: inline-block;
+  width: 280rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  text-align: center;
+}
+.show-money text{
+  color: #d2ba94;
+  vertical-align: 4rpx;
+}
+.balance text:first-child, .balance text:nth-of-type(2) {
+  font-size: 28rpx;
+}
+
+.balance text:last-child {
+  font-size: 30rpx;
+}
+
+.ption {
+  margin-top: 23rpx;
+  text-align: center;
+  line-height:0.1;
+}
+
+.p-item {
+  display: inline-block;
+  width: 9rpx;
+  height: 9rpx;
+  border: 1rpx solid #c3ad8e;
+  margin: 0 9rpx;
+  border-radius: 50%;
+}
+
+.p-item.active {
+  background: #c3ad8e;
+}
+
+/* 九官格导航 */
+
+.grid {
+  margin-top: 22rpx;
+}
+
+.flex-wrp {
+  background-color: #fff;
+  border-bottom: 1rpx solid #e8e8e8;
+}
+
+.flex-item {
+  width: 33.3333%;
+  height: 170rpx;
+  font-size: 26rpx;
+  border-right: 1rpx solid #e8e8e8;
+  overflow: hidden;
+  text-align: center;
+}
+.flex-item navigator{
+  height: 100%;
+}
+.flex-item image{
+  width: 52rpx;
+  height: 52rpx;
+  margin: 48rpx 0 8rpx;
+}
+.fun-title{
+  font-size: 24rpx;
+  padding: 0 8rpx;
+  line-height: 1;
+  color: #333333;
+}
+
+/* 个人设置按钮 */
+
+/* .ucenter-set {
+  display: inline-block;
+  width: 83rpx;
+  height: 55rpx;
+  background: url(https://iservice.daqisoft.cn/Public/Home/images/ucenter_set.png) no-repeat;
+  background-size: contain;
+  margin-top: 55rpx;
+} */
+
+.jishu-zhichi {
+  position: fixed;
+  bottom: 110rpx;
+  left: 0;
+  width: 100%;
+}

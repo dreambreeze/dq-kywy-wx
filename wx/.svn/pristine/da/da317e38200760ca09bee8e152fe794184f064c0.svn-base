@@ -1,0 +1,205 @@
+@import "../common/shop-nav.wxss";
+.cartnote {
+  width: 100%;
+  height: 496rpx;
+  align-items: flex-end;
+}
+.cartnote image{
+  width: 346rpx;
+  height: 176rpx;
+  margin-bottom: 68rpx
+}
+.goshoping{
+  width: 312rpx;
+  margin-left: 219rpx;
+  height: 88rpx;
+  font-size: 32rpx;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 60rpx;
+  background-image: linear-gradient(to bottom right, #e23f19,#d52f2e);
+}
+
+/*有购物项  */
+.page-body{
+  padding-bottom: 150rpx;
+}
+.page-body .cartitem{
+  justify-content: flex-start;
+  height: 184rpx;
+  padding: 0 26rpx;
+  border-bottom: 10rpx solid #eee;
+}
+.page-body .cartitem:last-child{
+  border:none;
+}
+.page-body .cartitem image{
+  width: 132rpx;
+  height: 132rpx
+}
+.page-body .cartitem .select{
+  height: 184rpx;
+  width: 48rpx;
+  padding-right: 20rpx
+}
+.page-body .cartitem .select image{
+  width: 35rpx;
+  height: 35rpx;
+}
+.cartitem .goodsinfo{
+  width: 100%;
+  margin-left: 16rpx
+}
+.cartitem .goodsinfo .g-desc{font-size: 22rpx;color: #999;margin-top: 3rpx}
+/* .cartitem .goodsinfo .g-name{height: 76rpx;} */
+.cartitem .goodsinfo .g-price{font-size: 26rpx;color: #d21717;flex: 1;margin-top: 6rpx}
+
+.g-ordernum{
+  display: flex;
+}
+
+.g-ordernum .o-reduce,.o-add{
+  width: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.g-ordernum .o-item{
+width:42rpx;
+height:42rpx;
+background-color:#eee;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:32rpx;
+border-radius:8rpx;
+}
+.g-ordernum .o-num{
+  width: 42rpx;
+  text-align: center;
+}
+
+
+
+/*去结算  */
+.topay{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 92rpx;
+  font-size: 26rpx;
+  color: #666;
+  background-color: #eee;
+  border-top: 1rpx solid rgba(0,0,0,0.1);
+}
+.topay .selectedall image{width: 35rpx;height: 35rpx; margin: 0 12rpx 0 26rpx}
+.topay .total{
+  flex: 1;
+  justify-content: flex-end;
+  margin-right: 24rpx;
+}
+.topay .total .tprice{color: #d21717;}
+.topay .shopsubmit{
+  width: 238rpx;
+  height: 100%;
+  font-size: 32rpx;
+  color: #fff;
+  background-image: linear-gradient( to bottom right ,#e23f19,#d52f2e);
+}
+
+/*选择支付方式  */
+.payway, .payway .mask {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+  
+}
+.payway{
+  z-index: 3
+}
+.payway .mask {
+	background: rgba(0,0,0,0.7);
+}
+.payway .list {
+	position: fixed;
+	left: 0;
+	bottom: 0rpx;
+	width: 100%;
+	background: #f7f7f7;
+	padding: 0rpx 0 50rpx 0;
+
+
+}
+.list .head{
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom:1rpx solid rgba(0,0,0,0.1);
+}
+.head .ximg{
+  width: 22rpx;
+  height: 22rpx;
+  position:absolute;
+left:34rpx;
+line-height:80rpx;
+}
+.head .desc{
+  font-size:32rpx;
+  color: #333;
+}
+
+.list .price{
+  height:210rpx;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:62rpx;
+color:#333;
+} 
+.list .item{
+display: flex;
+display: -webkit-flex;
+align-items: center;
+height: 100rpx;
+border-bottom: 1rpx solid rgba(0,0,0,0.1);
+margin: 0 20rpx;
+font-size: 30rpx;
+color: #333;
+}
+.item .pwl-name{
+  flex: 2;
+}
+.item .pwl-img{
+  width: 62rpx;
+  height: 48rpx;
+  padding: 0 28rpx 0 12rpx;
+}
+.item .pwl-lightimg{
+  width: 12rpx;
+  height: 18rpx;
+  position: absolute;
+  right: 38rpx;
+}
+.item .pwl-lightimg.seleted-img{
+  width: 26rpx;
+  height: 26rpx;
+}
+.payway .pw-sub{
+  height: 96rpx;
+  width: 100%;
+  margin-top: 200rpx;
+  display: flex;
+  justify-content: center;
+}
+.pw-sub .blue{
+  width: 660rpx;
+  color: #fff;
+  font-size: 34rpx;
+  font-weight: bold;
+background-image:-webkit-linear-gradient(to bottom right, #e23f19 , #d52f2e); 
+background-image:linear-gradient(to bottom  right, #e23f19 , #d52f2e);
+}

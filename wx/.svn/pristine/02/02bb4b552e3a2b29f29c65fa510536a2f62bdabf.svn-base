@@ -1,0 +1,13 @@
+<import src="../../../common/buy-nav.wxml" />
+<import src="../../../common/order-nav.wxml" />
+<import src="../../../common/order-item.wxml" />
+<view class="contianer">
+  <!-- 订单导航模版公用 -->
+  <template is="order-nav" data="{{tType: 1}}" />
+
+  <!-- 订单模版公用 -->
+  <template is="order-item" data="{{order: orderData,onoff: true,qrDisplay: qrDisplay, showQrcode: showQrcode}}" />
+</view>
+
+<!-- 导航模版公用 -->
+<template is="buy-nav" data="{{buyNavType: 'order'}}" />

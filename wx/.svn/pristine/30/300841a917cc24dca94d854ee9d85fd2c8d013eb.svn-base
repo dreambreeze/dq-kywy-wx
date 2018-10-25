@@ -1,0 +1,92 @@
+//app.js
+App({
+  onLaunch: function (op) {
+    var _this = this;
+    //获取系统唯一ID
+    let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+    _this.globalData.authorizerId = extConfig.authorizer_id;
+
+    // wx.getStorage({
+    //   key: 'rdsession',
+    //   success: function (res) {
+    //     _this.globalData.rdsession = res.data;
+    //   },
+    //   fail: function (res){
+    //     _this.globalData.rdsession = '';
+    //   }
+    // });
+
+    // wx.checkSession({
+    //   success: function () {
+    //     //session 未过期，并且在本生命周期一直有效
+    //     wx.request({
+    //       url: 'https://iservice.daqisoft.cn/index.php/Home/WxBase/get_session_key',
+    //       data: {
+    //         'rdsession': _this.globalData.rdsession
+    //       },
+    //       method: 'POST',
+    //       header: {
+    //         'content-type': 'application/json'
+    //       },
+    //       success: function (res) {
+    //         // console.log(res);
+    //       }
+    //     });
+    //   },
+    //   fail: function () {
+    //     wx.login({
+    //       success: function (res){
+    //         wx.request({
+    //           url: 'https://iservice.daqisoft.cn/index.php/Home/WxBase/jscode_session',
+    //           data: {
+    //             'code': res.code,
+    //             'rdsession': _this.globalData.rdsession
+    //           },
+    //           method: 'POST',
+    //           header: {
+    //             'content-type': 'application/json'
+    //           },
+    //           success: function (res) {
+    //             // console.log(res);
+    //             wx.setStorage({
+    //               key: 'rdsession',
+    //               data: res.data.openid,
+    //             });
+    //           }
+    //         });
+    //       }
+    //     });
+    //   }
+    // });
+
+    // wx.authorize({
+    //   scope: 'scope.userInfo',
+    //   success: function () {
+    //     wx.getUserInfo({
+    //       success: function (res) {
+    //         console.log(res);
+    //         wx.request({
+    //           url: 'https://iservice.daqisoft.cn/index.php/Home/WxBase/get_encryptedData',
+    //           data: {
+    //             'res': res,
+    //             'rdsession': _this.globalData.rdsession
+    //           },
+    //           method: 'POST',
+    //           header: {
+    //             'content-type': 'application/json'
+    //           },
+    //           success: function (res) {
+    //             console.log(JSON.parse(res.data));
+    //           }
+    //         });
+    //       }
+    //     })
+    //   }
+    // });
+  },
+  globalData: {
+    userInfo: null,
+    rdsession: '',
+    authorizerId: ''
+  }
+})

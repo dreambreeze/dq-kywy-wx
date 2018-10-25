@@ -1,0 +1,71 @@
+//app.js
+var common = require('./common.js');
+App({
+  onLaunch: function (op) {
+    console.log(op);
+  
+    var _this = this;
+    //获取系统（当前小程序）唯一ID
+    let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+    _this.globalData.authorizerId = extConfig.authorizer_appid;
+    //获取本地storage保存的openid
+    var openid = wx.getStorageSync('openid');
+    //检查是否在登录态
+    wx.checkSession({
+      success: function (res) {
+        //用户openid未保存在本地时重新登录
+        if (!openid) {
+          //微信登录获取session_Key与openid保存至本地
+          common.getLogin(_this.globalData.authorizerId).then(function (data) {
+            openid = data;
+          }).catch(function (data) {
+            wx.showModal({
+              title: '提示',
+              content: data.message ? data.message : data,
+              showCancel: false
+            });
+          });
+        }
+      },
+      fail: function () {
+        //微信登录获取session_Key与openid保存至本地
+        common.getLogin(_this.globalData.authorizerId).then(function (data) {
+          openid = data;
+        }).catch(function(data){
+          wx.showModal({
+            title: '提示',
+            content: data.message ? data.message : data,
+            showCancel: false
+          });
+        });
+      }
+    });
+  },
+
+
+  globalData: {
+    wXUserInfo: null,
+    authorizerId: '',
+    showImgUrl: common.config.showImgUrl,
+    arrivetime: 5,
+    startgray: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/startgray.png',
+    startfull: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/startfull.png',
+    addimg: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/add.png',
+    reduceimg: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/reduce.png',
+  },
+
+
+  //去除数组重复数据  
+  unique(arr) {
+    return Array.from(new Set(arr))
+  },
+
+  /**
+   * 监听小程序隐藏
+   */
+  onHide: function () {
+    //清除扫描二维码的门店节点标识和房间号
+    wx.removeStorageSync('ShopNoRoomNo');
+  }
+
+})

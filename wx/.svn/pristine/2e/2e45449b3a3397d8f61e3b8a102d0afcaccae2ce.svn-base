@@ -1,0 +1,53 @@
+// pages/techindex/techindex.js
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    techNODefault:'',
+    typeDefault:0,
+    typeLists: [
+      { id: 1, name: 'SPA' }, { id: 2, name: '中医' }, { id: 3, name: '泰式' },
+      { id: 4, name: '普足' }, { id: 5, name: '按摩理疗' },
+      ],
+  },
+  
+  onLoad: function (options) {
+    if (options.wd){
+      this.setData({ techNODefault: options.wd})
+      wx.request({
+        url: "https://www.slovty.cn/index.php/Home/Test/minaresponse",
+        data: { "word": options.wd},
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          console.log(res)
+        }
+      })
+    }
+  },
+  typeSelect:function(e){
+      this.setData({
+        typeDefault:e.target.dataset.id
+      })
+      // console.log(this.data.typeLists[0])
+      // console.log(typeof (this.data.typeLists[0]))
+  },
+  
+  toproject:function(e){
+    wx.navigateTo({
+      url: '../techproject/techproject',
+    })
+  },
+  bindfocus:function(){
+    wx.redirectTo({
+      url: '../techsearch/techsearch',
+    })
+  },
+
+  onShareAppMessage: function () {
+  
+  }
+})

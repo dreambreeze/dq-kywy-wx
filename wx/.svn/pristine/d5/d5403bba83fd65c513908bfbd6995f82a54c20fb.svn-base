@@ -1,0 +1,9 @@
+@import "../../../common/buy-nav.wxss";
+@import "../../../common/order-nav.wxss";
+@import "../../../common/order-item.wxss";
+
+.contianer {
+  background: #eee;
+  min-height: 1106rpx;
+  padding-bottom: 100rpx;
+}

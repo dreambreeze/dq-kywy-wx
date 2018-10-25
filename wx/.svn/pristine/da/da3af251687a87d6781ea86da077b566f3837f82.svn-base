@@ -1,0 +1,52 @@
+<import src="../common/engin-nav.wxml" />
+
+<view class="container" style="min-height:{{minHeight}}">
+  <!-- <view class="banner">
+    <image src="https://iservice.daqisoft.cn/Public/Home/images/promotions_banner.png" lazy-load mode="aspectFill"></image>
+  </view> -->
+
+  <!-- <view class="eBuy-nav">
+    <navigator url="../transbuy/pages/group-buy/group-buy" hover-class="none">E团购
+      <view class="to-website-icon"></view>
+    </navigator>
+  </view> -->
+
+  <view class="ebuy-nav flex-wrp" bindtap="jumpPage" data-url="../transbuy/pages/group-buy/group-buy">
+    <view class="ebuy-nav-l">
+      <image src="https://iservice.daqisoft.cn/Public/Home/images/ebuy_icon.png" lazy-load></image>
+      <view class="ebuy-title">E团购</view>
+    </view>
+    <view class="ebuy-nav-r">
+      <image src="https://iservice.daqisoft.cn/Public/Home/images/ebuy_right_icon.png" lazy-load></image>
+    </view>
+  </view>
+
+  <view class="pro-nav">
+    <view class="flex-wrp">
+      <view class="nav-item">
+        <navigator url="../component/pages/coupons/coupons" hover-class="none">
+          <image src="https://iservice.daqisoft.cn/Public/Home/images/my_coupon_icon.png"></image>
+          <view>优惠券</view>
+        </navigator>
+      </view>
+      <view class="nav-item">
+        <button hover-class="none" open-type="share">
+          <image src="https://iservice.daqisoft.cn/Public/Home/images/shart_ceremony.png"></image>
+          <view>分享有礼</view>
+        </button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 分享按钮 -->
+  <view class="share-box">
+    <button hover-class="none" open-type="share">
+      <text>分享</text>
+    </button>
+  </view>
+
+<view class="jishu-zhichi" bindtap="jishuzhichi">技术支持：大旗软件</view>
+
+<!-- 导航公用模版 -->
+<template is="engin-nav" data="{{type:2,navArr: navTabBar,showImgUrl: showImgUrl}}" />

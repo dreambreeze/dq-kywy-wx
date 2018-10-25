@@ -1,0 +1,31 @@
+<!--q确认下单  -->
+<view class='copntainer'>
+  <view class='note flex' hidden>请尽快支付</view>
+  <view class='store flex'>
+     <text class="store-ico"></text>
+     <text>{{store.store_name}}</text>
+  </view>
+  <view class='head'>
+    <view class='item flex'>
+      <view class='h-img'>
+        <image  mode='aspectFill' src='{{project.picurl[0]}}'></image>
+      </view>
+      <view class='h-content'>
+        <view class='c-head'>{{project.project}}<text >({{buytype==1?"单独购买":"拼团"}})</text></view>
+        <view class='c-info'>
+          ￥<text>{{buytype==1?project.singleprice:project.groupprice}}</text>
+          <text class='singleprice'>￥{{project.marketprice}}</text>
+        </view>
+        <view class='c-date'>有效期：{{project.validate}}至{{project.validateend}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='td-line'></view>
+
+  <view class='payorder' bindtap="submit">
+      <view class='total'>实付金额：<text>￥<text class='money'>{{buytype==1?project.singleprice:project.groupprice}}</text></text></view>
+      <view class='topay'>确认支付</view>
+  </view>
+
+</view>
