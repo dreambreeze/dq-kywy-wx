@@ -22,20 +22,44 @@ Page({
     //导航tabBar
     navTabBar: common.config.navTabBar,
     //功能模块加载中
-    info: '加载中...'
+    info: '加载中...',
+    indicatorDots: false,
+    autoplay: true,
+    interval: 2500,
+    duration: 500,
+    selected: 1,
+    bannerList:[
+      {
+        "staffworkno": "1",
+        "picurl": 'https://note.youdao.com/yws/api/personal/file/WEBbbeea258a6b7c6635f6b6569b3ef5a1e?method=download&shareKey=a1d647a1d1f2f3834f499ee91aa3b5ef',
+      },
+      {
+        "staffworkno": "2",
+        "picurl": 'https://note.youdao.com/yws/api/personal/file/WEBbbeea258a6b7c6635f6b6569b3ef5a1e?method=download&shareKey=a1d647a1d1f2f3834f499ee91aa3b5ef',
+      },
+      {
+        "staffworkno": "3",
+        "picurl": 'https://note.youdao.com/yws/api/personal/file/WEBbbeea258a6b7c6635f6b6569b3ef5a1e?method=download&shareKey=a1d647a1d1f2f3834f499ee91aa3b5ef',
+      }
+    ],
+    data:{}
   },
-
+  bindchange: function (e) {
+    this.setData({
+      selected: e.detail.currentItemId
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     //加载小程序标题
-    common.getAppletInfo(app.globalData.authorizerId).then(function (data) { 
+    common.getAppletInfo(app.globalData.authorizerId).then(function(data) {
       wx.setNavigationBarTitle({
         title: data.info.nick_name,
       });
-      
-    }).catch(function (data) {
+
+    }).catch(function(data) {
       wx.setNavigationBarTitle({
         title: '',
       });
@@ -49,9 +73,9 @@ Page({
     let _this = this;
 
     //扫描门店房间二维码记录门店标识与房号
-    
+
     let sceneStr = decodeURIComponent(options.scene);
-   
+
     if (sceneStr != 'undefined') {
       let sceneArr = sceneStr.split('@');
       ShopNo = sceneArr[0].split('=')[1];
@@ -63,28 +87,31 @@ Page({
     //获取本地storage保存的openid
     var openid = wx.getStorageSync('openid');
     if (!openid) {
-      common.getLogin(app.globalData.authorizerId).then(function (data) {
-        openid=data
+      common.getLogin(app.globalData.authorizerId).then(function(data) {
+        openid = data
         //检查是否有可发的券
-        common.haveCoupons(app.globalData.authorizerId, openid).then(function (data) {
+        common.haveCoupons(app.globalData.authorizerId, openid).then(function(data) {
           console.log(data)
           if (data.status == 1) {
-            _this.setData({ has: data.has, couponmaskDisplay: 'visiable', })
-          }else{
+            _this.setData({
+              has: data.has,
+              couponmaskDisplay: 'visiable',
+            })
+          } else {
             _this.setData({
               couponmaskDisplay: 'hidden',
             });
           }
-        }).catch(function (data) {
+        }).catch(function(data) {
           console.log(data)
           _this.setData({
             couponmaskDisplay: 'hidden',
           })
         })
-        common.getUInfo('names,phone', app.globalData.authorizerId, openid).then(function (data) {
+        common.getUInfo('names,phone', app.globalData.authorizerId, openid).then(function(data) {
           wx.hideLoading();
           wx.setStorageSync("phoneinfo", data.info)
-        }).catch(function (data) {
+        }).catch(function(data) {
           wx.hideLoading();
           wx.showModal({
             title: '提示',
@@ -92,7 +119,7 @@ Page({
             showCancel: false
           });
         });
-      }).catch(function (data) {
+      }).catch(function(data) {
         wx.showModal({
           title: '提示',
           content: data,
@@ -100,29 +127,32 @@ Page({
         });
       });
     } else {
-      common.getUInfo('names,phone', app.globalData.authorizerId, openid).then(function (data) {
+      common.getUInfo('names,phone', app.globalData.authorizerId, openid).then(function(data) {
         wx.hideLoading();
-       
+
         wx.setStorageSync("phoneinfo", data.info)
 
         //检查是否有可发的券
-        common.haveCoupons(app.globalData.authorizerId, openid).then(function (data) {
+        common.haveCoupons(app.globalData.authorizerId, openid).then(function(data) {
           console.log(data)
-          if(data.status==1){
-            _this.setData({ has: data.has, couponmaskDisplay: 'visiable', })
-          }else{
+          if (data.status == 1) {
+            _this.setData({
+              has: data.has,
+              couponmaskDisplay: 'visiable',
+            })
+          } else {
             _this.setData({
               couponmaskDisplay: 'hidden',
             });
           }
-        }).catch(function (data) {
+        }).catch(function(data) {
           console.log(data)
           _this.setData({
             couponmaskDisplay: 'hidden',
           })
         })
-      }).catch(function (data) {
-       
+      }).catch(function(data) {
+
         wx.hideLoading();
         wx.showModal({
           title: '提示',
@@ -131,18 +161,18 @@ Page({
         });
       });
     }
-   
-  
-   
+
+
+
 
 
     //自动屏幕高
     var query = wx.createSelectorQuery();
     var minHeight = 0;
 
-    query.selectViewport().boundingClientRect(function (rect) {
+    query.selectViewport().boundingClientRect(function(rect) {
       minHeight = rect.height;
-    }).exec(function () {
+    }).exec(function() {
       _this.setData({
         minHeight: minHeight + 'px'
       });
@@ -159,7 +189,7 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function (res) {
+      success: function(res) {
         if (res.statusCode == 200 && res.data.status == 1) {
           for (let i = 0; i < res.data.info.length; i++) {
             if (res.data.info[i].store_img != '') {
@@ -177,13 +207,13 @@ Page({
           _this.setData({
             banner: banner
           });
-        }else{
+        } else {
           _this.setData({
             banner: [common.config.bannerImg]
           });
         }
       },
-      fail: function (res) {
+      fail: function(res) {
         wx.hideLoading();
         if (res.errMsg == 'request:fail timeout') {
           wx.showModal({
@@ -211,7 +241,7 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function (res) {
+      success: function(res) {
         if (res.statusCode == 200) {
           if (res.data.status == 1) {
             _this.setData({
@@ -233,7 +263,7 @@ Page({
           });
         }
       },
-      fail: function (res) {
+      fail: function(res) {
         wx.hideLoading();
         if (res.errMsg == 'request:fail timeout') {
           wx.showModal({
@@ -252,14 +282,14 @@ Page({
     });
 
     //检查是否有权限使用
-    common.isExpiredTime(app.globalData.authorizerId).catch(function () {
+    common.isExpiredTime(app.globalData.authorizerId).catch(function() {
       wx.reLaunch({
         url: '/pages/component/pages/checkPrivilege/checkPrivilege?message=小程序使用权限已过期&notJump=1',
       });
     });
 
-    
-    
+
+
 
     //检查是否已发券 
     // common.sendCoupons(app.globalData.authorizerId,openid).catch(){
@@ -269,11 +299,11 @@ Page({
   /**
    * 监听页面分享  单聊不可获取shareTickets   群聊可以
    */
-  onShareAppMessage: function (options) {
+  onShareAppMessage: function(options) {
     let that = this;
     var sharefrom = options.from
-    let title = that.data.title ? that.data.title:""
-    if (sharefrom == "menu") {//button：页面内转发按钮；menu：右上角转发菜单
+    let title = that.data.title ? that.data.title : ""
+    if (sharefrom == "menu") { //button：页面内转发按钮；menu：右上角转发菜单
       sharefrom = "menu"
     } else {
       sharefrom = "button"
@@ -283,20 +313,20 @@ Page({
     shareObj = {
       title: title,
       url: "pages/index/index",
-      success: function (res) {
-       
-        if (res.shareTickets) {//群聊
+      success: function(res) {
+
+        if (res.shareTickets) { //群聊
           wx.getShareInfo({
             shareTicket: res.shareTickets[0],
-            success: function (res) {
+            success: function(res) {
               console.log(res)
             },
-            fail: function (res) {
+            fail: function(res) {
               console.log(res)
             },
-            complete: function (res) { }
+            complete: function(res) {}
           })
-        } else {//单聊
+        } else { //单聊
           //
         }
 
@@ -308,7 +338,7 @@ Page({
         //用户openid
         let openid = wx.getStorageSync('openid');
 
-        common.getShareCoupon(app.globalData.authorizerId, openid).then(function (data) {
+        common.getShareCoupon(app.globalData.authorizerId, openid).then(function(data) {
           wx.hideLoading();
 
           wx.showModal({
@@ -316,7 +346,7 @@ Page({
             content: "恭喜您分享获得优惠券，可去我的券包查看",
             showCancel: false
           });
-        }).catch(function (data) {
+        }).catch(function(data) {
           wx.hideLoading();
           // wx.showModal({
           //   title: '提示',
@@ -325,7 +355,7 @@ Page({
           // });
         });
       },
-      fail: function () {
+      fail: function() {
         wx.showToast({
           icon: 'none',
           title: '您取消了分享',
@@ -339,7 +369,7 @@ Page({
   /**
    * 点击显示呼叫服务
    */
-  showService: function () {
+  showService: function() {
     this.setData({
       maskDisplay: 'block',
       donaldshowIn: 'donaldshowIn',
@@ -349,7 +379,7 @@ Page({
   /**
    * 点击隐藏呼叫服务
    */
-  hideService: function () {
+  hideService: function() {
     this.setData({
       maskDisplay: 'none',
       donaldshowIn: 'donaldshowOut',
@@ -359,7 +389,7 @@ Page({
   /**
    * 点击底部导航
    */
-  enginNav: function (e) {
+  enginNav: function(e) {
     //点击跳转URL
     var url = e.currentTarget.dataset.url;
     //是否允许点击
@@ -379,14 +409,14 @@ Page({
   /**
    * 技术支持跳转
    */
-  jishuzhichi: function () {
+  jishuzhichi: function() {
     common.jishuzhichi();
   },
 
   /**
    * 受理呼叫服务
    */
-  serveracceptance: function (e) {
+  serveracceptance: function(e) {
     let _this = this;
     //门店与房间号是否存在
     let sceneStr = wx.getStorageSync('ShopNoRoomNo');
@@ -395,12 +425,12 @@ Page({
         title: '提示',
         content: '门店标识与房号不存在，请扫描桌面二维码',
         showCancel: true,
-        success: function (re) {
+        success: function(re) {
           if (re.confirm) {
             wx.scanCode({
               onlyFromCamera: true,
-              success: function (res) {
-               
+              success: function(res) {
+
                 if (res.path) {
                   try {
                     wx.reLaunch({
@@ -421,7 +451,7 @@ Page({
                   });
                 }
               },
-              fail: function (res) {
+              fail: function(res) {
                 wx.showModal({
                   title: '提示',
                   content: '调起客户端扫码界面失败',
@@ -474,7 +504,7 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function (res) {
+      success: function(res) {
         if (res.statusCode == 200) {
           wx.hideLoading();
           if (res.data.status == 1) {
@@ -482,7 +512,7 @@ Page({
               title: '提示',
               content: '您呼叫的服务已受理成功，请稍等',
               showCancel: false,
-              success: function (r) {
+              success: function(r) {
                 if (r.confirm) {
                   _this.setData({
                     maskDisplay: 'none',
@@ -507,7 +537,7 @@ Page({
           });
         }
       },
-      fail: function (res) {
+      fail: function(res) {
         wx.hideLoading();
         if (res.errMsg == 'request:fail timeout') {
           wx.showModal({
@@ -530,7 +560,7 @@ Page({
   /**
    * 监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     let _this = this;
     //加载首页后台分配的功能模块
     let fid = common.config.navTabBar[0].id;
@@ -541,13 +571,13 @@ Page({
         info: ''
       });
     } else {
-      common.getFunction(fid, app.globalData.authorizerId, 1).then(function (data) {
+      common.getFunction(fid, app.globalData.authorizerId, 1).then(function(data) {
         wx.setStorageSync('homeNav', data.info);
         _this.setData({
           fmodule: data.info,
           info: ''
         });
-      }).catch(function (data) {
+      }).catch(function(data) {
         _this.setData({
           fmodule: false,
           info: data
@@ -559,20 +589,20 @@ Page({
     if (test) {
       wx.navigateTo({
         url: '/pages/reserve/pages/reserve-project/reserve-project',
-        success: function () {
+        success: function() {
           wx.removeStorageSync('test');
         }
       });
     }
 
-   
-   
+
+
   },
 
   /**
    * 页面跳转
    */
-  jumpPage: function (e) {
+  jumpPage: function(e) {
     let url = e.currentTarget.dataset.url;
     let opened = e.currentTarget.dataset.opened;
     let funname = e.currentTarget.dataset.funname;
@@ -585,7 +615,7 @@ Page({
       });
       return false;
     }
-    
+
 
     //是否呼叫服务
     if (funname == '呼叫服务') {
@@ -595,11 +625,11 @@ Page({
           title: '提示',
           content: '门店标识与房号不存在，请扫描桌面二维码',
           showCancel: true,
-          success: function (re) {
+          success: function(re) {
             if (re.confirm) {
               wx.scanCode({
                 onlyFromCamera: true,
-                success: function (res) {
+                success: function(res) {
                   if (res.path) {
                     try {
                       wx.reLaunch({
@@ -620,7 +650,7 @@ Page({
                     });
                   }
                 },
-                fail: function (res) {
+                fail: function(res) {
                   wx.showModal({
                     title: '提示',
                     content: '调起客户端扫码界面失败',
@@ -639,19 +669,19 @@ Page({
           donaldconshowIn: 'donaldconshowIn'
         });
       }
-    } else if(funname == '预约理疗师' || funname == '预约房间') {
-      
+    } else if (funname == '预约理疗师' || funname == '预约房间') {
+
       var appid = app.globalData.authorizerId
       //华天富足人生特殊需求，wx03d70af5b6faa4ac 后台设置 是否开启判别会员服务（在门店有会员卡）
 
       var phone = wx.getStorageSync('phoneinfo').phone
       if (appid && phone) {
-        common.isVip(appid, phone).then(function (data) {
+        common.isVip(appid, phone).then(function(data) {
           if (data.status == 0) {
             if (!url) {
               return false;
             }
-          
+
             wx.navigateTo({
               url: url,
             });
@@ -660,11 +690,11 @@ Page({
             wx.showModal({
               title: '提示',
               content: '未查询到您的会员卡，请前往会员中心办理会员卡',
-              showCancel:false
+              showCancel: false
             })
             return false;
           }
-        }).catch(function (data) {
+        }).catch(function(data) {
           console.log(data)
 
         });
@@ -675,7 +705,7 @@ Page({
         })
         return false;
       }
-    }else {
+    } else {
       if (!url) {
         return false;
       }
@@ -688,29 +718,29 @@ Page({
   /**
    * 点击隐藏领券
    */
-  hidecouponmask: function () {
+  hidecouponmask: function() {
     this.setData({
       couponmaskDisplay: 'hidden',
     });
   },
   //点击领券
-  sendcoupon(){
+  sendcoupon() {
     var that = this
     var openid = wx.getStorageSync('openid')
     var has = that.data.has
-    common.sendCoupon(app.globalData.authorizerId, openid, has).then(function (data) {
+    common.sendCoupon(app.globalData.authorizerId, openid, has).then(function(data) {
       console.log(data)
-      if (data.status==1){
-          wx.showModal({
-            title: '提示',
-            content: '恭喜您获得了优惠券，可去我的券包查看',
-            showCancel:false
-          })
+      if (data.status == 1) {
+        wx.showModal({
+          title: '提示',
+          content: '恭喜您获得了优惠券，可去我的券包查看',
+          showCancel: false
+        })
       }
       that.setData({
         couponmaskDisplay: 'hidden',
       });
-    }).catch(function (data) {
+    }).catch(function(data) {
       console.log(data)
       that.setData({
         couponmaskDisplay: 'hidden',

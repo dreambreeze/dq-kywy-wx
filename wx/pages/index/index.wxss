@@ -400,3 +400,33 @@
   color:#fff;
 
 }
+
+.container .swiper{
+  height: 340rpx;
+  padding:30rpx 0 0 0;
+  background: url('https://note.youdao.com/yws/api/personal/file/WEB4b5fc02bb93552bbb11e6d740d7bacd0?method=download&shareKey=ae0d2887000c971eb19f90d85d7f81f3') repeat-x;
+  background-size:auto 340rpx;
+}
+
+.swiper swiper{
+  height: 340rpx;
+}
+
+.swiper swiper-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper image{
+  width: 320rpx;
+  height: 272rpx;
+  opacity: 0.5;
+  z-index: 2;
+}
+.swiper .active{
+  width: 374rpx;
+  height: 245rpx;
+  transition:all .2s ease-in-out 0.3s;
+  opacity: 1;
+  z-index: 3;
+}

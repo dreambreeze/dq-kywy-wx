@@ -10,7 +10,6 @@
               <block wx:else>
                <image src='{{defaulttechpic}}' class="slide-image {{item.staffworkno==selected?'active':''}} " ></image>
               </block>
-         
         </swiper-item>
       </block>
     </swiper>

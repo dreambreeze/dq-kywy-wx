@@ -1,6 +1,6 @@
 <template name="engin-nav">
   <!-- 导航 -->
-  <view class="engin-nav">
+  <!-- <view class="engin-nav">
     <view class="flex-wrp">
       <view class="engin-item" wx:for="{{navArr}}" data-url="{{item.applet_address}}" bindtap="enginNav" data-idx="{{index}}" data-isto="{{item.isTo}}" data-id="{{item.id}}">
         <block wx:if="{{type == index}}">
@@ -10,6 +10,31 @@
           <image src="{{showImgUrl + item.notcheck_img}}" lazy-load></image>
         </block>
         <view class="{{type == index ? 'active' : ''}}">{{item.fun_name}}</view>
+      </view>
+    </view>
+  </view> -->
+  <!-- 更改导航图标 -->
+  <view class="engin-nav">
+    <view class="flex-wrp">
+      <view class="engin-item" bindtap="enginNav" data-id="11" data-idx="0" data-isto="true" data-url="../index/index">
+        <image lazy-load="" src="../../images/footer_tab_index_checked@2x.png">
+        </image>
+        <view class="active">首页</view>
+      </view>
+      <view class="engin-item" bindtap="enginNav" data-id="15" data-idx="1" data-isto="true" data-url="../vip-center/vip-center">
+        <image lazy-load="" src="../../images/footer_tab_vip@2x.png">
+        </image>
+        <view>会员中心</view>
+      </view>
+      <view class="engin-item" bindtap="enginNav" data-id="16" data-idx="2" data-isto="true" data-url="../promotions/promotions">
+        <image lazy-load="" src="../../images/footer_tab_promotions@2x.png">
+        </image>
+        <view>优惠活动</view>
+      </view>
+      <view class="engin-item" bindtap="enginNav" data-id="17" data-idx="3" data-isto="true" data-url="../ucenter/ucenter">
+        <image lazy-load="" src="../../images/footer_tab_mine@2x.png">
+        </image>
+        <view>我的</view>
       </view>
     </view>
   </view>
