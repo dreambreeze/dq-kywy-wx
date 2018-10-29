@@ -1,6 +1,6 @@
 <import src="../common/engin-nav.wxml" />
 <view class="container" style="min-height:{{minHeight}}">
-  <view class="banner">
+  <!-- <view class="banner">
     <block wx:if="{{banner.length <= 1}}">
       <view class="show-banner">
         <image src="{{banner[0]}}" lazy-load mode="aspectFill"></image>
@@ -8,7 +8,7 @@
     </block>
     <block wx:else>
       <view class="show-banner">
-        <swiper circular="true" autoplay="true" interval="2500" duration="500" indicator-color="rgba(255, 255, 255, .5)" indicator-active-color="#be9e70" >
+        <swiper circular="true" autoplay="true" interval="2500" duration="500" indicator-color="rgba(255, 255, 255, .5)" indicator-active-color="#be9e70">
           <block wx:for="{{banner}}" wx:key="banner">
             <swiper-item>
               <image src="../../images/index_banner@2x.png" class="item-image" lazy-load mode="aspectFill"></image>
@@ -17,40 +17,54 @@
         </swiper>
       </view>
     </block>
-  </view>
+  </view> -->
   <!--banner轮播图 -->
   <view class='swiper'>
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" previous-margin="60rpx" next-margin="60rpx" bindchange='bindchange' current-item-id="{{selected}}">
       <block wx:for="{{bannerList}}" wx:key="bannerList">
         <swiper-item item-id="{{item.staffworkno}}">
-               <image src="{{item.picurl[0]}}" class="slide-image {{item.staffworkno==selected?'active':''}} " />
+          <image src="{{item.picurl[0]}}" class="slide-image {{item.staffworkno==selected?'active':''}} " />
         </swiper-item>
       </block>
     </swiper>
   </view>
-</view>
-<!--服务入口列表-->
-<view class="function_list">
-    <view class='function_item'>
-        <image src='../../images/index_features_01@2x.png'></image>
-        扫码下单
+  <!--服务入口列表-->
+  <view class="function-list">
+    <view class='item'>
+      <image src='../../images/index_features_01@2x.png'></image>
+      <view>扫码下单</view>
     </view>
-    <view class='function_item'>
-        <image src='../../images/index_features_02@2x.png'></image>
-        扫码下单
+    <view class='item'>
+      <image src='../../images/index_features_02@2x.png'></image>
+      <view>呼叫服务</view>
     </view>
-    <view class='function_item'>
-        <image src='../../images/index_features_03@2x.png'></image>
-        扫码下单
+    <view class='item'>
+      <image src='../../images/index_features_03@2x.png'></image>
+      <view>店面评价</view>
     </view>
-    <view class='function_item'>
-        <image src='../../images/index_features_04@2x.png'></image>
-        扫码下单
+    <view class='item'>
+      <image src='../../images/index_features_04@2x.png'></image>
+      <view>房间预约</view>
     </view>
-    <view class='function_item'>
-        <image src='../../images/index_features_05@2x.png'></image>
-        扫码下单
+    <view class='item'>
+      <image src='../../images/index_features_04@2x.png'></image>
+      <view>店面评价</view>
     </view>
+  </view>
+  <!-- 资讯列表 -->
+  <view class="message-box">
+    <image src='../../images/index_message@2x.png'></image>
+    <view class="">
+      <view>
+        <text class="tag red">最新</text><text>自古中医就有云：万物皆生于春，长于夏，收于秋天，藏于冬</text></view>
+      <view>
+        <text class="tag green">公告</text><text>养生茶水养生按摩足浴</text></view>
+    </view>
+  </view>
+  <!-- 精品推荐 -->
+  <view>
+
+  </view>
 </view>
 <!-- 导航公用模版 -->
 <template is="engin-nav" data="{{type: 0,navArr: navTabBar,showImgUrl: showImgUrl}}" />
@@ -76,11 +90,11 @@
   </view>
 </view>
 <!-- 点击领券mask -->
-<view class="couponmask"   style="visibility:{{couponmaskDisplay}}"  bindtap="hidecouponmask"></view>
+<view class="couponmask" style="visibility:{{couponmaskDisplay}}" bindtap="hidecouponmask"></view>
 <!-- 点击领券 -->
-<view class="coupon"  style="visibility:{{couponmaskDisplay}}" >
+<view class="coupon" style="visibility:{{couponmaskDisplay}}">
   <view class='close' bindtap="hidecouponmask">
-     <image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/close.png'></image>
+    <image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/close.png'></image>
   </view>
   <view class='redpacket' bindtap='sendcoupon'>
     <image src='https://iservice.daqisoft.cn/Public/Home/images/redindex.png'></image>
