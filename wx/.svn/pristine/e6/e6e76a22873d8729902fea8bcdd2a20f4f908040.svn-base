@@ -1,9 +1,0 @@
-<template name="starestTpl">  
-<view class='starest'>
-  <block wx:for="{{estars}}"  wx:for-index="idx" wx:for-item="itemName"  wx:key="stid">
-    <image class="estar-image" bindtap='selected' data-key="{{idx+1}}"  style="left: {{idx*150}}rpx" src="{{ekey > idx ? esfullSrc : egraySrc}}">
-    </image>
-  </block>
-  <text class="evaluation">{{evaluation}}</text> 
-</view> 
-</template>

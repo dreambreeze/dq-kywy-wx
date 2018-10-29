@@ -1,9 +1,0 @@
-<template name="storelist">
-<view class="dc-store" style="height:{{height}}px">
-  <scroll-view scroll-y enable-back-to-top style="height:{{height}}px">
-    <block wx:for="{{dcStore}}">
-      <view class="s-item {{storeIdx == index ? 'active' : ''}}" bindtap="changeStore" data-index="{{index}}">{{item}}</view>
-    </block>
-  </scroll-view>
-</view>
-</template>
