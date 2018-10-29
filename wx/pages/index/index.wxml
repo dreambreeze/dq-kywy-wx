@@ -4,12 +4,11 @@
     <block wx:if="{{banner.length <= 1}}">
       <view class="show-banner">
         <image src="{{banner[0]}}" lazy-load mode="aspectFill"></image>
-   
       </view>
     </block>
     <block wx:else>
       <view class="show-banner">
-        <swiper indicator-dots="true" autoplay="true" interval="5000" duration="300" indicator-color="rgba(255, 255, 255, .5)" indicator-active-color="#be9e70">
+        <swiper indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="300" indicator-color="rgba(255, 255, 255, .5)" indicator-active-color="#be9e70" >
           <block wx:for="{{banner}}">
             <swiper-item>
               <image src="{{item}}" class="item-image" lazy-load mode="aspectFill"></image>
