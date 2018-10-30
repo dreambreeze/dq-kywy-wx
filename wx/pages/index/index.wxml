@@ -1,103 +1,213 @@
 <import src="../common/engin-nav.wxml" />
 <view class="container" style="min-height:{{minHeight}}">
-  <!-- <view class="banner">
-    <block wx:if="{{banner.length <= 1}}">
-      <view class="show-banner">
-        <image src="{{banner[0]}}" lazy-load mode="aspectFill"></image>
-      </view>
-    </block>
-    <block wx:else>
-      <view class="show-banner">
-        <swiper circular="true" autoplay="true" interval="2500" duration="500" indicator-color="rgba(255, 255, 255, .5)" indicator-active-color="#be9e70">
-          <block wx:for="{{banner}}" wx:key="banner">
-            <swiper-item>
-              <image src="../../images/index_banner@2x.png" class="item-image" lazy-load mode="aspectFill"></image>
-            </swiper-item>
-          </block>
+    <!--banner轮播图 -->
+    <view class='swiper'>
+        <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" circular="true" previous-margin="160rpx" next-margin="160rpx" bindchange='bindchange' current-item-id="{{selected}}">
+            <block wx:for="{{bannerList}}" wx:key="bannerList">
+                <swiper-item item-id="{{item.staffworkno}}">
+                    <image src="{{item.picurl}}" class="slide-image {{item.staffworkno==selected?'active':''}} " />
+                </swiper-item>
+            </block>
         </swiper>
-      </view>
-    </block>
-  </view> -->
-  <!--banner轮播图 -->
-  <view class='swiper'>
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" previous-margin="60rpx" next-margin="60rpx" bindchange='bindchange' current-item-id="{{selected}}">
-      <block wx:for="{{bannerList}}" wx:key="bannerList">
-        <swiper-item item-id="{{item.staffworkno}}">
-          <image src="{{item.picurl[0]}}" class="slide-image {{item.staffworkno==selected?'active':''}} " />
-        </swiper-item>
-      </block>
-    </swiper>
-  </view>
-  <!--服务入口列表-->
-  <view class="function-list">
-    <view class='item'>
-      <image src='../../images/index_features_01@2x.png'></image>
-      <view>扫码下单</view>
+        <view class='contact-tools'>
+            <view class='address-icon'></view>
+            <text>湖南省长沙市芙蓉区万家丽广场宽寓大厦</text>
+            <text>703.3km</text>
+            <view class='nav-icon'></view>
+            <text>|</text>
+            <view class='tel-icon'></view>
+        </view>
     </view>
-    <view class='item'>
-      <image src='../../images/index_features_02@2x.png'></image>
-      <view>呼叫服务</view>
+    <!--服务入口列表-->
+    <view class="function-list">
+        <view class='item'>
+            <image src='../../images/index_features_01@2x.png'></image>
+            <view>扫码下单</view>
+        </view>
+        <view class='item'>
+            <image src='../../images/index_features_02@2x.png'></image>
+            <view>呼叫服务</view>
+        </view>
+        <view class='item'>
+            <image src='../../images/index_features_03@2x.png'></image>
+            <view>店面评价</view>
+        </view>
+        <view class='item'>
+            <image src='../../images/index_features_04@2x.png'></image>
+            <view>房间预约</view>
+        </view>
+        <view class='item'>
+            <image src='../../images/index_features_05@2x.png'></image>
+            <view>店面评价</view>
+        </view>
     </view>
-    <view class='item'>
-      <image src='../../images/index_features_03@2x.png'></image>
-      <view>店面评价</view>
+    <!-- 资讯列表 -->
+    <view class="message-box">
+        <image src='../../images/index_message@2x.png'></image>
+        <view class="message-list">
+            <view class="item">
+                <text class="tag red-tag">最新</text>
+                <text class="summary">自古中医就有云：万物皆生于春，长于夏，收于秋天，藏于冬,自古中医就有云：万物皆生于春，长于夏，收于秋天，藏于冬</text>
+            </view>
+            <view class="item">
+                <text class="tag green-tag">公告</text>
+                <text class='summary'>养生茶水养生按摩足浴</text>
+            </view>
+        </view>
     </view>
-    <view class='item'>
-      <image src='../../images/index_features_04@2x.png'></image>
-      <view>房间预约</view>
+    <view class="white-wrap">
+        <!-- 精品推荐 -->
+        <view class="recommend-box">
+            <view class="title">
+                <view class='line'></view>
+                <view class='icon'></view>
+                <text>精品推荐</text>
+                <view class='icon'></view>
+                <view class='line reverse'></view>
+            </view>
+            <view class="clear">
+                <view class="image-box-1">
+                    <text class='tag'>技师推荐</text>
+                    <image src='../../images/index_recommend_01@2x.png'></image>
+                    <text class='summary'>获得高级按摩师认证</text>
+                </view>
+                <view class="image-box-2">
+                    <text class='tag'>项目介绍</text>
+                    <image src='../../images/index_recommend_02@2x.png'></image>
+                    <text class='summary'>好口碑推荐项目</text>
+                </view>
+                <view class="image-box-3">
+                    <text class='tag'>会员优惠</text>
+                    <image src='../../images/index_recommend_03@2x.png'></image>
+                    <text class='summary'>会员充值 乐享优惠</text>
+                </view>
+            </view>
+        </view>
+        <!-- 团购优惠 -->
+        <view class="group-discount-title">团购优惠</view>
+        <swiper class="group-discount-list" indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" circular="true" display-multiple-items="3">
+            <swiper-item class="item">
+                <image src='../../images/group_discout_01@2x.png'></image>
+                <text>益健足浴</text>
+                <text>60分钟</text>
+                <text>￥120</text>
+                <text>￥100</text>
+            </swiper-item>
+            <swiper-item class="item">
+                <image src='../../images/group_discout_03@2x.png'></image>
+                <text>养生按摩</text>
+                <text>90分钟</text>
+                <text>￥100</text>
+                <text>￥80</text>
+            </swiper-item>
+            <swiper-item class="item">
+                <image src='../../images/group_discout_02@2x.png'></image>
+                <text>泰式足道</text>
+                <text>70分钟</text>
+                <text>￥120</text>
+                <text>￥100</text>
+            </swiper-item>
+            <swiper-item class="item">
+                <image src='../../images/group_discout_01@2x.png'></image>
+                <text>益健足浴</text>
+                <text>60分钟</text>
+                <text>￥120</text>
+                <text>￥100</text>
+            </swiper-item>
+            <swiper-item class="item">
+                <image src='../../images/group_discout_03@2x.png'></image>
+                <text>养生按摩</text>
+                <text>90分钟</text>
+                <text>￥100</text>
+                <text>￥80</text>
+            </swiper-item>
+            <swiper-item class="item">
+                <image src='../../images/group_discout_02@2x.png'></image>
+                <text>泰式足道</text>
+                <text>70分钟</text>
+                <text>￥120</text>
+                <text>￥100</text>
+            </swiper-item>
+            <swiper-item class="item">
+                <image src='../../images/group_discout_01@2x.png'></image>
+                <text>益健足浴</text>
+                <text>60分钟</text>
+                <text>￥120</text>
+                <text>￥100</text>
+            </swiper-item>
+            <swiper-item class="item">
+                <image src='../../images/group_discout_03@2x.png'></image>
+                <text>养生按摩</text>
+                <text>90分钟</text>
+                <text>￥100</text>
+                <text>￥80</text>
+            </swiper-item>
+            <swiper-item class="item">
+                <image src='../../images/group_discout_02@2x.png'></image>
+                <text>泰式足道</text>
+                <text>70分钟</text>
+                <text>￥120</text>
+                <text>￥100</text>
+            </swiper-item>
+        </swiper>
+        <!-- 拼团活动 -->
+        <view class="group-activity-title ">拼团活动</view>
+        <view class="group-activity clear ">
+            <image src='../../images/index_group_activity@2x.png'></image>
+            <view class='center-box'>
+                <text>精品超级拼团</text>
+                <text>适应门店:大旗B店</text>
+                <text>已拼52件</text>
+                <view class="user-image-list ">
+                    <image src='../../images/index_tou_01@2x.png'></image>
+                    <image src='../../images/index_tou_02@2x.png'></image>
+                    <image src='../../images/index_tou_03@2x.png'></image>
+                    <image src='../../images/index_tou_04@2x.png'></image>
+                </view>
+            </view>
+            <view class='right-box'>
+                <button>开团</button>
+                <text>5人团</text>
+                <view class='price'>
+                    <text>￥89</text>
+                    <text>￥119</text>
+                </view>
+            </view>
+        </view>
     </view>
-    <view class='item'>
-      <image src='../../images/index_features_04@2x.png'></image>
-      <view>店面评价</view>
-    </view>
-  </view>
-  <!-- 资讯列表 -->
-  <view class="message-box">
-    <image src='../../images/index_message@2x.png'></image>
-    <view class="">
-      <view>
-        <text class="tag red">最新</text><text>自古中医就有云：万物皆生于春，长于夏，收于秋天，藏于冬</text></view>
-      <view>
-        <text class="tag green">公告</text><text>养生茶水养生按摩足浴</text></view>
-    </view>
-  </view>
-  <!-- 精品推荐 -->
-  <view>
-
-  </view>
 </view>
 <!-- 导航公用模版 -->
 <template is="engin-nav" data="{{type: 0,navArr: navTabBar,showImgUrl: showImgUrl}}" />
 <!-- 呼叫服务mask -->
-<view class="mask" style="display:{{maskDisplay}}" bindtap="hideService"></view>
+<view class="mask" style="display:{{maskDisplay}}" bindtap="hideService "></view>
 <!-- 呼叫服务 -->
 <view class="call-service" style="display:{{maskDisplay}}">
-  <view class="donald-duck {{donaldshowIn}}" bindtap="hideService">
-    <image src="https://iservice.daqisoft.cn/Public/Home/images/donald_duck.png" lazy-load></image>
-  </view>
-  <view class="donald-duck-con {{donaldconshowIn}}">
-    <image src="https://iservice.daqisoft.cn/Public/Home/images/donald_duck_title.png" lazy-load class="donald_duck_title"></image>
-    <view class="service-box">
-      <scroll-view scroll-y>
-        <view class="service-list">
-          <view bindtap="serveracceptance" data-voice="呼叫服务员">呼叫服务员</view>
-          <view bindtap="serveracceptance" data-voice="添加茶水">添加茶水</view>
-          <view bindtap="serveracceptance" data-voice="消费买单">消费买单</view>
-          <view wx:for="{{callService}}" bindtap="serveracceptance" data-voice="{{item.voice_name}}" wx:key="callService">{{item.voice_name}}</view>
-        </view>
-      </scroll-view>
+    <view class="donald-duck {{donaldshowIn}}" bindtap="hideService">
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/donald_duck.png" lazy-load></image>
     </view>
-  </view>
+    <view class="donald-duck-con {{donaldconshowIn}}">
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/donald_duck_title.png" lazy-load class="donald_duck_title"></image>
+        <view class="service-box">
+            <scroll-view scroll-y>
+                <view class="service-list ">
+                    <view bindtap="serveracceptance" data-voice="呼叫服务员 ">呼叫服务员</view>
+                    <view bindtap="serveracceptance" data-voice="添加茶水 ">添加茶水</view>
+                    <view bindtap="serveracceptance" data-voice="消费买单 ">消费买单</view>
+                    <view wx:for="{{callService}}" bindtap="serveracceptance" data-voice="{{item.voice_name}} " wx:key="callService">{{item.voice_name}}</view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
 </view>
 <!-- 点击领券mask -->
 <view class="couponmask" style="visibility:{{couponmaskDisplay}}" bindtap="hidecouponmask"></view>
 <!-- 点击领券 -->
 <view class="coupon" style="visibility:{{couponmaskDisplay}}">
-  <view class='close' bindtap="hidecouponmask">
-    <image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/close.png'></image>
-  </view>
-  <view class='redpacket' bindtap='sendcoupon'>
-    <image src='https://iservice.daqisoft.cn/Public/Home/images/redindex.png'></image>
-  </view>
-  <view class='exdesc' bindtap='sendcoupon'>点击领取优惠券</view>
+    <view class='close' bindtap="hidecouponmask">
+        <image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/close.png'></image>
+    </view>
+    <view class='redpacket' bindtap='sendcoupon'>
+        <image src='https://iservice.daqisoft.cn/Public/Home/images/redindex.png'></image>
+    </view>
+    <view class='exdesc' bindtap='sendcoupon'>点击领取优惠券</view>
 </view>

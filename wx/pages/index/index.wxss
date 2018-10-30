@@ -1,74 +1,492 @@
 @import "../common/engin-nav.wxss";
 
 .container {
-  background-color: #eee;
-  min-height: 1184rpx;
-  padding-bottom: 100rpx;
+    background-color: #eee;
+    min-height: 1184rpx;
+    padding-bottom: 100rpx;
 }
 
 .show-banner {
-  height: 340rpx;
-  position: relative;
+    height: 340rpx;
+    position: relative;
 }
 
 .banner swiper {
-  height: 340rpx;
+    height: 340rpx;
 }
 
 .item-image, .show-banner image {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
-.container .swiper{
-  height: 340rpx;
-  padding:30rpx 0 0 0;
-  background: url('https://note.youdao.com/yws/api/personal/file/WEB4b5fc02bb93552bbb11e6d740d7bacd0?method=download&shareKey=ae0d2887000c971eb19f90d85d7f81f3') repeat-x;
-  background-size:auto 340rpx;
+.swiper {
+    height: 340rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB4b5fc02bb93552bbb11e6d740d7bacd0?method=download&shareKey=ae0d2887000c971eb19f90d85d7f81f3') repeat-x;
+    background-size: auto 380rpx;
+    padding: 0 0 40rpx;
+    position: relative;
 }
 
-.swiper swiper{
-  height: 340rpx;
+.contact-tools{
+    position: absolute;
+    left: 0;
+    right: 0;
+    font-size:20rpx;
+    margin:0 30rpx;
+    color:#656565;
+    display: flex;
+    line-height: 40rpx;
+    border-bottom:1rpx #ddd solid;
 }
 
-.swiper swiper-item{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.swiper image{
-  width: 320rpx;
-  height: 272rpx;
-  opacity: 0.5;
-  z-index: 2;
-}
-.swiper .active{
-  width: 374rpx;
-  height: 245rpx;
-  transition:all .2s ease-in-out 0.3s;
-  opacity: 1;
-  z-index: 3;
+.address-icon{
+    display: inline-block;
+    width:22rpx;
+    height: 22rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB330ac01fc77c8bb32e84cb60c35ead81?method=download&shareKey=b31d7812be7686a3519fb7fdaeadc73f') no-repeat;
+    background-size: 22rpx;
+    margin:9rpx 5rpx 0;
 }
 
-.function-list{
-  display: flex;
-  background: #fff;
-  padding:30rpx;
-  border-top:1rpx #f5f1f1 solid;
-  font-size:22rpx;
+.contact-tools text:nth-of-type(1){
+    flex:1;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
 
-.function-list .item{
-  flex:1;
-  text-align: center;
+.nav-icon{
+    display: inline-block;
+    width:22rpx;
+    height: 22rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB6afc3b4cf94f96b65bd55ba80fa769fe?method=download&shareKey=84ac7821f01df125479b4b2748f6fe93') no-repeat;
+    background-size: 22rpx;
+    margin:9rpx 10rpx 0;
 }
 
-.function-list .item image{
-  width:80rpx;
-  height:80rpx;
-  margin:0 0 20rpx 0; 
+.tel-icon{
+    display: inline-block;
+    width:22rpx;
+    height: 22rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEBa516da57a01247147f37437f62dee584?method=download&shareKey=cb8e52113991cd5c2cfdd5e2529efeec') no-repeat;
+    background-size: 22rpx;
+    margin:9rpx 10rpx 0;
 }
 
-.message-box{
-  
+
+.swiper swiper {
+    height: 340rpx;
+}
+
+.swiper swiper-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper image {
+    width: 246rpx;
+    height: 161rpx;
+    opacity: 0.5;
+    z-index: 2;
+    border-radius: 10rpx;
+}
+
+.swiper .active {
+    width: 374rpx;
+    height: 245rpx;
+    transition: all 0.2s ease-in-out 0.3s;
+    opacity: 1;
+    z-index: 3;
+}
+
+.function-list {
+    display: flex;
+    background: #fff;
+    padding: 30rpx;
+    border-top: 1rpx #f5f1f1 solid;
+    font-size: 26rpx;
+}
+
+.function-list .item {
+    flex: 1;
+    text-align: center;
+}
+
+.function-list .item image {
+    width: 80rpx;
+    height: 80rpx;
+    margin: 0 0 10rpx 0;
+    border-radius: 50%;
+}
+
+.message-box {
+    margin: 14rpx 0 0 0;
+    padding: 10rpx 30rpx 10rpx 106rpx;
+    overflow: hidden;
+    background: #fff;
+}
+
+.message-box image {
+    width: 60rpx;
+    height: 60rpx;
+    position: absolute;
+    margin-left: -76rpx;
+}
+
+.message-list {
+    font-size: 18rpx;
+    height: 60rpx;
+}
+
+.message-list .item {
+    height: 25rpx;
+    line-height: 25rpx;
+    margin-bottom: 10rpx;
+}
+
+.message-list .red-tag {
+    color: #e54837;
+    border: #e54837 1rpx solid;
+}
+
+.message-list .green-tag {
+    color: #53a64e;
+    border: #53a64e 1rpx solid;
+}
+
+.message-list .tag {
+    display: inline-block;
+    padding: 0 4rpx;
+    border-radius: 4rpx;
+    margin: 0 10rpx 0 0;
+    vertical-align: top;
+    line-height: 23rpx;
+    height: 23rpx;
+}
+
+.message-list .summary {
+    display: inline-block;
+    width: 540rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.white-wrap {
+    background: #fff;
+    padding: 0 0 30rpx 0;
+}
+
+.recommend-box {
+    margin: 14rpx 0 0 0;
+    padding: 0 30rpx;
+}
+
+.recommend-box .title {
+    font-size: 28rpx;
+    padding: 30rpx 0;
+    text-align: center;
+    color: #1684ff;
+}
+
+.recommend-box .line {
+    display: inline-block;
+    width: 200rpx;
+    height: 2rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB869b25581b2a9578c3197905fc351346?method=download&shareKey=a4e8c059f7cd252d365390b46da9d221') no-repeat;
+    background-size: 200rpx 2rpx;
+    transform: rotate(180deg);
+}
+
+.recommend-box .icon {
+    display: inline-block;
+    width: 8rpx;
+    height: 22rpx;
+    margin: 0 20rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEBa8ba3d3984ce9267e1a9044909070f7a?method=download&shareKey=faa55b5822028a36b113f3d2f349cbcf') no-repeat;
+    background-size: 8rpx 22rpx;
+}
+
+.recommend-box .reverse {
+    transform: rotate(-360deg);
+}
+
+.recommend-box .line, .recommend-box .icon, .recommend-box text {
+    vertical-align: middle;
+}
+
+.recommend-box image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 10rpx;
+}
+
+.image-box-1, .image-box-2, .image-box-3 {
+    font-size: 22rpx;
+    position: relative;
+    border-radius: 10rpx;
+}
+
+.image-box-2, .image-box-3 {
+    width: 353rpx;
+    height: 151rpx;
+    float: right;
+}
+
+.image-box-1 {
+    width: 317rpx;
+    height: 322rpx;
+    float: left;
+}
+
+.image-box-3 {
+    margin: 20rpx 0 0 20rpx;
+}
+
+.recommend-box .tag {
+    position: absolute;
+    color: #fff;
+    background: #1684ff;
+    border-radius: 10rpx 0 10rpx 0;
+    padding: 5rpx 10rpx;
+}
+
+.recommend-box .summary {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20rpx;
+    color: #fff;
+    text-align: center;
+}
+
+.group-discount-title {
+    margin: 40rpx 0 30rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB0e650757b6a0757c51e1f664dd15f323?method=download&shareKey=bb230e95e131ddb5a2da8200e1d9eaa5') no-repeat;
+    background-size: 158rpx 50rpx;
+    color: #fff;
+    font-size: 28rpx;
+    line-height: 50rpx;
+    padding: 0 0 0 15rpx;
+}
+
+.group-discount-list{
+    padding: 0 30rpx;
+    height: 265rpx!important;
+}
+
+.group-discount-list .item {
+    float: left;
+    width: 186rpx!important;
+}
+
+.group-discount-list image {
+    display: block;
+    width: 176rpx;
+    height: 143rpx;
+    border-radius: 10rpx;
+}
+
+.group-discount-list text {
+    display: inline-block;
+}
+
+.group-discount-list text:nth-of-type(1) {
+    width: 50%;
+    font-size: 22rpx;
+    color: #343434;
+    text-align: left;
+    margin: 10rpx 0 0 0;
+}
+
+.group-discount-list text:nth-of-type(2) {
+    box-sizing: border-box;
+    width: 50%;
+    font-size: 18rpx;
+    color: #00affb;
+    text-align: right;
+    padding: 0 10rpx 0 0;
+}
+
+.group-discount-list text:nth-of-type(3) {
+    font-size: 18rpx;
+    color: #999;
+    margin: 20rpx 10rpx 0 0;
+    text-decoration: line-through;
+}
+
+.group-discount-list text:nth-of-type(4) {
+    font-size: 22rpx;
+    color: #ff1d02;
+}
+
+.group-activity-title {
+    margin: 0 0 30rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB7d4e0b7771b8e59efc9930e1791678e3?method=download&shareKey=8af6c0b609cee07cdfd800e985f0918f') no-repeat;
+    background-size: 158rpx 50rpx;
+    color: #fff;
+    font-size: 28rpx;
+    line-height: 50rpx;
+    padding: 0 0 0 15rpx;
+}
+
+.group-activity {
+    margin: 0rpx auto;
+    width: 690rpx;
+    height: 240rpx;
+    border-radius: 10rpx;
+    box-shadow: 2rpx 2rpx 2rpx 2rpx rgba(0, 0, 0, 0.1);
+    display: flex;
+    overflow: hidden;
+}
+
+.group-activity image {
+    width: 300rpx;
+    height: 240rpx;
+    border-radius: 10rpx 0 0 10rpx;
+}
+
+.center-box {
+    flex: 1;
+    padding: 0 0 0 14rpx;
+}
+
+.center-box text:nth-of-type(1) {
+    display: block;
+    font-size: 32rpx;
+    color: #333;
+    line-height: 80rpx;
+}
+
+.center-box text:nth-of-type(2) {
+    display: block;
+    font-size: 22rpx;
+    color: #999;
+    line-height: 40rpx;
+}
+
+.center-box text:nth-of-type(3) {
+    display: block;
+    font-size: 16rpx;
+    color: #999;
+}
+
+.user-image-list {
+    margin: 30rpx 0 0 0;
+    position: relative;
+}
+
+.user-image-list image {
+    width: 50rpx;
+    height: 50rpx;
+    margin:0 -25rpx 0 0;
+    border-radius:50%;
+}
+
+.right-box {
+    text-align: right;
+    width: 150rpx;
+    padding:0 20rpx 0 0;
+}
+
+.right-box button {
+    display: inline-block;
+    font-size: 22rpx;
+    color: #fff;
+    width: 90rpx;
+    line-height: 40rpx;
+    background: url("https://note.youdao.com/yws/api/personal/file/WEB075d8efc644f5fac8889b5e5df78f53d?method=download&shareKey=219dac81bfc7d6280b9d5c1da557b0d3") no-repeat;
+    background-size: 90rpx 40rpx;
+    text-align: center;
+    outline: 0;
+    padding: 0;
+    margin: 20rpx 0 0 0;
+}
+
+.right-box > text:nth-of-type(1){
+    display: inline-block;
+    font-size: 18rpx;
+    border:#0092fa 1rpx solid;
+    border-radius: 6rpx;
+    line-height: 30rpx;
+    padding: 0 8rpx;
+    color:#0092fa;
+    margin:4rpx 10rpx 0 0;
+    text-align: center;
+}
+
+.price{
+    margin:50rpx 0 0 0;
+}
+
+.price text:nth-of-type(1){
+    display: inline-block;
+    font-size:24rpx;
+    line-height: 50rpx;
+    padding: 0 8rpx;
+    color:#f60001;
+    text-align: center;
+}
+
+.price text:nth-of-type(2){
+    display: inline-block;
+    font-size: 16rpx;
+    line-height: 50rpx;
+    color:#999999;
+    text-decoration: line-through;
+}
+
+/* 点击领券 */
+
+.couponmask {
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.coupon {
+    width: 100%;
+    position: fixed;
+    z-index: 2;
+    bottom: 500rpx;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.coupon .redpacket {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.coupon .redpacket image {
+    width: 332rpx;
+    height: 388rpx;
+}
+
+.coupon .exdesc {
+    font-size: 26rpx;
+    color: #caa876;
+    margin-top: -80rpx;
+}
+
+.coupon .close {
+    margin-top: -200rpx;
+}
+
+.coupon .close image {
+    width: 80rpx;
+    height: 80rpx;
+    margin: 0 50rpx 0 380rpx;
+    color: #fff;
 }

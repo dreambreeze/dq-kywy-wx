@@ -31,15 +31,15 @@ Page({
     bannerList:[
       {
         "staffworkno": "1",
-        "picurl": 'https://note.youdao.com/yws/api/personal/file/WEBbbeea258a6b7c6635f6b6569b3ef5a1e?method=download&shareKey=a1d647a1d1f2f3834f499ee91aa3b5ef',
+            "picurl": '../../images/index_banner@2x.png',
       },
       {
         "staffworkno": "2",
-        "picurl": 'https://note.youdao.com/yws/api/personal/file/WEBbbeea258a6b7c6635f6b6569b3ef5a1e?method=download&shareKey=a1d647a1d1f2f3834f499ee91aa3b5ef',
+          "picurl": '../../images/index_banner@2x.png',
       },
       {
         "staffworkno": "3",
-        "picurl": 'https://note.youdao.com/yws/api/personal/file/WEBbbeea258a6b7c6635f6b6569b3ef5a1e?method=download&shareKey=a1d647a1d1f2f3834f499ee91aa3b5ef',
+          "picurl": '../../images/index_banner@2x.png',
       }
     ],
     data:{}
