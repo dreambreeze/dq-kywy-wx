@@ -24,17 +24,21 @@
             <image src='../../images/index_features_01@2x.png'></image>
             <view>扫码下单</view>
         </view>
-        <view class='item'>
+        <view class='item' bindtap="showService">
             <image src='../../images/index_features_02@2x.png'></image>
             <view>呼叫服务</view>
         </view>
         <view class='item'>
+            <navigator url='../technician/pages/techindex/techindex'>
             <image src='../../images/index_features_03@2x.png'></image>
-            <view>店面评价</view>
+            <view>预约技师</view>
+            </navigator>
         </view>
         <view class='item'>
+        <navigator url="../reserve/pages/reserve-room/reserve-room">
             <image src='../../images/index_features_04@2x.png'></image>
             <view>房间预约</view>
+            </navigator>
         </view>
         <view class='item'>
             <image src='../../images/index_features_05@2x.png'></image>
@@ -44,16 +48,24 @@
     <!-- 资讯列表 -->
     <view class="message-box">
         <image src='../../images/index_message@2x.png'></image>
-        <view class="message-list">
-            <view class="item">
+        <swiper class="message-list" vertical="true" display-multiple-items="2" duration="500" interval="3000" circular="true" autoplay="true">
+            <swiper-item class="item">
                 <text class="tag red-tag">最新</text>
                 <text class="summary">自古中医就有云：万物皆生于春，长于夏，收于秋天，藏于冬,自古中医就有云：万物皆生于春，长于夏，收于秋天，藏于冬</text>
-            </view>
-            <view class="item">
+            </swiper-item>
+            <swiper-item class="item">
                 <text class="tag green-tag">公告</text>
                 <text class='summary'>养生茶水养生按摩足浴</text>
-            </view>
-        </view>
+            </swiper-item>
+            <swiper-item class="item">
+                <text class="tag red-tag">最新</text>
+                <text class="summary">自古中医就有云：万物皆生于春，长于夏，收于秋天，藏于冬,自古中医就有云：万物皆生于春，长于夏，收于秋天，藏于冬</text>
+            </swiper-item>
+            <swiper-item class="item">
+                <text class="tag green-tag">公告</text>
+                <text class='summary'>养生茶水养生按摩足浴</text>
+            </swiper-item>
+        </swiper>
     </view>
     <view class="white-wrap">
         <!-- 精品推荐 -->
@@ -68,8 +80,20 @@
             <view class="clear">
                 <view class="image-box-1">
                     <text class='tag'>技师推荐</text>
-                    <image src='../../images/index_recommend_01@2x.png'></image>
-                    <text class='summary'>获得高级按摩师认证</text>
+                    <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
+                        <swiper-item>
+                            <image src='../../images/index_recommend_01@2x.png'></image>
+                            <text class='summary'>获得高级按摩师认证</text>
+                        </swiper-item>
+                        <swiper-item>
+                            <image src='../../images/index_recommend_02@2x.png'></image>
+                            <text class='summary'>好口碑项目推荐</text>
+                        </swiper-item>
+                        <swiper-item>
+                            <image src='../../images/index_recommend_03@2x.png'></image>
+                            <text class='summary'>会员充值 乐享优惠</text>
+                        </swiper-item>
+                    </swiper>
                 </view>
                 <view class="image-box-2">
                     <text class='tag'>项目介绍</text>
@@ -179,7 +203,7 @@
 <!-- 导航公用模版 -->
 <template is="engin-nav" data="{{type: 0,navArr: navTabBar,showImgUrl: showImgUrl}}" />
 <!-- 呼叫服务mask -->
-<view class="mask" style="display:{{maskDisplay}}" bindtap="hideService "></view>
+<view class="mask" style="display:{{maskDisplay}}" bindtap="hideService"></view>
 <!-- 呼叫服务 -->
 <view class="call-service" style="display:{{maskDisplay}}">
     <view class="donald-duck {{donaldshowIn}}" bindtap="hideService">

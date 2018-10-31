@@ -28,52 +28,51 @@
     position: relative;
 }
 
-.contact-tools{
+.contact-tools {
     position: absolute;
     left: 0;
     right: 0;
-    font-size:20rpx;
-    margin:0 30rpx;
-    color:#656565;
+    font-size: 20rpx;
+    margin: 0 30rpx;
+    color: #656565;
     display: flex;
     line-height: 40rpx;
-    border-bottom:1rpx #ddd solid;
+    border-bottom: 1rpx #ddd solid;
 }
 
-.address-icon{
+.address-icon {
     display: inline-block;
-    width:22rpx;
+    width: 22rpx;
     height: 22rpx;
     background: url('https://note.youdao.com/yws/api/personal/file/WEB330ac01fc77c8bb32e84cb60c35ead81?method=download&shareKey=b31d7812be7686a3519fb7fdaeadc73f') no-repeat;
     background-size: 22rpx;
-    margin:9rpx 5rpx 0;
+    margin: 9rpx 5rpx 0;
 }
 
-.contact-tools text:nth-of-type(1){
-    flex:1;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
+.contact-tools text:nth-of-type(1) {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.nav-icon{
+.nav-icon {
     display: inline-block;
-    width:22rpx;
+    width: 22rpx;
     height: 22rpx;
     background: url('https://note.youdao.com/yws/api/personal/file/WEB6afc3b4cf94f96b65bd55ba80fa769fe?method=download&shareKey=84ac7821f01df125479b4b2748f6fe93') no-repeat;
     background-size: 22rpx;
-    margin:9rpx 10rpx 0;
+    margin: 9rpx 10rpx 0;
 }
 
-.tel-icon{
+.tel-icon {
     display: inline-block;
-    width:22rpx;
+    width: 22rpx;
     height: 22rpx;
     background: url('https://note.youdao.com/yws/api/personal/file/WEBa516da57a01247147f37437f62dee584?method=download&shareKey=cb8e52113991cd5c2cfdd5e2529efeec') no-repeat;
     background-size: 22rpx;
-    margin:9rpx 10rpx 0;
+    margin: 9rpx 10rpx 0;
 }
-
 
 .swiper swiper {
     height: 340rpx;
@@ -252,6 +251,7 @@
     background: #1684ff;
     border-radius: 10rpx 0 10rpx 0;
     padding: 5rpx 10rpx;
+    z-index: 1;
 }
 
 .recommend-box .summary {
@@ -273,14 +273,14 @@
     padding: 0 0 0 15rpx;
 }
 
-.group-discount-list{
+.group-discount-list {
     padding: 0 30rpx;
-    height: 265rpx!important;
+    height: 265rpx !important;
 }
 
 .group-discount-list .item {
     float: left;
-    width: 186rpx!important;
+    width: 186rpx !important;
 }
 
 .group-discount-list image {
@@ -382,14 +382,14 @@
 .user-image-list image {
     width: 50rpx;
     height: 50rpx;
-    margin:0 -25rpx 0 0;
-    border-radius:50%;
+    margin: 0 -25rpx 0 0;
+    border-radius: 50%;
 }
 
 .right-box {
     text-align: right;
     width: 150rpx;
-    padding:0 20rpx 0 0;
+    padding: 0 20rpx 0 0;
 }
 
 .right-box button {
@@ -406,36 +406,36 @@
     margin: 20rpx 0 0 0;
 }
 
-.right-box > text:nth-of-type(1){
+.right-box > text:nth-of-type(1) {
     display: inline-block;
     font-size: 18rpx;
-    border:#0092fa 1rpx solid;
+    border: #0092fa 1rpx solid;
     border-radius: 6rpx;
     line-height: 30rpx;
     padding: 0 8rpx;
-    color:#0092fa;
-    margin:4rpx 10rpx 0 0;
+    color: #0092fa;
+    margin: 4rpx 10rpx 0 0;
     text-align: center;
 }
 
-.price{
-    margin:50rpx 0 0 0;
+.price {
+    margin: 50rpx 0 0 0;
 }
 
-.price text:nth-of-type(1){
+.price text:nth-of-type(1) {
     display: inline-block;
-    font-size:24rpx;
+    font-size: 24rpx;
     line-height: 50rpx;
     padding: 0 8rpx;
-    color:#f60001;
+    color: #f60001;
     text-align: center;
 }
 
-.price text:nth-of-type(2){
+.price text:nth-of-type(2) {
     display: inline-block;
     font-size: 16rpx;
     line-height: 50rpx;
-    color:#999999;
+    color: #999;
     text-decoration: line-through;
 }
 
@@ -489,4 +489,205 @@
     height: 80rpx;
     margin: 0 50rpx 0 380rpx;
     color: #fff;
+}
+
+/* 呼叫服务 */
+
+.mask {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.call-service {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 766rpx;
+    z-index: 3;
+}
+
+.donald-duck {
+    position: absolute;
+    width: 262rpx;
+    height: 612rpx;
+    left: 0;
+    bottom: 230rpx;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-duration: 0.3s;
+    -webkit-animation-duration: 0.3s;
+    transform: translateX(-262rpx);
+    -webkit-transform: translateX(-262rpx);
+}
+
+.donaldshowIn {
+    animation-name: donaldshowIn;
+    -webkit-animation-name: donaldshowIn;
+}
+
+@keyframes donaldshowIn {
+    0% {
+        transform: translateX(-262rpx);
+        -webkit-transform: translateX(-262rpx);
+    }
+
+    100% {
+        transform: translateX(0rpx);
+        -webkit-transform: translateX(0rpx);
+    }
+}
+
+@-webkit-keyframes donaldshowIn {
+    0% {
+        transform: translateX(-262rpx);
+        -webkit-transform: translateX(-262rpx);
+    }
+
+    100% {
+        transform: translateX(0rpx);
+        -webkit-transform: translateX(0rpx);
+    }
+}
+
+.donaldshowOut {
+    animation-name: donaldshowOut;
+    -webkit-animation-name: donaldshowOut;
+}
+
+@keyframes donaldshowOut {
+    0% {
+        transform: translateX(0rpx);
+        -webkit-transform: translateX(0rpx);
+    }
+
+    100% {
+        transform: translateX(-262rpx);
+        -webkit-transform: translateX(-262rpx);
+    }
+}
+
+@-webkit-keyframes donaldshowOut {
+    0% {
+        transform: translateX(0rpx);
+        -webkit-transform: translateX(0rpx);
+    }
+
+    100% {
+        transform: translateX(-262rpx);
+        -webkit-transform: translateX(-262rpx);
+    }
+}
+
+.donald-duck image {
+    width: 100%;
+    height: 100%;
+}
+
+.donald-duck-con {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 488rpx;
+    height: 765rpx;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-duration: 0.3s;
+    -webkit-animation-duration: 0.3s;
+    transform: translateX(488rpx);
+    -webkit-transform: translateX(488rpx);
+}
+
+.donaldconshowIn {
+    animation-name: donaldconshowIn;
+    -webkit-animation-name: donaldconshowIn;
+}
+
+@keyframes donaldconshowIn {
+    0% {
+        transform: translateX(488rpx);
+        -webkit-transform: translateX(488rpx);
+    }
+
+    100% {
+        transform: translateX(0rpx);
+        -webkit-transform: translateX(0rpx);
+    }
+}
+
+@-webkit-keyframes donaldconshowIn {
+    0% {
+        transform: translateX(488rpx);
+        -webkit-transform: translateX(488rpx);
+    }
+
+    100% {
+        transform: translateX(0rpx);
+        -webkit-transform: translateX(0rpx);
+    }
+}
+
+.donaldconshowOut {
+    animation-name: donaldconshowOut;
+    -webkit-animation-name: donaldconshowOut;
+}
+
+@keyframes donaldconshowOut {
+    0% {
+        transform: translateX(0rpx);
+        -webkit-transform: translateX(0rpx);
+    }
+
+    100% {
+        transform: translateX(488rpx);
+        -webkit-transform: translateX(488rpx);
+    }
+}
+
+@-webkit-keyframes donaldconshowOut {
+    0% {
+        transform: translateX(0rpx);
+        -webkit-transform: translateX(0rpx);
+    }
+
+    100% {
+        transform: translateX(488rpx);
+        -webkit-transform: translateX(488rpx);
+    }
+}
+
+.donald_duck_title {
+    width: 470rpx;
+    height: 50rpx;
+}
+
+.service-box {
+    margin-top: 60rpx;
+    text-align: right;
+}
+
+.service-box scroll-view {
+    height: 646rpx;
+}
+
+.service-list {
+    display: inline-block;
+    width: 340rpx;
+    border-bottom: 1rpx solid #818181;
+}
+
+.service-list view {
+    font-size: 30rpx;
+    color: #ffd08d;
+    height: 96rpx;
+    line-height: 96rpx;
+    border-top: 1rpx solid #818181;
+    text-align: left;
+    padding-left: 25rpx;
+    /* border-image: url(https://iservice.daqisoft.cn/Public/Home/images/donald_duck.png) 0 0 rounded */
 }
