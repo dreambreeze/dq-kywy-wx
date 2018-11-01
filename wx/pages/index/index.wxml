@@ -2,7 +2,7 @@
 <view class="container" style="min-height:{{minHeight}}">
     <!--banner轮播图 -->
     <view class='swiper'>
-        <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" circular="true" previous-margin="160rpx" next-margin="160rpx" bindchange='bindchange' current-item-id="{{selected}}">
+        <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" circular="true" previous-margin="120rpx" next-margin="120rpx" bindchange='bindchange' current-item-id="{{selected}}">
             <block wx:for="{{bannerList}}" wx:key="bannerList">
                 <swiper-item item-id="{{item.staffworkno}}">
                     <image src="{{item.picurl}}" class="slide-image {{item.staffworkno==selected?'active':''}} " />

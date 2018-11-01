@@ -1,282 +1,183 @@
 @import "../common/engin-nav.wxss";
 
-/**index.wxss**/
+/**vip-center.wxss**/
+
+/* 轮播图 */
 
 .container {
-  background-color: #eee;
-  min-height: 1182rpx;
+    background-color: #eee;
+    min-height: 1182rpx;
 }
 
-swiper {
-  height: 336rpx;
+.swiper {
+    height: 340rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB4b5fc02bb93552bbb11e6d740d7bacd0?method=download&shareKey=ae0d2887000c971eb19f90d85d7f81f3') repeat-x;
+    background-size: auto 380rpx;
+    padding: 0 0 40rpx;
 }
 
-.top-cards {
-  background: #2e2e2e;
-  padding: 36rpx 0 26rpx;
+.swiper swiper {
+    height: 340rpx;
 }
 
-.card-item {
-  text-align: center;
+.swiper swiper-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.cardscale{
-  /* transform: scale(0.8); */
-  transition: all 0.15s;
-  background-color: rgba(0, 0, 0, 0.5);
-  /* -webkit-transform: scale(0.8); */
-  -webkit-transition: all 0.15s;
+.swiper image {
+    width: 350rpx !important;
+    height: 161rpx;
+    opacity: 0.5;
+    z-index: 2;
+    border-radius: 10rpx;
 }
 
-.cardscaletransition{
-  transition: all 0.2s;
-  -webkit-transition: all 0.2s;
+.swiper .active {
+    width: 494rpx !important;
+    height: 245rpx;
+    transition: all 0.2s ease-in-out 0.3s;
+    opacity: 1;
+    z-index: 3;
 }
 
-.cardscale .card-zh{
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 999999;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(96,96,96,0.5);
+/* 会员操作 */
+
+.member-box {
+    margin: 30rpx auto;
+    width: 680rpx;
+    background: #fff;
+    border-radius: 10rpx;
+    padding: 0 100rpx 14rpx;
+    border: 1px transparent solid;
 }
 
-.cardscaletransition .card-zh{
-  display: none;
+.open-button {
+    display: block;
+    width: 480rpx;
+    height: 86rpx;
+    line-height: 70rpx;
+    margin: 40rpx 0 24rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB9e94efe0a5d22deab7d4a8b2309a0d42?method=download&shareKey=03e7b24ed8bc1b681a338c06664084e5') no-repeat;
+    background-size: 480rpx 86rpx;
+    padding: 0;
+    text-align: center;
+    color: #fff;
+    font-size: 32rpx;
+    outline: 0;
+    border: 0;
 }
 
-.nextCardSwiperItem{
-   transform: scale(0.8) translateX(-28rpx); 
+.go-icon {
+    display: inline-block;
+    width: 30rpx;
+    height: 30rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB3ad2042c917492e3e036ea5297ae17cb?method=download&shareKey=a5ce5c01af0f6c7da1756dafe8acd604') no-repeat;
+    background-size: 29rpx 29rpx;
+    margin: 0 5rpx;
+    position: relative;
+    top: 6rpx;
 }
 
-.prevCardSwiperItem{
-   transform: scale(0.8) translateX(28rpx); 
+.handle-list {
+    display: flex;
 }
 
-.card-item-c {
-  width: 500rpx;
-  height: 300rpx;
-  display: inline-block;
-  position: relative;
-  color: #fff;
-  background-color: #2e2e2e
+.handle-box {
+    flex: 1;
+    text-align: center;
 }
 
-.card-type, .card-num {
-  position: absolute;
-  left: 106rpx;
+.handle-box image {
+    display: block;
+    width: 72rpx;
+    height: 72rpx;
+    margin: 0 auto;
 }
 
-.card-type {
-  top: 50rpx;
-  font-size: 30rpx;
+.handle-box text {
+    font-size: 24rpx;
+    color: #333;
+    line-height: 76rpx;
 }
 
-.card-num {
-  top: 92rpx;
-  font-size: 26rpx;
+/* 会员折扣列表 */
+
+.discount-list {
+    padding: 0 65rpx 120rpx;
 }
 
-.cardlock {
-  width: 36rpx;
-  height: 44rpx;
-  position: absolute;
-  left: 40rpx;
-  bottom: 25rpx;
+.title {
+    text-align: center;
+    font-size: 38rpx;
+    display: flex;
+    position: relative;
+    line-height: 118rpx;
 }
 
-.cardloss {
-  width: 100rpx;
-  height: 64rpx;
-  position: absolute;
-  left: 40rpx;
-  bottom: 25rpx;
+.title text {
+    display: inline-block;
+    color: #333;
+    padding: 0 24rpx;
 }
 
-.card-item-c .slide-image {
-  width: 100%;
-  height: 100%;
+.line {
+    display: inline-block;
+    flex: 1;
+    height: 2rpx;
+    background: #b0d5ff;
+    position: relative;
+    top: 58rpx;
 }
 
-.show-money {
-  width: 560rpx;
-  background: #3d3c38;
-  color: #fff;
-  margin: 25rpx auto 0;
-  line-height: 0.1;
+.discount-box {
+    width: 620rpx;
+    height: 294rpx;
+    color: #fff;
+    font-size: 34rpx;
+    position: relative;
+    text-align: center;
+    line-height: 64rpx;
+    border-radius: 10rpx;
+    padding:69rpx 0 99rpx;
 }
 
-.show-money .balance {
-  display: inline-block;
-  width: 100%;
-  height: 44rpx;
-  line-height: 44rpx;
-  text-align: center;
+.discount-box:nth-child(2) {
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB2c036ac26a51d0ceeb02a578ea292786?method=download&shareKey=d94467d9109f28f6e516507c18b68117') no-repeat;
+    background-size: 620rpx 294rpx;
 }
 
-.show-money text {
-  color: #d2ba94;
-  vertical-align: 4rpx;
+.discount-box:nth-child(3) {
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB0a95fbd6867279d130746d125e6c4778?method=download&shareKey=65792389f7326d2daf19ebd0c3230030') no-repeat;
+    background-size: 620rpx 294rpx;
 }
 
-.balance text:first-child, .balance text:nth-of-type(2) {
-  font-size: 28rpx;
+.discount-box:nth-child(4) {
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB62aaeaaa33a026571345226d3eda28d9?method=download&shareKey=38351f9bc870244078030c7d9042b999') no-repeat;
+    background-size: 620rpx 294rpx;
 }
 
-.balance text:last-child {
-  font-size: 30rpx;
+.discount-box text{
+    display: block;
 }
 
-/* 空卡时 */
-
-.card-img {
-  height: 304rpx;
+.discount-box text:nth-of-type(1) {
+    font-size: 36rpx;
+    position: absolute;
+    line-height: 64rpx;
+    top:0;
+    left:0;
 }
 
-.empty-docard-box {
-  background-color: #fff;
-}
-
-.empty-card-tips {
-  color: #666;
-  text-align: center;
-  font-size: 26rpx;
-  padding: 26rpx 0;
-}
-
-.empty-docard-box .flex-wrp {
-  justify-content: center;
-  padding-bottom: 40rpx;
-}
-
-.empty-docard-item {
-  display: inline-block;
-  width: 255rpx;
-  height: 70rpx;
-  text-align: center;
-  line-height: 70rpx;
-  font-size: 30rpx;
-  font-weight: 500;
-  color: #fff;
-  background-color: #2e2e2e;
-  border-radius: 6rpx;
-  box-shadow: 0 2rpx 20rpx rgba(220, 200, 172, 0.7);
-}
-
-.empty-docard-item:last-child {
-  background-color: #c3ad8e;
-  margin-left: 50rpx;
-}
-
-.card-img image {
-  width: 100%;
-  height: 100%;
-}
-
-.ption {
-  margin-top: 23rpx;
-  text-align: center;
-  line-height: 0.1;
-}
-
-.p-item {
-  display: inline-block;
-  width: 9rpx;
-  height: 9rpx;
-  border: 1rpx solid #c3ad8e;
-  margin: 0 9rpx;
-  border-radius: 50%;
-}
-
-.p-item.active {
-  background: #c3ad8e;
-}
-
-/* 九官格导航 */
-
-.grid {
-  margin-top: 22rpx;
-}
-
-.ninenav {
-  background-color: #fff;
-  border-bottom: 1rpx solid #e8e8e8;
-}
-
-.flex-item {
-  width: 33.3333%;
-  height: 170rpx;
-  font-size: 26rpx;
-  border-right: 1rpx solid #e8e8e8;
-  overflow: hidden;
-  text-align: center;
-}
-
-.flex-item:nth-child(3n) {
-  border-right: none;
-}
-
-.flex-item navigator {
-  height: 100%;
-}
-
-.flex-item image {
-  width: 52rpx;
-  height: 52rpx;
-  margin: 48rpx 0 8rpx;
-}
-
-.fun-title {
-  font-size: 24rpx;
-  padding: 0 8rpx;
-  line-height: 1;
-  color: #333;
-}
-
-/* 个人设置按钮 */
-
-/* .ucenter-set {
-  display: inline-block;
-  width: 83rpx;
-  height: 55rpx;
-  background: url(https://iservice.daqisoft.cn/Public/Home/images/ucenter_set.png) no-repeat;
-  background-size: contain;
-  margin-top: 55rpx;
-} */
-
-.jishu-zhichi {
-  position: fixed;
-  bottom: 110rpx;
-  left: 0;
-  width: 100%;
-}
-
-.card-storename {
-  position: absolute;
-  bottom: 12rpx;
-  right: 20rpx;
-  color: #999;
-  font-size: 30rpx;
-}
-
-.cardtype{
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 44rpx;
-  line-height: 44rpx;
-  text-align: center;
-  color: #d2ba94;
-  vertical-align: 4rpx;
-}
-.cardtype .ltext{
-  padding: 5rpx 10rpx;
-  font-size: 28rpx;
-}
-.cardtype .rtext{
-  padding: 5rpx 10rpx;
-  font-size: 30rpx;
+.discount-box button {
+    width: 150rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 26rpx!important;
+    position: absolute;
+    right:20rpx;
+    bottom:50rpx;
+    border-radius: 25rpx;
+    color:#fff;
 }

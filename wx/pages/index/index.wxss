@@ -6,20 +6,6 @@
     padding-bottom: 100rpx;
 }
 
-.show-banner {
-    height: 340rpx;
-    position: relative;
-}
-
-.banner swiper {
-    height: 340rpx;
-}
-
-.item-image, .show-banner image {
-    width: 100%;
-    height: 100%;
-}
-
 .swiper {
     height: 340rpx;
     background: url('https://note.youdao.com/yws/api/personal/file/WEB4b5fc02bb93552bbb11e6d740d7bacd0?method=download&shareKey=ae0d2887000c971eb19f90d85d7f81f3') repeat-x;
@@ -33,7 +19,7 @@
     left: 0;
     right: 0;
     font-size: 20rpx;
-    margin: 0 30rpx;
+    margin: -40rpx 30rpx 0;
     color: #656565;
     display: flex;
     line-height: 40rpx;
@@ -85,7 +71,7 @@
 }
 
 .swiper image {
-    width: 246rpx;
+    width: 450rpx!important;
     height: 161rpx;
     opacity: 0.5;
     z-index: 2;
@@ -93,7 +79,7 @@
 }
 
 .swiper .active {
-    width: 374rpx;
+    width: 500rpx!important;
     height: 245rpx;
     transition: all 0.2s ease-in-out 0.3s;
     opacity: 1;
