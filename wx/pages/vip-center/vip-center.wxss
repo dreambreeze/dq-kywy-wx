@@ -24,6 +24,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative
 }
 
 .swiper image {
@@ -34,14 +35,37 @@
     border-radius: 10rpx;
 }
 
-.swiper .active {
-    width: 494rpx !important;
+.active  image{
+    width: 423rpx !important;
     height: 245rpx;
     transition: all 0.2s ease-in-out 0.3s;
     opacity: 1;
     z-index: 3;
 }
 
+.card-type{
+    position: absolute;
+    left:37rpx;
+    top:110rpx;
+    background: url("https://note.youdao.com/yws/api/personal/file/WEB56cde9336d824fa4e59f44ba7995d6d1?method=download&shareKey=f00f13f695cf16851a39f5a5e135a3d4") no-repeat;
+    background-size: 89rpx 39rpx;
+    transition: all 0.2s ease-in-out 0.3s;
+    font-size: 18rpx;
+    line-height: 39rpx;
+    width: 89rpx;
+    color:#fff;
+    z-index:4;
+    text-align: center;
+}
+
+.active .card-type{
+    left:0rpx;
+    top:80rpx;
+    background-size: 126rpx 55rpx;
+    width:126rpx;
+    line-height: 55rpx;
+    font-size:26rpx;
+}
 /* 会员操作 */
 
 .member-box {
@@ -163,6 +187,7 @@
 }
 
 .discount-box text:nth-of-type(1) {
+    width:156rpx;
     font-size: 36rpx;
     position: absolute;
     line-height: 64rpx;
@@ -171,7 +196,7 @@
 }
 
 .discount-box button {
-    width: 150rpx;
+    width:150rpx;
     height: 50rpx;
     line-height: 50rpx;
     font-size: 26rpx!important;
@@ -180,4 +205,22 @@
     bottom:50rpx;
     border-radius: 25rpx;
     color:#fff;
+    padding:0;
 }
+
+.discount-box:nth-child(2) button{
+    background: #4628ff;
+}
+
+.discount-box:nth-child(3) button{
+    background: #01854b;
+}
+
+.discount-box:nth-child(4) button{
+    background: #ff6304;
+}
+
+
+
+
+

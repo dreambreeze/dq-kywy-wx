@@ -11,7 +11,6 @@ let prevCardSwiperItem = 0;
 let nextCardSwiperItem = 1;
 
 Page({
-
     data: {
         //顶部会员卡数据
         cardUrls: {
@@ -38,15 +37,23 @@ Page({
         bannerList: [{
                 "staffworkno": "1",
                 "picurl": '../../images/vip-banner-card@2x.png',
+                "typeName":'电疗卡',
             },
             {
                 "staffworkno": "2",
                 "picurl": '../../images/vip-banner-card@2x.png',
+                "typeName": '贵宾卡',
             },
             {
                 "staffworkno": "3",
                 "picurl": '../../images/vip-banner-card@2x.png',
-            }
+                "typeName": '会员卡',
+            },
+            {
+                "staffworkno": "4",
+                "picurl": '../../images/vip-banner-card@2x.png',
+                "typeName": '储值卡',
+            },
         ],
         indicatorDots: false,
         autoplay: true,

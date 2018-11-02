@@ -5,7 +5,7 @@ var currentCard = '';
 //充值规则
 var recharRules = [];
 //性别
-var sex = 1;
+var sex;
 //选中的充值金额
 var am = 0;
 //赠送金额
@@ -43,7 +43,9 @@ Page({
     //重新获取验证码秒数
     seconds: seconds,
     //生日，默认为空
-    birthday: birthday
+    birthday: birthday,
+    //性别
+    sex:1,
   },
 
   /**
@@ -531,8 +533,11 @@ Page({
   /**
    * 开卡点击性别切换
    */
-  sexchange: function (e) {
-    sex = e.detail.value;
+  changeSex: function (e) {
+      sex = parseInt(e.currentTarget.dataset.sex);
+      this.setData({
+          sex: sex
+      });
   },
   /**
    * 点击查看办卡细则

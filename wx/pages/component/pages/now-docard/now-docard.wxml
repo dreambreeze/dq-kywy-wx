@@ -1,153 +1,106 @@
 <import src="../../../common/amount.wxml" />
 <view class="container">
-  <view class="card-info">
-    <view class="flex-wrp">
-      <view class="flex-item">
-        <view class="info-l">
-          <image src="{{!currentCard.PicUrl ? cardPicUrl : showImgUrl + currentCard.PicUrl}}"></image>
-          <view class="card-type">{{currentCard.MembershipTypeName}}</view>
-          <!-- <view class="card-num text-ellipsis">20125484412154521</view> -->
-          <block wx:if="{{currentCard.MMInfo}}">
-            <view class="t-r" bindtap="rules">
-              <icon type="info_circle" size="20" color="#333" />
+    <!-- banner卡图 -->
+    <view class="card-banner">
+        <image src="{{!currentCard.PicUrl ? cardPicUrl : '../../images/open-vip-banner@2x.png'}}"></image>
+    </view>
+    <!-- 门店与卡类型 -->
+    <view class='card-info'>
+        <text class='amout-money'>充值金额：￥1000（送￥3200）</text>
+        <text class='store-name'>门店：大旗A店</text>
+        <text class='card-type'>类型：贵宾卡</text>
+    </view>
+    <!-- 用户信息表单 -->
+    <form bindsubmit='formSubmit' report-submit>
+        <view class='form-box'>
+            <view class='form-item sex-box'>
+                <label>性别</label>
+                <view class='{{sex == 1? "man-checked" : "man"}}' data-sex='1' bindtap='changeSex'></view>
+                <view class='{{sex == 0? "women-checked" : "women"}}' data-sex='0' bindtap='changeSex'></view>
             </view>
-          </block>
+            <view class='form-item'>
+                <label>姓名</label>
+                <input placeholder='请输入真实姓名' name='name'></input>
+            </view>
+            <view class='form-item'>
+                <label>手机</label>
+                <input placeholder='请输入手机号' name='phone'></input>
+            </view>
+            <view class='form-item verify-box'>
+                <label>验证码</label>
+                <input placeholder='请输入验证码' name='verify'></input>
+                <button>发送验证码</button>
+            </view>
+            <view class='form-item'>
+                <label>推销员</label>
+                <input placeholder='请输入员工号（选填）' name='staffNo'></input>
+            </view>
+            <view class='form-item'>
+                <label>出生日期</label>
+                <picker mode="date" value="{{birthday?birthday:'1980-01-01'}}" start="1920-01-01" end="2018-01-01" bindchange="birthdayChange" bindcancel="birthdayCancel">
+                    <view class="picker {{birthday?'picker':'unpicker'}}">
+                        {{birthday ? birthday : "请选择出生日期"}}
+                    </view>
+                </picker>
+            </view>
+            <view class='form-item amount-box'>
+                <label>请选择充值金额</label>
+                <view class='amount-list'>
+                    <view class='item current'>
+                        <text>1000元</text>
+                        <text>赠送159元</text>
+                    </view>
+                    <view class='item'>
+                        <text>2000元</text>
+                        <text>赠送318元</text>
+                    </view>
+                    <view class='item'>
+                        <text>3000元</text>
+                        <text>赠送600元</text>
+                    </view>
+                    <view class='item'>
+                        <text>4000元</text>
+                        <text>赠送800元</text>
+                    </view>
+                    <view class='item'>
+                        <text>5000元</text>
+                        <text>赠送1000元</text>
+                    </view>
+                    <view class='item'>
+                        <text>6000元</text>
+                        <text>赠送1200元</text>
+                    </view>
+                </view>
+            </view>
+            <view class="form-item cardRules">
+                <checkbox-group bindchange="openingRules">
+                    <checkbox value="1" />
+                </checkbox-group>
+                同意办理规则
+                <view class="openingRules" bindtap="rules">规则明细</view>
+            </view>
+            <button class="sure-btn" form-type="submit">确定</button>
         </view>
-      </view>
-      <view class='flex-item'>
-        <view class="info-r">
-          <view>门店：{{currentCard.ShopName}}</view>
-          <view>卡类型：{{currentCard.MembershipTypeName}}</view>
-          <!-- <view>卡号：20125484412154521</view> -->
-        </view>
-      </view>
-    </view>
-  </view>
-  <form bindsubmit="formSubmit" report-submit>
-    <view class="info-input">
-      <view class="input-item">
-        <view class="flex-wrp">
-          <view class="i-label">
-            <text>*</text>姓名</view>
-          <view class="i-input">
-            <input type="text" name="names" value="{{userInfo.names}}" />
-          </view>
-        </view>
-      </view>
-      <view class="input-item">
-        <view class="flex-wrp">
-          <view class="i-label">
-            <text>*</text>手机</view>
-          <view class="i-input">
-            <input type="number" name="phone" value="{{inputPhone}}" bindinput="inputPhone" />
-          </view>
-          <view class="getPhoneNumber">
-            <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">自动输入</button>
-          </view>
-        </view>
-      </view>
-      <view class="input-item">
-        <view class="flex-wrp">
-          <view class="verify-input">
-            <input type="number" name="verify" />
-          </view>
-          <block wx:if="{{!seconds}}">
-            <view class="get-verify btn-gradient" bindtap="getVerify" data-phone="{{transCard.phone}}">发送验证码</view>
-          </block>
-          <block wx:else>
-            <view class="get-verify seconds">{{seconds}}秒重新获取</view>
-          </block>
-        </view>
-      </view>
-      <view class="input-item">
-        <view class="flex-wrp">
-          <view class="i-label">
-            <text>*</text>性别</view>
-          <view class="i-input" style="border-bottom: none;">
-            <radio-group class="radio-group" bindchange="sexchange">
-              <block wx:if="{{!userInfo.sex || userInfo.sex == 1}}">
-                <label class="radio">
-                  <radio value="1" checked name="sex" />男
-                </label>
-              </block>
-              <block wx:else>
-                <label class="radio">
-                  <radio value="1" name="sex" />男
-                </label>
-              </block>
-
-              <block wx:if="{{userInfo.sex == 0}}">
-                <label class="radio">
-                  <radio value="0" name="sex" checked/>女
-                </label>
-              </block>
-              <block wx:else>
-                <label class="radio">
-                  <radio value="0" name="sex" />女
-                </label>
-              </block>
-            </radio-group>
-          </view>
-        </view>
-      </view>
-
-      <view class="input-item">
-        <view class="flex-wrp">
-          <view class="i-label">生日</view>
-          <view class="i-input">
-            <picker mode="date" value="{{birthday}}" start="1940-01-01" end="2018-01-01" bindchange="birthdayChange" bindcancel="birthdayCancel">
-              <view class="picker">
-                {{birthday}}
-              </view>
-            </picker>
-          </view>
-        </view>
-      </view>
-
-      <view class="input-item">
-        <view class="flex-wrp">
-          <view class="i-label">推销员工号</view>
-          <view class="i-input">
-            <input type="number" name="staffNo" />
-          </view>
-        </view>
-      </view>
-
-      <!-- 充值金额模版 -->
-      <template is="amount" data="{{amountTitle: '选择充值金额',amountIdx: amountIdx,amount: recharRules,NewAccLevel:NewAccLevel,PayType:currentCard.PayType}}" />
-
-      <block wx:if="{{currentCard.MMInfo}}">
-        <view class="input-item cardRules">
-          <checkbox-group bindchange="openingRules">
-            <checkbox value="1" />
-          </checkbox-group>
-          同意
-          <view class="openingRules" bindtap="rules">开卡细则</view>
-        </view>
-      </block>
-
-      <button class="dc-btn btn-gradient" form-type="submit">确定</button>
-    </view>
-  </form>
+    </form>
 </view>
 
+<!-- 规则遮罩层 -->
 <view class="mask" style="display:{{showMask ? 'block' : 'none'}}" bindtap="closeRules"></view>
-
+<!-- 规则弹窗 -->
 <view class="rules" style="display:{{showMask ? 'block' : 'none'}}">
-  <view class="close-r" bindtap="closeRules">×</view>
-  <scroll-view scroll-y enable-back-to-top>
-    <view class="rules-con">
-      <view class="rules-t">{{currentCard.MembershipTypeName}}开卡细则</view>
-      <view class="rules-c">{{currentCard.MMInfo}}</view>
-    </view>
-  </scroll-view>
+    <view class="close-r" bindtap="closeRules">×</view>
+    <scroll-view scroll-y enable-back-to-top>
+        <view class="rules-con">
+            <view class="rules-t">{{currentCard.MembershipTypeName}}开卡细则</view>
+            <view class="rules-c">{{currentCard.MMInfo}}</view>
+        </view>
+    </scroll-view>
 </view>
-
 <!-- 返回首页按钮 -->
 <view class="backhome-btn">
-  <view>
-    <navigator url="/pages/index/index" hover-class="none" open-type="reLaunch">
-      <text>返回首页</text>
-    </navigator>
-  </view>
+    <view>
+        <navigator url="/pages/index/index" hover-class="none" open-type="reLaunch">
+            <text>返回首页</text>
+        </navigator>
+    </view>
 </view>
