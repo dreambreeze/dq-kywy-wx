@@ -31,7 +31,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    amountIdx: amountIdx,
+    amountIdx: 1,
     //当前要办的卡
     currentCard: currentCard,
     //图片地址前缀
@@ -316,15 +316,11 @@ Page({
    * 点击切换金额
    */
   changeAmount: function (e) {
-    if (parseFloat(e.target.dataset.am) < parseFloat(currentCard.NewAccLevel)) {
-      return false;
-    }
-
-    am = e.target.dataset.am;
-    gift = e.target.dataset.gift;
+    //am = e.target.dataset.amout;
+    //gift = e.target.dataset.gift;
 
     this.setData({
-      amountIdx: e.target.dataset.idx
+      amountIdx: e.currentTarget.dataset.index
     });
   },
 

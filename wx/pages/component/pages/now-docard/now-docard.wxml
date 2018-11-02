@@ -46,37 +46,35 @@
             <view class='form-item amount-box'>
                 <label>请选择充值金额</label>
                 <view class='amount-list'>
-                    <view class='item current'>
+                    <view class='item {{amountIdx == 1 ? "current" : ""}}' bindtap='changeAmount' data-index="1">
                         <text>1000元</text>
                         <text>赠送159元</text>
                     </view>
-                    <view class='item'>
+                    <view class='item {{amountIdx == 2 ? "current" : ""}}' bindtap='changeAmount' data-index="2">
                         <text>2000元</text>
                         <text>赠送318元</text>
                     </view>
-                    <view class='item'>
+                    <view class='item {{amountIdx == 3 ? "current" : ""}}' bindtap='changeAmount' data-index="3">
                         <text>3000元</text>
                         <text>赠送600元</text>
                     </view>
-                    <view class='item'>
+                    <view class='item {{amountIdx == 4 ? "current" : ""}}' bindtap='changeAmount' data-index="4">
                         <text>4000元</text>
                         <text>赠送800元</text>
                     </view>
-                    <view class='item'>
+                    <view class='item {{amountIdx == 5 ? "current" : ""}}' bindtap='changeAmount' data-index="5">
                         <text>5000元</text>
                         <text>赠送1000元</text>
                     </view>
-                    <view class='item'>
+                    <view class='item {{amountIdx == 6 ? "current" : ""}}' bindtap='changeAmount' data-index="6">
                         <text>6000元</text>
                         <text>赠送1200元</text>
                     </view>
                 </view>
             </view>
             <view class="form-item cardRules">
-                <checkbox-group bindchange="openingRules">
-                    <checkbox value="1" />
-                </checkbox-group>
-                同意办理规则
+                <view class='check'></view>
+                <text>同意办理规则</text> 
                 <view class="openingRules" bindtap="rules">规则明细</view>
             </view>
             <button class="sure-btn" form-type="submit">确定</button>
