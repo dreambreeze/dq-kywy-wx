@@ -146,10 +146,6 @@
     display: block;
 }
 
-.amount-box label {
-    display: blcok;
-}
-
 .amount-list {
     overflow: hidden;
     padding: 0 15rpx 0 25rpx;
@@ -186,28 +182,103 @@
     line-height: 32rpx;
 }
 
-.cardRules{
-  font-size:22rpx;
-  line-height:60rpx;
+.cardRules {
+    font-size: 22rpx;
+    line-height: 60rpx;
 }
 
-.cardRules .check{
-  width:20rpx;
-  height:20rpx;
-  background: url('https://note.youdao.com/yws/api/personal/file/WEBdc52d7c2cbe2973ea0c6ed5ae594c769?method=download&shareKey=dc44f824c47b0fe09a40532034fa66f2') no-repeat;
-  background-size: 100%;
-  margin:20rpx 0 0 0;
+.cardRules .check {
+    width: 20rpx;
+    height: 20rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEBdc52d7c2cbe2973ea0c6ed5ae594c769?method=download&shareKey=dc44f824c47b0fe09a40532034fa66f2') no-repeat;
+    background-size: 100%;
+    margin: 20rpx 10rpx 0 0;
 }
 
-.cardRules .checked{
-  background: url('https://note.youdao.com/yws/api/personal/file/WEBdc52d7c2cbe2973ea0c6ed5ae594c769?method=download&shareKey=dc44f824c47b0fe09a40532034fa66f2') no-repeat;
-  background-size: 100%;
+.cardRules .checked {
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB497b0f5d336b998c6ae0524102da8840?method=download&shareKey=f7efb5a8173f8e45037c3580c13875b5') no-repeat;
+    background-size: 100%;
 }
 
-.openingRules{
-  color:#1684ff;
-  padding:0 20rpx;
+.openingRules {
+    color: #1684ff;
+    padding: 0 20rpx;
 }
+
+.rules {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 99999;
+  width: 600rpx;
+  height: 900rpx;
+  margin-top: -450rpx;
+  margin-left: -300rpx;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  animation-name: notice;
+  -webkit-animation-name: notice;
+  animation-duration: 0.3s;
+  -webkit-animation-duration: 0.3s;
+  animation-fill-mode: both;
+  -webkit-animation-fill-mode: both;
+}
+
+@keyframes notice {
+  0% {
+    opacity: 0.3;
+    -ms-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+
+  100% {
+    opacity: 1;
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@-webkit-keyframes notice {
+  0% {
+    opacity: 0.3;
+    -webkit-transform: scale(0.5);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+  }
+}
+
+.rules scroll-view {
+  height: 840rpx;
+}
+
+.rules-con {
+  padding: 0 30rpx 30rpx;
+}
+
+.close-r {
+  line-height: 50rpx;
+  text-align: right;
+  color: #333;
+  font-size: 46rpx;
+  padding: 0 16rpx;
+}
+
+.rules-t {
+  font-size: 32rpx;
+  margin: 20rpx 0;
+  color: #000;
+}
+
+.rules-c {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 4rpx;
+}
+
 
 .sure-btn {
     width: 100%;

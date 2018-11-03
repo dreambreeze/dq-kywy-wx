@@ -1,5 +1,4 @@
 /* 充值金额公用样式 */
-
 .amount-t {
   width: 100%;
   font-size: 28rpx;
