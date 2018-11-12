@@ -14,7 +14,7 @@
         </view>
         <!-- 会员操作 -->
         <view class='member-box'>
-            <button class='open-button' data-url="../component/pages/now-docard/now-docard" bindtap="jumpPage">
+            <button class='open-button' data-url="../component/pages/docard/docard" bindtap="jumpPage">
                 立即开通会员
                 <view class='go-icon'></view>
             </button>
