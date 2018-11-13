@@ -27,30 +27,30 @@ var config = {
   //导航数据tabBar
   navTabBar: [{
     "fun_name": "首页",
-    "fun_img": "img/2018-02-05/5a77f5e70049b151781117478279.png",
+      "fun_img": "https://note.youdao.com/yws/api/personal/file/WEBa8ae747f063959dccfb79236daeb0caa?method=download&shareKey=fc6f4669ead3f7bac33fe6e9ad8ed018",
     "applet_address": "../index/index",
-    "notcheck_img": "img/2018-03-05/5a9ca3932b618152021493145846.png",
+      "notcheck_img": "https://note.youdao.com/yws/api/personal/file/WEBff69204521108f6103560f7e22c14891?method=download&shareKey=fdbee227e26d42402cdaab5293152a60",
     "isTo": true,
     "id": 11
   }, {
     "fun_name": "会员中心",
-    "fun_img": "img/2018-02-05/5a77f4e61ad54151781091857162.png",
+          "fun_img": "https://note.youdao.com/yws/api/personal/file/WEBf80338360e2ca94d907d7049565db046?method=download&shareKey=84077bafb39fcc2d4256ad368c5a6fba",
     "applet_address": "../vip-center/vip-center",
-    "notcheck_img": "img/2018-03-05/5a9ca3e1424b6152021500932423.png",
+          "notcheck_img": "https://note.youdao.com/yws/api/personal/file/WEB57b09b32b210cc608401c6cd615efff0?method=download&shareKey=29fc8e5864f0c19abc12cc99a359e7cf",
     "isTo": true,
     "id": 15
   }, {
     "fun_name": "优惠活动",
-    "fun_img": "img/2018-02-05/5a77f58c8e4bf151781108462053.png",
+          "fun_img": "https://note.youdao.com/yws/api/personal/file/WEBec13e85e2dc123b2159b0c92708467e1?method=download&shareKey=358a1eaca2aa0ccd0ad532a60ad4f81b",
     "applet_address": "../promotions/promotions",
-    "notcheck_img": "img/2018-03-05/5a9ca3eb7cdd3152021501928103.png",
+          "notcheck_img": "https://note.youdao.com/yws/api/personal/file/WEBff69204521108f6103560f7e22c14891?method=download&shareKey=fdbee227e26d42402cdaab5293152a60",
     "isTo": true,
     "id": 16
   }, {
     "fun_name": "我的",
-    "fun_img": "img/2018-02-05/5a77f616b9fca151781122253642.png",
+          "fun_img": "https://note.youdao.com/yws/api/personal/file/WEB1be6a1c5ce01449b6c739ff067dabe05?method=download&shareKey=1fc4d9ea9359573927fff1a14f3b70c2",
     "applet_address": "../ucenter/ucenter",
-    "notcheck_img": "img/2018-03-05/5a9ca3f696e4d152021503030821.png",
+          "notcheck_img": "https://note.youdao.com/yws/api/personal/file/WEB453fef44f5cda7d7d9ffdf941f16f724?method=download&shareKey=5bd98cc4a1b7ed30f595a7c98a67633a",
     "isTo": true,
     "id": 17
   }]

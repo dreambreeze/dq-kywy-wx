@@ -1,99 +1,142 @@
 @import "../../../common/amount.wxss";
 
-.recharge-info {
-  height: 440rpx;
-  background: #eee;
-  overflow: hidden;
+.banner-box {
+    height: 337rpx;
+    text-align: center;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB18806b97d9c5123256ee2a5a73ec6222?method=download&shareKey=2c42d11923842efcd03777d8be00138f') no-repeat;
+    background-size: 100%;
 }
 
-.recharge-b {
-  width: 630rpx;
-  height: 354rpx;
-  margin: 0 auto;
-  background: #2e2e2e;
-  margin-top: 44rpx;
-  border-left: 8rpx solid #c9a875;
+.image-box {
+    border-top: 1rpx solid transparent;
+    width: 550rpx;
+    height: 290rpx;
+    margin: 0 auto;
+    padding:23rpx 0 0 0;
+    position: relative;
 }
 
-.infos {
-  padding: 20rpx 40rpx;
+.banner-box image {
+    width: 550rpx;
+    height: 290rpx;
+    border-radius:10rpx;
 }
 
-.infos-t, .c-white {
-  font-size: 28rpx;
-  margin-bottom: 10rpx;
+.left-label {
+    width: 126rpx;
+    height: 55rpx;
+    line-height: 50rpx;
+    padding:5rpx 0 0 10rpx;
+    text-align: left;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB5c27a80033a5e18f12f2159637864ada?method=download&shareKey=9486ef4c58c9caf8a5dc7a1512a75cc7') no-repeat center;
+    background-size: 126rpx 55rpx;
+    color: #fff;
+    font-size: 30rpx;
+    position: absolute;
+    left: -5rpx;
+    top: 45rpx;
 }
 
-.infos-t {
-  color: #bb9c6f;
+.card-info{
+    width:460rpx;
+    border-radius: 10rpx;
+    margin:30rpx auto;
+    box-shadow: 0 8rpx 8rpx rgba(0, 0, 0, 0.2);
 }
 
-.c-white {
-  color: #fff;
+.card-header{
+    color:#fff;
+    line-height: 1.6;
+    background: #3b81d6;
+    font-size:28rpx;
+    padding:20rpx 25rpx; 
+    border-radius:10rpx 10rpx 0 0;
 }
 
-.infos-b {
-  font-size: 24rpx;
-  color: #bb9c6f;
-  font-weight: bold;
+.card-content{
+    line-height:45rpx;
+    color:#1684ff;
+    font-size:26rpx;
+    padding:10rpx 25rpx;
 }
 
-.info-input {
-  padding: 25rpx 42rpx;
+.amount-box {
+    display: block;
+    padding:0 40rpx;
 }
 
-.input-item {
-  margin-top: 28rpx;
-  box-sizing: border-box;
+.amount-box label {
+    min-width: 146rpx;
+    line-height: 50rpx;
+    color: #333;
+    font-size: 30rpx;
+    text-align: right;
+    margin: 0 20rpx 0 0;
 }
 
-.i-label {
-  font-size: 28rpx;
-  width: 156rpx;
-  color: #666;
-  line-height: 72rpx;
+.amount-list {
+    overflow: hidden;
+    margin: 0 0 0 -35rpx;
 }
 
-.i-label text {
-  font-weight: bold;
-  font-size: 28rpx;
-  /* font-family: tahoma, verdana; */
-  color: #ed0f10;
-  vertical-align: bottom;
-  display: inline-block;
-  margin-right: 2px;
+.amount-list .item {
+    width: 199rpx;
+    text-align: center;
+    border: #1684ff 2rpx solid;
+    color: #333;
+    padding: 10rpx;
+    border-radius: 10rpx;
+    float: left;
+    margin: 20rpx 0 0 35rpx;
 }
 
-.i-input {
-  border-bottom: 1rpx solid #ccc;
-  width: 72%;
+.amount-list .current {
+    background: #1684ff;
+    color: #fff;
 }
 
-.i-input input {
-  line-height: 72rpx;
-  font-size: 28rpx;
-  height: 72rpx;
-  padding: 0 20rpx;
+.amount-list .item text {
+    display: block;
 }
 
-.dc-btn {
-  width: 576rpx;
-  height: 90rpx;
-  line-height: 90rpx;
-  color: #fff;
-  box-shadow: 0 0 14px rgba(189, 144, 85, 0.6);
-  text-align: center;
-  border-radius: 3px;
-  margin: 61rpx auto 80rpx;
-  font-size: 34rpx;
-  font-weight: bold;
+.amount-list .item text:nth-of-type(1) {
+    font-size: 32rpx;
+    line-height: 42rpx;
 }
 
-.amount-item.not-active{
-  color: #ccc;
-  border-color: #ececec !important;
+.amount-list .item text:nth-of-type(2) {
+    font-size: 22rpx;
+    line-height: 32rpx;
 }
 
-.amount-item.not-active .gift-amount{
-  color: #ccc;
+.form-item{
+    display: flex;
+    line-height: 160rpx;
+    font-size: 28rpx;
+     padding:0 40rpx;
+}
+
+.form-item label{
+    color: #333;
+    font-size: 28rpx;
+}
+
+.form-item input{
+    width:472rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    border: 1rpx solid #999999; 
+    margin: 50rpx 20rpx;
+    border-radius: 30rpx;
+    padding: 0 30rpx;
+}
+
+.submit-btn{
+    background: #3b81d6;
+    color:#fff;
+    font-size: 40rpx;
+    text-align: center;
+    line-height: 80rpx;
+    margin:0 30rpx;
+    border-radius: 40rpx;
 }

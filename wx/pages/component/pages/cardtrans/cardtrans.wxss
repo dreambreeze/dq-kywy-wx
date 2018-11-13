@@ -1,83 +1,129 @@
 @import "../../../common/storelist.wxss";
 
+page {
+    height: 100%;
+}
+
+.container {
+    background: #fff;
+    height: 100%;
+}
+
+/* 办卡顶部标题 */
+
+.store-box {
+    width: 180rpx !important;
+    background: #3b81d6;
+    margin-bottom: -10000px;
+    padding-bottom: 10000px;
+    height: 100%;
+}
+
+.recharge-icon {
+    height: 100rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB508196fb25401c0fa238cb023d133f85?method=download&shareKey=64843d47940344cc0f434e93334673a2') no-repeat center center;
+    background-size: 64rpx;
+}
+
 /* 充值卡顶部标题 */
 
-.dc-title {
-  height: 100rpx;
-  line-height: 100rpx;
-  font-size: 32rpx;
-  color: #caa876;
-}
-
-.dc-title view {
-  display: inline-block;
-  width: 6px;
-  height: 16px;
-  vertical-align: -2rpx;
-  background: #caa976;
-  margin-right: 10px;
-}
-
 .do-card {
-  overflow: hidden;
+    display: flex !important;
+    overflow: hidden;
+    height: 100%;
+}
+
+.d-cards, .d-cards scroll-view {
+    height: 910rpx;
 }
 
 .dc-select {
-  width: 70%;
-  height: 1106rpx;
-  float: left;
+    flex: 1;
+    margin-bottom: -10000px;
+    padding-bottom: 10000px;
+    height: 100%;
 }
 
-.dc-select scroll-view {
-  height: 1106rpx;
+.dc-select .title {
+    font-size: 30rpx;
+    line-height: 80rpx;
+    padding: 0 25rpx;
+}
+
+.store-info {
+    line-height: 40rpx;
+    margin: 0 0 22rpx 0;
+    font-size: 22rpx;
+    color: #3b81d6;
+    padding: 0 25rpx;
+}
+
+.address {
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB9385772b1ac4356f459170b01e3d69f2?method=download&shareKey=cf2f7587c0235b5e506a0e1de0dc5bda') no-repeat left 10rpx;
+    background-size: 20rpx;
+    padding: 0 0 0 30rpx;
+}
+
+.tel {
+    background: url('https://note.youdao.com/yws/api/personal/file/WEBb6c7e74a45b67253e4c9fd3cab156b6d?method=download&shareKey=1cd3ec2bc537f2c79b872edf18809935') no-repeat left 10rpx;
+    background-size: 20rpx;
+    padding: 0 0 0 30rpx;
 }
 
 .cards {
-  width: 332rpx;
-  margin: 0 auto 124rpx;
-  position: relative;
+    position: relative;
+    padding: 8rpx 0 0 0;
+    margin: 0 0 30rpx;
 }
 
-.card-type, .card-num ,.card-state{
-  position: absolute;
-  left: 74rpx;
-  color: #fff;
+.card-type {
+    position: absolute;
+    right: 65rpx;
+    margin: -10rpx 0 0 0 !important;
+    color: #fff;
+    font-size: 30rpx;
+    text-align: center;
+    width: 133rpx;
+    height: 74rpx;
+    line-height: 55rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEBfdec213a57c79960a9f69847eab386cd?method=download&shareKey=03503e56337c37ff9beab76534de3f89') no-repeat center;
+    background-size: 100%;
+    padding: 0 0 0 10rpx;
 }
 
-.card-type{
-  font-size: 30rpx;
-  top: 24rpx;
-}
-.card-num{
-  font-size: 24rpx;
-  top: 60rpx;
-}
-
-.card-state{
-  font-size: 24rpx;
-  color: #575757;
-  bottom: 20rpx;
+.is-fyr {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: url(https://iservice.daqisoft.cn/Public/Home/images/fyr.png) no-repeat;
+    background-size: contain;
+    width: 105rpx;
+    height: 105rpx;
+    margin: 0 !important;
 }
 
 .cards image {
-  width: 332rpx;
-  height: 198rpx;
+    display: block;
+    margin: 0 auto;
+    width: 493rpx;
+    height: 260rpx;
+    border-radius: 10rpx;
 }
 
-.balance {
-  position: absolute;
-  bottom: -38rpx;
-  left: -8rpx;
-  background: #2e2e2e;
-  color: #caa876;
-  text-align: center;
-  height: 48rpx;
-  line-height: 48rpx;
-  font-size: 26rpx;
-  width: 348rpx;
-  border-radius: 24rpx;
-  box-shadow: 0 1px 8px rgba(46,46,46,0.5);
+.docard-tips {
+    display: flex;
+    width: 543rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    padding: 0 25rpx;
+    font-size: 22rpx;
+    color: #fff;
+    margin: -10rpx auto 0;
+    background: #265389;
+    border-radius: 25rpx;
 }
-.select-c{
-  overflow: hidden;
+
+.docard-tips view{
+    flex:1;
+    text-align: center;
 }

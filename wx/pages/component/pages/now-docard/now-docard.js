@@ -114,7 +114,6 @@ Page({
                             //当前选中的充值金额
                             for (let i = 0; i < ruleArr.length; i++) {
                                 if (ruleArr[i].am >= parseFloat(currentCard.NewAccLevel)) {
-                                    amountIdx = i;
                                     am = ruleArr[i].am;
                                     gift = ruleArr[i].gift;
                                     break;

@@ -36,7 +36,9 @@ Page({
     if (wx.canIUse('createSelectorQuery')) {
       var query = wx.createSelectorQuery();
       query.select('.dc-title').boundingClientRect(function (res) {
-        dcH = res.height;
+          if(res){
+            dcH = res.height;
+          }
       }).exec();
 
       setTimeout(function () {

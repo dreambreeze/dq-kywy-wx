@@ -1,7 +1,7 @@
 <import src="../../../common/storelist.wxml" />
 
 <view class="container">
-    <view class="do-card" style="height:{{height}}px">
+    <view class="do-card">
         <!-- 门店列表模版 -->
         <view class='store-box'>
             <view class="apply-card"></view>

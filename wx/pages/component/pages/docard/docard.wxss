@@ -1,7 +1,11 @@
 @import "../../../common/storelist.wxss";
+page{
+    height: 100%;
+}
 
 .container {
     background: #fff;
+    height: 100%;
 }
 
 /* 办卡顶部标题 */
@@ -11,6 +15,7 @@
     background: #3b81d6;
     margin-bottom:-10000px;
     padding-bottom:10000px;
+    height: 100%;
 }
 
 .apply-card {
@@ -18,11 +23,12 @@
     background: url('https://note.youdao.com/yws/api/personal/file/WEB2ac226ecbab38969930ede970a6fc48c?method=download&shareKey=513281fe8c52d6fb0047b385f1f201e5') no-repeat center center;
     background-size: 64rpx;
 }
-
 /* 办卡下边选卡 */
+
 .do-card {
     display: flex!important;
     overflow: hidden;
+    height: 100%;
 }
 
 .d-cards, .d-cards scroll-view {
@@ -31,14 +37,15 @@
 
 .dc-select {
     flex: 1;
-    padding: 0 25rpx;
     margin-bottom:-10000px;
     padding-bottom:10000px;
+    height: 100%;
 }
 
 .dc-select .title {
     font-size: 30rpx;
     line-height: 80rpx;
+    padding: 0 25rpx;
 }
 
 .store-info {
@@ -46,6 +53,7 @@
    margin: 0 0 22rpx 0;
    font-size:22rpx;
    color:#3b81d6;
+   padding:0 25rpx;
 }
 
 .address{
