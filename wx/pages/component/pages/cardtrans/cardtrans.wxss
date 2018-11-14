@@ -14,14 +14,12 @@ page {
 .store-box {
     width: 180rpx !important;
     background: #3b81d6;
-    margin-bottom: -10000px;
-    padding-bottom: 10000px;
     height: 100%;
 }
 
-.recharge-icon {
+.transfer-icon {
     height: 100rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB508196fb25401c0fa238cb023d133f85?method=download&shareKey=64843d47940344cc0f434e93334673a2') no-repeat center center;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB1a8cf409f05ec606b7bda4752388479a?method=download&shareKey=9e0e79fca6682ab30a2e927c0cbdf048') no-repeat center center;
     background-size: 64rpx;
 }
 
@@ -39,9 +37,7 @@ page {
 
 .dc-select {
     flex: 1;
-    margin-bottom: -10000px;
-    padding-bottom: 10000px;
-    height: 100%;
+    min-height: 100%;
 }
 
 .dc-select .title {
@@ -123,7 +119,7 @@ page {
     border-radius: 25rpx;
 }
 
-.docard-tips view{
-    flex:1;
+.docard-tips view {
+    flex: 1;
     text-align: center;
 }

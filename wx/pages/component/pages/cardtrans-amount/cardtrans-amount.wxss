@@ -1,111 +1,73 @@
 .contianer {
-  background: #eee;
+    background: #eee;
 }
 
 .top-card {
-  margin-bottom: 12rpx;
+    margin-bottom: 12rpx;
 }
 
-.card {
-  height: 310rpx;
-  background: #2e2e2e;
-  text-align: center;
-  overflow: hidden;
+.card-box {
+    height: 300rpx;
+    text-align: center;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB18806b97d9c5123256ee2a5a73ec6222?method=download&shareKey=2c42d11923842efcd03777d8be00138f') no-repeat;
+    background-size: 100%;
+    padding: 20rpx 0 0 0;
 }
 
-.card image {
-  width: 562rpx;
-  height: 290rpx;
-  position: relative;
-  bottom: -34rpx;
+.card-box image {
+    width: 495rpx;
+    height: 260rpx;
 }
 
 .card-info {
-  height: 110rpx;
-  line-height: 110rpx;
-  font-size: 26rpx;
-  color: #caa876;
-  font-weight: bold;
-  background: #fff;
-  text-align: center;
+    background: #3b81d6;
+    color: #fff;
+    border-radius: 10rpx;
+    width: 495rpx;
+    margin: 30rpx auto;
+    padding: 20rpx;
+     font-size: 26rpx;
 }
 
-.info-input {
-  margin-top: 10rpx;
-  padding: 62rpx;
-  background: #fff;
+.flex-warp {
+    margin:10rpx 0 0 0;
+    display: flex;
 }
 
-.input-item {
-  margin-bottom: 28rpx;
-  box-sizing: border-box;
+.flex-warp text {
+    flex: 1;
 }
 
-.i-label {
-  font-size: 28rpx;
-  width: 166rpx;
-  color: #666;
-  line-height: 72rpx;
+.form-box {
+    padding:0 100rpx  30rpx;
 }
 
-.i-label text {
-  font-weight: bold;
-  font-size: 28rpx;
-  /* font-family: tahoma, verdana; */
-  color: #ed0f10;
-  vertical-align: bottom;
-  display: inline-block;
-  margin-right: 2px;
+.form-box .flex-wrap {
+    display: flex;
+    font-size: 28rpx;
+    padding: 9rpx 0;
 }
 
-.i-input {
-  border-bottom: 1rpx solid #ccc;
-  flex: 1;
+.form-box label {
+    line-height: 50rpx;
 }
 
-.i-input input, .verify-input input {
-  line-height: 72rpx;
-  font-size: 28rpx;
-  height: 72rpx;
-  padding: 0 20rpx;
+.form-box input {
+    width: 330rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    border-radius: 25rpx;
+    padding: 0 25rpx;
+    border: 1rpx solid #999;
+    margin: 0 0 0 20rpx;
 }
 
-.verify-input {
-  width: 306rpx;
-  border-bottom: 1rpx solid #ccc;
-}
-
-.get-verify {
-  width: 164rpx;
-  font-size: 24rpx;
-  color: #fff;
-  text-align: center;
-  display: inline-block;
-  border-radius: 3px;
-  margin-left: 10rpx;
-  height: 56rpx;
-  line-height: 56rpx;
-  margin-top: 10rpx;
-}
-
-.get-verify.seconds{
-  background-color: #ccc
-}
-
-.radio {
-  font-size: 28rpx;
-  margin-right: 35rpx;
-}
-
-.dc-btn {
-  width: 576rpx;
-  height: 90rpx;
-  line-height: 90rpx;
-  color: #fff;
-  box-shadow: 0 0 14px rgba(189, 144, 85, 0.6);
-  text-align: center;
-  border-radius: 3px;
-  margin: 176rpx auto 0;
-  font-size: 34rpx;
-  font-weight: bold;
+.submit-btn {
+    background: #3b81d6;
+    color: #fff;
+    margin:0 50rpx;
+    line-height: 80rpx;
+    font-size: 40rpx;
+    text-align: center;
+    border-radius: 40rpx;
 }

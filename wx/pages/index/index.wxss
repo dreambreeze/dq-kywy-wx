@@ -487,24 +487,26 @@
     top: 0;
     bottom: 0;
     z-index: 2;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.8);
 }
 
 .call-service {
     width: 100%;
     position: fixed;
-    bottom: 0;
+    top: 50%;
+    transform: translateY(-50%);
     left: 0;
-    height: 766rpx;
     z-index: 3;
+    display: flex;
 }
 
 .donald-duck {
     position: absolute;
-    width: 262rpx;
-    height: 612rpx;
-    left: 0;
-    bottom: 230rpx;
+    bottom:0;
+    left:0;
+    padding:0 0 0 20rpx;
+    width: 226rpx;
+    height: 459rpx;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
     animation-duration: 0.3s;
@@ -577,11 +579,9 @@
 }
 
 .donald-duck-con {
-    position: absolute;
-    right: 0;
-    bottom: 0;
+    float: right;
     width: 488rpx;
-    height: 765rpx;
+    max-height: 765rpx;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
     animation-duration: 0.3s;
@@ -649,32 +649,44 @@
 }
 
 .donald_duck_title {
-    width: 470rpx;
-    height: 50rpx;
+    width: 319rpx;
+    height: 40rpx;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .service-box {
-    margin-top: 60rpx;
-    text-align: right;
+    margin:60rpx 0 0 0;
 }
 
 .service-box scroll-view {
-    height: 646rpx;
+    max-height: 646rpx;
 }
 
 .service-list {
-    display: inline-block;
-    width: 340rpx;
-    border-bottom: 1rpx solid #818181;
+    width:100%;
 }
 
 .service-list view {
     font-size: 30rpx;
     color: #ffd08d;
-    height: 96rpx;
-    line-height: 96rpx;
-    border-top: 1rpx solid #818181;
+    height: 115rpx;
+    line-height: 115rpx;
     text-align: left;
-    padding-left: 25rpx;
-    /* border-image: url(https://iservice.daqisoft.cn/Public/Home/images/donald_duck.png) 0 0 rounded */
+}
+
+.service-list image{
+    width:70rpx;
+    height: 70rpx;
+    margin:22rpx 25rpx 0 0;
+}
+
+.close-btn{
+    position: absolute;
+    width:60rpx;
+    height:60rpx;
+    left: 50%;
+    transform:translateX(-50%);
+    top:-140rpx; 
 }

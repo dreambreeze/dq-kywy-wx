@@ -92,7 +92,7 @@ Page({
               transCard['names'] = res.data.names;
               transCard['phone'] = res.data.phone;
               transCard['Balance'] = (parseFloat(transCard.CardNum) + parseFloat(transCard.SendNum));
-
+              
               _this.setData({
                 transCard: transCard
               });

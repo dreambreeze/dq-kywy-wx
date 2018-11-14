@@ -1,6 +1,6 @@
 <import src="../../../common/storelist.wxml" />
 <view class="container">
-    <view class="do-card clear">
+    <view class="do-card">
         <!-- 门店列表 -->
         <view class='store-box'>
             <view class="recharge-icon"></view>

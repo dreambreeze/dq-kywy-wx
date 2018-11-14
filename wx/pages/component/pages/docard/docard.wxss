@@ -13,8 +13,6 @@ page{
 .store-box {
     width: 180rpx!important;
     background: #3b81d6;
-    margin-bottom:-10000px;
-    padding-bottom:10000px;
     height: 100%;
 }
 
@@ -32,13 +30,11 @@ page{
 }
 
 .d-cards, .d-cards scroll-view {
-    height: 910rpx;
+    height: 1000rpx;
 }
 
 .dc-select {
     flex: 1;
-    margin-bottom:-10000px;
-    padding-bottom:10000px;
     height: 100%;
 }
 

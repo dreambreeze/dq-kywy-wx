@@ -17,7 +17,7 @@ var config = {
   //腾讯地图API KEY
   QQMapWXKey: 'SEABZ-R7CKF-56RJH-NMADQ-ECCZJ-W3FRG',
   //无会员卡图片的默认会员卡图
-  cardPicUrl: host + '/Public/Home/images/docard3.png',
+  cardPicUrl: 'https://note.youdao.com/yws/api/personal/file/WEBb5f7eb3766ee279fc3a8496d7715869b?method=download&shareKey=c969cf0aa8db1957124cbd1f79c86226',
   //默认首页banner图
   bannerImg: host + '/Public/Home/images/home_banner.png',
   //无上传项目图片的默认项目图片

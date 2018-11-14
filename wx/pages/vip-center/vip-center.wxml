@@ -27,7 +27,7 @@
                     <image src='../../images/vip-transfer_icon@2x.png'></image>
                     <text>会员转赠</text>
                 </view>
-                <view class='handle-box' data-url="../component/pages/lqgiftcard/lqgiftcard" data-funname="领取转赠卡" bindtap="jumpPage">
+                <view class='handle-box' data-url="../component/pages/transrecord/transrecord" data-funname="转赠记录" bindtap="jumpPage">
                     <image src='../../images/vip-record_icon@2x.png'></image>
                     <text>转赠记录</text>
                 </view>
@@ -40,7 +40,7 @@
                 <text>会员优惠方案 </text>
                 <view class='line'></view>
             </view>
-            <view class='discount-box' data-url="../component/pages/recharge/recharge" data-funname="会员充值" bindtap="jumpPage">
+            <view class='discount-box' data-url="../component/pages/now-docard/now-docard" data-funname="会员充值" bindtap="jumpPage">
                 <text>7.5折</text>
                 <text>充值10000元</text>
                 <text>送3200元</text>
