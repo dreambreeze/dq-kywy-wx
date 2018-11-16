@@ -15,7 +15,7 @@ let stores;
 var timer = null;
 //当前第几页
 var currPage = 1;
-//多少条
+//多少
 var totalPage = 8;
 //左容器图片
 var leftItem = [];
@@ -182,8 +182,15 @@ Page({
     //选择技师类别
     typeSelect: function(e) {
         var typeDefault = e.target.dataset.id
+        leftItem = [];
+        rightItem = [];
         this.setData({
-            typeDefault: typeDefault
+            typeDefault: typeDefault,
+            leftItem: [],
+            rightItem: [],
+            lHeight: 0,
+            rHeight: 0,
+            imgHeight: 0,
         })
         var currStoreCache = wx.getStorageSync('currentReserveStore');
         var noedid = currStoreCache[0].nodeid
@@ -295,7 +302,7 @@ Page({
                     let typeLists = data ? res.data.typeLists : {}
                     this.setData({
                         typeLists: typeLists,
-                        data: res.data.data
+                        data: res.data.data,
                     })
                 } else {
                     //获取数据失

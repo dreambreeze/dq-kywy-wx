@@ -36,8 +36,9 @@
         <text>|</text>
         <view class='tel-icon' data-phone="{{locationStore[0].tel}}" bindtap="phoneCall"></view>
     </view>
-    <!-- 技师分类 技师列表 -->
+
     <view class='content'>
+        <!-- 技师分类  -->
         <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
             <view class='c-class'>
                 <view class='c-item {{typeDefault==0?"active":""}}' data-id="0" bindtap='typeSelect'>全部</view>
@@ -46,6 +47,7 @@
                 </block>
             </view>
         </scroll-view>
+        <!-- 技师列表 -->
         <view class='tech-list'>
             <image bindload="itemReset" wx:for="{{data}}" wx:key="{{index}}" mode="widthFix" data-item="{{item}}" data-index="{{index}}" src='{{item.picurl?item.picurl:"https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png"}}' style='display:none'></image>
             <!-- 瀑布流 左容器 -->
