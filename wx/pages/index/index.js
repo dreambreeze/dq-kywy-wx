@@ -1,3 +1,7 @@
+// 引入腾讯地图SDK核心类
+const QQMapWX = require('../common/lib/qqmap-wx-jssdk.min.js');
+var qqmapsdk;
+//全局配置
 var common = require('../../common.js');
 var app = getApp();
 var navArr = '';
@@ -8,6 +12,8 @@ var banner = [];
 let ShopNo = '';
 //房号
 let RoomNo = '';
+//定位的门店地址、距离信息
+var locationStore = [];
 Page({
 
     /**
@@ -70,6 +76,11 @@ Page({
         });
 
         let _this = this;
+
+		// 实例化腾讯地图API核心类
+		qqmapsdk = new QQMapWX({
+			key: common.config.QQMapWXKey
+		});
 
         //扫描门店房间二维码记录门店标识与房号
 
@@ -386,6 +397,203 @@ Page({
         });
     },
     /**
+     * 联系门店客服
+     */
+    phoneCall: function (e) {
+        var phone = e.currentTarget.dataset.phone
+        wx.makePhoneCall({
+            phoneNumber: phone,
+        })
+    },
+	/**
+	 * 地理位置
+	 */
+	location: function() {
+		wx.getSetting({
+			success(res) {
+				wx.showLoading({
+					title: '加载中',
+					mask: true
+				});
+
+				if (!res.authSetting['scope.userLocation']) {
+					wx.authorize({
+						scope: 'scope.userLocation',
+						success(res) {
+							// 用户已经同意
+							qqmapsdk.geocoder({
+								address: locationStore[0].address,
+								success: function(res) {
+									wx.hideLoading();
+									if (res.status == 0) {
+										console.log(res)
+										wx.openLocation({
+											latitude: res.result.location.lat,
+											longitude: res.result.location.lng,
+											name: locationStore[0].store_name,
+											address: locationStore[0].address
+										});
+									} else {
+										wx.showModal({
+											title: '提示',
+											content: '地址解码失败',
+											showCancel: false
+										});
+									}
+								},
+								fail: function(res) {
+									wx.hideLoading();
+									wx.showModal({
+										title: '提示',
+										content: '地址解码失败',
+										showCancel: false
+									});
+								}
+							});
+						},
+						fail: function() {
+							wx.hideLoading();
+							wx.showModal({
+								title: '提示',
+								content: '已拒绝使用地理位置，现在去设置允许使用地理位置',
+								success: function(res) {
+									if (res.confirm) {
+										wx.openSetting({
+											success: (res) => {
+												if (res.authSetting['scope.userLocation']) {
+													wx.showLoading({
+														title: '加载中',
+														mask: true
+													});
+													qqmapsdk.geocoder({
+														address: locationStore[0].address,
+														success: function(res) {
+															wx.hideLoading();
+															if (res.status == 0) {
+																wx.openLocation({
+																	latitude: res.result.location.lat,
+																	longitude: res.result.location.lng,
+																	name: locationStore[0].store_name,
+																	address: locationStore[0].address
+																});
+															} else {
+																wx.showModal({
+																	title: '提示',
+																	content: '地址解码失败',
+																	showCancel: false
+																});
+															}
+														},
+														fail: function(res) {
+															wx.hideLoading();
+															wx.showModal({
+																title: '提示',
+																content: '地址解码失败',
+																showCancel: false
+															});
+														}
+													});
+												}
+											}
+										})
+									}
+								}
+							});
+						}
+					});
+				} else {
+					wx.showLoading({
+						title: '加载中',
+						mask: true
+					});
+					qqmapsdk.geocoder({
+						address: locationStore[0].address,
+						success: function(res) {
+							wx.hideLoading();
+							if (res.status == 0) {
+								wx.openLocation({
+									latitude: res.result.location.lat,
+									longitude: res.result.location.lng,
+									name: locationStore[0].store_name,
+									address: locationStore[0].address
+								});
+							} else {
+								wx.showModal({
+									title: '提示',
+									content: '地址解码失败',
+									showCancel: false
+								});
+							}
+						},
+						fail: function(res) {
+							wx.hideLoading();
+							wx.showModal({
+								title: '提示',
+								content: '地址解码失败',
+								showCancel: false
+							});
+						}
+					});
+				}
+			}
+		});
+	},
+
+	/**
+	 * 获取所有门店信息
+	 */
+	getStores: function() {
+		var that = this
+		var p = new Promise(function(resolve, reject) {
+			//获取所有门店信息
+			wx.request({
+				url: common.config.host + '/index.php/Api/Base/getStores',
+				data: {
+					'authorizerId': app.globalData.authorizerId,
+					'geocoder': 1
+				},
+				method: 'POST',
+				header: {
+					'content-type': 'application/json'
+				},
+				success: function(res) {
+					//返回成功
+					if (res.statusCode == 200) {
+						if (res.data.status == 1) {
+							stores = res.data.info;
+							that.setData({
+								stores: stores
+							});
+							resolve(stores);
+						} else {
+							reject(res.data.info);
+						}
+
+					} else {
+						reject('请求失败');
+					}
+				},
+				fail: function(res) {
+					wx.hideLoading();
+					if (res.errMsg == 'request:fail timeout') {
+						wx.showModal({
+							title: '提示',
+							content: '请求超时',
+							showCancel: false
+						});
+					} else {
+						wx.showModal({
+							title: '提示',
+							content: '网络连接失败，请检查您的网络',
+							showCancel: false
+						});
+					}
+				}
+			});
+		});
+		return p;
+	},
+    /**
      * 点击底部导航
      */
     enginNav: function(e) {
@@ -594,10 +802,108 @@ Page({
             });
         }
 
+		locationStore = wx.getStorageSync('currentReserveStore');
+
+		if (locationStore) {
+			_this.setData({
+				locationStore: locationStore
+			});
+		} else {
+			_this.getStores().then(
+					function(data) {
+						//获取定位
+						new Promise(function(resolve, reject) {
+							locationStore = [];
+
+							for (let i = 0; i < stores.length; i++) {
+								var address = stores[i].province + stores[i].city + stores[i].area + stores[i].address_detail;
+
+								console.log(address)
+								common.geocoder(address).then(function(loca) {
+									var address = stores[i].province + stores[i].city + stores[i].area + stores[i].address_detail;
+
+									common.calculateDistance([loca]).then(function(distance) {
+										console.log(distance)
+										locationStore.push({
+											'store_name': stores[i].store_name,
+											'address': address == '' ? '未设置地址' : address,
+											'tel': stores[i].tel,
+											'distance': (distance / 1000).toFixed(2) + 'km',
+											'juli': distance,
+											'store_img': stores[i].store_img == '' ? common.config.bannerImg : common.config.showImgUrl + stores[i].store_img.split(',')[0],
+											'nodeid': stores[i].request_id
+										});
+
+										resolve(locationStore);
+									}).catch(function(res) {
+										console.log(res)
+										locationStore.push({
+											'store_name': stores[i].store_name,
+											'address': address == '' ? '未设置地址' : address,
+											'juli': 9999999,
+											'tel': stores[i].tel,
+											'distance': '未知',
+											'store_img': stores[i].store_img == '' ? common.config.bannerImg : common.config.showImgUrl + stores[i].store_img.split(',')[0],
+											'nodeid': stores[i].request_id
+										});
+
+										resolve(locationStore);
+									})
+								}).catch(function(res) {
+									locationStore.push({
+										'store_name': stores[i].store_name,
+										'address': address == '' ? '未设置地址' : address,
+										'tel': stores[i].tel,
+										'distance': '未知',
+										'juli': 9999999,
+										'store_img': stores[i].store_img == '' ? common.config.bannerImg : common.config.showImgUrl + stores[i].store_img.split(',')[0],
+										'nodeid': stores[i].request_id
+									});
+									resolve(locationStore);
+								})
+							}
+						}).then(function(data) {
+
+							clearTimeout(timer);
+
+							timer = setTimeout(function() {
+								locationStore.sort(function(obj1, obj2) {
+									var val1 = obj1.juli
+									var val2 = obj2.juli
+
+									if (val1 < val2) {
+										return -1;
+									} else if (val1 > val2) {
+										return 1;
+									} else {
+										return 0;
+									}
+								});
+
+								//赠加缓存时间
+								for (let i = 0; i < locationStore.length; i++) {
+									locationStore[i]['cache'] = new Date().getTime();
+								}
+
+								wx.setStorageSync('currentReserveStore', locationStore);
+								_this.setData({
+									locationStore: locationStore
+								});
+							}, 1000);
+						});
+					}
+			).catch(function(reason) {
+				wx.showModal({
+					title: '提示',
+					content: '获取门店信息失败',
+					showCancel: false
+				});
+			});
+		}
 
 
     },
-
+    
     /**
      * 页面跳转
      */

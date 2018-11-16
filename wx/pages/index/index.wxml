@@ -10,12 +10,12 @@
             </block>
         </swiper>
         <view class='contact-tools'>
-            <view class='address-icon'></view>
-            <text>湖南省长沙市芙蓉区万家丽广场宽寓大厦</text>
-            <text>703.3km</text>
-            <view class='nav-icon'></view>
+            <view class='address-icon' bindtap="location"></view>
+            <text bindtap="location">{{locationStore[0].address}}</text>
+            <text>{{locationStore[0].distance}}</text>
+            <view class='nav-icon' bindtap="location"></view>
             <text>|</text>
-            <view class='tel-icon'></view>
+            <view class='tel-icon' data-phone="{{locationStore[0].tel}}" bindtap="phoneCall"></view>
         </view>
     </view>
     <!--服务入口列表-->

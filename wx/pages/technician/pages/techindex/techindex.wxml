@@ -1,59 +1,105 @@
-<import src="../../../common/online-reserve.wxml"/>
-<import src="../../../common/reserve-stime.wxml" />
 <view class='container'>
-<!-- 门店信息模版 -->
-  <template is="online-reserve" data="{{tabIdx: 1,locationStore: locationStore}}"/>
-
-
-  <view class='content'>
+    <!-- 门店信息与明星技师推荐 -->
+    <view class='banner-box'>
+        <view class='store-box'>
+            <view class='store-name'>{{locationStore[0].store_name}}</view>
+            <view class="change-store" bindtap="changeStoreBtn">切换门店 </view>
+        </view>
+        <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" circular="true" display-multiple-items="3">
+            <block wx:for="{{data}}" wx:key="item.staffworkno">
+                <swiper-item item-id="{{item.staffworkno}}" catchtap='toTechdetail' data-id='{{item.staffworkno}}' class='star-item'>
+                    <view class='star-label'>明星技师</view>
+                    <block wx:if="{{item.picurl}}">
+                        <image src='{{showImgUrl}}{{item.picurl}}' lazy-load></image>
+                    </block>
+                    <block wx:else>
+                        <image src='https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png'></image>
+                    </block>
+                    <view class='tech-info'>
+                        <view class='work-num'>{{item.staffworkno}}号</view>
+                        <view class='sex'>{{item.staffsex==0?"女":"男"}}</view>
+                        <view class="reserve-box" catchtap="reserve" data-idx="{{item.staffworkno}}">
+                            <icon type="success" size="20" color="rgb(225,51,36)" wx:if="{{item.selected}}" />
+                            <view class="reserve-btn" wx:if="{{!item.selected}}">预约</view>
+                        </view>
+                    </view>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <!-- 联系方式 -->
+    <view class='contact-tools'>
+        <view class='address-icon' bindtap="location"></view>
+        <text bindtap="location">{{locationStore[0].address}}</text>
+        <text>{{locationStore[0].distance}}</text>
+        <view class='nav-icon' bindtap="location"></view>
+        <text>|</text>
+        <view class='tel-icon' data-phone="{{locationStore[0].tel}}" bindtap="phoneCall"></view>
+    </view>
+    <!-- 技师分类 技师列表 -->
+    <view class='content'>
         <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
-          <view class='c-class' >
-          <view class='c-item {{typeDefault==0?"active":""}}' data-id="0" bindtap='typeSelect'>全部</view>
-          <block wx:for="{{typeLists}}" wx:for-index="tl" wx:key="tlid">
-          <view class='c-item {{typeDefault==item.techniciantypeno?"active":""}}' data-id="{{item.techniciantypeno}}" bindtap='typeSelect'>{{item.techniciantypename}}</view>
-          </block>
-          </view>
-        </scroll-view>
-      
-
-      <view class='t-info'>
-        <view class='t-item' wx:for="{{data}}" wx:key="" catchtap='toTechdetail' data-id='{{item.staffworkno}}'>
-            <view class='i-img'>
-              <block wx:if="{{item.picurl}}">
-               <image src='{{showImgUrl}}{{item.picurl[0]}}'></image>
-              </block>
-              <block wx:else>
-               <image src='https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png'></image>
-              </block>
-             
+            <view class='c-class'>
+                <view class='c-item {{typeDefault==0?"active":""}}' data-id="0" bindtap='typeSelect'>全部</view>
+                <block wx:for="{{typeLists}}" wx:for-index="tl" wx:key="tlid">
+                    <view class='c-item {{typeDefault==item.techniciantypeno?"active":""}}' data-id="{{item.techniciantypeno}}" bindtap='typeSelect'>{{item.techniciantypename}}</view>
+                </block>
             </view>
-            <view class='i-no'>{{item.staffworkno}}号</view>
-            <!--26岁/  -->
-            <view class='i-detail text-ellipsis'>{{item.staffsex==0?"女":"男"}}/{{item.serviceitems}}</view>
-            <!-- <view class="i-today"></view> -->
-            <view class="reserve-room-p" catchtap="reserveBtn" data-idx="{{item.staffworkno}}" >
-              <icon type="success" size="20" color="rgb(202,168,118)" style="{{item.selected ? iconHide : ''}}"/>
-              <view class="reserve-room-btn btn-gradient"   style="{{item.selected ? reserveBtnHide : ''}}">选择</view>
+        </scroll-view>
+        <view class='tech-list'>
+            <image bindload="itemReset" wx:for="{{data}}" wx:key="{{index}}" mode="widthFix" data-item="{{item}}" data-index="{{index}}" src='{{item.picurl?item.picurl:"https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png"}}' style='display:none'></image>
+            <!-- 瀑布流 左容器 -->
+            <view class='left-box'>
+                <view class='tech-item' wx:for="{{leftItem}}" wx:key="" catchtap='toTechdetail' data-id='{{item.staffworkno}}'>
+                    <view class='tech-label'>推荐技师</view>
+                    <block wx:if="{{item.picurl}}">
+                        <image mode="widthFix" src='{{showImgUrl}}{{item.picurl}}' lazy-load></image>
+                    </block>
+                    <block wx:else>
+                        <image src='https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png' mode="widthFix" lazy-load></image>
+                    </block>
+                    <view class='tech-info'>
+                        <view class='work-num'>{{item.staffworkno}}号</view>
+                        <view class='sex'>{{item.staffsex==0?"女":"男"}}</view>
+                        <view class="reserve-box" catchtap="reserve" data-idx="{{item.staffworkno}}">
+                            <icon type="success" size="20" color="rgb(255,160,58)" wx:if="{{item.selected}}" />
+                            <view class="reserve-btn" wx:if="{{!item.selected}}">预约</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <!-- 瀑布流 右容器 -->
+            <view class='right-box'>
+                <view class='tech-item' wx:for="{{rightItem}}" wx:key="" catchtap='toTechdetail' data-id='{{item.staffworkno}}'>
+                    <view class='tech-label'>推荐技师</view>
+                    <block wx:if="{{item.picurl}}">
+                        <image mode="widthFix" src='{{showImgUrl}}{{item.picurl}}' lazy-load></image>
+                    </block>
+                    <block wx:else>
+                        <image src='https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png' mode="widthFix" lazy-load></image>
+                    </block>
+                    <view class='tech-info'>
+                        <view class='work-num'>{{item.staffworkno}}号</view>
+                        <view class='sex'>{{item.staffsex==0?"女":"男"}}</view>
+                        <view class="reserve-box" catchtap="reserve" data-idx="{{item.staffworkno}}">
+                            <icon type="success" size="20" color="rgb(255,160,58)" wx:if="{{item.selected}}" />
+                            <view class="reserve-btn" wx:if="{{!item.selected}}">预约</view>
+                        </view>
+                    </view>
+                </view>
             </view>
         </view>
-
-        
-      </view>
-  </view>
-  <view class='nomore' >没有更多了</view>
- 
+    </view>
+    <view class='nomore'>没有更多了</view>
 </view>
 <!-- 预约按钮 -->
-<view class="buy-bar" bindtap="reserveBtnTime">立即预约</view>
-
-<!-- 选择时间模版 -->
-<template is="reserve-stime" data="{{maskDisplay: maskDisplay,showSelectTime: showSelectTime}}" />
+<view class="sure-reserve-btn" bindtap="reserveBtnTime">立即预约</view>
 
 <!-- 返回首页按钮 -->
 <view class="backhome-btn">
-  <view>
-    <navigator url="/pages/index/index" hover-class="none" open-type="reLaunch">
-      <text>返回首页</text>
-    </navigator>
-  </view>
+    <view>
+        <navigator url="/pages/index/index" hover-class="none" open-type="reLaunch">
+            <text>返回首页</text>
+        </navigator>
+    </view>
 </view>

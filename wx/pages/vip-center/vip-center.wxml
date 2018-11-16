@@ -7,7 +7,7 @@
                 <block wx:for="{{bannerList}}" wx:key="bannerList">
                     <swiper-item item-id="{{item.staffworkno}}" class="slide-image {{item.staffworkno==selected?'active':''}}">
                         <text class="card-type">{{item.typeName}}</text>
-                        <image src="{{item.picurl}}" />
+                        <image src="{{item.picurl}}" lazy-load/>
                     </swiper-item>
                 </block>
             </swiper>
@@ -20,15 +20,15 @@
             </button>
             <view class='handle-list'>
                 <view class='handle-box' data-url="../component/pages/recharge/recharge" data-funname="会员充值" bindtap="jumpPage">
-                    <image src='../../images/vip-recharge_icon@2x.png'></image>
+                    <image src='../../images/vip-recharge_icon@2x.png' lazy-load></image>
                     <text>会员充值</text>
                 </view>
                 <view class='handle-box' data-url="../component/pages/cardtrans/cardtrans" data-funname="会员卡转赠" bindtap="jumpPage">
-                    <image src='../../images/vip-transfer_icon@2x.png'></image>
+                    <image src='../../images/vip-transfer_icon@2x.png' lazy-load></image>
                     <text>会员转赠</text>
                 </view>
                 <view class='handle-box' data-url="../component/pages/transrecord/transrecord" data-funname="转赠记录" bindtap="jumpPage">
-                    <image src='../../images/vip-record_icon@2x.png'></image>
+                    <image src='../../images/vip-record_icon@2x.png' lazy-load></image>
                     <text>转赠记录</text>
                 </view>
             </view>
