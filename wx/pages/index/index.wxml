@@ -41,8 +41,10 @@
             </navigator>
         </view>
         <view class='item'>
-            <image src='../../images/index_features_05@2x.png'></image>
-            <view>店面评价</view>
+            <navigator url="../reserve/pages/store-assess/store-assess">
+                <image src='../../images/index_features_05@2x.png'></image>
+                <view>店面评价</view>
+            </navigator>
         </view>
     </view>
     <!-- 资讯列表 -->

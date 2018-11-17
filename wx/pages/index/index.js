@@ -637,7 +637,6 @@ Page({
                         wx.scanCode({
                             onlyFromCamera: true,
                             success: function(res) {
-
                                 if (res.path) {
                                     try {
                                         wx.reLaunch({
