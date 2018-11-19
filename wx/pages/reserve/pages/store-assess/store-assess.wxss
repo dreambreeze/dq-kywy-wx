@@ -1,117 +1,164 @@
 @import "../../../common/assess.wxss";
 
 .container {
-  background: #eee;
-  padding-top: 110rpx;
+    background: #eee;
+    padding-top: 110rpx;
 }
 
 .top-nav {
-  width: 100%;
-  height: 98rpx;
-  line-height: 98rpx;
-  padding: 0 30rpx;
-  box-sizing: border-box;
-  background: #fff;
-  position: fixed;
-  top: 0;
-  left: 0;
-  border-bottom: 1rpx solid #eee;
+    display: flex;
+    width: 100%;
+    height: 98rpx;
+    line-height: 98rpx;
+    padding: 0 30rpx;
+    box-sizing: border-box;
+    background: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-bottom: 1rpx solid #eee;
 }
 
 .nav-item {
-  width: 25%;
-  text-align: center;
+    text-align: center;
+    padding: 0 50rpx 0 0;
 }
 
 .nav-item text {
-  display: inline-block;
-  width: 144rpx;
-  height: 56rpx;
-  line-height: 56rpx;
-  color: #333;
-  font-size: 32rpx;
-  border-radius: 30rpx;
+    display: inline-block;
+    height: 40rpx;
+    line-height: 40rpx;
+    color: #999;
+    font-size: 26rpx;
+    position: relative;
+    top: -5rpx;
 }
 
 .nav-item text.active {
-  background-image: -webkit-linear-gradient(300deg, #e9c28a 20%, #e1b880 40%, #d0a76d 60%, #c5995f 80%, #bc9055 100%) !important;
-  background-image: -o-linear-gradient(300deg, #e9c28a 20%, #e1b880 40%, #d0a76d 60%, #c5995f 80%, #bc9055 100%) !important;
-  background-image: -moz-linear-gradient(300deg, #e9c28a 20%, #e1b880 40%, #d0a76d 60%, #c5995f 80%, #bc9055 100%) !important;
-  background-image: -ms-linear-gradient(300deg, #e9c28a 20%, #e1b880 40%, #d0a76d 60%, #c5995f 80%, #bc9055 100%) !important;
-  color: #fff;
-  box-shadow: 0 4rpx 10rpx rgba(205, 170, 120, 0.4);
+    color: #3b81d6;
+    border-bottom: 1rpx solid #3b81d6;
 }
 
 .assess {
-  padding-bottom: 30rpx;
+    padding-bottom: 30rpx;
 }
 
 .assess-item:last-child {
-  border: none;
+    border: none;
 }
 
-
-.load-more{
-  padding: 30rpx 0;
-  font-size: 24rpx;
-  color: #848484;
-  text-align: center;
-  background-color: #fff;
+.load-more {
+    padding: 30rpx 0;
+    font-size: 24rpx;
+    color: #848484;
+    text-align: center;
+    background-color: #fff;
 }
 
-.assess-btn{
-  position: fixed;
-  left: 10rpx;
-  bottom: 120rpx;
-  text-align: center;
+.assess-btn {
+    position: fixed;
+    left: 10rpx;
+    bottom: 120rpx;
+    text-align: center;
 }
 
 .assess-btn text {
-  display: inline-block;
-  line-height: 1;
-  margin-top: 66rpx;
+    display: inline-block;
+    line-height: 1;
+    margin-top: 66rpx;
 }
 
 .assess-btn view {
-  display: inline-block;
-  width: 120rpx;
-  height: 120rpx;
-  text-align: center;
-  font-size: 24rpx;
-  color: #c7b498;
-  border-radius: 50%;
-  box-sizing: initial;
-  box-shadow: 0 4rpx 12rpx rgba(88, 88, 88, 0.4);
-  background: #585858 url(https://iservice.daqisoft.cn/Public/Home/images/assess_icon.png) no-repeat center 20rpx;
-  background-size: 32%;
+    display: inline-block;
+    width: 120rpx;
+    height: 120rpx;
+    text-align: center;
+    font-size: 24rpx;
+    color: #c7b498;
+    border-radius: 50%;
+    box-sizing: initial;
+    box-shadow: 0 4rpx 12rpx rgba(88, 88, 88, 0.4);
+    background: #585858 url(https://iservice.daqisoft.cn/Public/Home/images/assess_icon.png) no-repeat center 20rpx;
+    background-size: 32%;
 }
 
-.get-user-info{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  z-index: 99999;
-  width: 350rpx;
-  height: 300rpx;
-  padding: 20rpx;
-  border-radius: 6rpx;
-  margin-left: -175rpx;
-  margin-top: -150rpx;
-  box-shadow: 1rpx 2rpx 10rpx rgba(0, 0, 0, 0.3);
-  background-color: #fff;
+.get-user-info {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 99999;
+    width: 350rpx;
+    height: 300rpx;
+    padding: 20rpx;
+    border-radius: 6rpx;
+    margin-left: -175rpx;
+    margin-top: -150rpx;
+    box-shadow: 1rpx 2rpx 10rpx rgba(0, 0, 0, 0.3);
+    background-color: #fff;
 }
 
-.getui-title{
-  text-align: center;
-  font-size: 34rpx;
-  padding: 30rpx 0 60rpx;
+.getui-title {
+    text-align: center;
+    font-size: 34rpx;
+    padding: 30rpx 0 60rpx;
 }
 
-.get-user-info button{
-   background-color: #F76260;
-   color: #fff;
+.get-user-info button {
+    background-color: #f76260;
+    color: #fff;
 }
 
-.selfAssess{
-  margin-bottom: 20rpx;
+.selfAssess {
+    margin-bottom: 20rpx;
+}
+
+.star-title {
+    font-size: 26rpx;
+    color: #333;
+    line-height: 98rpx;
+}
+
+.stars {
+    flex: 1;
+}
+
+.stars image {
+    width: 37rpx;
+    height: 34rpx;
+    margin-right: 20rpx;
+}
+
+.stars text {
+    position: relative;
+    top: -10rpx;
+    font-size: 24rpx;
+    color: #999;
+    margin-left: 20rpx;
+}
+
+.picker-val, .arrowdown {
+    vertical-align: middle;
+    position: relative;
+    
+}
+
+.picker-val {
+    font-size: 26rpx;
+    line-height: 70rpx;
+    display: inline-block;
+    top: -8rpx;
+}
+
+.arrowdown {
+    display: inline-block;
+    width: 24rpx;
+    height: 16rpx;
+    background: url(https://iservice.daqisoft.cn/Public/Home/images/arrowdown.png) no-repeat;
+    background-size: contain;
+    margin-left: 10rpx;
+    top: -6rpx;
+}
+
+.select-store {
+    margin: 0 40rpx 0 0;
 }

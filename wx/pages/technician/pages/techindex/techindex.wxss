@@ -1,103 +1,110 @@
-.container{
-  padding-bottom: 150rpx;
+.container {
+    padding-bottom: 150rpx;
 }
 
-.banner-box{
-    padding:0 0 30rpx 30rpx;
+.banner-box {
+    padding: 0 0 30rpx;
     background: url('https://note.youdao.com/yws/api/personal/file/WEB6d7c50b65c79b7e2b471f20a03e593ed?method=download&shareKey=7c1a73dc748c4cbebe32772433e45290') repeat-x;
-    background-size:auto 410rpx;
+    background-size: auto 100%;
 }
 
-.store-box{
+.store-box {
     display: flex;
-    padding:20rpx 0;
+    padding: 20rpx 0 20rpx 30rpx;
     overflow: hidden;
 }
 
-.store-name{
-    flex:1;
-    font-size:30rpx;
-    color:#333;
+.store-name {
+    flex: 1;
+    font-size: 30rpx;
+    color: #333;
     font-weight: bold;
 }
 
-.change-store{
-    background: url('https://note.youdao.com/yws/api/personal/file/WEBcc3da43f3fedf865e256c07f7c728022?method=download&shareKey=b53c734f13ceacc69ae7c792667b12ea');
-    width:148rpx;
+.change-store {
+    background: url('https://note.youdao.com/yws/api/personal/file/WEBcc3da43f3fedf865e256c07f7c728022?method=download&shareKey=b53c734f13ceacc69ae7c792667b12ea') no-repeat center;
+    width: 148rpx;
     line-height: 50rpx;
     background-size: 148rpx 50rpx;
-    color:#fff;
-    font-size:28rpx;
-    padding:0 0 0 20rpx;
+    color: #fff;
+    font-size: 28rpx;
+    padding: 0 0 0 20rpx;
     text-align: center;
 }
 
-.star-item{
-    position: relative;
-    width:280rpx;
-    height: 290rpx;
-    border-radius: 10rpx;
-    padding: 0 20rpx 0 0;
-    box-shadow: 0 4rpx 8rpx (0,0,0,0.3);
+.star-swiper {
+    height: 453rpx;
 }
 
-.star-item image{
-    width:100%;
+.star-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 433rpx !important;
+    border-radius: 10rpx;
+    box-shadow: 0 4rpx 8rpx (0, 0, 0, 0.3);
+}
+
+.star-item image {
+    width: 360rpx !important;
     height: 100%;
     border-radius: 10rpx;
 }
 
-.star-label{
+.star-label {
     position: absolute;
-    color:#fff;
+    margin-left: -123rpx;
+    margin-top: -195rpx;
+    color: #fff;
     font-size: 22rpx;
     text-align: center;
-    width:110rpx;
+    width: 110rpx;
     line-height: 40rpx;
     background: url('https://note.youdao.com/yws/api/personal/file/WEBe7c75ce14387e80b331aa6cd3ced5254?method=download&shareKey=c39315914c1f9a23789c3eabef48788f') no-repeat center;
     background-size: 100%;
 }
 
-.tech-info{
+.tech-info {
     height: 60rpx;
     background: #fff;
     display: flex;
     position: absolute;
-    bottom:0;
-    left:0;
-    right:20rpx;
+    bottom: -4rpx;
+    width: 360rpx;
     font-size: 20rpx;
-    color:#333;
+    color: #333;
     overflow: hidden;
-    border-radius: 0 0 10rpx 0;
-    padding:10rpx;
+    border-radius: 0 0 10rpx 10rpx;
+    padding: 10rpx;
     line-height: 40rpx;
+    box-shadow: 0rpx 4rpx 8rpx rgba(0, 0, 0, 0.2);
 }
 
-.tech-info .work-num,.tech-info .sex{
+.tech-info .work-num, .tech-info .sex {
     display: inline-block;
-    padding:0 10rpx 0 0;
+    padding: 0 10rpx 0 0;
 }
 
-.reserve-box{
+.reserve-box {
     position: absolute;
-    right:10rpx;
-    top:10rpx;
+    right: 10rpx;
+    top: 10rpx;
 }
 
-.reserve-btn{
-    width:90rpx;
+.reserve-btn {
+    width: 90rpx;
     line-height: 40rpx;
-    color:#fff;
+    color: #fff;
     background: url('https://note.youdao.com/yws/api/personal/file/WEB1a243ae1a5f2b974b36e1a71ff42d1ab?method=download&shareKey=8856fd1ba20256c8913ca28566786bcc') no-repeat center;
-    font-size:26rpx;
-    background-size:100%;
+    font-size: 26rpx;
+    background-size: 100%;
     text-align: center;
 }
 
 .contact-tools {
     font-size: 22rpx;
-    margin:0 30rpx;
+    margin: 0 30rpx;
     color: #656565;
     display: flex;
     line-height: 90rpx;
@@ -135,66 +142,68 @@
     background-size: 22rpx;
 }
 
-.content{
+.content {
     padding: 0 30rpx;
 }
 
-.c-class{
-    padding:10rpx 0 0 0;
+.c-class {
+    padding: 10rpx 0 0 0;
     font-size: 32rpx;
 }
 
-.c-item{
+.c-item {
     display: inline-block;
     line-height: 92rpx;
-    color:#666666;
-    padding:0 60rpx 0 0;
+    color: #666;
+    padding: 0 60rpx 0 0;
 }
 
-.c-item.active{
-    color:#3b81d6;
+.c-item.active {
+    color: #3b81d6;
 }
 
-.tech-list{
+.tech-list {
     overflow: hidden;
 }
 
-.left-box{
-    width:330rpx;
+.left-box {
+    width: 330rpx;
     float: left;
 }
 
-.right-box{
-    width:330rpx;
+.right-box {
+    width: 330rpx;
     float: right;
 }
 
-.tech-list image{
-    width:330rpx;
+.tech-list image {
+    width: 330rpx;
+    border-radius: 10rpx;
 }
 
-.tech-item{
+.tech-item {
     position: relative;
-    margin:0 0 30rpx;
-    box-shadow: 0 4rpx 8rpx (0,0,0,0.3);
+    margin: 0 0 30rpx;
 }
 
-.tech-label{
+.tech-label {
     position: absolute;
     background: url('https://note.youdao.com/yws/api/personal/file/WEB03c4c83e67de448e0b8e89deabdd826c?method=download&shareKey=8ecdc9a25e823139f46cb2ab13ecbf07') no-repeat center;
     background-size: 100%;
-    width:110rpx;
+    width: 110rpx;
     line-height: 40rpx;
     font-size: 22rpx;
     text-align: center;
-    color:#fff;
+    color: #fff;
 }
 
-.tech-item .tech-info{
-    right:0;
+.tech-item .tech-info {
+    right: 0;
+    left: 0;
+    width: 330rpx;
 }
 
-.tech-item .reserve-btn{
+.tech-item .reserve-btn {
     /* background: url('https://note.youdao.com/yws/api/personal/file/WEB1a243ae1a5f2b974b36e1a71ff42d1ab?method=download&shareKey=8856fd1ba20256c8913ca28566786bcc') no-repeat center; 
     background-size:100%;
     */
@@ -202,30 +211,32 @@
     border-radius: 20rpx;
 }
 
-.nomore{
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:22rpx;
-color:#666;
+.nomore {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22rpx;
+    color: #666;
 }
-.nomore::after{
-  content: "--"
+
+.nomore::after {
+    content: "--";
 }
-.nomore::before{
-  content: "--"
+
+.nomore::before {
+    content: "--";
 }
 
 .sure-reserve-btn {
-  width: 100%;
-  height: 97rpx;
-  line-height: 97rpx;
-  background: #ff7108;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  text-align: center;
-  font-size: 34rpx;
-  color: #fff;
-  font-weight: 500;
+    width: 100%;
+    height: 97rpx;
+    line-height: 97rpx;
+    background: #ff7108;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    font-size: 34rpx;
+    color: #fff;
+    font-weight: 500;
 }

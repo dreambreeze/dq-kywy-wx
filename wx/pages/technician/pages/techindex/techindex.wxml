@@ -5,8 +5,8 @@
             <view class='store-name'>{{locationStore[0].store_name}}</view>
             <view class="change-store" bindtap="changeStoreBtn">切换门店 </view>
         </view>
-        <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" circular="true" display-multiple-items="3">
-            <block wx:for="{{data}}" wx:key="item.staffworkno">
+        <swiper class='star-swiper' indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" circular="true" previous-margin="180rpx" next-margin="180rpx" current-item-id="{{selected}}">
+            <block wx:for="{{starList}}" wx:key="item.staffworkno">
                 <swiper-item item-id="{{item.staffworkno}}" catchtap='toTechdetail' data-id='{{item.staffworkno}}' class='star-item'>
                     <view class='star-label'>明星技师</view>
                     <block wx:if="{{item.picurl}}">
@@ -18,9 +18,8 @@
                     <view class='tech-info'>
                         <view class='work-num'>{{item.staffworkno}}号</view>
                         <view class='sex'>{{item.staffsex==0?"女":"男"}}</view>
-                        <view class="reserve-box" catchtap="reserve" data-idx="{{item.staffworkno}}">
-                            <icon type="success" size="20" color="rgb(225,51,36)" wx:if="{{item.selected}}" />
-                            <view class="reserve-btn" wx:if="{{!item.selected}}">预约</view>
+                        <view class='reserve-box'>
+                            <view class="reserve-btn" bindtap='reserveStar' data-item='{{item}}'>预约</view>
                         </view>
                     </view>
                 </swiper-item>

@@ -21,6 +21,8 @@ var totalPage = 8;
 var leftItem = [];
 //右容器图片
 var rightItem = [];
+//判断第一次加载明星技师列表数据
+var starFlag = true;
 Page({
     /**
      * 页面的初始数据
@@ -41,6 +43,7 @@ Page({
         rHeight: 0,
         imgWidth: 0,
         imgHeight: 0,
+        starList: {},
     },
     itemReset: function(e) {
         //图片原始宽度
@@ -178,19 +181,12 @@ Page({
             },
         })
     },
-    
+
     //选择技师类别
     typeSelect: function(e) {
         var typeDefault = e.target.dataset.id
-        leftItem = [];
-        rightItem = [];
         this.setData({
             typeDefault: typeDefault,
-            leftItem: [],
-            rightItem: [],
-            lHeight: 0,
-            rHeight: 0,
-            imgHeight: 0,
         })
         var currStoreCache = wx.getStorageSync('currentReserveStore');
         var noedid = currStoreCache[0].nodeid
@@ -300,10 +296,29 @@ Page({
                         }
                     }
                     let typeLists = data ? res.data.typeLists : {}
+                    if (data) {
+                        leftItem = [];
+                        rightItem = [];
+                        this.setData({
+                            leftItem: [],
+                            rightItem: [],
+                            lHeight: 0,
+                            rHeight: 0,
+                            imgHeight: 0,
+                            data: {}
+                        })
+                    }
                     this.setData({
                         typeLists: typeLists,
                         data: res.data.data,
                     })
+                    //初始化明星技师列表
+                    if (starFlag) {
+                        starFlag = false
+                        this.setData({
+                            starList: res.data.data,
+                        })
+                    }
                 } else {
                     //获取数据失
                     wx.showModal({
@@ -337,12 +352,12 @@ Page({
     reserve: function(ev) {
         var idx = ev.currentTarget.dataset.idx;
         var data = this.data.data,
-        leftItem = this.data.leftItem,
-        rightItem = this.data.rightItem,
-        i=0;
+            leftItem = this.data.leftItem,
+            rightItem = this.data.rightItem,
+            i = 0;
         data[idx].selected = !data[idx].selected;
-        for (i = 0; i < leftItem.length ; i++){
-            if (leftItem[i].staffworkno == data[idx].staffworkno){
+        for (i = 0; i < leftItem.length; i++) {
+            if (leftItem[i].staffworkno == data[idx].staffworkno) {
                 leftItem[i].selected = data[idx].selected;
                 break;
             }
@@ -360,7 +375,35 @@ Page({
         });
     },
     /**
-     * 点击立即预约显示选择时间
+     * 预约明星技师
+     */
+    reserveStar: function(e) {
+        var item = e.target.dataset.item;
+        var dataarr = new Array
+        dataarr.push(item)
+        wx.setStorageSync("techdata", dataarr)
+        var phoneinfo = wx.getStorageSync("phoneinfo")
+        if (phoneinfo.phone) {
+            wx.navigateTo({
+                url: '../techorder/techorder',
+            })
+        } else {
+            wx.showModal({
+                title: '提示',
+                content: '您未绑定手机号，请前往绑定',
+                showCancel: false,
+                success: function(res) {
+                    if (res.confirm) {
+                        wx.redirectTo({
+                            url: '../../../../pages/ucentermodel/pages/infobind/infobind?returnway=2',
+                        })
+                    }
+                }
+            })
+        }
+    },
+    /**
+     * 点击立即预约
      */
     reserveBtnTime: function() {
         var that = this
@@ -767,6 +810,7 @@ Page({
         }
         leftItem = [];
         rightItem = [];
+        starFlag = true;
         that.setData({
             leftItem: [],
             rightItem: [],

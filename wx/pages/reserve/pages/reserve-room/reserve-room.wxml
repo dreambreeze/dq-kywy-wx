@@ -1,9 +1,24 @@
-<import src="../../../common/reserve-stime.wxml" />
-<import src="../../../common/online-reserve.wxml" />
 <view class="container">
   <!-- 门店信息模版 -->
-  <template is="online-reserve" data="{{tabIdx: 2,locationStore: locationStore}}" />
-
+  <!-- <template is="online-reserve" data="{{tabIdx: 2,locationStore: locationStore}}" /> -->
+ <!-- 门店信息 -->
+ <view class='top-box'>
+     <image  src="{{locationStore[0].store_img}}" lazy-load mode="aspectFill"></image>
+     <view class='store-name'>{{locationStore[0].store_name}}</view>
+     <!-- 联系方式 -->
+    <view class='contact-tools'>
+        <view class='address-icon' bindtap="location"></view>
+        <view bindtap="location">{{locationStore[0].address}}</view>
+    </view>
+    <view class='contact-tools'>
+        <text>{{locationStore[0].distance}}</text>
+        <view class='nav-icon' bindtap="location"></view>
+        <text>|</text>
+        <view class='tel-icon' data-phone="{{locationStore[0].tel}}" bindtap="phoneCall"></view>
+    </view>
+     <view class="change-store" bindtap="changeStoreBtn">切换门店 </view>
+ </view>
+  <!-- 房间列表 -->
   <view class="room-people">
     <view class="flex-wrp">
       <view class="room-num room-people-num">
