@@ -802,7 +802,7 @@ Page({
         }
 
 		locationStore = wx.getStorageSync('currentReserveStore');
-
+        
 		if (locationStore) {
 			_this.setData({
 				locationStore: locationStore

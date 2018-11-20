@@ -1,64 +1,48 @@
 <view class="container">
-  <block wx:if="{{storeProject.length > 0}}">
-
-   <!--bindtap="goProjectStore" data-nodeid="{{store.nodeid}}"  -->
-
-    <block wx:for="{{storeProject}}" wx:for-index="idx" wx:for-item="store">
-      <view class="store-item">
-        <view class="store-title" >
-          <text class="store-ico"></text>
-          <text class="store-name">{{store.store_name}}</text>
-          <text class="jump-ico"></text>
-          <text class="distance">{{store.distance == '未知' ? '未知' : store.distance + 'm'}}</text>
+    <block wx:if="{{storeProject.length > 0}}">
+        <!-- 商店列表 -->
+        <swiper  class='store-list' indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" display-multiple-items="4">
+            <swiper-item wx:for="{{storeProject}}"  wx:for-item="store" wx:key='index'
+            class='store-name {{selected==index?"current":""}}' 
+            data-store='{{store}}' 
+            data-index='{{index}}'  
+            bindtap='changeStore'>{{store.store_name}}</swiper-item>
+        </swiper>
+        <view class='contact-tools'>
+            <view class='address' bindtap="location" data-location='{{currentStore}}'>
+                <view class='address-icon' ></view>
+                <text>{{currentStore.address}}</text>
+                <text>{{currentStore.distance}}km</text>
+                <view class='nav-icon' ></view>
+            </view>
+            <text>|</text>
+            <view class='tel-icon' data-phone="{{currentStore.tel}}" bindtap="phoneCall"></view>
         </view>
-
-        <!-- 项目模版 -->
-        <!-- <template is="project" data="{{isHeight: !search ? true : false,projectArr: store.project,sIdx: idx,heightIdx: heightIdx,heightOff: heightOff,height: height,showImgUrl: showImgUrl}}" /> -->
-        <view class="item" wx:for="{{store.project}}" data-pid="{{item.id}}" data-nodeid="{{store.nodeid}}" wx:key="" bindtap='todetail'>
-            <view class='i-img'><image mode="aspectFill"  src='{{item.picurl[0]}}'></image></view>
-            <view class='i-bottom'>
-              <view class='i-name flex'>
-                  <view class='n-left'>{{item.project}}</view>
-                  <view class='n-right'>适用门店：{{item.shopno==1?'全国通用':item.shopname}}</view>
-              </view>
-              <view class='i-avatar flex' wx:if="{{item.orders}}">
-                  <view class='a-pic'>
-                    <view class='' wx:for="{{item.orders}}" wx:key="" wx:for-item="order">
-                      <image src='{{order.pavatar}}'></image>
-                    </view>
-                  </view>
-                  <view class='a-count'>
-                    已拼 {{item.count}} 件
-                  </view>
-              </view>
-              <view class='i-pricebutton flex'>
-                <view class='left flex'> 
-                  <view class='groupp'><text >￥</text>{{item.groupprice}}</view>
-                  <view class='marketp'>￥{{item.marketprice}}</view>
-                  <view class='nums'>{{item.nums}}人团</view>
+        <view class="group-activity clear" wx:for="{{currentStore.project}}" data-pid="{{item.id}}" data-nodeid="{{currentStore.nodeid}}" wx:key="" bindtap='todetail'>
+            <image src='{{item.picurl[0]}}?{{item.picurl[0]}}:"../../images/index_group_activity@2x.png"'></image>
+            <view class='info-box'>
+                <text class='gourp-shop-title'>{{item.project}}</text>
+                <view class='tips'>{{item.tips}}</view>
+                <view class='price clear'>
+                    <text>￥{{item.groupprice}}</text>
+                    <text>￥{{item.marketprice}}</text>
+                    <button bindtap='todetail' data-pid='{{item.id}}' data-nodeid='{{currentStore.nodeid}}'>开团</button>
                 </view>
-                <view class='togroup'>去开团</view>
-              </view>
+                <view class="user-image-list">
+                    <view class='image-box'>
+                    <image  wx:for="{{item.orders}}" wx:key="" wx:for-item="order" src='{{order.pavatar}}'  wx:if="{{index<3}}" lazy-load></image>
+                    </view>
+                    <text class='goods-num'>已拼 {{item.count}}件</text>
+                    <text class='people-num'>{{item.nums}}人团</text>
+                </view>
+                <text class='user-range'>适应门店:{{item.shopno==1?'全国通用':item.shopname}}</text>
             </view>
         </view>
-
-
-        <!-- <view class="look-more" bindtap="goProjectStore" data-nodeid="{{store.nodeid}}" wx:if="{{!search}}">查看全部团购项目
-          <view class="arrowdown"></view>
-        </view> -->
-      </view>
     </block>
-
-  </block>
-  <block wx:else>
-    <view class="empty-assess">{{projectState}}</view>
-  </block>
-
+    <block wx:else>
+        <view class="empty-assess">{{projectState}}</view>
+    </block>
 </view>
-
-
 <view class='myorder flex' bindtap='tomyorder'>
-  <view>我的订单</view>
+    <view>我的订单</view>
 </view>
-<!-- 导航模版公用 -->
-<!-- <template is="buy-nav" data="{{buyNavType: 'home'}}" /> -->

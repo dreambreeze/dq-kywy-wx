@@ -179,26 +179,28 @@
         <!-- 拼团活动 -->
         <view class="group-activity-title ">拼团活动</view>
         <view class="group-activity clear ">
-            <image src='../../images/index_group_activity@2x.png'></image>
-            <view class='center-box'>
-                <text>精品超级拼团</text>
-                <text>适应门店:大旗B店</text>
-                <text>已拼52件</text>
-                <view class="user-image-list ">
-                    <image src='../../images/index_tou_01@2x.png'></image>
-                    <image src='../../images/index_tou_02@2x.png'></image>
-                    <image src='../../images/index_tou_03@2x.png'></image>
-                    <image src='../../images/index_tou_04@2x.png'></image>
+            <navigator class="group-activity" url="../transbuy/pages/group-shopping/group-shopping" hover-class="none">
+                <image src='../../images/index_group_activity@2x.png'></image>
+                <view class='center-box'>
+                    <text>精品超级拼团</text>
+                    <text>适应门店:大旗B店</text>
+                    <text>已拼52件</text>
+                    <view class="user-image-list ">
+                        <image src='../../images/index_tou_01@2x.png'></image>
+                        <image src='../../images/index_tou_02@2x.png'></image>
+                        <image src='../../images/index_tou_03@2x.png'></image>
+                        <image src='../../images/index_tou_04@2x.png'></image>
+                    </view>
                 </view>
-            </view>
-            <view class='right-box'>
-                <button>开团</button>
-                <text>5人团</text>
-                <view class='price'>
-                    <text>￥89</text>
-                    <text>￥119</text>
+                <view class='right-box'>
+                    <button>开团</button>
+                    <text>5人团</text>
+                    <view class='price'>
+                        <text>￥89</text>
+                        <text>￥119</text>
+                    </view>
                 </view>
-            </view>
+            </navigator>
         </view>
     </view>
 </view>

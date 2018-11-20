@@ -22,14 +22,12 @@
                 </block>
             </view>
         </view>
-
         <view class="assess-con">{{item.assess_val}}</view>
         <block wx:if="{{item.assessimg}}">
             <view class="assess-img">
-                <image wx:for="{{item.assessimg}}" wx:for-item="itemimg" src="{{itemimg}}" lazy-load bindtap="previewImg" data-urlarr="{{item.assessimg}}" data-currentimg="{{itemimg}}"></image>
+                <image wx:for="{{item.assessimg}}" wx:key='index' wx:for-item="itemimg" src="{{itemimg}}" lazy-load bindtap="previewImg" data-urlarr="{{item.assessimg}}" data-currentimg="{{itemimg}}"></image>
             </view>
         </block>
-
         <block wx:if="{{item.reply}}">
             <!-- 显示回复内容 -->
             <view class="assess-reply">

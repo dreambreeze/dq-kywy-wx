@@ -366,8 +366,12 @@
 .user-image-list image {
     width: 50rpx;
     height: 50rpx;
-    margin: 0 -25rpx 0 0;
+    margin: 0 0 0 -25rpx;
     border-radius: 50%;
+}
+
+.user-image-list image:first-child{
+    margin:0;
 }
 
 .right-box {
