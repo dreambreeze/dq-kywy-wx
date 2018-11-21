@@ -1,44 +1,70 @@
-<import src="../../../common/project.wxml" />
 <import src="../../../common/buy-nav.wxml" />
 <view class="container">
-  <block wx:if="{{storeProject.length > 0}}">
-
-    <block wx:if="{{!search}}">
-      <view class="top-search">
-        <!-- <view class="region">长沙
-      <view></view>
-    </view> -->
-        <view class="searchs">
-          <navigator url="../project-search/project-search" hover-class="none">
-            <view></view>请输入关键词</navigator>
+    <block wx:if="{{storeProject.length > 0}}">
+        <!-- 搜索页面 -->
+        <view class="searchs" wx:if="{{!search}}">
+            <navigator url="../project-search/project-search" hover-class="none">
+                请输入搜索关键词
+            </navigator>
         </view>
-      </view>
+        <!-- 门店列表 -->
+        <view wx:for="{{storeProject}}" wx:key="idx" wx:for-item="store" class='store-box {{store.project.length==1?"single-project":""}}'>
+            <!-- 门店信息 -->
+            <view class='store-info'>
+                <view class='store-name'>{{store.store_name}}</view>
+                <block wx:if="{{store.project.length==1}}">
+                    <view class='contact-tools'>
+                        <view class='address' bindtap="location" data-location='{{store}}'>
+                            <view class='address-icon'></view>
+                            <text>{{store.address}}</text>
+                        </view>
+                        <view class='flex-wrap'>
+                            <text bindtap="location" data-location='{{store}}'>{{store.distance}}km</text>
+                            <view class='nav-icon'></view>
+                            <text>|</text>
+                            <view class='tel-icon' data-phone="{{store.tel}}" bindtap="phoneCall"></view>
+                        </view>
+                    </view>
+                </block>
+                <block wx:else>
+                    <view class='contact-tools'>
+                        <view class='address' bindtap="location" data-location='{{store}}'>
+                            <view class='address-icon'></view>
+                            <text>{{store.address}}</text>
+                            <text>{{store.distance}}km</text>
+                            <view class='nav-icon'></view>
+                        </view>
+                        <text>|</text>
+                        <view class='tel-icon' data-phone='{{store.tel}}' bindtap="phoneCall"></view>
+                    </view>
+                </block>
+            </view>
+            <!-- 项目列表 -->
+            <view class='projcet-list'>
+                <view wx:for="{{store.project}}" wx:key="index" wx:for-item="item" class='project-box' wx:if='{{index<3}}'>
+                    <image class='discount-label' src='../../../../../images/discount-label.png' lazy-load></image>
+                    <navigator url="../project-detail/project-detail?pid={{item.id}}&nodeid={{item.nodeid}}" hover-class="none">
+                        <image class='project-image' src='{{showImgUrl + item.imgurl[0]}}' lazy-load></image>
+                        <view class='project-info'>
+                            <view class='flex-wrap'>
+                                <view class='project-name'>{{item.project_name}}</view>
+                                <view class='project-length'>{{item.project_time}}分钟</view>
+                            </view>
+                            <view class='flex-wrap'>
+                                <view class='discount-price'>￥{{item.discount_price}}</view>
+                                <view class='shop-price'>￥{{item.shop_price}}</view>
+                            </view>
+                        </view>
+                    </navigator>
+                </view>
+            </view>
+            <view class='more-project' wx:if='{{store.project.length<3}}' bindtap="goProjectStore" data-nodeid="{{store.nodeid}}">查看更多该门店团购项目</view>
+        </view>
+        <view class='no-more'>已展示所有全部内容</view>
     </block>
-
-    <block wx:for="{{storeProject}}" wx:for-index="idx" wx:for-item="store">
-      <view class="store-item">
-        <view class="store-title" bindtap="goProjectStore" data-nodeid="{{store.nodeid}}">
-          <text class="store-ico"></text>
-          <text class="store-name">{{store.store_name}}</text>
-          <text class="jump-ico"></text>
-          <text class="distance">{{store.distance == '未知' ? '未知' : store.distance + 'm'}}</text>
-        </view>
-
-        <!-- 项目模版 -->
-        <template is="project" data="{{isHeight: !search ? true : false,projectArr: store.project,sIdx: idx,heightIdx: heightIdx,heightOff: heightOff,height: height,showImgUrl: showImgUrl}}" />
-
-        <view class="look-more" bindtap="goProjectStore" data-nodeid="{{store.nodeid}}" wx:if="{{!search}}">查看全部团购项目
-          <view class="arrowdown"></view>
-        </view>
-      </view>
+    <block wx:else>
+        <view class="empty-assess">{{projectState}}</view>
     </block>
-
-  </block>
-  <block wx:else>
-    <view class="empty-assess">{{projectState}}</view>
-  </block>
-
 </view>
-
 <!-- 导航模版公用 -->
-<template is="buy-nav" data="{{buyNavType: 'home'}}" />
+<!-- <template is="buy-nav" data="{{buyNavType: 'home'}}" /> -->

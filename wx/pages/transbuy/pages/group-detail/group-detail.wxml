@@ -10,7 +10,6 @@
             </block>
         </swiper>
     </view>
-
     <view class="project-info" wx:for="{{storeProject[0].project}}" wx:key="">
         <view class="project-msg">
             <text class='project-name'>{{item.project}}</text>

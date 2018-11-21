@@ -20,7 +20,7 @@
     </view>
     <!--服务入口列表-->
     <view class="function-list">
-        <view class='item'>
+        <view class='item' bindtap='scancode'>
             <image src='../../images/index_features_01@2x.png'></image>
             <view>扫码下单</view>
         </view>
@@ -97,7 +97,7 @@
                         </swiper-item>
                     </swiper>
                 </view>
-                <view class="image-box-2">
+                <view class="image-box-2" bindtap='toReserveProject'>
                     <text class='tag'>项目介绍</text>
                     <image src='../../images/index_recommend_02@2x.png'></image>
                     <text class='summary'>好口碑推荐项目</text>
@@ -110,76 +110,78 @@
             </view>
         </view>
         <!-- 团购优惠 -->
-        <view class="group-discount-title">团购优惠</view>
-        <swiper class="group-discount-list" indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" circular="true" display-multiple-items="3">
-            <swiper-item class="item">
-                <image src='../../images/group_discout_01@2x.png'></image>
-                <text>益健足浴</text>
-                <text>60分钟</text>
-                <text>￥120</text>
-                <text>￥100</text>
-            </swiper-item>
-            <swiper-item class="item">
-                <image src='../../images/group_discout_03@2x.png'></image>
-                <text>养生按摩</text>
-                <text>90分钟</text>
-                <text>￥100</text>
-                <text>￥80</text>
-            </swiper-item>
-            <swiper-item class="item">
-                <image src='../../images/group_discout_02@2x.png'></image>
-                <text>泰式足道</text>
-                <text>70分钟</text>
-                <text>￥120</text>
-                <text>￥100</text>
-            </swiper-item>
-            <swiper-item class="item">
-                <image src='../../images/group_discout_01@2x.png'></image>
-                <text>益健足浴</text>
-                <text>60分钟</text>
-                <text>￥120</text>
-                <text>￥100</text>
-            </swiper-item>
-            <swiper-item class="item">
-                <image src='../../images/group_discout_03@2x.png'></image>
-                <text>养生按摩</text>
-                <text>90分钟</text>
-                <text>￥100</text>
-                <text>￥80</text>
-            </swiper-item>
-            <swiper-item class="item">
-                <image src='../../images/group_discout_02@2x.png'></image>
-                <text>泰式足道</text>
-                <text>70分钟</text>
-                <text>￥120</text>
-                <text>￥100</text>
-            </swiper-item>
-            <swiper-item class="item">
-                <image src='../../images/group_discout_01@2x.png'></image>
-                <text>益健足浴</text>
-                <text>60分钟</text>
-                <text>￥120</text>
-                <text>￥100</text>
-            </swiper-item>
-            <swiper-item class="item">
-                <image src='../../images/group_discout_03@2x.png'></image>
-                <text>养生按摩</text>
-                <text>90分钟</text>
-                <text>￥100</text>
-                <text>￥80</text>
-            </swiper-item>
-            <swiper-item class="item">
-                <image src='../../images/group_discout_02@2x.png'></image>
-                <text>泰式足道</text>
-                <text>70分钟</text>
-                <text>￥120</text>
-                <text>￥100</text>
-            </swiper-item>
-        </swiper>
+        <navigator url='../transbuy/pages/group-buy/group-buy'>
+            <view class="group-discount-title">团购优惠</view>
+            <swiper class="group-discount-list" indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" circular="true" display-multiple-items="3">
+                <swiper-item class="item">
+                    <image src='../../images/group_discout_01@2x.png'></image>
+                    <text>益健足浴</text>
+                    <text>60分钟</text>
+                    <text>￥120</text>
+                    <text>￥100</text>
+                </swiper-item>
+                <swiper-item class="item">
+                    <image src='../../images/group_discout_03@2x.png'></image>
+                    <text>养生按摩</text>
+                    <text>90分钟</text>
+                    <text>￥100</text>
+                    <text>￥80</text>
+                </swiper-item>
+                <swiper-item class="item">
+                    <image src='../../images/group_discout_02@2x.png'></image>
+                    <text>泰式足道</text>
+                    <text>70分钟</text>
+                    <text>￥120</text>
+                    <text>￥100</text>
+                </swiper-item>
+                <swiper-item class="item">
+                    <image src='../../images/group_discout_01@2x.png'></image>
+                    <text>益健足浴</text>
+                    <text>60分钟</text>
+                    <text>￥120</text>
+                    <text>￥100</text>
+                </swiper-item>
+                <swiper-item class="item">
+                    <image src='../../images/group_discout_03@2x.png'></image>
+                    <text>养生按摩</text>
+                    <text>90分钟</text>
+                    <text>￥100</text>
+                    <text>￥80</text>
+                </swiper-item>
+                <swiper-item class="item">
+                    <image src='../../images/group_discout_02@2x.png'></image>
+                    <text>泰式足道</text>
+                    <text>70分钟</text>
+                    <text>￥120</text>
+                    <text>￥100</text>
+                </swiper-item>
+                <swiper-item class="item">
+                    <image src='../../images/group_discout_01@2x.png'></image>
+                    <text>益健足浴</text>
+                    <text>60分钟</text>
+                    <text>￥120</text>
+                    <text>￥100</text>
+                </swiper-item>
+                <swiper-item class="item">
+                    <image src='../../images/group_discout_03@2x.png'></image>
+                    <text>养生按摩</text>
+                    <text>90分钟</text>
+                    <text>￥100</text>
+                    <text>￥80</text>
+                </swiper-item>
+                <swiper-item class="item">
+                    <image src='../../images/group_discout_02@2x.png'></image>
+                    <text>泰式足道</text>
+                    <text>70分钟</text>
+                    <text>￥120</text>
+                    <text>￥100</text>
+                </swiper-item>
+            </swiper>
+        </navigator>
         <!-- 拼团活动 -->
-        <view class="group-activity-title ">拼团活动</view>
-        <view class="group-activity clear ">
-            <navigator class="group-activity" url="../transbuy/pages/group-shopping/group-shopping" hover-class="none">
+        <navigator url="../transbuy/pages/group-shopping/group-shopping">
+            <view class="group-activity-title ">拼团活动</view>
+            <view class="group-activity clear ">
                 <image src='../../images/index_group_activity@2x.png'></image>
                 <view class='center-box'>
                     <text>精品超级拼团</text>
@@ -200,8 +202,8 @@
                         <text>￥119</text>
                     </view>
                 </view>
-            </navigator>
-        </view>
+            </view>
+        </navigator>
     </view>
 </view>
 <!-- 导航公用模版 -->

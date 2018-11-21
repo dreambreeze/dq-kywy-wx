@@ -22,7 +22,8 @@
 }
 
 .change-store {
-    background: url('https://note.youdao.com/yws/api/personal/file/WEBcc3da43f3fedf865e256c07f7c728022?method=download&shareKey=b53c734f13ceacc69ae7c792667b12ea') no-repeat center;
+    border-radius: 25rpx 0 0 25rpx;
+    background-image: linear-gradient(to right bottom ,#469aff, #0073ff);
     width: 148rpx;
     line-height: 50rpx;
     background-size: 148rpx 50rpx;

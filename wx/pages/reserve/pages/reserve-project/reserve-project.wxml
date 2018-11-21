@@ -1,13 +1,7 @@
-<!-- <import src="../../../common/reserve-stime.wxml"/> -->
 <import src="../../../common/online-reserve.wxml" />
 <view class="container">
   <!-- 门店信息模版 -->
   <template is="online-reserve" data="{{tabIdx: 3,locationStore: locationStore}}" />
-
-  <!-- <view class="project-search-box">
-    <view class="project-search" bindtap="toSearchProject">
-      <image src="https://iservice.daqisoft.cn/Public/Home/images/search.png" lazy-load></image>请输入关键字</view>
-  </view> -->
   <block wx:if="{{serCategory}}">
     <view class="category-project-box">
       <view class="category-project">
@@ -15,7 +9,7 @@
           <view data-idx="0" catchtap="changePType" class="cate-item {{ptypeIdx == 0 ? 'active' : ''}}">全部
             <view></view>
           </view>
-          <view wx:for="{{serCategory}}" data-idx="{{item.autoid}}" catchtap="changePType" class="cate-item {{ptypeIdx == item.autoid ? 'active' : ''}}">{{item.servicecategoryname}}
+          <view wx:for="{{serCategory}}" wx:key='index' data-idx="{{item.autoid}}" catchtap="changePType" class="cate-item {{ptypeIdx == item.autoid ? 'active' : ''}}">{{item.servicecategoryname}}
             <view></view>
           </view>
         </view>

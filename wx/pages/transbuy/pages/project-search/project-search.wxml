@@ -14,7 +14,7 @@
         <view class="tips-title">
           <view class="hot-search"></view>热门推荐</view>
         <view class="tips-con clear">
-          <view wx:for="{{searchHot}}">
+          <view wx:for="{{searchHot}}" wx:key='index'>
             <navigator url="../project-detail/project-detail?pid={{item.id}}&nodeid={{item.nodeid}}" hover-class="none">{{item.project_name}}</navigator>
           </view>
         </view>

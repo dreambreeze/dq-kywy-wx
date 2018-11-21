@@ -1,44 +1,48 @@
-<import src="../../../common/project.wxml" />
-<import src="../../../common/store-address.wxml" />
-<import src="../../../common/assess.wxml" />
+<!-- 团购项目列表页面 -->
 <view class="container">
-  <view class="banner">
-    <swiper indicator-dots="true" autoplay="true" interval="3000" duration="400" indicator-color="rgba(255, 255, 255, .5)" indicator-active-color="#caa876">
-      <block wx:for="{{banner}}">
-        <swiper-item>
-          <image src="{{item}}" class="item-image" mode="aspectFill" />
-        </swiper-item>
-      </block>
-    </swiper>
-  </view>
-
-  <!-- 门店地址模版 -->
-  <template is="store-address" data="{{storename: storeProject[0].store_name,storeaddress: storeProject[0].address_detail, tel: storeProject[0].tel}}" />
-
-  <view class="s-project">
-    <!-- 项目模版 -->
-    <template is="project" data="{{isHeight: false,projectArr: storeProject,showImgUrl: showImgUrl}}" />
-  </view>
-
-
-  <view class="assess">
-    <block wx:if="{{assesData}}">
-      <view class="assess-title clear">
-        <text>用户评论</text>
-        <view bindtap="lookAllAssess">查看全部
-          <image src="https://iservice.daqisoft.cn/Public/Home/images/arrowright1.png"></image>
+    <!-- 门店信息 -->
+    <view class='store-box'>
+        <view class='store-name'>{{storeProject[0].store_name}}</view>
+        <view class="change-store" bindtap="changeStoreBtn">切换门店 </view>
+    </view>
+    <!-- 联系方式 -->
+    <view class='contact-tools'>
+        <view class='address' bindtap="location" data-location='{{storeProject[0]}}'>
+            <view class='address-icon'></view>
+            <text>{{storeProject[0].address_detail}}</text>
+            <text>{{storeProject[0].distance}}km</text>
+            <view class='nav-icon'></view>
         </view>
-      </view>
-
-      <!-- 评论模版 -->
-      <template is="assess" data="{{assess: assesData}}" />
-
-      <view class="look-all" bindtap="lookAllAssess">查看全部</view>
-    </block>
-    <block wx:else>
-      <view class="empty-assess">无评价内容</view>
-    </block>
-  </view>
-
-
+        <text>|</text>
+        <view class='tel-icon' data-phone="{{storeProject[0].tel}}" bindtap="phoneCall"></view>
+    </view>
+    <!-- 项目列表 -->
+    <view class='project-list'>
+        <view wx:for="{{storeProject}}" wx:key="index" wx:for-item="item" class='project-box'>
+            <navigator url="../project-detail/project-detail?pid={{item.id}}&nodeid={{item.nodeid}}" hover-class="none">
+                <image class='project-image' src='{{showImgUrl + item.imgurl[0]}}' lazy-load></image>
+                <view class='project-info'>
+                    <view class='project-name'>{{item.project_name}}({{item.project_time}}分钟)</view>
+                    <view class='flex-wrap'>
+                        <view class='discount-price'>￥{{item.discount_price}}</view>
+                        <view class='shop-price'>门市价：￥{{item.shop_price}}</view>
+                    </view>
+                    <view class='project-tips'>{{item.tips}}</view>
+                </view>
+            </navigator>
+        </view>
+    </view>
+    <view class='no-more'>已展示所有全部内容</view>
+    <!-- 评论信息 -->
+    <view class="assess" wx:if="{{assesData}}">
+        <view class="assess-title clear">
+            <text>用户评论</text>
+            <view bindtap="lookAllAssess">查看全部
+                <image src="https://iservice.daqisoft.cn/Public/Home/images/arrowright1.png"></image>
+            </view>
+        </view>
+        <!-- 评论模版 -->
+        <template is="assess" data="{{assess: assesData}}" />
+        <view class="look-all" bindtap="lookAllAssess">查看全部</view>
+    </view>
 </view>
