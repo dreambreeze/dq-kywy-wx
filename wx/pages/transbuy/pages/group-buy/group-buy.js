@@ -55,7 +55,7 @@ Page({
                     for (let i = 0; i < storeProjectArr.length; i++) {
                         common.geocoder(storeProjectArr[i].address).then(function(data) {
                             common.calculateDistance([data]).then(function(data) {
-                                storeProjectArr[i]['distance'] = data/1000;
+                                storeProjectArr[i]['distance'] = (data/1000).toFixed(2);
                                 k.push(1);
                             }).catch(function(data) {
                                 storeProjectArr[i]['distance'] = '未知';

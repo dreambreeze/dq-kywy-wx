@@ -1,56 +1,54 @@
-<import src="../../../common/online-reserve.wxml" />
 <view class="container">
-  <!-- 门店信息模版 -->
-  <template is="online-reserve" data="{{tabIdx: 3,locationStore: locationStore}}" />
-  <block wx:if="{{serCategory}}">
-    <view class="category-project-box">
-      <view class="category-project">
-        <view class="category-project-flex room-people-touch" bindtouchstart="roomPStart" bindtouchmove="roomPMove" bindtouchend="roomPEnd" style="left:{{roomPLeft}}">
-          <view data-idx="0" catchtap="changePType" class="cate-item {{ptypeIdx == 0 ? 'active' : ''}}">全部
-            <view></view>
-          </view>
-          <view wx:for="{{serCategory}}" wx:key='index' data-idx="{{item.autoid}}" catchtap="changePType" class="cate-item {{ptypeIdx == item.autoid ? 'active' : ''}}">{{item.servicecategoryname}}
-            <view></view>
-          </view>
+    <!-- 门店信息 -->
+    <view class='top-box'>
+        <image src="{{locationStore[0].store_img}}" lazy-load mode="aspectFill"></image>
+        <view class='store-name'>{{locationStore[0].store_name}}</view>
+        <!-- 联系方式 -->
+        <view class='contact-tools'>
+            <view class='address-icon' bindtap="location"></view>
+            <view bindtap="location">{{locationStore[0].address}}</view>
         </view>
-      </view>
-    </view>
-  </block>
-
-  <view class="project-box">
-    <view class="project-item" catchtap="navigatordetail" wx:for="{{proData}}" data-idx="{{item.autoid}}" data-index="{{index}}">
-      <view class="flex-wrp">
-        <image class="project-img" src="{{!item.picurlarr ? projectImg : showImgUrl + item.picurlarr}}" lazy-load mode="aspectFill"></image>
-        <view class="pject-info">
-          <view class="pject-name text-ellipsis">{{item.serviceitemname}}
-             <text>（{{item.servicetime}}分钟）</text> 
-          </view>
-          <view class="pject-intr text-ellipsis">{{!item.mminfo ? '' : item.mminfo}}</view>
-          <view class="pject-price">￥{{item.itembaseprice>0?item.itembaseprice:"0.00"}}</view>
+        <view class='contact-tools'>
+            <text bindtap="location">{{locationStore[0].distance}}</text>
+            <view class='nav-icon' bindtap="location"></view>
+            <text>|</text>
+            <view class='tel-icon' data-phone="{{locationStore[0].tel}}" bindtap="phoneCall"></view>
         </view>
-        <!-- <view class="pject-reserve">
-          <icon type="success" size="20" color="green" style="{{hideIdx == item.autoid ? iconHide : ''}}" />
-          <view class="pject-reserve-btn btn-gradient" catchtap="reserveBtn" data-idx="{{item.autoid}}" style="{{hideIdx == item.autoid ? reserveBtnHide : ''}}">预约</view>
-        </view> -->
-      </view>
+        <view class="change-store" bindtap="changeStoreBtn">切换门店 </view>
     </view>
-
-  </view>
-  <!-- 上拉加载提示 -->
-  <view class="load-more">{{loadMtext}}</view>
+    <!-- 门店信息模版 -->
+    <block wx:if="{{serCategory}}">
+        <view class="category-project-box">
+            <scroll-view class="category-project" scroll-x>
+                <view data-idx="0" catchtap="changePType" class="cate-item {{ptypeIdx == 0 ? 'active' : ''}}">全部
+                </view>
+                <view wx:for="{{serCategory}}" wx:key='index' data-idx="{{item.autoid}}" catchtap="changePType" class="cate-item {{ptypeIdx == item.autoid ? 'active' : ''}}">{{item.servicecategoryname}}
+                </view>
+            </scroll-view>
+        </view>
+    </block>
+    <!-- 项目信息 -->
+    <view class='project-list'>
+        <view class='project-item' class="project-item" catchtap="navigatordetail" wx:for="{{proData}}" data-idx="{{item.autoid}}" data-index="{{index}}" wx:key='index'>
+            <view class='project-type'>经典足疗</view>
+            <image class="project-img" src="{{!item.picurlarr ? projectImg : showImgUrl + item.picurlarr}}" lazy-load mode="aspectFill"></image>
+            <view class='project-info'>
+                <view class='project-name text-ellipsis'>{{item.serviceitemname}}</view>
+                <view class='project-length'>时间：{{item.servicetime}}分钟</view>
+                <view class='project-mminfo'>{{!item.mminfo ? '暂无详细介绍' : item.mminfo}}</view>
+                <view class='project-price'>￥{{item.itembaseprice>0?item.itembaseprice:"0.00"}}</view>
+                <button class='detail-btn'>详情</button>
+            </view>
+        </view>
+    </view>
+    <!-- 上拉加载提示 -->
+    <view class="load-more">{{loadMtext}}</view>
 </view>
-
-<!-- 预约按钮 -->
-<!-- <view class="buy-bar" bindtap="confirmBtn">立即下单</view> -->
-
-<!-- 选择时间模版 -->
-<!-- <template is="reserve-stime" data="{{maskDisplay: maskDisplay,showSelectTime: showSelectTime}}" /> -->
-
 <!-- 返回首页按钮 -->
 <view class="backhome-btn">
-  <view>
-    <navigator url="/pages/index/index" hover-class="none" open-type="reLaunch">
-      <text>返回首页</text>
-    </navigator>
-  </view>
+    <view>
+        <navigator url="/pages/index/index" hover-class="none" open-type="reLaunch">
+            <text>返回首页</text>
+        </navigator>
+    </view>
 </view>

@@ -1,12 +1,10 @@
-@import "../../../common/store-address.wxss";
 @import "../../../common/assess.wxss";
-
 .container {
     background-color: #eee;
     padding-bottom: 100rpx;
 }
 
-.banner swiper {
+.banner{
     height: 340rpx;
 }
 

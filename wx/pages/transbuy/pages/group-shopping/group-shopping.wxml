@@ -1,13 +1,14 @@
 <view class="container">
     <block wx:if="{{storeProject.length > 0}}">
         <!-- 商店列表 -->
-        <swiper  class='store-list' indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" display-multiple-items="4">
-            <swiper-item wx:for="{{storeProject}}"  wx:for-item="store" wx:key='index'
+        <scroll-view  scroll-x class='store-list' indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" display-multiple-items="4">
+            <view wx:for="{{storeProject}}"  wx:for-item="store" wx:key='index'
             class='store-name {{selected==index?"current":""}}' 
             data-store='{{store}}' 
             data-index='{{index}}'  
-            bindtap='changeStore'>{{store.store_name}}</swiper-item>
-        </swiper>
+            bindtap='changeStore'>{{store.store_name}}</view>
+        </scroll-view>
+        <!-- 位置信息 -->
         <view class='contact-tools'>
             <view class='address' bindtap="location" data-location='{{currentStore}}'>
                 <view class='address-icon' ></view>
@@ -18,6 +19,7 @@
             <text>|</text>
             <view class='tel-icon' data-phone="{{currentStore.tel}}" bindtap="phoneCall"></view>
         </view>
+        <!-- 项目列表 -->
         <view class="group-activity clear" wx:for="{{currentStore.project}}" data-pid="{{item.id}}" data-nodeid="{{currentStore.nodeid}}" wx:key="" bindtap='todetail'>
             <image src='{{item.picurl[0]}}?{{item.picurl[0]}}:"../../images/index_group_activity@2x.png"'></image>
             <view class='info-box'>

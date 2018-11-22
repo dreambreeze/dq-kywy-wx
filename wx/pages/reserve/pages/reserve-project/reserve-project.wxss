@@ -1,169 +1,199 @@
 /* @import "../../../common/reserve-stime.wxss"; */
 @import "../../../common/online-reserve.wxss";
-.container {
-  background: #e5e5e5;
+/* 门店信息 */
+
+.top-box {
+    padding: 30rpx 0 30rpx 30rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB6d7c50b65c79b7e2b471f20a03e593ed?method=download&shareKey=7c1a73dc748c4cbebe32772433e45290') repeat-x;
+    background-size: auto 410rpx;
+    overflow: hidden;
 }
 
-/* .project-search-box {
-  background: #fff;
-  padding-top: 26rpx;
+.top-box image {
+    width: 205rpx;
+    height: 150rpx;
+    float: left;
+    display: block;
+    margin: 0 15rpx 0 0;
+    border-radius: 10rpx;
 }
 
-.project-search {
-  text-align: center;
-  width: 430rpx;
-  height: 50rpx;
-  line-height: 50rpx;
-  border-bottom: 1rpx solid #b2b2b2;
-  margin: 0 auto;
-  font-size: 24rpx;
-  color: #999;
+.change-store {
+    position: absolute;
+    right: 0;
+    top: 30rpx;
+    border-radius: 25rpx 0 0 25rpx;
+    background-image: linear-gradient(to right bottom, #469aff, #0073ff);
+    width: 148rpx;
+    line-height: 50rpx;
+    background-size: 148rpx 50rpx;
+    color: #fff;
+    font-size: 28rpx;
+    padding: 0 0 0 20rpx;
+    text-align: center;
 }
 
-.project-search image {
-  width: 22rpx;
-  height: 23rpx;
-  vertical-align: middle;
-  margin-top: -4rpx;
-  margin-right: 12rpx;
-} */
+.store-name {
+    font-size: 32rpx;
+    color: #333;
+    margin: 0 0 5rpx 0;
+}
+
+.contact-tools {
+    font-size: 22rpx;
+    margin: 0 30rpx;
+    color: #656565;
+    line-height: 50rpx;
+    display: flex;
+}
+
+.address-icon {
+    display: inline-block;
+    width: 32rpx;
+    height: 50rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB330ac01fc77c8bb32e84cb60c35ead81?method=download&shareKey=b31d7812be7686a3519fb7fdaeadc73f') no-repeat left center;
+    background-size: 22rpx;
+}
+
+.location {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nav-icon {
+    display: inline-block;
+    width: 42rpx;
+    height: 50rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB6afc3b4cf94f96b65bd55ba80fa769fe?method=download&shareKey=84ac7821f01df125479b4b2748f6fe93') no-repeat center;
+    background-size: 22rpx;
+}
+
+.tel-icon {
+    display: inline-block;
+    width: 40rpx;
+    height: 50rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEBa516da57a01247147f37437f62dee584?method=download&shareKey=cb8e52113991cd5c2cfdd5e2529efeec') no-repeat center;
+    background-size: 22rpx;
+}
+
+/* 切换项目类型 */
 
 .category-project-box {
-  background: #fff;
+    background: #fff;
+    width: 100%;
+    line-height: 100rpx;
 }
 
 .category-project {
-  overflow: hidden;
-  margin: 0 46rpx;
-}
-
-.category-project-flex {
-  padding: 24rpx 0 17rpx;
-  width: 1000rpx;
-  position: relative;
+    overflow: hidden;
+    margin: 0 30rpx;
+    width: auto;
+    white-space: nowrap;
 }
 
 .cate-item {
-  padding: 0 24rpx 14rpx;
-  font-size: 28rpx;
-  font-weight: 500;
-  color: #535353;
-  position: relative;
-  display: inline-block;
-}
-
-.cate-item view {
-  width: 0;
-  height: 0;
+    padding: 0 40rpx 0 0;
+    font-size: 30rpx;
+    font-weight: 500;
+    color: #333;
+    display: inline-block;
 }
 
 .cate-item.active {
-  color: #be9e70;
+    color: #3b81d6;
 }
 
-.cate-item.active view {
-  width: 36rpx;
-  height: 8rpx;
-  background: #be9e70;
-  border-radius: 15rpx;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  margin-left: -18rpx;
-}
+/* 项目列表 */
 
-.project-box {
-  background: #fff;
-  padding: 0 22rpx 22rpx;
-  min-height: 600rpx;
+.project-list {
+    padding: 0 30rpx 30rpx;
 }
 
 .project-item {
-  padding: 23rpx 0 25rpx;
-  border-bottom: 1rpx solid #e5e5e5;
+    background: #fff;
+    border-radius: 10rpx;
+    box-shadow: 0 4rpx 8rpx 4rpx rgba(0, 0, 0, 0.2);
+    margin: 30rpx auto;
+    display: flex;
 }
 
-.project-item:last-child {
-  border: none;
+.project-item:first-child{
+    margin: 0 auto;
+}
+
+.project-type{
+    position:absolute;
+    width:113rpx;
+    line-height: 40rpx;
+    color:#fff;
+    font-size:22rpx;
+    background-image: linear-gradient(to right bottom ,#3888eb, #0069eb );
+    border-radius: 10rpx 0  10rpx 0;
+    text-align: center;
 }
 
 .project-img {
-  width: 131rpx;
-  height: 130rpx;
-  margin-right: 29rpx;
-  border-radius: 6rpx;
+    width: 240rpx;
+    height: 240rpx;
+    border-radius: 10rpx 0 0 10rpx;
 }
 
-.pject-info {
-  width: 410rpx;
-  line-height: 1;
+.project-info {
+    flex: 1;
+    padding: 12rpx 0 0 25rpx;
+    position: relative;
 }
 
-.pject-name {
-  font-size: 30rpx;
-  color: #333;
-  padding: 8rpx 0 12rpx;
+.project-name {
+    width:300rpx;
+    font-size: 28rpx;
+    color: #333;
+    line-height: 50rpx;
 }
 
-.pject-name text {
-
-  font-size: 24rpx;
-  color: #be9e70;
-  padding: 0 8rpx; 
+.project-length {
+    color: #3b81d6;
+    font-size: 22rpx;
+    line-height: 38rpx;
 }
 
-.pject-intr {
-  font-size: 24rpx;
-  color: #848484;
-  padding-bottom: 30rpx;
+.project-mminfo {
+    line-height: 38rpx;
+    height: 76rpx;
+    font-size: 22rpx;
+    color: #666;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
 
-.pject-price {
-  font-size: 28rpx;
-  color: #e40a0a;
+.project-price{
+    margin:20rpx 0 0 0;
+    font-size:30rpx;
+    line-height: 40rpx;
+    color: #ea3838;
 }
 
-.pject-reserve {
-  flex: 1;
-  text-align: center;
+.detail-btn{
+    font-size:22rpx;
+    padding:0 22rpx;
+    color:#fff;
+    background: #ff8400;
+    position: absolute;
+    right:20rpx;
+    top:20rpx;
+    line-height: 40rpx;
+    border-radius: 20rpx;
 }
 
-.pject-reserve icon{
-  margin-top: 40rpx;
-  display: none;
-}
+/* 加载更多 */
 
-.pject-reserve-btn {
-  margin-left: 12rpx;
-  width: 118rpx;
-  height: 50rpx;
-  line-height: 50rpx;
-  font-size: 28rpx;
-  color: #fff;
-  text-align: center;
-  box-shadow: 0 4rpx 12rpx rgba(199, 156, 98, 0.5);
-  border-radius: 6rpx;
-  margin-top: 40rpx;
-}
-
-.buy-bar {
-  width: 100%;
-  height: 97rpx;
-  line-height: 97rpx;
-  background: #be9e70;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  text-align: center;
-  font-size: 34rpx;
-  color: #fff;
-  font-weight: 500;
-}
-
-.load-more{
-  padding: 20rpx 0 130rpx;
-  font-size: 24rpx;
-  color: #848484;
-  text-align: center;
-  background-color: #fff;
+.load-more {
+    padding: 20rpx 0 130rpx;
+    font-size: 24rpx;
+    color: #848484;
+    text-align: center;
 }

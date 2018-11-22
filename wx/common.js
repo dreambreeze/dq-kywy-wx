@@ -1580,3 +1580,4 @@ module.exports.getgroupAssess = getgroupAssess;
 module.exports.haveCoupons = haveCoupons;
 module.exports.sendCoupon = sendCoupon;
 module.exports.isVip = isVip;
+module.exports.location = location;

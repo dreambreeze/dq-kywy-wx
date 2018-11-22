@@ -18,6 +18,7 @@
     float: left;
     display: block;
     margin:0 15rpx 0 0;
+    border-radius: 10rpx;
 }
 
 .change-store{
@@ -38,7 +39,7 @@
 .store-name{
     font-size: 32rpx;
     color:#333;
-    margin: 0 0 20rpx 0;
+    margin: 0 0 5rpx 0;
 }
 
 .contact-tools {

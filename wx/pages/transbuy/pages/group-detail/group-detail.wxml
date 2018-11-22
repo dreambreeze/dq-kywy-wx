@@ -1,15 +1,12 @@
-<import src="../../../common/store-address.wxml" />
 <import src="../../../common/assess.wxml" />
 <view class="container">
-    <view class="banner">
-        <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="3000" duration="400" indicator-color="rgba(255, 255, 255, .5)" indicator-active-color="#caa876">
-            <block wx:for="{{banner}}" wx:key='index'>
-                <swiper-item>
-                    <image src="{{item}}" class="item-image" mode="aspectFill" />
-                </swiper-item>
-            </block>
-        </swiper>
-    </view>
+    <swiper class="banner" indicator-dots="{{indicatorDots}}" autoplay="true" interval="3000" duration="400" indicator-color="rgba(255, 255, 255, .5)" indicator-active-color="#caa876">
+        <block wx:for="{{banner}}" wx:key='index'>
+            <swiper-item>
+                <image src="{{item}}" class="item-image" mode="aspectFill" />
+            </swiper-item>
+        </block>
+    </swiper>
     <view class="project-info" wx:for="{{storeProject[0].project}}" wx:key="">
         <view class="project-msg">
             <text class='project-name'>{{item.project}}</text>

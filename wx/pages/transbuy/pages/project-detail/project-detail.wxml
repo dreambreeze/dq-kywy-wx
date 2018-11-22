@@ -1,17 +1,17 @@
 <import src="../../../common/assess.wxml" />
 <view class="container">
     <!-- 项目swiper图片 -->
-    <view class="banner">
-        <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="3000" duration="400" indicator-active-color="#caa876">
-            <swiper-item wx:for="{{banner}}" wx:key='index'>
-                <image src="{{item}}" class="item-image" mode="aspectFill" />
-            </swiper-item>
-        </swiper>
-    </view>
+    <swiper class="banner" indicator-dots="{{indicatorDots}}" autoplay="true" interval="3000" duration="400" indicator-active-color="#caa876">
+        <swiper-item wx:for="{{banner}}" wx:key='index'>
+            <image src="{{item}}" class="item-image" mode="aspectFill" />
+        </swiper-item>
+    </swiper>
     <!-- 项目信息 -->
     <view class="project-info">
-        <view class="project-name">
-            <text>{{storeProject[0].project_name}}</text>（{{storeProject[0].project_time}}分钟）</view>
+        <view class="project-msg">
+            <text class='project-name'>{{storeProject[0].project_name}}（{{storeProject[0].project_time}}分钟）</text>
+            <text class='label'>优惠团购限时抢购</text>
+        </view>
         <view class="project-price">
             <block wx:if="{{storeProject[0].discount_price > 0}}">
                 <text><text>¥</text>{{storeProject[0].discount_price}}</text>
@@ -22,7 +22,19 @@
             </block>
             <text>已售{{storeProject[0].sales + storeProject[0].true_sales}}笔</text>
         </view>
+        <!-- 联系方式 -->
+        <view class='contact-tools'>
+            <view class='address' bindtap="location" data-location='{{storeProject[0]}}'>
+                <view class='address-icon'></view>
+                <text>{{storeProject[0].address_detail}}</text>
+                <text>{{storeProject[0].distance}}km</text>
+                <view class='nav-icon'></view>
+            </view>
+            <text>|</text>
+            <view class='tel-icon' data-phone="{{storeProject[0].tel}}" bindtap="phoneCall"></view>
+        </view>
     </view>
+    <!-- 项目介绍 -->
     <view class="project-dil">
         <view class="dil-title">项目介绍</view>
         <view class="dil-content">
@@ -49,14 +61,20 @@
     <view class="buy-bar">
         <view class="flex-wrp">
             <view class="buy-car" bindtap='tocart'>
-                <image src="https://iservice.daqisoft.cn/Public/Home/images/carteach1.png"></image>
-                <view class="buy-car-t">至购物车结算</view>
+                <image src="../../../../../images/jisuan_icon.png"></image>
+                <text class="buy-car-t">去结算</text>
                 <block wx:if="{{cartNum}}">
-                    <view class="num-tips">{{cartNum}}</view>
+                    <text class="num-tips">{{cartNum}}</text>
                 </block>
             </view>
-            <view class="push-car btn-gradient" bindtap="pushCar">加入购物车</view>
-            <view class="buys" bindtap="buys">立即购买</view>
+            <view class="push-car" bindtap="pushCar">
+            <image class='shop-car' src="../../../../../images/shop-car.png"></image>
+            加入购物车
+            </view>
+            <view class="buys" bindtap="buys">
+            <image class='now-buy' src="../../../../../images/now-buy.png"></image>
+            立即购买
+            </view>
         </view>
     </view>
 </view>

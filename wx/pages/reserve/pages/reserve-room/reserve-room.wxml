@@ -1,6 +1,4 @@
 <view class="container">
-  <!-- 门店信息模版 -->
-  <!-- <template is="online-reserve" data="{{tabIdx: 2,locationStore: locationStore}}" /> -->
  <!-- 门店信息 -->
  <view class='top-box'>
      <image  src="{{locationStore[0].store_img}}" lazy-load mode="aspectFill"></image>

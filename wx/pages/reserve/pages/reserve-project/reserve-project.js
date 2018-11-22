@@ -120,7 +120,6 @@ Page({
                   lalo = [];
                   lalo.push(loca)
                   common.calculateDistance(lalo).then(function (distance) {
-                    console.log(distance)
                     locationStore.push({
                       'store_name': stores[i].store_name,
                       'address': address == '' ? '未设置地址' : address,
@@ -131,7 +130,6 @@ Page({
                     });
                     resolve(locationStore);
                   }).catch(function (res) {
-                    console.log(res)
                     locationStore.push({
                       'store_name': stores[i].store_name,
                       'address': address == '' ? '未设置地址' : address,
@@ -197,22 +195,15 @@ Page({
       //获取所有项目信息
       common.getProjectInfo(app.globalData.authorizerId, locationStore[0].nodeid, currPage, totalPage, 0, ptypeIdx).then(function (data) {
         wx.hideLoading();
-       
         proData = data;
-       
-
-      
-        
         //重新开启上拉加载
         if (data.length < totalPage) {
-          console.log(totalPage)
           loadState = false;
           _this.setData({
             proData: data,
             loadMtext: '无更多项目'
           });
         } else {
-          console.log(data.length)
           loadState = true;
            _this.setData({
             proData: data,
@@ -313,12 +304,6 @@ Page({
   },
 
   /**
-   * 项目分类动画开始
-   */
-  categorystart: function (e) {
-    console.log(e);
-  },
-  /**
    * 点击跳转项目搜索页
    */
   toSearchProject: function () {
@@ -335,28 +320,6 @@ Page({
       maskDisplay: 'block'
     });
   },
-
-  /**
-   * 点击预约选中预约项
-   */
-  reserveBtn: function (ev) {
-    var idx = ev.currentTarget.dataset.idx;
-    wx.setStorageSync('projectStorage', idx);
-    this.setData({
-      iconHide: 'display:block',
-      reserveBtnHide: 'display:none',
-      hideIdx: idx
-    });
-  },
-  /**
-   * 点击关闭选择时间
-   */
-  closeStime: function () {
-    this.setData({
-      maskDisplay: 'none',
-      showSelectTime: 'showOut'
-    });
-  },
   /**
    * 点击跳转至选择门店
    */
@@ -365,22 +328,6 @@ Page({
       url: '../select-store/select-store?type=3',
     });
   },
-  /**
-   * 跳转确认下单页
-   */
-  confirmBtn: function () {
-    var _this = this;
-    wx.navigateTo({
-      url: '../room-order-confirm/room-order-confirm',
-      success: function () {
-        _this.setData({
-          maskDisplay: 'none',
-          showSelectTime: 'showOut'
-        });
-      }
-    });
-  },
-
   /**
    * 预约table选项卡导航跳转
    */
@@ -467,47 +414,6 @@ Page({
       });
     }
   },
-
-  /**
-   * 拖拽开始
-   */
-  roomPStart: function (ev) {
-    downX = ev.touches[0].pageX;
-    var query = wx.createSelectorQuery();
-    query.select('.room-people-touch').boundingClientRect(function (rect) {
-      oUlLeft = rect.left;
-    }).exec();
-  },
-  /**
-   * 拖拽
-   */
-  roomPMove: function (ev) {
-    var touchs = ev.touches[0];
-    leftval = touchs.pageX - downX + oUlLeft;
-    if (leftval >= 0) {
-      leftval = 0;
-    } else if (leftval <= roomPeopleNumW - roomPeopleTouchW) {
-      leftval = roomPeopleNumW - roomPeopleTouchW;
-    }
-    this.setData({
-      roomPLeft: leftval + 'px'
-    });
-  },
-  /**
-   * 结束
-   */
-  roomPEnd: function (ev) {
-    if (leftval >= 0) {
-      this.setData({
-        roomPLeft: '0px'
-      });
-    } else if (leftval <= roomPeopleNumW - roomPeopleTouchW) {
-      this.setData({
-        roomPLeft: roomPeopleNumW - roomPeopleTouchW + 'px'
-      });
-    }
-  },
-
   /**
    * 点击切换项目分类
    */
@@ -794,20 +700,17 @@ onReachBottom: function () {
       });
 
         common.getProjectInfo(app.globalData.authorizerId,nodeid, currPage, totalPage, 0, ptypeIdx).then(function (data) {
-          console.log(data)
           wx.hideLoading();
           if (data) {
             for (let i = 0; i < data.length; i++) {
               proData.push(data[i]);
             }
-            console.log(proData)
             loadState = true;
             _this.setData({
               proData: proData,
               loadMtext: '上拉加载更多'
             });
           } else {
-            console.log(proData)
             loadState = false;
             _this.setData({
               proData: proData,

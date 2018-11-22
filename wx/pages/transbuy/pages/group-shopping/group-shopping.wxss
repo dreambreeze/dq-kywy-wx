@@ -1,44 +1,50 @@
 @import "../../../common/project.wxss";
-page{
+
+page {
     background: #fff;
 }
+
 .container {
-  padding-bottom: 98rpx;
-}
-/* 商店列表 */
-.store-list{
-    width:100%;
-    padding: 30rpx;
-    font-size:34rpx;
-    overflow: hidden;
-    height: 50rpx;
+    padding-bottom: 98rpx;
 }
 
-.store-name{
+/* 商店列表 */
+
+.store-list {
+    width: auto;
+    padding: 30rpx;
+    font-size: 34rpx;
+    overflow: hidden;
+    height: 110rpx;
+    white-space: nowrap;
+}
+
+.store-name {
     display: inline-block;
     padding: 0 60rpx 0 0;
-    color:#999;
-    width:auto!important;
+    color: #999;
+    width: auto !important;
 }
 
-.store-name.current{
-    color:#3b81d6;
+.store-name.current {
+    color: #3b81d6;
 }
 
 /* 联系方式 */
+
 .contact-tools {
     display: flex;
-    margin:0 30rpx 30rpx;
+    margin: 0 30rpx 30rpx;
     color: #656565;
     line-height: 80rpx;
     border: 1rpx #ddd solid;
     border-radius: 10rpx;
-    padding:0 15rpx;
+    padding: 0 15rpx;
     font-size: 22rpx;
 }
 
-.address{
-    flex:1;
+.address {
+    flex: 1;
     display: flex;
 }
 
@@ -52,7 +58,7 @@ page{
 
 .address text:nth-of-type(1) {
     flex: 1;
-    padding:0 10rpx 0 0;
+    padding: 0 10rpx 0 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -75,19 +81,22 @@ page{
 }
 
 /* 我的订单按钮 */
-.myorder{
-  position: fixed;
-  top: 210rpx;
-  right: 0;
-  width: 180rpx;
-  height: 68rpx;
-  color: #fff;
-  font-size: 26rpx;
-  border-top-left-radius: 40rpx;
-  border-bottom-left-radius: 40rpx;
-  background-image: linear-gradient(to right bottom ,#469aff, #0073ff);
+
+.myorder {
+    position: fixed;
+    top: 210rpx;
+    right: 0;
+    width: 180rpx;
+    height: 68rpx;
+    color: #fff;
+    font-size: 26rpx;
+    border-top-left-radius: 40rpx;
+    border-bottom-left-radius: 40rpx;
+    background-image: linear-gradient(to right bottom, #469aff, #0073ff);
 }
+
 /* 拼团活动 */
+
 .group-activity {
     margin: 30rpx auto;
     width: 690rpx;
@@ -116,19 +125,19 @@ page{
     line-height: 60rpx;
 }
 
-.tips{
-    width:300rpx;
+.tips {
+    width: 300rpx;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size:24rpx;
-    color:#999;
+    font-size: 24rpx;
+    color: #999;
 }
 
 .user-image-list {
     position: relative;
     display: flex;
-    padding:10rpx 0 0 0;
+    padding: 10rpx 0 0 0;
 }
 
 .user-image-list image {
@@ -138,19 +147,19 @@ page{
     border-radius: 50%;
 }
 
-.user-image-list image:first-child{
-    margin:0;
+.user-image-list image:first-child {
+    margin: 0;
 }
 
-.goods-num{
-    font-size:18rpx;
-    padding:10rpx;
-    color:#999;
+.goods-num {
+    font-size: 18rpx;
+    padding: 10rpx;
+    color: #999;
 }
 
-.price{
+.price {
     position: relative;
-    padding:10rpx 0;
+    padding: 10rpx 0;
 }
 
 .price button {
@@ -166,7 +175,7 @@ page{
     padding: 0;
     position: absolute;
     right: 5rpx;
-    top:20rpx;
+    top: 20rpx;
 }
 
 .people-num {
@@ -181,7 +190,7 @@ page{
     text-align: center;
     position: absolute;
     right: 5rpx;
-    top:25rpx;
+    top: 25rpx;
 }
 
 .price text:nth-of-type(1) {
@@ -201,8 +210,8 @@ page{
     text-decoration: line-through;
 }
 
-.user-range{
+.user-range {
     font-size: 22rpx;
-    color:#999;
+    color: #999;
     line-height: 40rpx;
 }
