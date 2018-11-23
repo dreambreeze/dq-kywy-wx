@@ -1,119 +1,68 @@
 <view class="container">
- <!-- 门店信息 -->
- <view class='top-box'>
-     <image  src="{{locationStore[0].store_img}}" lazy-load mode="aspectFill"></image>
-     <view class='store-name'>{{locationStore[0].store_name}}</view>
-     <!-- 联系方式 -->
-    <view class='contact-tools'>
-        <view class='address-icon' bindtap="location"></view>
-        <view bindtap="location">{{locationStore[0].address}}</view>
-    </view>
-    <view class='contact-tools'>
-        <text>{{locationStore[0].distance}}</text>
-        <view class='nav-icon' bindtap="location"></view>
-        <text>|</text>
-        <view class='tel-icon' data-phone="{{locationStore[0].tel}}" bindtap="phoneCall"></view>
-    </view>
-     <view class="change-store" bindtap="changeStoreBtn">切换门店 </view>
- </view>
-  <!-- 房间列表 -->
-  <view class="room-people">
-    <view class="flex-wrp">
-      <view class="room-num room-people-num">
-        <view class="room-box clear room-people-touch" bindtouchstart="roomPStart" bindtouchmove="roomPMove" bindtouchend="roomPEnd" style="left:{{roomPLeft}};{{roomBoxWN}}">
-          <view class="room-num-item {{roomNumIdx == -1 ? 'active' : ''}}" bindtap="changeRoomNum" data-idx="-1">全部
-            <text></text>
-          </view>
-
-          <view class="room-num-item {{roomNumIdx == item.bednum ? 'active' : ''}}" wx:for="{{roomNumRow}}" bindtap="changeRoomNum" wx:key="" data-idx="{{item.bednum}}">{{item.bednum}}人间
-            <text></text>
-          </view>
+    <!-- 门店信息 -->
+    <view class='top-box'>
+        <image src="{{locationStore[0].store_img}}" lazy-load mode="aspectFill"></image>
+        <view class='store-name'>{{locationStore[0].store_name}}</view>
+        <!-- 联系方式 -->
+        <view class='contact-tools'>
+            <view class='address-icon' bindtap="location"></view>
+            <view bindtap="location">{{locationStore[0].address}}</view>
         </view>
-      </view>
-      <!-- <view class="room-num-more {{pMactive}}" bindtap="roomPMore"></view> -->
-    </view>
-
-    <!-- <view class="room-people-more" style="display:{{pmoff ? 'none' : 'block' }}">
-      <scroll-view scroll-y style="height: 300rpx">
-        <view class="room-people-more-con clear">
-          <view class="flex-wrp" wx:for="{{roomNum}}">
-            <view class="rtype-item {{index == roomNumIdx ? 'active' : ''}}" wx:for="{{item}}" bindtap="changeRoomNum" data-idx="{{index}}">{{item}}</view>
-          </view>
+        <view class='contact-tools'>
+            <text>{{locationStore[0].distance}}</text>
+            <view class='nav-icon' bindtap="location"></view>
+            <text>|</text>
+            <view class='tel-icon' data-phone="{{locationStore[0].tel}}" bindtap="phoneCall"></view>
         </view>
-      </scroll-view>
-    </view> -->
-  </view>
-
-  <view class="room-type">
-    <view class="flex-wrp">
-      <view class="room-num room-type-num">
-        <view class="room-box clear room-type-touch" bindtouchstart="roomTStart" bindtouchmove="roomTMove" bindtouchend="roomTEnd" style="left:{{roomTLeft}};{{roomBoxWT}}">
-          <view class="room-type-item {{roomTypeIdx == 0 ? 'active' : ''}}" data-idx="0" bindtap="changeRType">全部
-            <text></text>
-          </view>
-
-          <block wx:for="{{roomTypeRow}}"  wx:key="" >
-            <view data-idx="{{item.autoid}}" class="room-type-item {{roomTypeIdx == item.autoid ? 'active' : ''}}" bindtap="changeRType">{{item.roomscategoryname}}
-              <text></text>
+        <view class="change-store" bindtap="changeStoreBtn">切换门店 </view>
+    </view>
+    <!-- 房间人数类型切换 -->
+    <view class='type-box'>
+        <view class='type-list'>
+            <view class="type-item {{roomNumIdx == -1 ? 'active' : ''}}" bindtap="changeRoomNum" data-idx="-1">全部</view>
+            <view class="type-item {{roomNumIdx == item.bednum ? 'active' : ''}}" wx:for="{{roomNumRow}}" bindtap="changeRoomNum" wx:key="index" data-idx="{{item.bednum}}">{{item.bednum}}人间</view>
+        </view>
+        <view class='more-type' data-moretype='{{roomNumRow}}' bindtap='showMoreNumType'>更多</view>
+    </view>
+    <!-- 房间项目类型切换 -->
+    <view class='type-box'>
+        <view class='type-list'>
+            <view class="type-item {{roomTypeIdx == 0 ? 'active' : ''}}" data-idx="0" bindtap="changeRType">全部</view>
+            <view data-idx="{{item.autoid}}" class="type-item {{roomTypeIdx == item.autoid ? 'active' : ''}}" wx:for="{{roomTypeRow}}" wx:key="index" bindtap="changeRType">{{item.roomscategoryname}}</view>
+        </view>
+        <view class='more-type' data-moretype='{{roomTypeRow}}' bindtap='showMoreProjectType'>更多</view>
+    </view>
+    <!-- 房间列表 -->
+    <view class="room-content clear">
+        <view class="room-item" wx:for="{{roomData}}" wx:key="">
+            <view class="room-img">
+                <view class='room-label'></view>
+                <image src="{{item.picurlarr ? showImgUrl + item.picurlarr[0] : roomDefaultImg}}" lazy-load mode="aspectFill" bindtap="toRoomDil" data-idx="{{item.autoid}}"></image>
+                <view class="room-info">
+                    <view class='room-type-info'>【{{item.roomscategoryname}}】{{item.bednum}}人间 </view>
+                    <view class="reserve-room-box" bindtap="reserveBtn" data-id='{{index}}' data-rname="{{item.roomscategoryname}}" data-bednum="{{item.bednum}}" data-nodeid="{{item.nodeid}}">
+                        <view class="reserve-room-btn">预约</view>
+                    </view>
+                </view>
             </view>
-          </block>
-
         </view>
-      </view>
-      <!-- <view class="room-num-more {{tMactive}}" bindtap="roomTMore"></view> -->
+        <!-- 上拉加载提示 -->
+        <!-- <view class="load-more">{{loadMtext}}</view> -->
     </view>
-
-    <!-- <view class="room-type-more" style="display:{{tmoff ? 'none' : 'block' }}">
-      <scroll-view scroll-y style="height: 300rpx">
-        <view class="room-people-more-con">
-          <view class="flex-wrp" wx:for="{{roomType}}">
-            <view class="rtype-item" wx:for="{{item}}">{{item}}</view>
-          </view>
-        </view>
-      </scroll-view>
-    </view> -->
-  </view>
-
-  <!-- 房间 -->
-  <view class="room-content clear">
-
-    <view class="room-item" wx:for="{{roomData}}"  wx:key="" >
-      <view class="room-img" bindtap="toRoomDil" data-idx="{{item.autoid}}">
-        <image src="{{item.picurlarr ? showImgUrl + item.picurlarr[0] : roomDefaultImg}}" lazy-load mode="aspectFill"></image>
-        <view class="room-info">
-          <text>【{{item.roomscategoryname}}】{{item.bednum}}人间</text>
-        </view>
-      </view>
-      <view class="reserve-room-p" bindtap="reserveBtn" data-id='{{index}}' data-rname="{{item.roomscategoryname}}" data-bednum="{{item.bednum}}" data-nodeid="{{item.nodeid}}"  >
-        <icon type="success" size="20" color="rgb(202,168,118)" style="{{item.selected ? iconHide : ''}}" />
-        <view class="reserve-room-btn btn-gradient" style="{{item.selected ? reserveBtnHide : ''}}">预约</view>
-      </view>
-    </view>
-
-    <!-- 上拉加载提示 -->
-    <!-- <view class="load-more">{{loadMtext}}</view> -->
-
-  </view>
-
 </view>
 <!-- 预约按钮 -->
-<view class="buy-bar" bindtap="confirmBtn">立即预约</view>
-
+<!-- <view class="buy-bar" bindtap="confirmBtn">立即预约</view> -->
 <!-- 分享按钮 -->
 <view class="share-box" hidden>
-  <button hover-class="none" open-type="share">
-    <text>分享</text>
-  </button>
+    <button hover-class="none" open-type="share">
+        <text>分享</text>
+    </button>
 </view>
-
-<!-- 选择时间模版 -->
-<template is="reserve-stime" data="{{maskDisplay: maskDisplay,showSelectTime: showSelectTime}}" />
-
 <!-- 返回首页按钮 -->
 <view class="backhome-btn">
-  <view>
-    <navigator url="/pages/index/index" hover-class="none" open-type="reLaunch">
-      <text>返回首页</text>
-    </navigator>
-  </view>
+    <view>
+        <navigator url="/pages/index/index" hover-class="none" open-type="reLaunch">
+            <text>返回首页</text>
+        </navigator>
+    </view>
 </view>

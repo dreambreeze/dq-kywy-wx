@@ -11,7 +11,7 @@
     background-size:auto 410rpx;
     overflow: hidden;
 }
-
+/* 房间信息 */
 .top-box image{
     width:205rpx;
     height: 150rpx;
@@ -41,7 +41,7 @@
     color:#333;
     margin: 0 0 5rpx 0;
 }
-
+/* 联系方式 */
 .contact-tools {
     font-size: 22rpx;
     margin:0 30rpx;
@@ -81,137 +81,12 @@
     background-size: 22rpx;
 }
 
-/* 选择房间类型 */
-
-.room-people {
-  height: 92rpx;
-  line-height: 92rpx;
-  background: #353535;
-  box-sizing: border-box;
-  position: relative;
+/* 房间类型 */
+.type-box{
+    line-height: 40rpx;
 }
 
-.room-num {
-  flex: 1;
-  overflow: hidden;
-}
-
-.room-num-more {
-  width: 95rpx;
-  background: #434343 url(https://iservice.daqisoft.cn/Public/Home/images/arrowdown3.png) no-repeat center center;
-  box-shadow: -1rpx 1rpx 6rpx rgba(67, 67, 67, 0.2);
-  background-size: 34%;
-}
-
-.room-num-more.active{
-  background: #434343 url(https://iservice.daqisoft.cn/Public/Home/images/arrowup3.png) no-repeat center center;
-  background-size: 34%;
-}
-
-.room-box {
-  width: 1120rpx;
-  position: relative;
-  left: 0;
-}
-
-.room-box view {
-  float: left;
-  font-size: 26rpx;
-  color: #fff;
-  padding: 0 32rpx;
-  position: relative;
-}
-
-.room-box view.active, .room-type .room-box view.active ,.rtype-item.active{
-  color: #be9e70;
-}
-
-.room-box text {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  width: 40rpx;
-  height: 8rpx;
-  border-radius: 10rpx;
-  margin-left: -20rpx;
-}
-
-.room-box view.active text {
-  background: #be9e70;
-}
-
-.room-type {
-  height: 70rpx;
-  line-height: 70rpx;
-  background: #f0f0f0;
-  position: relative;
-}
-
-.room-type .room-box view {
-  color: #666;
-}
-
-.room-type .room-box text {
-  width: 12rpx;
-  height: 12rpx;
-  border-radius: 50%;
-  margin-left: -6rpx;
-}
-
-.room-type .room-num-more {
-  box-shadow: -1rpx 1rpx 6rpx rgba(240, 240, 240, 0.2);
-  background: #f0f0f0 url(https://iservice.daqisoft.cn/Public/Home/images/arrowdown2.png) no-repeat center center;
-  background-size: 34%;
-}
-
-.room-type .room-num-more.active{
-  background: #f0f0f0 url(https://iservice.daqisoft.cn/Public/Home/images/arrowup2.png) no-repeat center center;
-  background-size: 34%;
-}
-
-.room-people-more, .room-type-more {
-  height: 300rpx;
-  width: 100%;
-  position: absolute;
-  bottom: -300rpx;
-  left: 0;
-  background: #353535;
-  z-index: 999;
-  box-shadow: 0 2rpx 6rpx rgba(67, 67, 67, 0.4);
-}
-
-.room-type-more {
-  background: #f0f0f0;
-}
-
-.room-people-more-con {
-  padding-top: 30rpx;
-}
-
-.rtype-item {
-  width: 26%;
-   margin: 0 0 36rpx 38rpx; 
-  line-height: 1;
-  padding: 12rpx 0; 
-  font-size: 26rpx;
-  border: 1rpx solid #B2B2B2;
-  color: #fff;
-  border-radius: 30rpx;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.rtype-item.active{
-  border-color: #be9e70;
-}
-
-.room-type-more .room-people-more-con view {
-  /* border: 1rpx solid #353535;  */
-  color: #353535;
-}
-
+/* 房间列表 */
 .room-content {
   padding-top: 34rpx;
   background: #fff;
@@ -220,7 +95,15 @@
 
 .room-item {
   float: left;
-  margin: 0 26rpx 48rpx;
+  margin: 0 26rpx 68rpx;
+}
+
+.room-label{
+    position: absolute;
+    width:77rpx;
+    height:77rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB7167980f4ad25116419fd6135582e826?method=download&shareKey=c3ec7a5f06171f640c5e01b72ad69fb5') no-repeat top left;
+  background-size: 77rpx;
 }
 
 .room-img {
@@ -238,55 +121,37 @@
 
 .room-info{
   position: absolute;
-  bottom: 0;
+  bottom: -40rpx;
   left: 0;
   width: 100%;
-  background: rgba(200, 165, 114, 0.8);
+  background: #fff;
   font-size: 24rpx;
   font-weight: 500;
   color: #333;
   border-radius: 0 0 8rpx 8rpx;
-}
-
-.room-info text{
-  display: block;
   padding: 12rpx 8rpx;
+  display: flex;
+  box-shadow: 0 2rpx 4rpx 3rpx rgba(0,0,0,0.2);
 }
 
-.reserve-room-p{
-  text-align: center;
-  padding-top: 20rpx;
-  min-height: 60rpx;
-}
-
-.reserve-room-p icon{
-  display: none;
+.room-type-info{
+    flex:1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size:24rpx;
 }
 
 .reserve-room-btn{
   display: inline-block;
-  width: 150rpx;
-  height: 50rpx;
-  line-height: 50rpx;
-  border-radius: 10rpx;
+  padding: 0 22rpx;
+  line-height: 40rpx;
+  border-radius: 20rpx;
   text-align: center;
-  font-size: 28rpx;
+  font-size: 26rpx;
   color: #fff;
-  box-shadow: 0 4rpx 12rpx rgba(199, 156, 98, 0.5);
-}
-
-.buy-bar {
-  width: 100%;
-  height: 97rpx;
-  line-height: 97rpx;
-  background: #be9e70;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  text-align: center;
-  font-size: 34rpx;
-  color: #fff;
-  font-weight: 500;
+  background-image: linear-gradient(to right bottom,#ffa03b,#ff7814);
+  margin: 0 0 0 5rpx;
 }
 
 .load-more{
