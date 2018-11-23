@@ -27,7 +27,13 @@
 2. 新建 Feat_xxx 分支
 3. 提交代码
 4. 新建 Pull Request
-
+git 命令
+git init 
+git remote add  <name>  <url>
+git remote -v
+git pull <name> /  <branch>
+git commit -m '注释'
+git push <name> /  <branch>
 
 #### 码云特技
 
