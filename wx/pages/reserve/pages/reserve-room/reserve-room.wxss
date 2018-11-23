@@ -1,50 +1,54 @@
 @import "../../../common/reserve-stime.wxss";
 @import "../../../common/online-reserve.wxss";
 
-.container {
-  background: #e5e5e5;
+page {
+    background: #fff;
 }
 
-.top-box{
-    padding:30rpx 0 30rpx 30rpx;
+.top-box {
+    padding: 30rpx 0 30rpx 30rpx;
     background: url('https://note.youdao.com/yws/api/personal/file/WEB6d7c50b65c79b7e2b471f20a03e593ed?method=download&shareKey=7c1a73dc748c4cbebe32772433e45290') repeat-x;
-    background-size:auto 410rpx;
+    background-size: auto 410rpx;
     overflow: hidden;
 }
+
 /* 房间信息 */
-.top-box image{
-    width:205rpx;
+
+.top-box image {
+    width: 205rpx;
     height: 150rpx;
     float: left;
     display: block;
-    margin:0 15rpx 0 0;
+    margin: 0 15rpx 0 0;
     border-radius: 10rpx;
 }
 
-.change-store{
+.change-store {
     position: absolute;
-    right:0;
-    top:30rpx;
+    right: 0;
+    top: 30rpx;
     border-radius: 25rpx 0 0 25rpx;
-    background-image: linear-gradient(to right bottom ,#469aff, #0073ff);
-    width:148rpx;
+    background-image: linear-gradient(to right bottom, #469aff, #0073ff);
+    width: 148rpx;
     line-height: 50rpx;
     background-size: 148rpx 50rpx;
-    color:#fff;
-    font-size:28rpx;
-    padding:0 0 0 20rpx;
+    color: #fff;
+    font-size: 28rpx;
+    padding: 0 0 0 20rpx;
     text-align: center;
 }
 
-.store-name{
+.store-name {
     font-size: 32rpx;
-    color:#333;
+    color: #333;
     margin: 0 0 5rpx 0;
 }
+
 /* 联系方式 */
+
 .contact-tools {
     font-size: 22rpx;
-    margin:0 30rpx;
+    margin: 0 30rpx;
     color: #656565;
     line-height: 50rpx;
     display: flex;
@@ -54,12 +58,12 @@
     display: inline-block;
     width: 32rpx;
     height: 50rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB330ac01fc77c8bb32e84cb60c35ead81?method=download&shareKey=b31d7812be7686a3519fb7fdaeadc73f') no-repeat left center ;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB330ac01fc77c8bb32e84cb60c35ead81?method=download&shareKey=b31d7812be7686a3519fb7fdaeadc73f') no-repeat left center;
     background-size: 22rpx;
 }
 
 .location {
-    flex:1;
+    flex: 1;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -82,82 +86,134 @@
 }
 
 /* 房间类型 */
-.type-box{
+
+.type-box {
+    position: relative;
     line-height: 40rpx;
+    padding: 0 0 0 30rpx;
+    font-size: 22rpx;
+    color: #999;
+    display: flex;
+    overflow: hidden;
+    height: 80rpx;
+    max-height: 80rpx;
+    transition:1s ease;
+}
+
+.type-box:first-child {
+    background: #fff;
+}
+
+.type-list {
+    flex: 1;
+}
+
+.type-item {
+    display: inline-block;
+    margin: 0 80rpx 0 0;
+    padding: 20rpx 0;
+    position: relative;
+    white-space: nowrap;
+}
+
+.room-project-type {
+    background: #eee;
+}
+
+.more-type-btn {
+    display: inline-block;
+    line-height: 80rpx;
+    padding: 0 30rpx 0 10rpx;
+}
+
+.type-box .active {
+    color: #3b81d6;
+}
+
+.type-box .active:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 16rpx;
+    height: 4rpx;
+    border-radius: 2rpx;
+    background: #3b81d6;
 }
 
 /* 房间列表 */
+
 .room-content {
-  padding-top: 34rpx;
-  background: #fff;
-  padding-bottom: 150rpx;
+    padding-top: 34rpx;
+    background: #fff;
+    padding-bottom: 150rpx;
 }
 
 .room-item {
-  float: left;
-  margin: 0 26rpx 68rpx;
+    float: left;
+    margin: 0 26rpx 68rpx;
 }
 
-.room-label{
+.room-label {
     position: absolute;
-    width:77rpx;
-    height:77rpx;
+    width: 77rpx;
+    height: 77rpx;
     background: url('https://note.youdao.com/yws/api/personal/file/WEB7167980f4ad25116419fd6135582e826?method=download&shareKey=c3ec7a5f06171f640c5e01b72ad69fb5') no-repeat top left;
-  background-size: 77rpx;
+    background-size: 77rpx;
 }
 
 .room-img {
-  width: 322rpx;
-  height: 238rpx;
-  position: relative;
-  border-radius: 8rpx;
+    width: 322rpx;
+    height: 238rpx;
+    position: relative;
+    border-radius: 8rpx;
 }
 
 .room-img image {
-  width: 322rpx;
-  height: 238rpx;
-  border-radius: 8rpx;
+    width: 322rpx;
+    height: 238rpx;
+    border-radius: 8rpx;
 }
 
-.room-info{
-  position: absolute;
-  bottom: -40rpx;
-  left: 0;
-  width: 100%;
-  background: #fff;
-  font-size: 24rpx;
-  font-weight: 500;
-  color: #333;
-  border-radius: 0 0 8rpx 8rpx;
-  padding: 12rpx 8rpx;
-  display: flex;
-  box-shadow: 0 2rpx 4rpx 3rpx rgba(0,0,0,0.2);
+.room-info {
+    position: absolute;
+    bottom: -40rpx;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    font-size: 24rpx;
+    font-weight: 500;
+    color: #333;
+    border-radius: 0 0 8rpx 8rpx;
+    padding: 12rpx 8rpx;
+    display: flex;
+    box-shadow: 0 2rpx 4rpx 3rpx rgba(0, 0, 0, 0.2);
 }
 
-.room-type-info{
-    flex:1;
+.room-type-info {
+    flex: 1;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size:24rpx;
+    font-size: 24rpx;
 }
 
-.reserve-room-btn{
-  display: inline-block;
-  padding: 0 22rpx;
-  line-height: 40rpx;
-  border-radius: 20rpx;
-  text-align: center;
-  font-size: 26rpx;
-  color: #fff;
-  background-image: linear-gradient(to right bottom,#ffa03b,#ff7814);
-  margin: 0 0 0 5rpx;
+.reserve-room-btn {
+    display: inline-block;
+    padding: 0 22rpx;
+    line-height: 40rpx;
+    border-radius: 20rpx;
+    text-align: center;
+    font-size: 26rpx;
+    color: #fff;
+    background-image: linear-gradient(to right bottom, #ffa03b, #ff7814);
+    margin: 0 0 0 5rpx;
 }
 
-.load-more{
-  padding: 20rpx 0 130rpx;
-  font-size: 24rpx;
-  color: #848484;
-  text-align: center;
-  background-color: #fff;
+.load-more {
+    padding: 20rpx 0 130rpx;
+    font-size: 24rpx;
+    color: #848484;
+    text-align: center;
+    background-color: #fff;
 }

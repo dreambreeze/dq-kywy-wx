@@ -39,13 +39,10 @@ var loadState = true;
 var roomTypeRow;
 //房间人数数据
 var roomNumRow;
-
 //当前选中房间人数数据
 var roomNumIdx = -1;
-
 //当前选中房间类型数据
 var roomTypeIdx = 0;
-
 Page({
 
     /**
@@ -71,7 +68,12 @@ Page({
         roomTypeIdx: roomTypeIdx,
         //点击切换选择房间人数
         roomNumIdx: roomNumIdx,
-
+        //人数房间类型高度
+        numTypeBoxHeight: '80rpx',
+        numTypeBoxMaxHeight: '80rpx',
+        //项目房间类型高度
+        projectTypeBoxHeight: '80rpx',
+        projectTypeBoxMaxHeight: '80rpx',
     },
 
     /**
@@ -305,7 +307,26 @@ Page({
         });
     },
 
-
+    /** 
+     * 切换查看更多类型
+     */
+    changeBoxHeight(e) {
+        var height = e.currentTarget.dataset.height == '80rpx' ? 'auto' : '80rpx';
+        var maxHeight = e.currentTarget.dataset.height == '80rpx' ? '400rpx' : '80rpx';
+        var boxType = e.currentTarget.dataset.box;
+        if (boxType == 'num') {
+            this.setData({
+                numTypeBoxHeight: height,
+                numTypeBoxMaxHeight: maxHeight,
+            });
+        }
+        if (boxType == 'project') {
+            this.setData({
+                projectTypeBoxHeight: height,
+                projectTypeBoxMaxHeight: maxHeight,
+            });
+        }
+    },
     /**
      * 点击切换门店
      */
@@ -316,32 +337,7 @@ Page({
             url: '../select-store/select-store?type=2',
         })
     },
-    /**
-     * 点击显示房间人数更多
-     */
-    roomPMore: function() {
-        pmoff = !pmoff;
-        tmoff = true;
-        this.setData({
-            pmoff: pmoff,
-            tmoff: tmoff,
-            pMactive: pmoff ? '' : 'active',
-            tMactive: ''
-        });
-    },
-    /**
-     * 点击显示房间类型更多
-     */
-    roomTMore: function() {
-        tmoff = !tmoff;
-        pmoff = true;
-        this.setData({
-            pmoff: pmoff,
-            tmoff: tmoff,
-            tMactive: tmoff ? '' : 'active',
-            pMactive: ''
-        });
-    },
+
     /**
      * 点击立即预约显示选择时间
      */
@@ -353,7 +349,7 @@ Page({
     },
 
     /**
-     * 点击预约选中预约项
+     * 预约房间
      */
     reserveBtn: function(ev) {
         var idx = ev.currentTarget.dataset.id
@@ -405,110 +401,12 @@ Page({
         }
     },
     /**
-     * 点击关闭选择时间
-     */
-    closeStime: function() {
-        this.setData({
-            maskDisplay: 'none',
-            showSelectTime: 'showOut'
-        });
-    },
-    /**
      * 点击跳转房间详情
      */
-    toRoomDil: function(ev) {
+    toRoomDetail: function(ev) {
         var id = ev.currentTarget.dataset.idx;
         wx.navigateTo({
             url: '../room-detail/room-detail?id=' + id,
-        });
-    },
-
-    /**
-     * 房间人数类型拖拽开始
-     */
-    roomPStart: function(ev) {
-        downX = ev.touches[0].pageX;
-        var query = wx.createSelectorQuery();
-        query.select('.room-people-touch').boundingClientRect(function(rect) {
-            oUlLeft = rect.left;
-        }).exec();
-    },
-    /**
-     * 房间人数类型拖拽
-     */
-    roomPMove: function(ev) {
-        var touchs = ev.touches[0];
-        leftval = touchs.pageX - downX + oUlLeft;
-        if (leftval >= 0) {
-            leftval = 0;
-        } else if (leftval <= roomPeopleNumW - roomPeopleTouchW) {
-            leftval = roomPeopleNumW - roomPeopleTouchW;
-        }
-        this.setData({
-            roomPLeft: leftval + 'px'
-        });
-    },
-    /**
-     * 房间人数类型结束
-     */
-    roomPEnd: function(ev) {
-        if (leftval >= 0) {
-            this.setData({
-                roomPLeft: '0px'
-            });
-        } else if (leftval <= roomPeopleNumW - roomPeopleTouchW) {
-            this.setData({
-                roomPLeft: roomPeopleNumW - roomPeopleTouchW + 'px'
-            });
-        }
-    },
-
-    /**
-     * 房间类型拖拽开始
-     */
-    roomTStart: function(ev) {
-        downXT = ev.touches[0].pageX;
-        var query = wx.createSelectorQuery();
-        query.select('.room-type-touch').boundingClientRect(function(rect) {
-            oUlLeftT = rect.left;
-        }).exec();
-    },
-    /**
-     * 房间类型拖拽
-     */
-    roomTMove: function(ev) {
-        var touchs = ev.touches[0];
-        leftvalT = touchs.pageX - downXT + oUlLeftT;
-        if (leftvalT >= 0) {
-            leftvalT = 0;
-        } else if (leftvalT <= roomTypeNumW - roomTypeTouchW) {
-            leftvalT = roomTypeNumW - roomTypeTouchW;
-        }
-        this.setData({
-            roomTLeft: leftvalT + 'px'
-        });
-    },
-    /**
-     * 房间类型结束
-     */
-    roomTEnd: function(ev) {
-        if (leftvalT >= 0) {
-            this.setData({
-                roomTLeft: '0px'
-            });
-        } else if (leftvalT <= roomTypeNumW - roomTypeTouchW) {
-            this.setData({
-                roomTLeft: roomTypeNumW - roomTypeTouchW + 'px'
-            });
-        }
-    },
-
-    /**
-     * 预约table选项卡导航跳转
-     */
-    onlineReserevTabJump: function(ev) {
-        wx.redirectTo({
-            url: ev.currentTarget.dataset.url,
         });
     },
 
@@ -884,12 +782,4 @@ Page({
             wx.removeStorageSync("roomStorage")
         }
     },
-
-    //打电话
-    phoneCall: function(e) {
-        var phone = e.currentTarget.dataset.phone
-        wx.makePhoneCall({
-            phoneNumber: phone,
-        })
-    }
 })
