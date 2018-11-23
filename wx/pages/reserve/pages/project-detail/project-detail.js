@@ -70,6 +70,7 @@ Page({
     var that =this
 
     var proData = that.data.proData
+    console.log(proData)
     for (let i in proData){
       if(i==index){
         proData[i].choose =true 

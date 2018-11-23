@@ -16,23 +16,22 @@
   </view>
 
   <view class='techinfo'>
-    <view class='t-no'>{{selected}}号
     <!--/{{data[selected].staffbirthday?"年龄保密":"年龄保密"}}  -->
-      <text>{{data[selected].staffsex==0?"女":"男"}}</text>
-    </view>
-    <view class='t-qualification' hidden>
+      <view class='t-no'>{{selected}}号<text>{{data[selected].staffsex==0?"女":"男"}}</text></view>
+      <view><text class='t-describable'>{{data[selected].describable}}</text></view>
+    <!-- <view class='t-qualification' hidden>
       <image src='https://iservice.daqisoft.cn/Public/Home/images/techimgs/auth.png'></image>
       <text>高级按摩师</text>
     </view>
-    <view class='t-describable'>{{data[selected].describable}}</view>
+    <view class='t-describable'>{{data[selected].describable}}</view> -->
   </view>
 
-  <view class='td-line'></view>
+  <!-- <view class='td-line'></view> -->
 
   <view class='techdetail'>
     <view class='td-intro'>
       <view class='td-head'>
-        <view></view>
+        <!-- <view></view> -->
         简介
       </view>
       <view class='td-desc'>{{data[selected].mminfo?data[selected].mminfo:"暂无"}} </view>

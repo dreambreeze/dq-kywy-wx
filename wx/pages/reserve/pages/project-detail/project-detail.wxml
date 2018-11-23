@@ -21,9 +21,13 @@
 
   <view class="project-info">
     <view class="project-name">
-      <text>{{proData[index].serviceitemname}}</text>（{{proData[index].servicetime}}分钟）</view>
-    <view class="project-price">
-      <text><text>¥</text>{{proData[index].pturn}}</text>
+      <text>{{proData[index].serviceitemname}}</text>
+      <text class='pro_price'>¥{{proData[index].pturn}}</text>
+      
+    </view>
+    <view class="project-time">
+      <text>中式推拉</text>
+      <text class='pro_time'>{{proData[index].servicetime}}分钟</text>
       <!-- <text>门市价 ¥ 399.00</text>  -->
       <!-- <text>已售170笔</text> -->
     </view>
