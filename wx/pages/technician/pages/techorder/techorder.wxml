@@ -1,153 +1,79 @@
-<view class="project-info">
-  <view class="flex-wrp">
-    <image class="p-img" src="{{currentReserveStore[0].store_img ? currentReserveStore[0].store_img : bannerImg}}" lazy-load></image>
-    <view class="p-info">
-      <!-- <view class="p-name">棋牌房</view> -->
-      <view class="p-store">
-        <image src="https://iservice.daqisoft.cn/Public/Home/images/order_store_icon.png" lazy-load></image>{{currentReserveStore[0].store_name}}</view>
-       <!-- <view class="p-time">
-        <image src="https://iservice.daqisoft.cn/Public/Home/images/order_time_icon.png" lazy-load></image>
-        <text space="nbsp" decode>预约今天01-25 17:00</text>
-      </view>  -->
-      <view class="p-time">
-
-        <text space="nbsp" decode>{{currentReserveStore[0].address}}</text>
-      </view>
+<!-- 门店信息 -->
+<view class='top-box'>
+    <image src="{{currentReserveStore[0].store_img ? currentReserveStore[0].store_img : bannerImg}}" lazy-load mode="aspectFill"></image>
+    <view class='store-name'>{{currentReserveStore[0].store_name}}</view>
+    <!-- 联系方式 -->
+    <view class='contact-tools'>
+        <view class='address-icon' bindtap='location'  data-location='currentReserveStore[0]'></view>
+        <view class='ellipsis' bindtap='location' data-location='currentReserveStore[0]'>{{currentReserveStore[0].address}}</view>
     </view>
-  </view>
+    <view class='contact-tools'>
+        <text>{{currentReserveStore[0].distance}}</text>
+        <view class='nav-icon' bindtap="location"  data-location='currentReserveStore[0]'></view>
+        <text>|</text>
+        <view class='tel-icon' data-phone="{{currentReserveStore[0].tel}}" bindtap="phoneCall"></view>
+    </view>
+    <view class="change-store" bindtap="changeStoreBtn">切换门店 </view>
 </view>
-
- <view class='yyinfo yynp'>
-    <view class='yytitle'>预约信息</view>
-    <view class='yytitle'>
-      <view class='yyleft'>
-        姓名：
-      </view>
-      <view class='yyright'>
-        <input type="text" value="{{names}}" bindinput="namesVal" />
-      </view>
+<!-- 用户信息 -->
+<view class='info-box user-info'>
+    <view class='title'>预约信息</view>
+    <view class='form-item'>
+        <label>姓名：</label>
+        <input type="text" value="{{names}}" placeholder='请输入姓名' bindinput="namesVal" />
     </view>
-    <view class='yytitle'>
-      <view class='yyleft'>
-        电话：
-      </view>
-      <view class='yyright'>
-        <input type="number" value="{{phone}}" bindinput="phoneVal" maxlength='11'/>
-        <view class="getPhoneNumber">
-            <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">自动输入             </button>
-      </view>
-      </view>
+    <view class='form-item'>
+        <label>电话：</label>
+        <input type="number" value="{{phone}}" placeholder='请输入联系电话' bindinput="phoneVal" maxlength='11' />
+        <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">自动输入 </button>
     </view>
-  </view>
-
-  <view class='yyinfo' bindtap='goyy' data-type="1">
-    <view class='yytitle yytech'>
-      <view class='ltitle' >预约理疗师</view>
-      <view class='rtitle'>
-        <block wx:if="{{!tech}}">
-          <view class='rword' >
-          去预约理疗师
-          <image src='https://iservice.daqisoft.cn/Public/Home/images/amimgs/toright.png'></image>
-          </view>
-        </block>
-         <block wx:else>
-          <view class='technos flex'>{{tech}}
-          <image src='https://iservice.daqisoft.cn/Public/Home/images/amimgs/toright.png'></image></view>
-        </block>
-      </view>
-      
+</view>
+<!-- 预约信息 -->
+<view class='info-box reserve-info'>
+    <!-- 预约理疗师 -->
+    <view class='form-item' bindtap='goyy' data-type="1">
+        <label>预约理疗师</label>
+        <view>{{tech}}</view>
+        <button>添加技师</button>
     </view>
-    <!-- <view class='item ' wx:for="{{techdata}}" wx:key="" >
-      <view class='h-img'>
-        <block wx:if="{{item.picurl}}">
-          <image src='{{showImgUrl}}{{item.picurl[0]}}'></image>
-        </block>
-        <block wx:else>
-          <image src='https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png'></image>
-        </block>
-      </view>
-      <view class='h-content'>
-        <view class='c-head'>{{item.staffworkno}}号</view>
-      </view>
-    </view> -->
-  </view>
-
-  <!--预约房间  -->
-  
-  <view class='yyinfo'  bindtap='goyy' data-type="2"  >
-    <view class='yytitle yytech'>
-      <view class='ltitle'>预约房间</view>
-      <view class='rtitle'>
+    <!-- 预约房间  -->
+    <view class='form-item' bindtap='goyy' data-type="2">
+        <label>预约房间</label>
         <block wx:if="{{!roomData}}">
-          <view class='rword' >
-          去预约房间
-          <image src='https://iservice.daqisoft.cn/Public/Home/images/amimgs/toright.png'></image>
-          </view>
-        </block>
-         <block wx:else>
-          <view class='technos flex' wx:for="{{roomData}}" wx:key=""  wx:if="{{item.selected}}">[{{item.roomscategoryname}}] {{item.bednum?item.bednum+"人间":""}}
-          <image src='https://iservice.daqisoft.cn/Public/Home/images/amimgs/toright.png'></image>
-          </view>
-        </block>
-      </view>
-      
-    </view>
-  </view>
-   <!-- <view class='yyinfo'>
-    <view class='yytitle'>预约房间</view>
-    <view class='item ' wx:for="{{roomData}}" wx:key=""  wx:if="{{item.selected}}">
-      <view class='h-img roomimg'>
-        <block wx:if="{{item.picurl}}">
-          <image src='{{showImgUrl}}{{item.picurlarr[0]}}'></image>
+            <view class='gray-font'>尚未预约</view>
+            <button>预约房间</button>
         </block>
         <block wx:else>
-          <image src='{{bannerImg}}'></image>
+            <view wx:for="{{roomData}}" wx:key="" wx:if="{{item.selected}}">[{{item.roomscategoryname}}] {{item.bednum?item.bednum+"人间":""}}
+            </view>
+            <button>更换房间</button>
         </block>
-      </view>
-      <view class='h-content'>
-        <view class='c-head'>[{{item.roomscategoryname}}] {{item.bednum?item.bednum+"人间":""}}</view>
-      </view>
-    </view>bindtap='goToShowTime'
-  </view> -->
-
-<view class="selecter-iner" bindtap='goToShowTime'> 到店时间：
-  <view class="select-tips {{SelectedTime?'select-active':'' }}">{{SelectedTime?dateArray[SelectedTime].name+"":"请选择到店时间"}}
-  <image src='https://iservice.daqisoft.cn/Public/Home/images/amimgs/toright.png' class='toright'></image>
-  </view>
-</view>
-
-<view class="input-box" hidden='{{showTime}}'>
-  <textarea maxlength="50" placeholder="备注：可将您其它要求告知我们" cursor-spacing="50" bindinput="remarks"></textarea>
-  <view class="input-limit">{{inputLimit}}</view>
-</view>
-
-<view class="order-bar" bindtap="toSuccess">确定下单</view>
-
-
- <!--点击预约 选择时间  -->
-   <view class='tp-time' hidden='{{!showTime}}'> 
-  <!-- <view class='tp-time' > -->
-    <view class='mask' bindtap='hideTPTime'></view>
-    <view class='timeinfo'>
-      <view class='ti-head'>
-        <view class='ti-hline'></view>
-        <view class=''>选择到店时间</view>
-        <view class='ti-hline'></view>
-        <image src='https://iservice.daqisoft.cn/Public/Home/images/techimgs/cancel.png' bindtap='hideTPTime'></image>
-      </view>
-
-      <view class='selecttime'>
-        <block wx:for="{{dateArray}}" wx:key="" >
-          <view class="slt-item {{index==SelectedTime?'active':''}}" bindtap='toSelectTime' data-SelectedTime='{{index}}'>
-           {{item.name}}
-          </view>
-        </block>
-      </view>
-
-
-      <view class='timesubmit' bindtap='hideTPTime'>
-        <view>确定</view>
-      </view>
-
     </view>
-  </view>
+    <view class="form-item" bindtap='goToShowTime'>
+        <label>到店时间</label>
+        <view class="select-tips {{SelectedTime?'select-active':'' }}">{{SelectedTime?dateArray[SelectedTime].name+"":"请选择到店时间"}}
+        </view>
+        <button>更改时间</button>
+    </view>
+</view>
+<!-- 备注信息 -->
+<view class="info-box remarks-box" hidden='{{showTime}}'>
+    <label>备注信息</label>
+    <textarea maxlength="50" placeholder="可以将您其它要求告知我们" cursor-spacing="50" bindinput="remarks"></textarea>
+    <view class="input-limit">{{inputLimit}}</view>
+</view>
+<view class="sure-order" bindtap="toSuccess">确认下单</view>
+<!-- 切换预约到店时间 -->
+<view class='time-window' hidden='{{!showTime}}'>
+    <view class='mask' bindtap='hideTPTime'></view>
+    <view class='window-box'>
+        <image class='close-btn' bindtap='hideTPTime' src='../../../../../images/window_close@2x.png' lazy-load></image>
+        <view class='window-title'>选择到店时间</view>
+        <view class='time-list'>
+            <view class="time-item {{index==SelectedTime?'active':''}}" bindtap='toSelectTime' data-SelectedTime='{{index}}' wx:for="{{dateArray}}" wx:key="">
+                {{item.name}}
+            </view>
+        </view>
+        <button class='sure-select' bindtap='hideTPTime'>确定</button>
+    </view>
+</view>

@@ -1,340 +1,233 @@
-.project-info {
-  padding: 24rpx 30rpx;
-  border-bottom: 30rpx solid #eee;
+/* 预约页面 */
+
+page {
+    background: #fff;
 }
 
-.p-img {
-  width: 205rpx;
-  height: 160rpx;
-  margin-right: 32rpx;
+.top-box {
+    padding: 30rpx 0 30rpx 30rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB6d7c50b65c79b7e2b471f20a03e593ed?method=download&shareKey=7c1a73dc748c4cbebe32772433e45290') repeat-x;
+    background-size: auto 410rpx;
+    overflow: hidden;
 }
 
-.p-info {
-  flex: 1;
-  line-height: 1;
+/* 房间信息 */
+
+.top-box image {
+    width: 205rpx;
+    height: 150rpx;
+    float: left;
+    display: block;
+    margin: 0 15rpx 0 0;
+    border-radius: 10rpx;
 }
 
-.p-name,.p-store {
-  font-size: 34rpx;
-  color: #333;
-  padding: 18rpx 0 26rpx;
+.change-store {
+    position: absolute;
+    right: 0;
+    top: 30rpx;
+    border-radius: 25rpx 0 0 25rpx;
+    background-image: linear-gradient(to right bottom, #469aff, #0073ff);
+    width: 148rpx;
+    line-height: 50rpx;
+    background-size: 148rpx 50rpx;
+    color: #fff;
+    font-size: 28rpx;
+    padding: 0 0 0 20rpx;
+    text-align: center;
 }
 
-.p-time {
-  font-size: 24rpx;
-  color: #666;
-  margin-bottom: 14rpx;
+.store-name {
+    font-size: 32rpx;
+    color: #333;
+    margin: 0 0 5rpx 0;
 }
 
-.p-time image {
-  width: 24rpx;
-  height: 24rpx;
-  margin-right: 14rpx;
+/* 联系方式 */
+
+.contact-tools {
+    font-size: 22rpx;
+    margin: 0 30rpx;
+    color: #656565;
+    line-height: 50rpx;
+    display: flex;
 }
 
-.p-store image {
-  width: 23rpx;
-  height: 21rpx;
-  margin-right: 14rpx;
-  vertical-align: middle;
-  margin-top: -2rpx;
+.address-icon {
+    display: inline-block;
+    width: 32rpx;
+    height: 50rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB330ac01fc77c8bb32e84cb60c35ead81?method=download&shareKey=b31d7812be7686a3519fb7fdaeadc73f') no-repeat left center;
+    background-size: 22rpx;
 }
 
-.input-box {
-  padding: 30rpx;
-  background: #fff;
-  position: relative;
-  margin-bottom: 150rpx
+.location {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.input-box textarea {
-  width: 94%;
-  border: 1rpx solid #ccc;
-  border-radius: 6rpx;
-  height: 134rpx;
-  font-size: 24rpx;
-  padding:14rpx 3%; 
+.nav-icon {
+    display: inline-block;
+    width: 42rpx;
+    height: 50rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB6afc3b4cf94f96b65bd55ba80fa769fe?method=download&shareKey=84ac7821f01df125479b4b2748f6fe93') no-repeat center;
+    background-size: 22rpx;
 }
 
-.input-limit {
-  position: absolute;
-  right: 44rpx;
-  bottom: 44rpx;
-  font-size: 24rpx;
-  color: #999;
+.tel-icon {
+    display: inline-block;
+    width: 40rpx;
+    height: 50rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEBa516da57a01247147f37437f62dee584?method=download&shareKey=cb8e52113991cd5c2cfdd5e2529efeec') no-repeat center;
+    background-size: 22rpx;
 }
 
-.order-bar{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  border-top: 1rpx solid #d6d6d6;
-  box-sizing: border-box;
-  height: 100rpx;
-  line-height: 100rpx;
-  font-size: 34rpx;
-  background: #353535;
-  font-weight: 500;
-  color: #be9e70;
-  text-align: center;
+.info-box {
+    width:690rpx;
+    margin: 30rpx auto;
+    padding: 30rpx;
+    border-radius: 10rpx;
+    box-shadow: 0 4rpx 8rpx 3rpx rgba(0, 0, 0, 0.2);
 }
 
-.selecter-iner {
-  padding: 0 30rpx;
-  background: #fff;
-  height: 90rpx;
-  line-height: 90rpx;
-  color: #333;
-  font-size: 28rpx;
-  border-bottom: 14rpx solid #eee;
+/* 用户信息 */
+
+.user-info .title {
+    color: #3b81d6;
+    font-size: 32rpx;
+    margin-bottom: 20rpx;
 }
 
-.select-tips {
-  float: right;
-  font-size: 22rpx;
-  color: #999;
-}
-.select-active{
-  font-size: 28rpx;
-  color: #333;
-  display:flex;
-align-items:center;
+.form-item {
+    display: flex;
+    line-height: 50rpx;
+    color: #333;
+    font-size:26rpx;
 }
 
-.selecter-iner:nth-of-type(4){
-  border-bottom: 26rpx solid #eee;
+.form-item input,.form-item view {
+    flex: 1;
 }
 
-.yyinfo{
-padding:10rpx 30rpx ;
-background:#fff;
-color:#333;
-font-size:28rpx;
-border-bottom:14rpx solid #eee;
-}
-.yyinfo.yynp{
-border-bottom:20rpx solid #eee;
-}
-.yyinfo .yytitle{
-  padding:14rpx 0;
-  display: flex;
-justify-content:flex-start;
-align-items:center;
-}
-.yyinfo .yytitle .ltitle{
-min-width: 160rpx
-}
-.yyinfo .yytech{
-  justify-content: space-between
-}
-.yytech .technos{
-  color: #be9e70
-}
-.yytech .rtitle .rword{
-  color: #999;
-  font-size: 22rpx;
-  display:flex;
-align-items:center;
-}
-.yyinfo image{
-  width: 26rpx;
-  height: 26rpx
+.form-item view{
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.yyinfo .yytitle .yyleft{
-  color: #666
-}
-.yyinfo .yytitle .yyright{
-  border-bottom:1rpx solid rgba(0,0,0,0.1)
-}
-.yyright input{
-  width: 320rpx;
-  padding: 0 20rpx;
-}
-.yyinfo  .item{
-display:flex;
-justify-content:flex-start;
-align-items:center;
-height:182rpx;
-border-bottom:1rpx solid rgba(0,0,0,0.1);
-padding:10rpx;
-
-}
-.yyinfo  .item:last-child{
-  border-bottom: none
-}
-.yyinfo  .item .h-img image{
-width:162rpx;
-height:156rpx;
-margin-right: 30rpx
-}
-.yyinfo  .item .h-img.roomimg image{
-width:205rpx;
-height:156rpx;
-margin-right: 30rpx
-}
-.yyright .getPhoneNumber{
-  position:absolute;
-  right:40rpx;
-}
-.yyright .getPhoneNumber button{
-  font-size: 24rpx; color: #fff; 
-  background-image:linear-gradient(to bottom right,#dfceb5,#c59f68);
-  margin: -58rpx 0 0 0;
-  border-radius: 40rpx
+.form-item button {
+    padding: 0 20rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    color: #fff;
+    background: #3b81d6;
+    border-radius: 20rpx;
+    font-size: 22rpx;
+    margin:5rpx 0 5rpx 15rpx;
 }
 
-/*选择预约时间  */
-.tp-time, .tp-time .mask {
-   position: fixed; 
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+.remarks-box{
+    font-size:26rpx;
+    color:#999;
+    position: relative;
 }
 
-.tp-time .mask {
-  background: rgba(0, 0, 0, 0.7);
-  
+.remarks-box label{
+    font-size:26rpx;
+    color:#333;
+    line-height: 30rpx;
 }
 
-.tp-time .timeinfo {
-  position: absolute;
-  left: 0;
-  bottom: 0rpx;
-  width: 100%;
-  background: #fff;
-  padding: 0rpx 0 30rpx 0;
-  font-size: 28rpx;
+.remarks-box textarea{
+    padding:20rpx 0;
+    line-height: 1.5;
 }
 
-.timeinfo .ti-head {
-  height: 80rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.input-limit{
+    position: absolute;
+    right:30rpx;
+    bottom:30rpx;
 }
 
-.ti-head .ti-hline {
-  width: 20%;
-  height: 2rpx;
-  background-color: rgba(0, 0, 0, 0.6);
-  margin: 0 18rpx;
+/* 确认下单按钮 */
+.sure-order{
+    text-align: center;
+    background: #3b81d6;
+    color:#fff;
+    line-height: 90rpx;
+    font-size:40rpx;
 }
 
-.ti-head image {
-  width: 80rpx;
-  height: 80rpx;
-  position: absolute;
-  right: 0;
+/* 时间选择弹窗 */
+.time-window{
+    position: fix;
+    bottom:0;
+    right:0;
+    left:0;
+    top:0;
 }
 
-.ti-date {
-  display: flex;
-  justify-content: space-between;
-  margin: 20rpx 96rpx 5rpx 96rpx;
-  border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
+.time-window .mask{
+    position: fix;
+    bottom:0;
+    right:0;
+    left:0;
+    top:0;
+    z-index:1;
+    background: rgba(0, 0, 0, 0.6);
 }
 
-.ti-date .d-item {
-  width: 126rpx;
-  height: 84rpx;
-  text-align: center;
+.time-window .window-box{
+    position: fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:2;
+    padding:30rpx;
+    background: #fff;
+    font-size:26rpx;
 }
 
-.ti-date .d-item.active {
-  color: #caa876;
+.time-list{
+    overflow: hidden;
 }
 
-.ti-date .d-item.active::after {
-  content: "";
-  height: 8rpx;
-  background-color: #caa876;
-  display: block;
-  width: 100%;
-  border-radius: 4rpx;
+.time-item{
+    float: left;
+    width:200rpx;
+    line-height: 68rpx;
+    margin:30rpx 31rpx 0 0;
+    font-size:26rpx;
+    text-align: center;
+    border-radius: 10rpx;
+    color:#3b81d6;
+    border:#3b81d6 1rpx solid;
 }
 
-.ti-date .dt-item {
-  width: 220rpx;
-  height: 84rpx;
-  text-align: center;
-  display: flex;
-  align-items: center;
+.time-item.active{
+    background: #3b81d6;
+    color:#fff;
 }
 
-.ti-date .dt-item.active {
-  color: #caa876;
+.close-btn{
+    width:60rpx;
+    height: 60rpx;
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%);
+    top:-90rpx;
 }
 
-.ti-date .dt-day image {
-  width: 32rpx;
-  height: 32rpx;
-  margin: 0rpx 5rpx;
+.sure-select{
+    line-height: 70rpx;
+    color:#fff;
+    background: #3b81d6;
+    margin:30rpx 0 10rpx;
+    padding:0;
+    border-radius: 35rpx;
+    text-align: center;
 }
 
-.selecttime {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding: 30rpx;
-  border-bottom: 1rpx solid rgba(0,0,0,0.1)
-}
-.selecttime .slt-item{
-  margin: 8rpx 6rpx;
-  /* width: 320rpx; */
-  width: 200rpx;
-  height: 80rpx;
-  border-radius: 8rpx;
-  background-color: #eee;
-  line-height: 80rpx;
-  text-align: center;
-}
-.selecttime .not{
-  background-color: #ccc;
-}
-.selecttime .slt-item.active{
-  background-color: #e6e2d6;
-  color: #caa876;
-}
-.result {
-  padding:32rpx;
-}
-.result .projectres{
-  display: flex;
-  font-size: 30rpx;
-}
-.projectres .pprice{
-  color: #db0000;
-}
-.result  .timeres{
-color: #666;
-font-size: 26rpx;
-margin-top: 10rpx;
-}
-
-.timesubmit {
-padding:10rpx 40rpx;
-height:88rpx;
-display:flex;
-align-items:center;
-text-align:center;
-
-}
-.timesubmit view{
-width:100%;
-height:100%;
-line-height:88rpx;
-font-size:34rpx;
-font-weight:300;
-background-image: linear-gradient(to bottom right  , #c59f68,#dfceb5);
-border-radius: 8rpx;
-}
-
-
-.toright{
-  width: 26rpx;
-  height: 26rpx;
-}

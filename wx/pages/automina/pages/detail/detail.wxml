@@ -1,12 +1,6 @@
 <!--pages/detail/detail.wxml-->
 <view class='amcontainer'>
     <!--头部  -->
-    <!-- <view class="d-top " >
-        <view class='topaddr' bindtap='scancode' >
-            <image class='topimg ' src='{{addrimg}}' mode="{{mode}}" ></image>
-            当前房间：{{roomname?roomname:addr}}
-        </view>
-    </view>  -->
     <view class='my-order' bindtap='myorder'>{{my}}</view>
     <!--内容 start  -->
     <view class=" {{classifySeleted=='xm'?'newcontent':'content'}}">
@@ -20,19 +14,8 @@
                 <view class="name">{{classify.classifyname}}</view>
             </view>
         </scroll-view>
-
         <!--右边 项 scroll-into-view="cate{{classifyViewed}}"  -->
         <scroll-view class="sv-goods" scroll-y="true" scroll-top='{{topNum}}'>
-            <!--公告  -->
-            <!-- {{classify.id}} -->
-            <!-- <block wx:if="{{classify.id!='xm'}}">
-                <view class='notice' id="note">
-                    <image class='noticeimg' src="{{noticeimg}}"></image>
-                    <view class='note' bindtap="rules">
-                        <text>{{text}}</text>
-                    </view>
-                </view>
-            </block> -->
             <!-- 内容主项  -->
             <view wx:for="{{knowproject?projectsList:goodsList}}" wx:for-item="classify" wx:key="" id="cate{{classify.id}}">
                 <block wx:if="{{classify.id!='xm'}}">
@@ -45,7 +28,6 @@
                                 仅支持微信支付
                             </view>
                         </view>
-                        <!-- <view class="desc">{{goods[id].mminfo?goods[id].mminfo:""}}</view> -->
                         <view class="price">
                             ￥{{goods[id].itembaseprice*1}}
                         </view>
@@ -70,7 +52,6 @@
                         <image class='project-image' src='{{projects[id].picurl?projects[id].picurl:"../../../../../images/group_discout_01@2x.png"}}' lazy-load></image>
                         <view class='project-info'>
                             <view class="name ">{{projects[id].serviceitemname}}</view>
-                            <!-- <view class="desc ">{{projects[id].mminfo?projects[id].mminfo:""}}</view> -->
                             <view class="price">￥{{projects[id].pturn}}</view>
                         </view>
                     </view>
@@ -110,7 +91,7 @@
         </form>
     </view>
     <!--公告弹窗 -->
-    <view class="mask" style="display:{{showMask ? 'block' : 'none'}}" bindtap="closeRules"></view>
+    <!-- <view class="mask" style="display:{{showMask ? 'block' : 'none'}}" bindtap="closeRules"></view>
     <view class="rules" style="display:{{showMask ? 'block' : 'none'}}">
         <view class="close-r" bindtap="closeRules">×</view>
         <scroll-view scroll-y enable-back-to-top>
@@ -119,7 +100,7 @@
                 <view class="rules-c">{{text}}</view>
             </view>
         </scroll-view>
-    </view>
+    </view> -->
 </view>
 <!-- //返回首页按钮  -->
 <view class="backhome-btn">

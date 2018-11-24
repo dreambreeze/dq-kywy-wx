@@ -1,9 +1,9 @@
-.container {
-  background-color: #eee;
+page{
+    background: #fff;
 }
 
 .banner swiper{
-  height: 360rpx;
+  height: 350rpx;
 }
 
 .item-image {
@@ -13,7 +13,7 @@
 
 .project-dil {
   background: #fff;
-  padding: 34rpx 40rpx 120rpx 40rpx;
+  padding: 20rpx 30rpx 120rpx 30rpx;
 }
 
 .dil-title {
@@ -25,9 +25,10 @@
 }
 
 .dil-content {
-  font-size: 28rpx;
+  font-size: 26rpx;
   color: #333;
-  padding-bottom: 20rpx;
+  padding: 20rpx 0;
+  text-align: justify;
 }
 
 .look-all {
@@ -45,20 +46,21 @@
 
 .buy-bar {
   width: 100%;
-  height: 97rpx;
-  line-height: 97rpx;
-  background: #be9e70;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: #3b81d6;
   position: fixed;
   bottom: 0;
   left: 0;
   text-align: center;
-  font-size: 34rpx;
+  font-size: 32rpx;
   color: #fff;
 }
 
 .room-name text{
   font-weight: normal;
-  font-size: 26rpx;
+  font-size: 28rpx;
   display: inline-block;
   margin-left: 16rpx;
+  color:#999;
 }

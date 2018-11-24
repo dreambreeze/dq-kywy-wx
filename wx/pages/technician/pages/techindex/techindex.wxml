@@ -35,16 +35,13 @@
         <text>|</text>
         <view class='tel-icon' data-phone="{{locationStore[0].tel}}" bindtap="phoneCall"></view>
     </view>
-
     <view class='content'>
         <!-- 技师分类  -->
         <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
-            <view class='c-class'>
-                <view class='c-item {{typeDefault==0?"active":""}}' data-id="0" bindtap='typeSelect'>全部</view>
-                <block wx:for="{{typeLists}}" wx:for-index="tl" wx:key="tlid">
-                    <view class='c-item {{typeDefault==item.techniciantypeno?"active":""}}' data-id="{{item.techniciantypeno}}" bindtap='typeSelect'>{{item.techniciantypename}}</view>
-                </block>
-            </view>
+            <view class='c-item {{typeDefault==0?"active":""}}' data-id="0" bindtap='typeSelect'>全部</view>
+            <block wx:for="{{typeLists}}" wx:for-index="tl" wx:key="tlid">
+                <view class='c-item {{typeDefault==item.techniciantypeno?"active":""}}' data-id="{{item.techniciantypeno}}" bindtap='typeSelect'>{{item.techniciantypename}}</view>
+            </block>
         </scroll-view>
         <!-- 技师列表 -->
         <view class='tech-list'>

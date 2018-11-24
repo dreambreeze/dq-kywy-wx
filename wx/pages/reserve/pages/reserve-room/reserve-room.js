@@ -314,6 +314,12 @@ Page({
         var height = e.currentTarget.dataset.height == '80rpx' ? 'auto' : '80rpx';
         var maxHeight = e.currentTarget.dataset.height == '80rpx' ? '400rpx' : '80rpx';
         var boxType = e.currentTarget.dataset.box;
+
+        var query = wx.createSelectorQuery();
+        query.select('.type-list').boundingClientRect((res) => {
+            var listHeight = res.height; // 获取list高度
+        }).exec();
+
         if (boxType == 'num') {
             this.setData({
                 numTypeBoxHeight: height,
@@ -357,34 +363,13 @@ Page({
         for (var i in roomData) {
             roomData[i].selected = i == idx ? !roomData[i].selected : false;
         }
-        this.setData({
-            roomData: roomData
-        });
-        //判断是否有选择预约
-        var data = this.data.roomData
-        var snum = 0 //计数预约数
-        var nowroom = new Object
-        for (var i in data) {
-            if (data[i].selected) {
-                snum++
-                nowroom = data[i]
-            }
-        }
-        wx.setStorageSync('roomStorage', data)
+        wx.setStorageSync('roomStorage', roomData)
         var phoneinfo = wx.getStorageSync("phoneinfo")
         if (phoneinfo.phone) {
-            if (snum > 0) {
-                //转去
-                wx.navigateTo({
-                    url: '../../../technician/pages/techorder/techorder'
-                })
-            } else {
-                wx.showModal({
-                    title: '提示',
-                    content: '未选择房间',
-                    showCancel: false
-                })
-            }
+            //转去
+            wx.navigateTo({
+                url: '../../../technician/pages/techorder/techorder'
+            })
         } else {
             wx.showModal({
                 title: '提示',

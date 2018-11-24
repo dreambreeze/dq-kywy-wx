@@ -6,7 +6,7 @@
         <!-- 联系方式 -->
         <view class='contact-tools'>
             <view class='address-icon' bindtap="location"></view>
-            <view bindtap="location">{{locationStore[0].address}}</view>
+            <view class='ellipsis' bindtap="location">{{locationStore[0].address}}</view>
         </view>
         <view class='contact-tools'>
             <text>{{locationStore[0].distance}}</text>

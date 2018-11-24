@@ -16,6 +16,8 @@ Page({
     showImgUrl: common.config.showImgUrl,
     //无房间图片的默认项目图
     roomDefaultImg: common.config.roomDefaultImg,
+    //banner图点
+    dots:false,
   },
 
   /**
