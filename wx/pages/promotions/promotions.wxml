@@ -1,5 +1,5 @@
 <import src="../common/engin-nav.wxml" />
-<view class='container'>
+<view class='container' style='height:100vh;overflow:{{overflow}};'>
     <!-- 活动列表 -->
     <view class='activity-list' wx:if="{{fmodule}}">
         <view class='activity-box' bindtap="jumpPage" data-url="../transbuy/pages/group-buy/group-buy" wx:if="{{checkmodule.isebuy}}">
@@ -16,8 +16,7 @@
         </view>
     </view>
     <!-- 分享按钮 -->
-    <view class='share-mask'></view>
-    <view class='share-btn' bindtouchstart='shareTouchStar' bindtouchmove='shareTouchMove' open-type="share" wx:if="{{checkmodule.share}}" style='left:{{left}};top:{{top}};'></view>
+    <view class='share-btn' bindtouchstart='shareTouchStar' bindtouchmove='shareTouchMove' bindtouchend='shareTouchEnd' open-type="share" wx:if="{{checkmodule.share}}" style='left:{{left}};top:{{top}};'></view>
     <!-- 技术支持 -->
     <view class="jishu-zhichi" bindtap="jishuzhichi">技术支持：大旗软件</view>
 </view>

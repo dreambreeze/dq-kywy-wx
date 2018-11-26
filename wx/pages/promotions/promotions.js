@@ -18,6 +18,8 @@ Page({
         //分享按钮拖拽参数
         top: '600rpx',
         left: '620rpx',
+        //容器是否能滚动
+        overflow:'auto',
     },
 
     /**
@@ -162,6 +164,7 @@ Page({
         this.setData({
             initY: e.touches[0].pageY - e.currentTarget.offsetTop,
             initX: e.touches[0].pageX - e.currentTarget.offsetLeft,
+            overflow:'hidden',
         })
     },
     /**
@@ -176,6 +179,14 @@ Page({
         this.setData({
             top: top+'px',
             left: left+'px',
+        })
+    },
+    /**
+     * 拖拽结束
+     */
+    shareTouchEnd(e){
+        this.setData({
+            overflow: 'auto',
         })
     },
     /**
