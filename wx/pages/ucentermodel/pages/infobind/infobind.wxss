@@ -1,104 +1,72 @@
-.info-input {
-  margin-top: 30rpx;
-  padding: 25rpx 42rpx;
-  background: #fff;
+.form-box{
+    margin:30rpx;
+    box-shadow:0rpx 4rpx 8rpx rgba(0,0,0,0.1);
+    border-radius: 10rpx;
+    background: #fff;
+    padding:0 30rpx;
+    border:1rpx solid transparent;
 }
 
-.input-item {
-  margin-bottom: 28rpx;
-  box-sizing: border-box;
+.form-title{
+    color:#3b81d6;
+    font-size:32rpx;
+    line-height:92rpx;
 }
 
-.i-label {
-  font-size: 28rpx;
-  width: 156rpx;
-  color: #666666;
-  line-height: 72rpx;
+.form-item{
+    display: flex;
+    padding:15rpx 0;
+    font-size:26rpx;
+    color:#333;
+    line-height: 40rpx;
 }
 
-.i-label text {
-  font-weight: bold;
-  font-size: 28rpx;
-  /* font-family: tahoma, verdana; */
-  color: #ed0f10;
-  vertical-align: bottom;
-  display: inline-block;
-  margin-right: 2px;
+.form-item label,
+.form-item input,
+.form-item button{
+    vertical-align: middle;
 }
 
-.i-input {
-  border-bottom: 1rpx solid #ccc;
-  flex: 1;
+.form-item label{
+    min-width:105rpx;
+    text-align: right;
+    line-height: 40rpx;
+    height: 40rpx;
 }
 
-.phone-input{
-  width: 330rpx;
-  border-bottom: 1rpx solid #ccc;
+.form-item input{
+    flex:1;
+    padding: 0 10rpx;
+    height:40rpx;
+    min-height:40rpx;
+    line-height: 40rpx;
 }
 
-.getPhoneNumber{
-  flex: 1;
-  border-bottom: 1rpx solid #ccc;
+.form-item button{
+    display: inline-block;
+    text-align: center;
+    color:#fff;
+    font-size:22rpx;
+    height:40rpx;
+    border-radius: 20rpx;
+    padding:0 25rpx;
+    background: #3b81d6;
+    line-height: 40rpx;
 }
 
-.getPhoneNumber button{
-   width: 150rpx; 
-  background-color: #51C332;
-  color: #fff;
-  margin: 0;
-  padding: 12rpx 10rpx;
-  line-height: 1;
-  font-size: 28rpx;
-  border-radius: 3rpx;
+.form-item .get-verify{
+    background: #ff8831;
 }
 
-.i-input input, .verify-input input ,.phone-input{
-  line-height: 72rpx;
-  font-size: 28rpx;
-  height: 72rpx;
-  padding: 0 20rpx;
+.form-item .seconds{
+    background: #666;
 }
 
-.verify-input {
-  width: 306rpx;
-  border-bottom: 1rpx solid #ccc;
-}
-
-.get-verify {
-  width: 164rpx;
-  font-size: 24rpx;
-  color: #fff;
-  text-align: center;
-  display: inline-block;
-  border-radius: 3px;
-  margin-left: 10rpx;
-  height: 56rpx;
-  line-height: 56rpx;
-  margin-top: 10rpx;
-}
-
-.get-verify.seconds{
-  background-color: #ccc
-}
-
-.dc-btn {
-  width: 576rpx;
-  height: 90rpx;
-  line-height: 90rpx;
-  color: #fff;
-  box-shadow: 0 0 14px rgba(189, 144, 85, 0.4);
-  text-align: center;
-  border-radius: 3px;
-  font-size: 34rpx;
-  font-weight: 500;
-  margin: 200rpx auto 0;
-  /* position: fixed;
-  bottom: 70rpx;
-  left: 50%; */
-  /* margin-left: -288rpx; */
-}
-
-.radio {
-  font-size: 28rpx;
-  margin-right: 35rpx;
+.sure-btn{
+    line-height: 60rpx;
+    background: #3b81d6;
+    margin:30rpx 0;
+    font-size:32rpx;
+    border-radius:30rpx;
+    color:#fff;
 }

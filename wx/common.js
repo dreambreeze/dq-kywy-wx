@@ -43,7 +43,7 @@ var config = {
     "fun_name": "优惠活动",
           "fun_img": "https://note.youdao.com/yws/api/personal/file/WEBec13e85e2dc123b2159b0c92708467e1?method=download&shareKey=358a1eaca2aa0ccd0ad532a60ad4f81b",
     "applet_address": "../promotions/promotions",
-          "notcheck_img": "https://note.youdao.com/yws/api/personal/file/WEBff69204521108f6103560f7e22c14891?method=download&shareKey=fdbee227e26d42402cdaab5293152a60",
+          "notcheck_img": "https://note.youdao.com/yws/api/personal/file/WEB22b5ca29747ad3153e388a6c53af8c1c?method=download&shareKey=90332b099218989f4e8a6706ad9ccc47",
     "isTo": true,
     "id": 16
   }, {

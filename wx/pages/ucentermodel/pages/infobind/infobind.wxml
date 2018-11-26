@@ -1,81 +1,73 @@
-<view class="info-input">
-  <view class="input-item">
-    <view class="flex-wrp">
-      <view class="i-label">
-        <text>*</text>姓名</view>
-      <view class="i-input">
-        <input type="text" value="{{uinfo.names}}" bindinput="namesVal" />
-      </view>
+<view class='container'>
+    <!-- 信息完善表单 -->
+    <view class='form-box'>
+        <view class='form-title'>信息完善</view>
+        <view class='form-item'>
+            <label>姓名：</label>
+            <input type="text" value="{{uinfo.names}}" placeholder='请输入姓名' bindinput="namesVal" />
+        </view>
+        <view class='form-item'>
+            <label>手机：</label>
+            <input type="number" value="{{uinfo.phone}}" placeholder='请输入手机号' bindinput="phoneVal" />
+            <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">自动输入</button>
+        </view>
+        <view class='form-item'>
+            <label>验证码：</label>
+            <input type="number" placeholder='请输入验证码' bindinput="verifyVal" />
+            <block wx:if="{{!seconds}}">
+                <button class="get-verify" bindtap="getVerify" data-phone="{{uinfo.phone}}">发送验证码</button>
+            </block>
+            <block wx:else>
+                <button class="get-verify seconds">{{seconds}}秒重新获取</button>
+            </block>
+        </view>
+        <button class="sure-btn" bindtap="infoSave">确定</button>
     </view>
-  </view>
-  <view class="input-item">
-    <view class="flex-wrp">
-      <view class="i-label">
-        <text>*</text>手机</view>
-      <view class="phone-input">
-        <input type="number" value="{{uinfo.phone}}" bindinput="phoneVal" />
-      </view>
-      <view class="getPhoneNumber">
-        <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">自动输入</button>
-      </view>
+    <!-- 返回首页按钮 -->
+    <view class="backhome-btn">
+        <view>
+            <navigator url="/pages/index/index" hover-class="none" open-type="reLaunch">
+                <text>返回首页</text>
+            </navigator>
+        </view>
     </view>
-  </view>
-  <view class="input-item">
-    <view class="flex-wrp">
-      <view class="i-label">
-        <text>*</text>验证码</view>
-      <view class="verify-input">
-        <input type="number" bindinput="verifyVal" />
-      </view>
-      <block wx:if="{{!seconds}}">
-        <view class="get-verify btn-gradient" bindtap="getVerify" data-phone="{{uinfo.phone}}">发送验证码</view>
-      </block>
-      <block wx:else>
-        <view class="get-verify seconds">{{seconds}}秒重新获取</view>
-      </block>
-    </view>
-  </view>
-
-  <!-- <view class="input-item">
-    <view class="flex-wrp">
-      <view class="i-label">
-        <text>*</text>性别</view>
-      <view class="i-input" style="border-bottom: none;">
-        <radio-group class="radio-group" bindchange="sexchange">
-          <block wx:if="{{!uinfo.sex || uinfo.sex == 1}}">
-            <label class="radio">
-              <radio value="1" checked name="sex" />男
-            </label>
-          </block>
-          <block wx:else>
-            <label class="radio">
-              <radio value="1" name="sex" />男
-            </label>
-          </block>
-
-          <block wx:if="{{uinfo.sex == 0}}">
-            <label class="radio">
-              <radio value="0" name="sex" checked/>女
-            </label>
-          </block>
-          <block wx:else>
-            <label class="radio">
-              <radio value="0" name="sex" />女
-            </label>
-          </block>
-        </radio-group>
-      </view>
-    </view>
-  </view> -->
-
-  <view class="dc-btn btn-gradient" bindtap="infoSave">确定</view>
 </view>
-
-<!-- 返回首页按钮 -->
-<view class="backhome-btn">
-  <view>
-    <navigator url="/pages/index/index" hover-class="none" open-type="reLaunch">
-      <text>返回首页</text>
-    </navigator>
-  </view>
-</view>
+<!-- <view class="info-input">
+    <view class="input-item">
+        <view class="flex-wrp">
+            <view class="i-label">
+                <text>*</text>姓名</view>
+            <view class="i-input">
+                <input type="text" value="{{uinfo.names}}" bindinput="namesVal" />
+            </view>
+        </view>
+    </view>
+    <view class="input-item">
+        <view class="flex-wrp">
+            <view class="i-label">
+                <text>*</text>手机</view>
+            <view class="phone-input">
+                <input type="number" value="{{uinfo.phone}}" bindinput="phoneVal" />
+            </view>
+            <view class="getPhoneNumber">
+                <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">自动输入</button>
+            </view>
+        </view>
+    </view>
+    <view class="input-item">
+        <view class="flex-wrp">
+            <view class="i-label">
+                <text>*</text>验证码</view>
+            <view class="verify-input">
+                <input type="number" bindinput="verifyVal" />
+            </view>
+            <block wx:if="{{!seconds}}">
+                <view class="get-verify btn-gradient" bindtap="getVerify" data-phone="{{uinfo.phone}}">发送验证码</view>
+            </block>
+            <block wx:else>
+                <view class="get-verify seconds">{{seconds}}秒重新获取</view>
+            </block>
+        </view>
+    </view>
+    <view class="dc-btn btn-gradient" bindtap="infoSave">确定</view>
+</view> -->
