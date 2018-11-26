@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 21,
+			"current": 22,
 			"list": [
 				{
 					"id": 0,
@@ -175,7 +175,13 @@
 				{
 					"id": -1,
 					"name": "techdetail",
-					"pathName": "pages/technician/pages/techdetail/techdetail"
+					"pathName": "pages/technician/pages/techdetail/techdetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "下单备注",
+					"pathName": "pages/automina/pages/note/note"
 				}
 			]
 		}

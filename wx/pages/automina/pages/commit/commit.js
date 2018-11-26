@@ -31,7 +31,12 @@ Page({
     defaultcardimg:"https://iservice.daqisoft.cn/Public/Home/images/amimgs/3mcard.png",
     note:'口味、偏好、要求等',
     noteword:"",
-    payWayList: [{AutoID: -1, MembershipTypeName: '微信支付', pic: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/wechat.png' }],
+    payWayList: [
+      { AutoID: -1, MembershipTypeName: '微信支付', pic: 'icon-aui-icon-weichat' },
+      { AutoID: 1, MembershipTypeName: '微信支付', pic: 'icon-aui-icon-weichat' },
+      { AutoID: 2, MembershipTypeName: '微信支付', pic: 'icon-aui-icon-weichat' },
+      { AutoID: 3, MembershipTypeName: '微信支付', pic: 'icon-aui-icon-weichat' }
+    ],
     pwseleted:0,
     showPayWay:false,
     store:null,
@@ -556,7 +561,16 @@ Page({
     }
   
   },
-
+  showPayWay:function(){
+    this.setData({
+      showPayWay:true
+    })
+  },
+  hidePayWay: function () {
+    this.setData({
+      showPayWay: false
+    })
+  },
  /* 微信支付*/
  wechatPay:function(e,ono){
    //选择微信支付
