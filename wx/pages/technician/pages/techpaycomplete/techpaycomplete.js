@@ -2,7 +2,7 @@ var common = require('../../../../common.js');
 var app = getApp()
 Page({
   data: {
-    compeleteimg: 'https://iservice.daqisoft.cn/Public/Home/images/techimgs/complete.png',
+    compeleteimg: '/images/order1.jpg',
     adimg: 'https://iservice.daqisoft.cn/Public/Home/images/techimgs/ad.png',
     arrivetime: 5,
     artime:0,

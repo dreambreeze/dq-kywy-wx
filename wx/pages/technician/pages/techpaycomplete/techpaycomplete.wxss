@@ -1,61 +1,53 @@
 page{
-  background: #eee;
-}
-.head {
-  background-color: #fff;
-  height: 340rpx;
-  margin: 24rpx 34rpx;
-  border-radius: 20rpx;
+  background: #fff;
 }
 .head .h-img{
   display: flex;
   justify-content: center;
 }
 .h-img image{
-  width: 126rpx;
-  height: 138rpx;
+   width: 425rpx;
+  height: 231rpx;
+  margin: 50rpx 0 24rpx 0;
 }
 .head .h-desc{
   color: #333;
-  font-size: 32rpx;
+  font-size: 30rpx;
   display: flex;
   align-items: center;
-  margin-top: 38rpx;
   justify-content: center;
+  font-weight: bold
+  
 }
 .head .h-time{
-  color: #666;
-  font-size: 26rpx;
+  margin: 30rpx 0;
+  color: #3B81D6;
+  font-size: 24rpx;
   display: flex;
   align-items: center;
-  margin-top: 46rpx;
   justify-content: center;
-}
-.h-time text{
-  font-size: 28rpx;
-  color: #ff8b24;
-  padding: 0 6rpx;
 }
 
 .nav {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  margin: 0 185rpx;
   font-size: 26rpx;
 }
 .nav view{
-  height: 70rpx;
-  width: 248rpx;
-  border: 1rpx solid rgba(0, 0, 0, 0.3);
-  border-radius: 8rpx;
+  height: 61rpx;
+  width:151rpx;
+  border-radius: 30rpx;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #666;
-  margin: 0 40rpx ;
+  text-align: center;
+  background: #3B81D6;
+  padding: 22rpx;
+  color: #fff;
 }
 .nav view:last-child{
-   border: 1rpx solid #caa876;
-   background-color: #e6e3d6;
+   background-color: #EB7D31;
 }
 
 .ad-box{

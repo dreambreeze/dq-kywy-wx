@@ -1,7 +1,7 @@
 var common = require('../../../../common.js');
 Page({
   data: {
-      compeleteimg:'https://iservice.daqisoft.cn/Public/Home/images/amimgs/complete.png',
+    compeleteimg:'/images/order1.jpg',
       adimg:'https://iservice.daqisoft.cn/Public/Home/images/amimgs/ad.png',
       arrivetime:5,
       MutexSign:"",

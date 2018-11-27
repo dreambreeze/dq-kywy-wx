@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 22,
+			"current": 25,
 			"list": [
 				{
 					"id": 0,
@@ -181,7 +181,27 @@
 				{
 					"id": -1,
 					"name": "下单备注",
-					"pathName": "pages/automina/pages/note/note"
+					"pathName": "pages/automina/pages/note/note",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "支付成功",
+					"pathName": "pages/automina/pages/paycomplete/paycomplete",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "预约成功",
+					"pathName": "pages/technician/pages/techpaycomplete/techpaycomplete",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "项目详情",
+					"pathName": "pages/automina/pages/gooddetail/gooddetail",
+					"query": "id=12&index=0",
+					"scene": "1001"
 				}
 			]
 		}
