@@ -103,8 +103,8 @@
 		<view class="mask" bindtap="hideCartDetail"></view>
 		<view class="list">
      <view class="clear" bindtap="clear">
-     	<text > 共{{cart.count}}件商品</text>
-       <text class="clear-rt">清空</text>
+     	<view class='clear_lt'> 共{{cart.count}}件商品</view>
+       <view class="clear-rt">清空</view>
      </view>
 
 			<view class="item" wx:for="{{cart.list}}" wx:for-index="id" wx:for-item="num" wx:key="id">

@@ -35,21 +35,6 @@ Page({
       AutoID: -1,
       MembershipTypeName: '微信支付',
       pic: 'icon-aui-icon-weichat'
-    },
-    {
-      AutoID: 1,
-      MembershipTypeName: '微信支付',
-      pic: 'icon-aui-icon-weichat'
-    },
-    {
-      AutoID: 2,
-      MembershipTypeName: '微信支付',
-      pic: 'icon-aui-icon-weichat'
-    },
-    {
-      AutoID: 3,
-      MembershipTypeName: '微信支付',
-      pic: 'icon-aui-icon-weichat'
     }
     ],
     pwseleted: 0,

@@ -165,8 +165,6 @@ border-radius: 25rpx;
   display: block;
   width: 100%;
   font-size: 26rpx;
-  flex-wrap:warp;
-  white-space:pre-wrap;
   color: #7a7a7a;
 }
 /* 用户评论 end */
@@ -190,8 +188,8 @@ border-radius: 25rpx;
     animation-duration: 0.3s;
 }
 .list .clear {
-  display: flex;
-  justify-content:space-between;
+  display:flex;
+  justify-content: space-between!important;
   background: #eee;
   color: #666;
   font-size: 32rpx;
@@ -199,7 +197,6 @@ border-radius: 25rpx;
   line-height: 60rpx;
   padding: 0 30rpx;
 } 
-
 .cart-detail .list .item {
 	display: flex;
   justify-content: space-between;
