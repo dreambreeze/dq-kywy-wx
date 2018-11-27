@@ -623,47 +623,47 @@ Page({
      * 扫码下单
      */
     scancode: function () {
-        // var ShopNoRoomNo = "ShopNo=DQT02@RoomNo=221"
-        // wx.setStorageSync("ShopNoRoomNo", ShopNoRoomNo)
-        // wx.navigateTo({
-        //     url: '/pages/automina/pages/detail/detail',
-        // })
-        wx.scanCode({
-            onlyFromCamera: true,
-            scanType: [],
-            success: function (res) {
-                if (res.path) {
-                    console.log(res.path)
-                    try {
-                        var path = decodeURIComponent(res.path).split("?")
-                        var newpath = path[0]
-                        var ShopNoRoomNo = path[1].substr(6, path[1].length - 1)
-                        wx.setStorageSync("ShopNoRoomNo", ShopNoRoomNo)
-                        wx.redirectTo({
-                            url: '/pages/automina/pages/detail/detail',
-                        })
-                    } catch (e) {
-                        wx.showModal({
-                            title: '提示',
-                            content: '获取地址失败，无法跳转',
-                            showCancel: false
-                        });
-                    }
-                } else {
-                    wx.showModal({
-                        title: '提示',
-                        content: '获取地址失败，无法跳转',
-                        showCancel: false
-                    });
-                }
-            },
-            fail: function (res) {
-                wx.navigateBack({
-                    delta: 1
-                })
-            },
-            complete: function (res) { },
+        var ShopNoRoomNo = "ShopNo=DQT02@RoomNo=221"
+        wx.setStorageSync("ShopNoRoomNo", ShopNoRoomNo)
+        wx.navigateTo({
+            url: '/pages/automina/pages/detail/detail',
         })
+        // wx.scanCode({
+        //     onlyFromCamera: true,
+        //     scanType: [],
+        //     success: function (res) {
+        //         if (res.path) {
+        //             console.log(res.path)
+        //             try {
+        //                 var path = decodeURIComponent(res.path).split("?")
+        //                 var newpath = path[0]
+        //                 var ShopNoRoomNo = path[1].substr(6, path[1].length - 1)
+        //                 wx.setStorageSync("ShopNoRoomNo", ShopNoRoomNo)
+        //                 wx.redirectTo({
+        //                     url: '/pages/automina/pages/detail/detail',
+        //                 })
+        //             } catch (e) {
+        //                 wx.showModal({
+        //                     title: '提示',
+        //                     content: '获取地址失败，无法跳转',
+        //                     showCancel: false
+        //                 });
+        //             }
+        //         } else {
+        //             wx.showModal({
+        //                 title: '提示',
+        //                 content: '获取地址失败，无法跳转',
+        //                 showCancel: false
+        //             });
+        //         }
+        //     },
+        //     fail: function (res) {
+        //         wx.navigateBack({
+        //             delta: 1
+        //         })
+        //     },
+        //     complete: function (res) { },
+        // })
     },
     /**
      * 受理呼叫服务
