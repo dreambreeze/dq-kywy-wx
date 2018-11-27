@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 25,
+			"current": 27,
 			"list": [
 				{
 					"id": 0,
@@ -200,6 +200,20 @@
 					"id": -1,
 					"name": "项目详情",
 					"pathName": "pages/automina/pages/gooddetail/gooddetail",
+					"query": "id=12&index=0",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "项目详情",
+					"pathName": "pages/transbuy/pages/group-paycomplete/group-paycomplete",
+					"query": "id=12&index=0",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "拼团邀请",
+					"pathName": "pages/transbuy/pages/group-paycomplete/group-paycomplete",
 					"query": "id=12&index=0",
 					"scene": "1001"
 				}
