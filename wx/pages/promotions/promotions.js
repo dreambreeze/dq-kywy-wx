@@ -16,7 +16,7 @@ Page({
         //功能模块加载中
         info: '加载中...',
         //分享按钮拖拽参数
-        top: '600rpx',
+        top: '900rpx',
         left: '620rpx',
         //容器是否能滚动
         overflow:'auto',

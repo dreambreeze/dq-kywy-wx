@@ -1,4 +1,3 @@
-<import src="../../../common/buy-nav.wxml" />
 <view class="container">
     <block wx:if="{{storeProject.length > 0}}">
         <!-- 搜索页面 -->
@@ -66,5 +65,3 @@
         <view class="empty-assess">{{projectState}}</view>
     </block>
 </view>
-<!-- 导航模版公用 -->
-<!-- <template is="buy-nav" data="{{buyNavType: 'home'}}" /> -->

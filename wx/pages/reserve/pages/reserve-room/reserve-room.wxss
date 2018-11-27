@@ -110,7 +110,7 @@ page {
 
 .type-item {
     display: inline-block;
-    margin: 0 80rpx 0 0;
+    margin: 0 20rpx 0 0;
     padding: 20rpx 0;
     position: relative;
     white-space: nowrap;

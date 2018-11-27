@@ -1,5 +1,3 @@
-@import "../../../common/project.wxss";
-@import "../../../common/buy-nav.wxss";
 .container {
   padding-bottom: 98rpx;
   min-height: 1086rpx;

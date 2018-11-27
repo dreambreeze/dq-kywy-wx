@@ -21,35 +21,35 @@
     <!--服务入口列表-->
     <view class="function-list">
         <view class='item' bindtap='scancode'>
-            <image src='../../images/index_features_01@2x.png'></image>
+            <image src='../../images/index_features_01@2x.png' lazy-load></image>
             <view>扫码下单</view>
         </view>
         <view class='item' bindtap="showService">
-            <image src='../../images/index_features_02@2x.png'></image>
+            <image src='../../images/index_features_02@2x.png' lazy-load></image>
             <view>呼叫服务</view>
         </view>
         <view class='item'>
             <navigator url='../technician/pages/techindex/techindex'>
-                <image src='../../images/index_features_03@2x.png'></image>
+                <image src='../../images/index_features_03@2x.png' lazy-load></image>
                 <view>预约技师</view>
             </navigator>
         </view>
         <view class='item'>
             <navigator url="../reserve/pages/reserve-room/reserve-room">
-                <image src='../../images/index_features_04@2x.png'></image>
+                <image src='../../images/index_features_04@2x.png' lazy-load></image>
                 <view>房间预约</view>
             </navigator>
         </view>
         <view class='item'>
             <navigator url="../reserve/pages/store-assess/store-assess">
-                <image src='../../images/index_features_05@2x.png'></image>
+                <image src='../../images/index_features_05@2x.png' lazy-load></image>
                 <view>店面评价</view>
             </navigator>
         </view>
     </view>
     <!-- 资讯列表 -->
     <view class="message-box">
-        <image src='../../images/index_message@2x.png'></image>
+        <image src='../../images/index_message@2x.png' lazy-load></image>
         <swiper class="message-list" vertical="true" display-multiple-items="2" duration="500" interval="3000" circular="true" autoplay="true">
             <swiper-item class="item">
                 <text class="tag red-tag">最新</text>
@@ -84,11 +84,11 @@
                     <text class='tag'>技师推荐</text>
                     <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
                         <swiper-item>
-                            <image src='../../images/index_recommend_01@2x.png'></image>
+                            <image src='../../images/index_recommend_01@2x.png' lazy-load></image>
                             <text class='summary'>获得高级按摩师认证</text>
                         </swiper-item>
                         <swiper-item>
-                            <image src='../../images/index_recommend_02@2x.png'></image>
+                            <image src='../../images/index_recommend_02@2x.png' lazy-load></image>
                             <text class='summary'>好口碑项目推荐</text>
                         </swiper-item>
                         <swiper-item>
@@ -99,12 +99,12 @@
                 </view>
                 <view class="image-box-2" bindtap='toReserveProject'>
                     <text class='tag'>项目介绍</text>
-                    <image src='../../images/index_recommend_02@2x.png'></image>
+                    <image src='../../images/index_recommend_02@2x.png' lazy-load></image>
                     <text class='summary'>好口碑推荐项目</text>
                 </view>
                 <view class="image-box-3">
                     <text class='tag'>会员优惠</text>
-                    <image src='../../images/index_recommend_03@2x.png'></image>
+                    <image src='../../images/index_recommend_03@2x.png' lazy-load></image>
                     <text class='summary'>会员充值 乐享优惠</text>
                 </view>
             </view>
@@ -114,63 +114,63 @@
             <view class="group-discount-title">团购优惠</view>
             <swiper class="group-discount-list" indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" circular="true" display-multiple-items="3">
                 <swiper-item class="item">
-                    <image src='../../images/group_discout_01@2x.png'></image>
+                    <image src='../../images/group_discout_01@2x.png' lazy-load></image>
                     <text>益健足浴</text>
                     <text>60分钟</text>
                     <text>￥120</text>
                     <text>￥100</text>
                 </swiper-item>
                 <swiper-item class="item">
-                    <image src='../../images/group_discout_03@2x.png'></image>
+                    <image src='../../images/group_discout_03@2x.png' lazy-load></image>
                     <text>养生按摩</text>
                     <text>90分钟</text>
                     <text>￥100</text>
                     <text>￥80</text>
                 </swiper-item>
                 <swiper-item class="item">
-                    <image src='../../images/group_discout_02@2x.png'></image>
+                    <image src='../../images/group_discout_02@2x.png' lazy-load></image>
                     <text>泰式足道</text>
                     <text>70分钟</text>
                     <text>￥120</text>
                     <text>￥100</text>
                 </swiper-item>
                 <swiper-item class="item">
-                    <image src='../../images/group_discout_01@2x.png'></image>
+                    <image src='../../images/group_discout_01@2x.png' lazy-load></image>
                     <text>益健足浴</text>
                     <text>60分钟</text>
                     <text>￥120</text>
                     <text>￥100</text>
                 </swiper-item>
                 <swiper-item class="item">
-                    <image src='../../images/group_discout_03@2x.png'></image>
+                    <image src='../../images/group_discout_03@2x.png' lazy-load></image>
                     <text>养生按摩</text>
                     <text>90分钟</text>
                     <text>￥100</text>
                     <text>￥80</text>
                 </swiper-item>
                 <swiper-item class="item">
-                    <image src='../../images/group_discout_02@2x.png'></image>
+                    <image src='../../images/group_discout_02@2x.png' lazy-load></image>
                     <text>泰式足道</text>
                     <text>70分钟</text>
                     <text>￥120</text>
                     <text>￥100</text>
                 </swiper-item>
                 <swiper-item class="item">
-                    <image src='../../images/group_discout_01@2x.png'></image>
+                    <image src='../../images/group_discout_01@2x.png' lazy-load></image>
                     <text>益健足浴</text>
                     <text>60分钟</text>
                     <text>￥120</text>
                     <text>￥100</text>
                 </swiper-item>
                 <swiper-item class="item">
-                    <image src='../../images/group_discout_03@2x.png'></image>
+                    <image src='../../images/group_discout_03@2x.png' lazy-load></image>
                     <text>养生按摩</text>
                     <text>90分钟</text>
                     <text>￥100</text>
                     <text>￥80</text>
                 </swiper-item>
                 <swiper-item class="item">
-                    <image src='../../images/group_discout_02@2x.png'></image>
+                    <image src='../../images/group_discout_02@2x.png' lazy-load></image>
                     <text>泰式足道</text>
                     <text>70分钟</text>
                     <text>￥120</text>
@@ -182,16 +182,16 @@
         <navigator url="../transbuy/pages/group-shopping/group-shopping">
             <view class="group-activity-title ">拼团活动</view>
             <view class="group-activity clear ">
-                <image src='../../images/index_group_activity@2x.png'></image>
+                <image src='../../images/index_group_activity@2x.png' lazy-load></image>
                 <view class='center-box'>
                     <text>精品超级拼团</text>
                     <text>适应门店:大旗B店</text>
                     <text>已拼52件</text>
                     <view class="user-image-list ">
-                        <image src='../../images/index_tou_01@2x.png'></image>
-                        <image src='../../images/index_tou_02@2x.png'></image>
-                        <image src='../../images/index_tou_03@2x.png'></image>
-                        <image src='../../images/index_tou_04@2x.png'></image>
+                        <image src='../../images/index_tou_01@2x.png' lazy-load></image>
+                        <image src='../../images/index_tou_02@2x.png' lazy-load></image>
+                        <image src='../../images/index_tou_03@2x.png' lazy-load></image>
+                        <image src='../../images/index_tou_04@2x.png' lazy-load></image>
                     </view>
                 </view>
                 <view class='right-box'>
@@ -222,23 +222,23 @@
             <scroll-view scroll-y>
                 <view class="service-list ">
                     <view bindtap="serveracceptance" data-voice="呼叫服务员 ">
-                        <image src='../../images/servicer@2x.png'></image>
+                        <image src='../../images/servicer@2x.png' lazy-load></image>
                         呼叫服务员
                     </view>
                     <view bindtap="serveracceptance" data-voice="添加茶水 ">
-                        <image src='../../images/service_tea@2x.png'></image>
+                        <image src='../../images/service_tea@2x.png' lazy-load></image>
                         添加茶水
                     </view>
                     <view bindtap="serveracceptance" data-voice="消费买单 ">
-                        <image src='../../images/service_check@2x.png'></image>
+                        <image src='../../images/service_check@2x.png' lazy-load></image>
                         消费买单
                     </view>
                     <view bindtap="serveracceptance" data-voice="呼叫服务 ">
-                        <image src='../../images/service_call@2x.png'></image>
+                        <image src='../../images/service_call@2x.png' lazy-load></image>
                         呼叫服务
                     </view>
                     <view bindtap="serveracceptance" data-voice="点小吃 ">
-                        <image src='../../images/service_eat@2x.png'></image>
+                        <image src='../../images/service_eat@2x.png' lazy-load></image>
                         点小吃
                     </view>
                     <!-- <view wx:for="{{callService}}" bindtap="serveracceptance" data-voice="{{item.voice_name}} " wx:key="callService">{{item.voice_name}}</view> -->
@@ -252,10 +252,10 @@
 <!-- 点击领券 -->
 <view class="coupon" style="visibility:{{couponmaskDisplay}}">
     <view class='close' bindtap="hidecouponmask">
-        <image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/close.png'></image>
+        <image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/close.png' lazy-load></image>
     </view>
     <view class='redpacket' bindtap='sendcoupon'>
-        <image src='https://iservice.daqisoft.cn/Public/Home/images/redindex.png'></image>
+        <image src='https://iservice.daqisoft.cn/Public/Home/images/redindex.png' lazy-load></image>
     </view>
     <view class='exdesc' bindtap='sendcoupon'>点击领取优惠券</view>
 </view>
