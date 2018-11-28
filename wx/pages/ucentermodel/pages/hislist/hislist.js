@@ -17,7 +17,8 @@ Page({
     //图片地址前缀
     showImgUrl: common.config.showImgUrl,
     //无会员卡图片的默认会员卡图,
-    datePicurl: 'https://iservice.daqisoft.cn/Public/Home/images/date.png',
+      datePicurl: 'https://note.youdao.com/yws/api/personal/file/WEB76bf178ce76fb99722cb35708c6444e9?method=download&shareKey=9681f80551b9067b01ade1f14d5532ad',
+      //消费记录默认图标
     hisPicurl: 'https://iservice.daqisoft.cn/Public/Home/images/hisdefpic.png',
     //
     xiePic: "https://iservice.daqisoft.cn/Public/Home/images/xie.png",
