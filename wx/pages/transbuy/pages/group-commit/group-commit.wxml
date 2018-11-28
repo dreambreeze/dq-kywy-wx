@@ -5,6 +5,10 @@
      <text class="store-ico"></text>
      <text>{{store.store_name}}</text>
   </view>
+
+
+
+  
   <view class='head'>
     <view class='item flex'>
       <view class='h-img'>
