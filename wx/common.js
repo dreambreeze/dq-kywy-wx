@@ -18,6 +18,8 @@ var config = {
   QQMapWXKey: 'SEABZ-R7CKF-56RJH-NMADQ-ECCZJ-W3FRG',
   //无会员卡图片的默认会员卡图
   cardPicUrl: 'https://note.youdao.com/yws/api/personal/file/WEBb5f7eb3766ee279fc3a8496d7715869b?method=download&shareKey=c969cf0aa8db1957124cbd1f79c86226',
+  //订单列表会员卡图片
+    orderCardIcon:'https://note.youdao.com/yws/api/personal/file/WEB582903b6322138ce21b0ef2d3c5d7a3a?method=download&shareKey=d554c4c447183a2af516fb5835627918',
   //默认首页banner图
   bannerImg: host + '/Public/Home/images/home_banner.png',
   //无上传项目图片的默认项目图片
