@@ -4,7 +4,7 @@ Page({
 
   data: {
     toright: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/toright.png',
-    storeimg: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/store.png',
+    storeimg: '/images/index_recommend_01@2x.png',
     cart:{},
     goods:{},
     userinfo: {},
@@ -116,6 +116,7 @@ Page({
             }
             
           }
+          console.log('orderDara',order);
           this.setData({
             order: order,
           })

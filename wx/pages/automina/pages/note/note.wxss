@@ -14,7 +14,8 @@ page{
 }
 .note-items{
   display: flex;
-  flex: 1
+  flex: 1;
+  padding-bottom: 10rpx;
 }
 .note-lt{
   flex: 1;
@@ -31,7 +32,7 @@ page{
   background: #F5F5F5;
   color: #666;
   font-size: 26rpx;
-  padding: 0 29rpx;
+  padding: 0 20rpx;
 }
 .f_grey{
   font-size: 22rpx;

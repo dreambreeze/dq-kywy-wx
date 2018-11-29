@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 27,
+			"current": 28,
 			"list": [
 				{
 					"id": 0,
@@ -214,6 +214,13 @@
 					"id": -1,
 					"name": "拼团邀请",
 					"pathName": "pages/transbuy/pages/group-paycomplete/group-paycomplete",
+					"query": "id=12&index=0",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "结算页面",
+					"pathName": "pages/automina/pages/commit/commit",
 					"query": "id=12&index=0",
 					"scene": "1001"
 				}

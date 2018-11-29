@@ -8,7 +8,7 @@
           {{item.serviceitemname}}
         </view>
         <view class='note-rt'>
-          <input class='note-input' bindfocus="bindinput" cursor-spacing="4" data-id="{{index}}" type="text" value="{{item.note}}" name="{{item.serviceitemno}}" maxlength='20'></input>
+          <input class='note-input nowrap' bindfocus="bindinput" cursor-spacing="4" data-id="{{index}}" type="text" value="{{item.note}}" name="{{item.serviceitemno}}" maxlength='20'></input>
         </view>
       </view>
       </block>

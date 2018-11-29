@@ -68,9 +68,9 @@
     <view class='note'  bindtap='tonote'>
       <view class='n-title'>
         <text>备注：</text>
-        <text class='n-desc'>{{noteword==''?note:noteword}}</text>
+        <text class='n-desc nowrap'>{{noteword==''?note:noteword}}</text>
       </view>
-      <view class='n-rt'>
+      <view class='n-rt' >
         <view class='iconfont icon-right n-lightimg'></view>
       </view>
     </view>
