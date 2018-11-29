@@ -91,7 +91,7 @@ page {
     position: relative;
     line-height: 40rpx;
     padding: 0 0 0 30rpx;
-    font-size: 22rpx;
+    font-size: 26rpx;
     color: #999;
     display: flex;
     overflow: hidden;
@@ -110,7 +110,7 @@ page {
 
 .type-item {
     display: inline-block;
-    margin: 0 20rpx 0 0;
+    margin: 0 30rpx 0 0;
     padding: 20rpx 0;
     position: relative;
     white-space: nowrap;

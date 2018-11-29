@@ -7,7 +7,7 @@
             <view class="nickname">{{userInfo.nickname}}</view>
         </block>
         <block wx:else>
-            <view open-type="getUserInfo" bindgetuserinfo="getUInfo" class="getUInfo" hover-class="none"></view>
+            <view open-type="getUserInfo" bindgetuserinfo="getUInfo" class="getUserInfo" hover-class="none"></view>
             <button open-type="getUserInfo" bindgetuserinfo="getUInfo" class="nickname" hover-class="none">点击登录</button>
         </block>
     </view>

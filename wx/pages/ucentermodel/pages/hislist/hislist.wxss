@@ -23,10 +23,9 @@
 .head {
     display: flex;
     height: 100rpx;
-    background-color: #f7f7f7;
+    background: #eee;
     align-items: center;
     color: #333;
-    font-size: 28rpx;
     position: fixed;
     top: 0;
     width: 100%;
@@ -34,6 +33,7 @@
 }
 
 .head .htop {
+    font-size: 30rpx;
     padding: 16rpx 0 0 0;
 }
 
@@ -55,7 +55,6 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 200rpx;
     padding: 0 34rpx;
 }
 
@@ -86,16 +85,20 @@
 /* 历史消费项目 展示  */
 
 .hisinfos {
-    padding: 10rpx 0;
+    padding: 10rpx 30rpx;
 }
 
 .hisinfos .consumption-item {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 0 20rpx;
-    height: 190rpx;
-    font-size: 28rpx;
+    padding:20rpx 0 10rpx;
+    font-size: 26rpx;
+    border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
+}
+
+.hisinfos .consumption-item:last-child{
+    border:0;
 }
 
 .hisinfos .consumption-item .shopPicurl image {
@@ -103,59 +106,56 @@
     height: 72rpx;
 }
 
-.consumption-item .cicenter {
-    width: 600rpx;
-    height: 160rpx;
-    display: flex;
-    justify-content: flex-start;
-    border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
+.consumption-item .cileft {
+    flex: 1;
 }
 
-.consumption-item .cicenter .cileft {
-    margin: 10rpx 0;
-    width: 460rpx;
+.consumption-item .cileft .citop {
+    padding: 10rpx 0 8rpx 10rpx;
 }
 
-.consumption-item .cicenter .cileft .citop {
-    padding: 20rpx 0 8rpx 10rpx;
-}
-
-.consumption-item .cicenter .cileft .cimiddle {
+.consumption-item .cileft .cimiddle {
     padding: 0 0 8rpx 10rpx;
     font-size: 26rpx;
 }
 
-.consumption-item .cicenter .cileft .citime {
+.consumption-item .cileft .citime {
     padding: 0 0 0 10rpx;
-    font-size: 24rpx;
+    font-size: 22rpx;
     color: #999;
 }
 
-.consumption-item .cicenter .ciright {
+.consumption-item .ciright {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     font-size: 32rpx;
     font-weight: bold;
-    flex: 2;
     width: 140rpx;
 }
 
 /* 历史消费选择会员卡 */
 
 .cardinfo {
-    width: 320rpx;
     flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
     font-size: 30rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.cardinfo image {
-    width: 12rpx;
-    height: 12rpx;
-    margin: 22rpx 0rpx 0 20rpx;
+.cardinfo .arrow {
+    display: inline-block;
+    width: 18rpx;
+    height: 10rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB6182dfcb119971af092946dd38adb198?method=download&shareKey=a472c49fa5a6c29aab860301503ce5e5') no-repeat center;
+    background-size: 18rpx 10rpx;
+    margin: 0 0 0 10rpx;
+}
+
+.cardinfo.active  .arrow {
+    transform: rotate(180deg);
 }
 
 .cards {
@@ -167,10 +167,11 @@
     position: absolute;
     background-color: #fff;
     z-index: 12;
-    font-size: 26rpx;
-    padding:0 30rpx;
-    animation: cards 0.3s;
-    color:#3b81d6;
+    width: 100%;
+    font-size: 30rpx;
+    padding: 0 30rpx;
+    color: #3b81d6;
+    box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.2);
 }
 
 .cards .item {
@@ -179,7 +180,7 @@
     justify-content: center;
     align-items: center;
     height: 70rpx;
-    border:1rpx solid #3b81d6;
+    border: 1rpx solid #3b81d6;
     border-radius: 8rpx;
     flex-wrap: wrap;
     margin: 0 30rpx 30rpx 30rpx;
@@ -187,7 +188,7 @@
 
 .cards .item.active {
     background: #3b81d6;
-    color:#fff;
+    color: #fff;
 }
 
 .nomore {

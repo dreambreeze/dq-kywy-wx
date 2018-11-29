@@ -1,26 +1,17 @@
-<view class="search-box">
-  <view class="search-con">
-    <input type="text" placeholder="请输入门店名称" confirm-type="search" bindconfirm="searchSubmit" bindinput="searchInput"></input>
-    <text bindtap="searchSubmit">搜索</text>
-  </view>
-</view>
-
-<!-- <view class="location-near">
-  <view>离我最近</view>
-  <image src="https://iservice.daqisoft.cn/Public/Home/images/location_icon_3.png" lazy-load></image>
-  <view class="near-store">（一店）体育新城店</view>
-</view> -->
-
-<view class="area-item">
-  <!-- <view class="area-title">长沙地区</view> -->
-  <block wx:if="{{!emptyMsg}}">
-    <view class="area-con clear">
-      <block wx:for="{{stores}}" wx:key="">
-        <view class="{{index == sidx ? 'active' : '' }}" bindtap="changeStore" data-sidx="{{index}}">{{item.store_name}}</view>
-      </block>
+<view class='container'>
+    <!-- 搜索框 -->
+    <view class="search-box">
+        <input type="text" class='search-input' placeholder="请输入门店名称" confirm-type="search" bindconfirm="searchSubmit" bindinput="searchInput"></input>
+        <label class='search-btn' bindtap="searchSubmit">搜索</label>
     </view>
-  </block>
-  <block wx:else>
-    <view class="emptyMsg">{{emptyMsg}}</view>
-  </block>
+    <!-- 门店列表 -->
+    <view class='box-title'>所有门店</view>
+    <view class="store-list">
+        <block wx:if="{{!emptyMsg}}">
+            <view class="store-item {{index == sidx ? 'active' : '' }}" wx:for="{{stores}}" wx:key="" bindtap="changeStore" data-sidx="{{index}}">{{item.store_name}}</view>
+        </block>
+        <block wx:else>
+            <view class="emptyMsg">{{emptyMsg}}</view>
+        </block>
+    </view>
 </view>

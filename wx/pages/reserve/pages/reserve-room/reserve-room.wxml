@@ -20,7 +20,7 @@
     <view class='type-box' 
     style='height:{{numTypeBoxHeight}};max-height:{{numTypeBoxMaxHeight}};'>
         <view class='type-list'>
-            <view class="type-item {{roomNumIdx == -1 ? 'active' : ''}}" bindtap="changeRoomNum" data-idx="-1">全部</view>
+            <view class="type-item {{roomNumIdx == -1 ? 'active' : ''}}" bindtap="changeRoomNum" data-idx="-1">全部房间</view>
             <view class="type-item {{roomNumIdx == item.bednum ? 'active' : ''}}" wx:for="{{roomNumRow}}" bindtap="changeRoomNum" wx:key="index" data-idx="{{item.bednum}}">{{item.bednum}}人间</view>
         </view>
         <view class='more-type-btn' data-height='{{numTypeBoxHeight}}' data-box='num' bindtap='changeBoxHeight'>更多</view>
@@ -28,10 +28,10 @@
     <!-- 房间项目类型切换 -->
     <view class='type-box room-project-type' style='height:{{projectTypeBoxHeight}};max-height:{{projectTypeBoxMaxHeight}};'>
         <view class='type-list'>
-            <view class="type-item {{roomTypeIdx == 0 ? 'active' : ''}}" data-idx="0" bindtap="changeRType">全部</view>
+            <view class="type-item {{roomTypeIdx == 0 ? 'active' : ''}}" data-idx="0" bindtap="changeRType">全部房型</view>
             <view data-idx="{{item.autoid}}" class="type-item {{roomTypeIdx == item.autoid ? 'active' : ''}}" wx:for="{{roomTypeRow}}" wx:key="index" bindtap="changeRType">{{item.roomscategoryname}}</view>
         </view>
-        <view class='more-type-btn' data-height='{{projectTypeBoxHeight}}' data-box='project' bindtap='changeBoxHeight'>更多</view>
+        <view class='more-type-btn' wx:if='{{roomTypeRow.length > 5}}' data-height='{{projectTypeBoxHeight}}' data-box='project' bindtap='changeBoxHeight'>更多</view>
     </view>
     <!-- 房间列表 -->
     <view class="room-content clear">

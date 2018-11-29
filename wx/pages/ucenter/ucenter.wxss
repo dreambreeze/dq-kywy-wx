@@ -23,13 +23,14 @@
 .nickname {
     color: #fff;
     font-size: 28rpx;
+    background: transparent;
 }
 
 .getUserInfo {
     height: 100rpx;
     width: 100rpx;
     border-radius: 50%;
-    margin: 60rpx auto 25rpx;
+    margin: 0 auto;
     background: url('https://iservice.daqisoft.cn/Public/DaqiAdmin/images/default_po.png') no-repeat center;
     background-size: 100rpx;
 }

@@ -1,19 +1,18 @@
 <view class="amcontainer">
     <view class='forscroll'>
         <view class='head'>
+            <!-- 卡信息 -->
+            <view class='cardinfo {{!showcard?"active":"" }}' bindtap='changeshow'>{{choosecard.showname}}
+                <label class='arrow'></label>
+            </view>
+            <!-- 月统计 -->
             <view class='moneyinfo'>
                 <view class='htop '>{{date}} </view>
                 <view class='hbottom'>支出 ￥ {{totalcount}}</view>
             </view>
-            <view class='cardinfo' bindtap='changeshow'>
-                <view class='ctop'>{{choosecard.showname}}
-                    <image src='{{!showcard?xiePic:hldownPic}}'></image>
-                </view>
-            </view>
+            <!-- 时间选择 -->
             <picker mode="date" class='choosedate' bindchange="bindDateChange" value="{{ym}}" start="2015-01-01" end="{{endmonth}}" fields="month">
-                <view class="picker">
-                    <image src='{{datePicurl}}'></image>
-                </view>
+                <image src='{{datePicurl}}'></image>
             </picker>
             <!--选择卡  -->
             <view class='cards' hidden='{{!showcard}}'>
@@ -24,18 +23,13 @@
             <block wx:if="{{bills.length>0}}">
                 <view class='hisinfos'>
                     <view class='consumption-item' wx:for="{{bills}}" wx:key="" bindtap='todetail' data-index="{{index}}">
-                        <view class='shopPicurl'>
-                            <image src='{{item.picurl?showImgUrl:""}}{{item.picurl?item.picurl:hisPicurl}}'></image>
+                        <view class='cileft'>
+                            <view class='citop'>{{item.BShopNa?item.BShopNa:choosecard.ShopName}}</view>
+                            <view class='cimiddle'>{{item.OPType}}</view>
+                            <view class='citime'>{{item.PayTime}}</view>
                         </view>
-                        <view class='cicenter'>
-                            <view class='cileft'>
-                                <view class='citop'>{{item.BShopNa?item.BShopNa:choosecard.ShopName}}</view>
-                                <view class='cimiddle'>{{item.OPType}}</view>
-                                <view class='citime'>{{item.PayTime}}</view>
-                            </view>
-                            <view class='ciright'>
-                                {{item.OPIcon+item.OPMoney*1.0}}
-                            </view>
+                        <view class='ciright'>
+                            {{item.OPIcon+item.OPMoney*1.0}}
                         </view>
                     </view>
                 </view>
