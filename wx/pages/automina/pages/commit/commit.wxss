@@ -186,18 +186,24 @@ page{
 .note {
   display: flex;
   justify-content: space-between;
-  width: 90%;
-  height: 88rpx;
   line-height: 88rpx;
-  margin: 30rpx 5%;
+  margin: 30rpx 30rpx;
   padding: 0 20rpx;
   box-shadow: 0rpx 4rpx 8rpx 4rpx rgba(0, 0, 0, 0.1);
   font-size: 26rpx;
   color: #333;
+  
 }
-
+.n-title{
+  display: flex
+}
+.n-title{
+  flex: 1
+}
 .n-desc {
+  flex: 6;
   padding-left: 30rpx;
+  width: 450rpx;
   color: #aaa;
 }
 
@@ -206,16 +212,9 @@ page{
   align-items: center;
 }
 
-.n-desc .n-note {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
 .note .n-lightimg {
   font-size: 30rpx;
   color: #333;
-  padding-right: 20rpx;
 }
 
 /* 底部btn */

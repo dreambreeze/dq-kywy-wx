@@ -21,7 +21,11 @@ button::after {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
+.nowrap{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+   overflow: hidden;
+}
 /* 横向布局 */
 
 .flex-wrp {

@@ -1,35 +1,43 @@
 .bottom-con {
-  background-color: #eee;
+  background-color: #fff;
+  box-shadow: 0rpx 6rpx 8rpx 4rpx rgba(0, 0, 0, 0.08);
+  border-radius: 10rpx;
+  margin: 0 30rpx;
 }
-
+page{
+  background: #eeeeee;
+}
 .qrcode-content {
-  background-color: #eee;
-  padding: 30rpx 38rpx;
+  border-radius: 10rpx;
+  box-shadow: 0rpx 6rpx 8rpx 4rpx rgba(0, 0, 0, 0.08);
+  margin: 30rpx 30rpx;
+  background-color: #fff;
 }
 
 .con-box {
-  background-color: #fff;
-  border-radius: 15rpx;
+  
+  border-radius: 10rpx;
 }
 
 .head-info {
-  padding: 28rpx 38rpx;
+  padding: 30rpx 30rpx;
   /* border-bottom: 1rpx dashed #ccc; */
 }
 
 .head-info image {
-  width: 148rpx;
-  height: 148rpx;
-  margin-right: 36rpx;
+  width: 181rpx;
+  height: 181rpx;
+  border-radius: 10rpx
 }
 
 .infos {
   flex: 1;
+  color: #333;
+  padding-left: 30rpx;
 }
 
 .ptitle {
-  font-size: 32rpx;
-  color: #333;
+  font-size: 28rpx;
   font-weight: 500;
   margin-bottom: 20rpx;
 }
@@ -93,12 +101,12 @@
 }
 
 .order-title {
-  height: 73rpx;
-  line-height: 73rpx;
-  border-bottom: 1rpx solid #ccc;
-  padding: 0 38rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  padding-left: 30rpx;
   font-size: 28rpx;
   color: #333;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
 }
 
 .order-info-con {
@@ -112,90 +120,51 @@
   color: #f47c08;
 } */
 
-.order-info-con text {
-  color: #666;
-}
+/* 订单信息 */
 
-.top-store-address {
-  line-height: 36rpx;
-  font-size: 24rpx;
-  color: #666;
-  padding: 34rpx 38rpx;
+.order-container {
+  display: block;
+  margin: 0rpx 30rpx 30rpx;
+  font-size: 28rpx;
+  color: #333;
+  border-radius: 10rpx;
   background: #fff;
-  background-color: #fff;
-  margin-bottom: 20rpx;
+  box-shadow: 0rpx 6rpx 8rpx 4rpx rgba(0, 0, 0, 0.1);
 }
 
-.address {
-  width: 420rpx;
-  font-size: 25rpx;
-  color: #666;
+.order-container .o-head {
+  height: 68rpx;
+  line-height: 68rpx;
+  padding-left: 30rpx;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
 }
 
-.address image {
-  width: 18rpx;
-  height: 24rpx;
-  margin-right: 10rpx;
-  vertical-align: middle;
-  margin-top: -6rpx;
+.order-container .o-content {
+  display: flex;
+  padding: 20rpx;
+  font-size: 24rpx;
 }
 
-.location {
-  padding: 0 20rpx;
-  border-right: 1rpx solid #e5e5e5;
-  border-left: 1rpx solid #e5e5e5;
-}
-
-.location image {
-  width: 40rpx;
-  height: 36rpx;
-}
-
-.telphone {
+.o-content .o-left {
   flex: 1;
-  text-align: center;
+  text-align: right;
 }
 
-.telphone image {
-  width: 34rpx;
-  height: 36rpx;
+.o-content .o-left view {
+  height: 55rpx;
+  line-height: 55rpx;
 }
 
-.store-name {
-  font-size: 32rpx;
-  color: #333;
-  line-height: 1;
-  margin-bottom: 26rpx;
+.o-content .o-right {
+  flex: 4;
 }
 
-.ad-box image {
-  width: 100%;
-  height: 230rpx;
+.o-content .o-right view {
+  height: 55rpx;
+  line-height: 55rpx;
+  word-break: break-all;
 }
 
-.again-reserve{
-  text-align: center;
-  margin: 34rpx 0;
-}
-
-.again-reserve view{
-  display: inline-block;
-  width: 238rpx;
-  height: 74rpx;
-  line-height: 74rpx;
-  text-align: center;
-  font-size: 30rpx;
-  border: 1rpx solid #caa876;
-  color: #333;
-  border-radius: 6rpx;
-}
-
-.again-reserve view.active{
-  background-color: #caa876;
-  color: #fff;
-  margin-left: 75rpx;
-}
-
-.order-infos-stitle{
-  color: #caa876
+.o-content .o-right view:first-child {
+  color: #3b81d6;
 }

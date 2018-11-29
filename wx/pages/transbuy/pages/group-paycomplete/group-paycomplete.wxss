@@ -3,7 +3,7 @@ page {
 }
 
 .amcontainer {
-  background-color: #fff;
+  background-color: #eee;
 }
 
 /* 成功图片 */

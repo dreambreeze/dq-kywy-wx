@@ -1,142 +1,142 @@
-
 <view class='amcontainer'>
- <scroll-view scroll-y style='height:100%'>
-  <view class='head'>
-    <swiper class='swiper' indicator-dots="true">
-      <block wx:if="{{good.picurl}}">
-        <swiper-item wx:for="{{good.picurl}}" wx:key="">
-          <image src="{{showImgUrl+item}}"  mode="aspectFill" bindtap='previewImage'  data-src="{{showImgUrl}}{{item}}" data-ptype='show'  /> 
-        </swiper-item>
-      </block>
-      <block wx:else>
-        <swiper-item >
-          <image src="{{fooddefpic}}"  mode="aspectFill" bindtap='previewImage'  data-src="{{fooddefpic}}" data-ptype='show'  /> 
-        </swiper-item>
-      </block>
-    </swiper>
-    <!-- indicator-dots="true" indicator-active-color="#be9e70" indicator-color="rgba(255, 255, 255, 0.5)"
+  <scroll-view scroll-y style='height:100%'>
+    <view class='head'>
+      <swiper class='swiper' indicator-dots="true">
+        <block wx:if="{{good.picurl}}">
+          <swiper-item wx:for="{{good.picurl}}" wx:key="">
+            <image src="{{showImgUrl+item}}" mode="aspectFill" bindtap='previewImage' data-src="{{showImgUrl}}{{item}}" data-ptype='show' />
+          </swiper-item>
+        </block>
+        <block wx:else>
+          <swiper-item>
+            <image src="{{fooddefpic}}" mode="aspectFill" bindtap='previewImage' data-src="{{fooddefpic}}" data-ptype='show' />
+          </swiper-item>
+        </block>
+      </swiper>
+      <!-- indicator-dots="true" indicator-active-color="#be9e70" indicator-color="rgba(255, 255, 255, 0.5)"
      <image  data-src="{{showImgUrl}}{{good.picurl[0]}}" data-ptype='show' src='{{showImgUrl}}{{good.picurl[0]}}' mode="aspectFill" bindtap='previewImage'></image> -->
-  </view>
-  <view class='container'>
-  <!-- 商品基本信息info -->
-  <view class='info'>
-    <view class='info_lt'>
-      <view class='i-name'>{{good.serviceitemname}}</view>
-      <view class='i-price'>￥{{good.itembaseprice>0?good.itembaseprice:"0.00"}}</view>
     </view>
-    <view class='info_rt' >
-     <block wx:for="{{cart.list}}" wx:for-index="oid" wx:for-item="num" wx:key="oid">
-      <view class="reduce" wx:if="{{good.serviceitemno==oid && num!=0}}"  data-id="{{good.serviceitemno}}" bindtap="tapReduceCart">
-        <image class="addimg" src='{{reduceimg}}' mode="{{mode}}" data-id="{{good.serviceitemno}}" ></image>
-      </view>
-     
-		  <view class="num" wx:if="{{good.serviceitemno==oid && num!=0}}"  >{{good.serviceitemno==oid?num:''}}</view>
-     </block>
-   
-
-        <view class='a-add' catchtap='tapAddCart'  data-id="{{good.serviceitemno}}" >
-          加入购物车
+    <view class='container'>
+      <!-- 商品基本信息info -->
+      <view class='info'>
+        <view class='info_lt'>
+          <view class='i-name'>{{good.serviceitemname}}</view>
+          <view class='i-price'>￥{{good.itembaseprice>0?good.itembaseprice:"0.00"}}</view>
         </view>
-    </view>
-    
-    
-  </view>
-<!-- 商品介绍 -->
-  <view class='introduce'>
-    <view class='indu_title'>商品介绍</view>
-    <view class='indu_content'>{{good.mminfo?good.mminfo:"暂无介绍"}}</view>
-  </view>
-  <!-- 用户评价 -->
-  <view class='evaluation'>
-    <view class='ehead'>
-     <view class='eh_lt'>用户评价</view>
-     <view class='eh_rt'>
-      <text class='seeall'>共 {{length}} 条评价  </text>
-      <text class='iconfont icon-right eh_rtIcon'></text>
-     </view>
-    </view>
+        <view class='info_rt'>
+          <block wx:for="{{cart.list}}" wx:for-index="oid" wx:for-item="num" wx:key="oid">
+            <view class="reduce" wx:if="{{good.serviceitemno==oid && num!=0}}" data-id="{{good.serviceitemno}}" bindtap="tapReduceCart">
+              <image class="addimg" src='{{reduceimg}}' mode="{{mode}}" data-id="{{good.serviceitemno}}"></image>
+            </view>
 
-    <block wx:if="{{length>0}}">
-    <view class='e-content' wx:for="{{evaluation}}" wx:key="">
-    <!-- 评论 header -->
-      <view class='c-head'>
-        <view class="chead_lt">
-          <image class='userimg' src="{{item.pic}}" ></image>
-          <view>
-            <view class='username'>{{item.phoneno}}</view>
-            <view class='usertime'>{{item.createtime}}</view>
+            <view class="num" wx:if="{{good.serviceitemno==oid && num!=0}}">{{good.serviceitemno==oid?num:''}}</view>
+          </block>
+
+
+          <view class='a-add' catchtap='tapAddCart' data-id="{{good.serviceitemno}}">
+            加入购物车
           </view>
         </view>
-        <view class='userstar'>
-          <block wx:for="{{[0,1,2,3,4]}}"  wx:for-item="i"  wx:key="">
-          <view class="iconfont {{item.score>i?'icon-shoucang_shixin':'icon-shoucang'}} estar"></view>
-            </block>
-            <text>{{item.score}}.0 分</text>
-        </view>
-      </view>
 
-      <view class='c-content'>
-        <view class='c-eva'><text>{{item.content?item.content:item.evaluation}} </text></view>
-        <view class='c-evapic'>
-          <block wx:for="{{item.picurl}}" wx:for-item="picurl" wx:key="">
-          <image  class='c-picurl' src="{{picurl}}"></image>
-            <!-- <image  class='c-picurl' src="{{showImgUrl}}{{picurl}}"></image> -->
-          </block>
+
+      </view>
+      <!-- 商品介绍 -->
+      <view class='introduce'>
+        <view class='indu_title'>商品介绍</view>
+        <view class='indu_content'>{{good.mminfo?good.mminfo:"暂无介绍"}}</view>
+      </view>
+      <!-- 用户评价 -->
+      <view class='evaluation'>
+        <view class='ehead'>
+          <view class='eh_lt'>用户评价</view>
+          <view class='eh_rt'>
+            <text class='seeall'>共 {{length}} 条评价  </text>
+            <text class='iconfont icon-right eh_rtIcon'></text>
+          </view>
         </view>
+
+        <block wx:if="{{length>0}}">
+          <view class='e-content' wx:for="{{evaluation}}" wx:key="">
+            <!-- 评论 header -->
+            <view class='c-head'>
+              <view class="chead_lt">
+                <image class='userimg' src="{{item.pic}}"></image>
+                <view>
+                  <view class='username'>{{item.phoneno}}</view>
+                  <view class='usertime'>{{item.createtime}}</view>
+                </view>
+              </view>
+              <view class='userstar'>
+                <block wx:for="{{[0,1,2,3,4]}}" wx:for-item="i" wx:key="">
+                  <view class="iconfont {{item.score>i?'icon-shoucang_shixin':'icon-shoucang'}} estar"></view>
+                </block>
+                <text>{{item.score}}.0 分</text>
+              </view>
+            </view>
+
+            <view class='c-content'>
+              <view class='c-eva'>
+                <text>{{item.content?item.content:item.evaluation}} </text>
+              </view>
+              <view class='c-evapic'>
+                <block wx:for="{{item.picurl}}" wx:for-item="picurl" wx:key="">
+                  <image class='c-picurl' src="{{picurl}}"></image>
+                  <!-- <image  class='c-picurl' src="{{showImgUrl}}{{picurl}}"></image> -->
+                </block>
+              </view>
+            </view>
+          </view>
+        </block>
+
+
+        <block wx:else>
+          <view class='noeva'>
+            暂无评价
+          </view>
+        </block>
       </view>
     </view>
-    </block>
-
-
-    <block wx:else>
-      <view class='noeva'>
-          暂无评价
-      </view>
-    </block>
-  </view>
-  </view>
-</scroll-view>
+  </scroll-view>
 
 
   <!-- hidden="{{!showCartDetail||!cart.count}}" -->
-  <view class="cart-detail" hidden="{{!showCartDetail||!cart.count}}" >
-		<view class="mask" bindtap="hideCartDetail"></view>
-		<view class="list">
-     <view class="clear" bindtap="clear">
-     	<view class='clear_lt'> 共{{cart.count}}件商品</view>
-       <view class="clear-rt">清空</view>
-     </view>
+  <view class="cart-detail" hidden="{{!showCartDetail||!cart.count}}">
+    <view class="mask" bindtap="hideCartDetail"></view>
+    <view class="list">
+      <view class="clearBox" bindtap="clear">
+        <view class='clear_lt'> 共{{cart.count}}件商品</view>
+        <view class="clear-rt">清空</view>
+      </view>
 
-			<view class="item" wx:for="{{cart.list}}" wx:for-index="id" wx:for-item="num" wx:key="id">
-				<view class="name ellipsis">{{goods[id].serviceitemname}}</view>
+      <view class="item" wx:for="{{cart.list}}" wx:for-index="id" wx:for-item="num" wx:key="id">
+        <view class="name ellipsis">{{goods[id].serviceitemname}}</view>
         <view class='item_rt'>
           <view class="total">￥{{goods[id].itembaseprice*cart.list[id]}}</view>
-            <view class="iconfont icon-jian addIcon reduce" src='{{reduceimg}}' mode="{{mode}}" data-id="{{id}}" bindtap="tapReduceCart" ></view>
+          <view class="iconfont icon-jian addIcon reduce" src='{{reduceimg}}' mode="{{mode}}" data-id="{{id}}" bindtap="tapReduceCart"></view>
           <view class="num">{{num}}</view>
-            <view class="iconfont icon-jia addIcon add" src='{{addimg}}' mode="{{mode}}" data-id="{{id}}"  bindtap="tapAddCart"></view>
+          <view class="iconfont icon-jia addIcon add" src='{{addimg}}' mode="{{mode}}" data-id="{{id}}" bindtap="tapAddCart"></view>
         </view>
-			</view>
-		</view>
-	</view>
+      </view>
+    </view>
+  </view>
 
-<!-- 底部下单btn -->
-	<view class="cart" hidden="{{classifySeleted=='xm'}}">
-		<view class="data" bindtap="showCartDetail">
-			<view class="icon">
+  <!-- 底部下单btn -->
+  <view class="cart" hidden="{{classifySeleted=='xm'}}">
+    <view class="data" bindtap="showCartDetail">
+      <view class="icon">
         <view class='iconfont icon-tianchongxing- cartimg'></view>
-				<!-- <image class='cartimg' src="{{cartimg}}"></image> -->
-				<view class="count">{{cart.count}}</view>
-			</view>
-			<view class="total">￥{{cart.total}}</view>
-		</view>
+        <!-- <image class='cartimg' src="{{cartimg}}"></image> -->
+        <view class="count">{{cart.count}}</view>
+      </view>
+      <view class="total">￥{{cart.total}}</view>
+    </view>
     <view class='cart_btn'>
       <form bindsubmit="submit" report-submit="true">
         <!--<view formType="submit" class="submit">去结算 {{classifySeleted=='xm'}}</view>-->
-        <button class="blue {{cart.count?'':'disabled'}}" 
-        formType="submit" disabled="{{!cart.count}}">确定下单</button>
+        <button class="blue {{cart.count?'':'disabled'}}" formType="submit" disabled="{{!cart.count}}">确定下单</button>
       </form>
     </view>
-	</view>
+  </view>
 
 </view>
 
