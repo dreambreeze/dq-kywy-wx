@@ -1,4 +1,3 @@
-<!--pages/detail/detail.wxml-->
 <view class='amcontainer'>
     <!--头部  -->
     <view class='my-order' bindtap='myorder'>{{my}}</view>
@@ -89,24 +88,5 @@
         <form bindsubmit="submit" report-submit="true">
             <button class="sure-button {{cart.count?'':'disabled'}}" formType="submit" disabled="{{!cart.count}}">确定下单</button>
         </form>
-    </view>
-    <!--公告弹窗 -->
-    <!-- <view class="mask" style="display:{{showMask ? 'block' : 'none'}}" bindtap="closeRules"></view>
-    <view class="rules" style="display:{{showMask ? 'block' : 'none'}}">
-        <view class="close-r" bindtap="closeRules">×</view>
-        <scroll-view scroll-y enable-back-to-top>
-            <view class="rules-con">
-                <view class="rules-t">{{currentCard.MembershipTypeName}}公告</view>
-                <view class="rules-c">{{text}}</view>
-            </view>
-        </scroll-view>
-    </view> -->
-</view>
-<!-- //返回首页按钮  -->
-<view class="backhome-btn">
-    <view>
-        <navigator url="/pages/index/index" hover-class="none" open-type="reLaunch">
-            <text>返回首页</text>
-        </navigator>
     </view>
 </view>

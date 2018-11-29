@@ -428,7 +428,7 @@ Page({
             var goods = this.data.goods
             wx.setStorageSync("goods", goods)
             wx.navigateTo({
-                url: '../order/order',
+                url: '/pages/ucentermodel/pages/orders/orders',
             })
         } else {
             wx.showModal({

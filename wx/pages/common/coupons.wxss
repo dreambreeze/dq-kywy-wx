@@ -8,6 +8,18 @@
     padding:0 30rpx 30rpx;
 }
 
+.coupon-content::before{
+    content: '';
+    display: block;
+    width:12rpx;
+    height:24rpx;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEBf52f02adf0b7709865f7f90b5a161fb1?method=download&shareKey=6b564f77061b39f74ba628fc7731bc8b') no-repeat;
+    background-size: 12rpx 24rpx;
+    position: absolute;
+    left:0;
+    top:138rpx;
+}
+
 .coupon-content.active .coupon-money, .coupon-content.active .valid-period {
     color: #c0c0c0;
 }
