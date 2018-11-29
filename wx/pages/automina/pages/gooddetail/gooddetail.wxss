@@ -187,15 +187,17 @@ border-radius: 25rpx;
 	background: #fff;
     animation-duration: 0.3s;
 }
-.list .clear {
+.list .clearBox {
   display:flex;
   justify-content: space-between!important;
+  text-align: justify;
   background: #eee;
   color: #666;
   font-size: 32rpx;
   height: 60rpx;
   line-height: 60rpx;
   padding: 0 30rpx;
+  
 } 
 .cart-detail .list .item {
 	display: flex;

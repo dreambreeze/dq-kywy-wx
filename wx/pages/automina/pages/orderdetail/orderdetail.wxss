@@ -1,83 +1,74 @@
-/* page{
-  background: #fff;
-} */
-
-.amcontainer {
-  margin: 30rpx 30rpx;
+.amcontainer{
+  background: #eee;
 }
 
 /* 店铺信息 */
 
 .shop-container {
   border-radius: 10rpx;
+  background: #fff;
   box-shadow: 0rpx 6rpx 8rpx 4rpx rgba(0, 0, 0, 0.08);
-  margin-bottom: 30rpx;
+  margin: 30rpx 30rpx;
 }
-
-.shop-msg {
+.sc_head, .sc_foot{
+  height: 85rpx;
+  line-height: 85rpx;
+}
+.sc_head{
+   color: #333;
+   font-size: 26rpx;
+   font-weight: bold;
+   padding-left: 30rpx;
+}
+.sc_content{
+  padding: 20rpx 30rpx;
+ border-top: 1rpx dashed rgba(0, 0, 0, 0.1);
+ border-bottom: 1rpx dashed rgba(0, 0, 0, 0.1);
+}
+.sc_list{
+   display: flex;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 26rpx;
+  color: #666;
+}
+.sc_list .list_lt{
   display: flex;
+  flex: 2
 }
-
-.shop-msg {
-  padding: 30rpx;
-  border-bottom: 1rpx dashed rgba(0, 0, 0, 0.1);
+.sc_list .list_rt,.sc_list .list_midden{
+  flex: 1
 }
-
-.sc_image image {
-  width: 181rpx;
-  height: 181rpx;
-}
-
-.sc_image {
+.list_lt image{
+  height: 80rpx;
+  width: 80rpx;
+  margin: 10rpx 0;
   border-radius: 10rpx;
 }
-
-.sc_message {
-  font-size: 28rpx;
-  color: #333;
-  padding-left: 29rpx;
+.list_lt text{
+  padding-left: 30rpx;
 }
+.sc_foot{
+  color: #666;
+  font-size: 24rpx;
+   padding:0 30rpx;
+   display:flex;
+   justify-content: flex-end
 
-/* 二维码信息 */
-
-.shop_QR {
-  margin: 0 auto;
-  padding: 30rpx;
-  font-size: 28rpx;
 }
-
-.QR_img image {
-  height: 160rpx;
-  width: 160rpx;
+.sc_foot .ft_price{
+  color: #E32929;
+  padding-left: 30rpx;
 }
-
-.QR_img {
-  display: flex;
-  justify-content: space-around;
-}
-
-.QR_btn {
-  margin: 30rpx auto;
-  width: 241px;
-  height: 61rpx;
-  line-height: 61rpx;
-  border-radius: 6rpx;
-  text-align: center;
-  background: #3b81d6;
-  color: #fff;
-}
-
-.QR_code {
-  text-align: center;
-}
-
 /* 订单信息 */
 
 .order-container {
   display: block;
+  margin: 0rpx 30rpx 30rpx;
   font-size: 28rpx;
   color: #333;
   border-radius: 10rpx;
+  background: #fff;
   box-shadow: 0rpx 6rpx 8rpx 4rpx rgba(0, 0, 0, 0.1);
 }
 
@@ -91,12 +82,12 @@
 .order-container .o-content {
   display: flex;
   font-size: 24rpx;
+  padding: 20rpx;
 }
 
 .o-content .o-left {
   flex: 1;
   text-align: right;
-  color: #666;
 }
 
 .o-content .o-left view {

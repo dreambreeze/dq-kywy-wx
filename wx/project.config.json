@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 28,
+			"current": 29,
 			"list": [
 				{
 					"id": 0,
@@ -223,6 +223,11 @@
 					"pathName": "pages/automina/pages/commit/commit",
 					"query": "id=12&index=0",
 					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "充值订单详情",
+					"pathName": "pages/ucentermodel/pages/docardOrderdetail/docardOrderdetail"
 				}
 			]
 		}
