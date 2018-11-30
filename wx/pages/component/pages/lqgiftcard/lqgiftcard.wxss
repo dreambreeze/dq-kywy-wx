@@ -1,35 +1,53 @@
-.contianer {
+/* .contianer {
   background: #fff;
+} */
+/* 卡图片 */
+.card-box {
+    height: 300rpx;
+    text-align: center;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB18806b97d9c5123256ee2a5a73ec6222?method=download&shareKey=2c42d11923842efcd03777d8be00138f') no-repeat;
+    background-size: 100%;
+    padding: 20rpx 0 0 0;
 }
 
-.top-card {
-  margin-bottom: 40rpx;
+.card-box image {
+    width: 495rpx;
+    height: 260rpx;
+}
+/* 卡信息 */
+.card-info{
+    width:460rpx;
+    border-radius: 10rpx;
+    margin:30rpx auto;
+    box-shadow: 0 8rpx 8rpx rgba(0, 0, 0, 0.2);
 }
 
-.card {
-  height: 310rpx;
-  background: #2e2e2e;
-  text-align: center;
-  overflow: hidden;
+.card-header{
+    color:#fff;
+    line-height: 1.6;
+    background: #3b81d6;
+    font-size:28rpx;
+    padding:20rpx 25rpx; 
+    border-radius:10rpx 10rpx 0 0;
 }
 
-.card image {
-  width: 562rpx;
-  height: 290rpx;
-  position: relative;
-  bottom: -34rpx;
+.card-content{
+    line-height:45rpx;
+    color:#1684ff;
+    font-size:26rpx;
+    padding:10rpx 25rpx;
 }
 
-.card-info {
-  /* height: 110rpx; */
-  line-height: 1;
-  font-size: 26rpx;
-  color: #caa876;
-  font-weight: bold;
-  background: #fff;
-  text-align: center;
-  padding: 40rpx 0 15rpx;
+
+.flex-warp {
+    margin:10rpx 0 0 0;
+    display: flex;
 }
+
+.flex-warp text {
+    flex: 1;
+}
+
 
 .info-input {
   margin-top: 10rpx;
@@ -130,8 +148,6 @@
 .again-reserve {
   text-align: center;
   padding: 34rpx 0;
-  background-color: #fff;
-  border-top: 1rpx solid #e8e8e8;
 }
 
 .again-reserve button {
@@ -141,13 +157,13 @@
   line-height: 74rpx;
   text-align: center;
   font-size: 30rpx;
-  border: 1rpx solid #caa876;
-  color: #333;
-  border-radius: 6rpx;
+  border: 1rpx solid #3b81d6;
+  color: #3b81d6;
+  border-radius: 37rpx;
 }
 
 .again-reserve button.active {
-  background-color: #caa876;
+  background-color: #3b81d6;
   color: #fff;
   margin-left: 75rpx;
 }

@@ -116,7 +116,11 @@ Page({
    * 开卡点击性别切换
    */
   sexchange: function (e) {
-    sex = e.detail.value;
+    console.log(e);
+    sex = parseInt(e.currentTarget.dataset.sex);
+    this.setData({
+      'userInfo.sex': sex
+    });
   },
 
   /**

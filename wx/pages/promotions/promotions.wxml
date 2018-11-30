@@ -16,6 +16,7 @@
         </view>
     </view>
     <!-- 分享按钮 -->
+    
     <button class='share-btn' bindtouchstart='shareTouchStar' bindtouchmove='shareTouchMove' bindtouchend='shareTouchEnd' open-type="share" wx:if="{{checkmodule.share}}" style='left:{{left}};top:{{top}};' hover-class="none"></button>
     <!-- 技术支持 -->
     <view class="jishu-zhichi" bindtap="jishuzhichi">技术支持：大旗软件</view>

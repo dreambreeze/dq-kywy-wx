@@ -5,222 +5,213 @@
 /* 轮播图 */
 
 .container {
-    background-color: #eee;
-    min-height: 1182rpx;
+  background-color: #eee;
+  min-height: 1182rpx;
 }
 
 .swiper {
-    height: 340rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB4b5fc02bb93552bbb11e6d740d7bacd0?method=download&shareKey=ae0d2887000c971eb19f90d85d7f81f3') repeat-x;
-    background-size: auto 380rpx;
-    padding: 0 0 40rpx;
+  height: 340rpx;
+  background: url('https://note.youdao.com/yws/api/personal/file/WEB4b5fc02bb93552bbb11e6d740d7bacd0?method=download&shareKey=ae0d2887000c971eb19f90d85d7f81f3') repeat-x;
+  background-size: auto 380rpx;
+  padding: 0 0 40rpx;
 }
 
 .swiper swiper {
-    height: 340rpx;
+  height: 340rpx;
 }
 
 .swiper swiper-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .swiper image {
-    width: 350rpx !important;
-    height: 161rpx;
-    opacity: 0.5;
-    z-index: 2;
-    border-radius: 10rpx;
+  width: 350rpx !important;
+  height: 161rpx;
+  opacity: 0.5;
+  z-index: 2;
+  border-radius: 10rpx;
 }
 
-.active  image{
-    width: 423rpx !important;
-    height: 245rpx;
-    transition: all 0.2s ease-in-out 0.3s;
-    opacity: 1;
-    z-index: 3;
+.active  image {
+  width: 423rpx !important;
+  height: 245rpx;
+  transition: all 0.2s ease-in-out 0.3s;
+  opacity: 1;
+  z-index: 3;
 }
 
-.card-type{
-    position: absolute;
-    left:37rpx;
-    top:110rpx;
-    background: url("https://note.youdao.com/yws/api/personal/file/WEB56cde9336d824fa4e59f44ba7995d6d1?method=download&shareKey=f00f13f695cf16851a39f5a5e135a3d4") no-repeat;
-    background-size: 89rpx 39rpx;
-    transition: all 0.2s ease-in-out 0.3s;
-    font-size: 18rpx;
-    line-height: 39rpx;
-    width: 89rpx;
-    color:#fff;
-    z-index:4;
-    text-align: center;
+.card-type {
+  position: absolute;
+  left: 37rpx;
+  top: 110rpx;
+  background: url("https://note.youdao.com/yws/api/personal/file/WEB56cde9336d824fa4e59f44ba7995d6d1?method=download&shareKey=f00f13f695cf16851a39f5a5e135a3d4") no-repeat;
+  background-size: 89rpx 39rpx;
+  transition: all 0.2s ease-in-out 0.3s;
+  font-size: 18rpx;
+  line-height: 39rpx;
+  width: 89rpx;
+  color: #fff;
+  z-index: 4;
+  text-align: center;
 }
 
-.active .card-type{
-    left:0rpx;
-    top:80rpx;
-    background-size: 126rpx 55rpx;
-    width:126rpx;
-    line-height: 55rpx;
-    font-size:26rpx;
+.active .card-type {
+  left: 0rpx;
+  top: 80rpx;
+  background-size: 126rpx 55rpx;
+  width: 126rpx;
+  line-height: 55rpx;
+  font-size: 26rpx;
 }
+
 /* 会员操作 */
 
 .member-box {
-    margin: 30rpx auto;
-    width: 680rpx;
-    background: #fff;
-    border-radius: 10rpx;
-    padding: 0 100rpx 14rpx;
-    border: 1px transparent solid;
+  margin: 30rpx auto;
+  width: 680rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  padding: 0 100rpx 14rpx;
+  border: 1px transparent solid;
 }
 
 .open-button {
-    display: block;
-    width: 480rpx;
-    height: 86rpx;
-    line-height: 70rpx;
-    margin: 40rpx 0 24rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB9e94efe0a5d22deab7d4a8b2309a0d42?method=download&shareKey=03e7b24ed8bc1b681a338c06664084e5') no-repeat;
-    background-size: 480rpx 86rpx;
-    padding: 0;
-    text-align: center;
-    color: #fff;
-    font-size: 32rpx;
-    outline: 0;
-    border: 0;
+  display: block;
+  width: 480rpx;
+  height: 86rpx;
+  line-height: 70rpx;
+  margin: 40rpx 0 24rpx;
+  background: url('https://note.youdao.com/yws/api/personal/file/WEB9e94efe0a5d22deab7d4a8b2309a0d42?method=download&shareKey=03e7b24ed8bc1b681a338c06664084e5') no-repeat;
+  background-size: 480rpx 86rpx;
+  padding: 0;
+  text-align: center;
+  color: #fff;
+  font-size: 32rpx;
+  outline: 0;
+  border: 0;
 }
 
 .go-icon {
-    display: inline-block;
-    width: 30rpx;
-    height: 30rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB3ad2042c917492e3e036ea5297ae17cb?method=download&shareKey=a5ce5c01af0f6c7da1756dafe8acd604') no-repeat;
-    background-size: 29rpx 29rpx;
-    margin: 0 5rpx;
-    position: relative;
-    top: 6rpx;
+  display: inline-block;
+  width: 30rpx;
+  font-size: 30rpx;
 }
 
 .handle-list {
-    display: flex;
+  display: flex;
 }
 
 .handle-box {
-    flex: 1;
-    text-align: center;
+  flex: 1;
+  text-align: center;
 }
 
 .handle-box image {
-    display: block;
-    width: 72rpx;
-    height: 72rpx;
-    margin: 0 auto;
+  display: block;
+  width: 72rpx;
+  height: 72rpx;
+  margin: 0 auto;
 }
 
 .handle-box text {
-    font-size: 24rpx;
-    color: #333;
-    line-height: 76rpx;
+  font-size: 24rpx;
+  color: #333;
+  line-height: 76rpx;
 }
 
 /* 会员折扣列表 */
 
 .discount-list {
-    padding: 0 65rpx 120rpx;
+  padding: 0 65rpx 120rpx;
 }
 
 .title {
-    text-align: center;
-    font-size: 38rpx;
-    display: flex;
-    position: relative;
-    line-height: 118rpx;
+  text-align: center;
+  font-size: 38rpx;
+  display: flex;
+  position: relative;
+  line-height: 118rpx;
 }
 
 .title text {
-    display: inline-block;
-    color: #333;
-    padding: 0 24rpx;
+  display: inline-block;
+  color: #333;
+  padding: 0 24rpx;
 }
 
 .line {
-    display: inline-block;
-    flex: 1;
-    height: 2rpx;
-    background: #b0d5ff;
-    position: relative;
-    top: 58rpx;
+  display: inline-block;
+  flex: 1;
+  height: 2rpx;
+  background: #b0d5ff;
+  position: relative;
+  top: 58rpx;
 }
 
 .discount-box {
-    width: 620rpx;
-    height: 294rpx;
-    color: #fff;
-    font-size: 34rpx;
-    position: relative;
-    text-align: center;
-    line-height: 64rpx;
-    border-radius: 10rpx;
-    padding:69rpx 0 99rpx;
+  width: 620rpx;
+  height: 294rpx;
+  color: #fff;
+  font-size: 34rpx;
+  position: relative;
+  text-align: center;
+  line-height: 64rpx;
+  border-radius: 10rpx;
+  padding: 69rpx 0 99rpx;
 }
 
 .discount-box:nth-child(2) {
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB2c036ac26a51d0ceeb02a578ea292786?method=download&shareKey=d94467d9109f28f6e516507c18b68117') no-repeat;
-    background-size: 620rpx 294rpx;
+  background: url('https://note.youdao.com/yws/api/personal/file/WEB2c036ac26a51d0ceeb02a578ea292786?method=download&shareKey=d94467d9109f28f6e516507c18b68117') no-repeat;
+  background-size: 620rpx 294rpx;
 }
 
 .discount-box:nth-child(3) {
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB0a95fbd6867279d130746d125e6c4778?method=download&shareKey=65792389f7326d2daf19ebd0c3230030') no-repeat;
-    background-size: 620rpx 294rpx;
+  background: url('https://note.youdao.com/yws/api/personal/file/WEB0a95fbd6867279d130746d125e6c4778?method=download&shareKey=65792389f7326d2daf19ebd0c3230030') no-repeat;
+  background-size: 620rpx 294rpx;
 }
 
 .discount-box:nth-child(4) {
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB62aaeaaa33a026571345226d3eda28d9?method=download&shareKey=38351f9bc870244078030c7d9042b999') no-repeat;
-    background-size: 620rpx 294rpx;
+  background: url('https://note.youdao.com/yws/api/personal/file/WEB62aaeaaa33a026571345226d3eda28d9?method=download&shareKey=38351f9bc870244078030c7d9042b999') no-repeat;
+  background-size: 620rpx 294rpx;
 }
 
-.discount-box text{
-    display: block;
+.discount-box text {
+  display: block;
 }
 
 .discount-box text:nth-of-type(1) {
-    width:156rpx;
-    font-size: 36rpx;
-    position: absolute;
-    line-height: 64rpx;
-    top:0;
-    left:0;
+  width: 156rpx;
+  font-size: 36rpx;
+  position: absolute;
+  line-height: 64rpx;
+  top: 0;
+  left: 0;
 }
 
 .discount-box button {
-    width:150rpx;
-    height: 50rpx;
-    line-height: 50rpx;
-    font-size: 26rpx!important;
-    position: absolute;
-    right:20rpx;
-    bottom:50rpx;
-    border-radius: 25rpx;
-    color:#fff;
-    padding:0;
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 26rpx !important;
+  position: absolute;
+  right: 20rpx;
+  bottom: 50rpx;
+  border-radius: 25rpx;
+  color: #fff;
+  padding: 0;
 }
 
-.discount-box:nth-child(2) button{
-    background: #4628ff;
+.discount-box:nth-child(2) button {
+  background: #4628ff;
 }
 
-.discount-box:nth-child(3) button{
-    background: #01854b;
+.discount-box:nth-child(3) button {
+  background: #01854b;
 }
 
-.discount-box:nth-child(4) button{
-    background: #ff6304;
+.discount-box:nth-child(4) button {
+  background: #ff6304;
 }
-
-
-
-
-

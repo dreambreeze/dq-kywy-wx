@@ -1,3 +1,83 @@
+.form-box {
+    padding: 0 30rpx 25rpx;
+    background: #fff;
+}
+
+.form-item {
+    display: flex;
+    box-sizing: border-box;
+    padding: 15rpx 0;
+}
+
+.form-item label {
+    min-width: 146rpx;
+    line-height: 50rpx;
+    color: #333;
+    font-size: 28rpx;
+    text-align: right;
+    margin: 0 20rpx 0 0;
+}
+
+.form-item input {
+    flex: 1;
+    margin: 0 48rpx 0 0;
+    line-height: 50rpx;
+    font-size: 28rpx;
+    border-radius: 25rpx;
+    border: #999 1rpx solid;
+    padding: 0 25rpx;
+}
+
+.form-item .picker, .form-item picker {
+    box-sizing: border-box;
+    line-height: 50rpx;
+    font-weight: 400;
+    flex: 1;
+    font-size: 28rpx;
+}
+
+.form-item .picker {
+    margin: 0 48rpx 0 0;
+    border-radius: 25rpx;
+    border: #999 1rpx solid;
+    padding: 0 15rpx;
+}
+
+.form-item .unpicker {
+    color: #808080;
+}
+
+.sex-box view {
+    width: 70rpx;
+    height: 70rpx;
+    margin: 0 25rpx;
+    border-radius: 50%;
+    padding: 0;
+}
+
+.sex-box label {
+    line-height: 70rpx;
+}
+
+.man {
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB1b72cae3c0a1bb855384bca4d25dfe9a?method=download&shareKey=8583939325fcea4bd572ac873d538831') no-repeat;
+    background-size: 100%;
+}
+
+.man-checked {
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB0d34667c0c3aecac77a0753b4327aa8b?method=download&shareKey=a1488bca523372fceeba074f9677c23e') no-repeat;
+    background-size: 100%;
+}
+
+.women {
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB962d7e4de9a65cd40d83d483e3b58a83?method=download&shareKey=045961d509772542cda87221723d1562') no-repeat;
+    background-size: 100%;
+}
+
+.women-checked {
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB3fe81726d12849fd7279f121dbe78924?method=download&shareKey=613097117343c31562f9bd6fc1c6c1e0') no-repeat;
+    background-size: 100%;
+}
 .top-jumpover {
   text-align: right;
   padding: 30rpx 30rpx 15rpx;
@@ -12,7 +92,7 @@
   font-size: 30rpx;
   text-align: center;
   line-height: 54rpx;
-  background-color: #eadecc;
+  background:#3b81d6;
 }
 
 .big-title {
@@ -34,7 +114,7 @@
   letter-spacing: 4rpx;
 }
 
-.input-item {
+/* .input-item {
   line-height: 1;
   margin: 0 90rpx;
 }
@@ -45,7 +125,7 @@
 
 .input-item:nth-of-type(1) {
   border-bottom: 1rpx solid #f00;
-}
+} */
 
 .label-title {
   font-size: 40rpx;
@@ -62,10 +142,10 @@
   margin-right: 35rpx;
 }
 
-.picker {
+/* .picker {
   font-weight: 300;
   width: 100%;
-}
+} */
 
 .dc-btn {
   width: 576rpx;
@@ -74,12 +154,11 @@
   color: #fff;
   box-shadow: 0 0 14px rgba(189, 144, 85, 0.6);
   text-align: center;
-  border-radius: 3px;
+  border-radius: 45rpx;
   margin: 100rpx auto 80rpx;
   font-size: 34rpx;
   font-weight: bold;
 }
-
 .selfModal {
   width: 600rpx;
   position: fixed;

@@ -58,10 +58,10 @@ image {
 }
 
 .btn-gradient {
-    background-image: -webkit-linear-gradient(300deg, #dfceb5 20%, #ddcaaf 40%, #d0b389 60%, #c7a26d 80%, #c59f68 100%) !important;
-    background-image: -o-linear-gradient(300deg, #dfceb5 20%, #ddcaaf 40%, #d0b389 60%, #c7a26d 80%, #c59f68 100%) !important;
-    background-image: -moz-linear-gradient(300deg, #dfceb5 20%, #ddcaaf 40%, #d0b389 60%, #c7a26d 80%, #c59f68 100%) !important;
-    background-image: -ms-linear-gradient(300deg, #dfceb5 20%, #ddcaaf 40%, #d0b389 60%, #c7a26d 80%, #c59f68 100%) !important;
+    background-image: -webkit-linear-gradient(300deg, #77bdff 20%, #6fb9fd 40%, #48a1f4 60%, #3093ef 80%, #238bec 100%) !important;
+    background-image: -o-linear-gradient(300deg, #77bdff 20%, #6fb9fd 40%, #48a1f4 60%, #3093ef 80%, #238bec 100%) !important;
+    background-image: -moz-linear-gradient(300deg, #77bdff 20%, #6fb9fd 40%, #48a1f4 60%, #3093ef 80%, #238bec 100%) !important;
+    background-image: -ms-linear-gradient(300deg, #77bdff 20%, #6fb9fd 40%, #48a1f4 60%, #3093ef 80%, #238bec 100%) !important;
 }
 
 /* 清除浮动 */

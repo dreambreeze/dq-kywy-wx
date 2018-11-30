@@ -4,7 +4,7 @@
 <view class="big-title">补充完整资料</view>
 <view class="sm-title">为您提供更优质的服务</view>
 
-<view class="input-item">
+<!-- <view class="input-item">
   <view class="flex-wrp">
     <view class="label-title">选择你的生日</view>
     <view class="input-con">
@@ -15,11 +15,24 @@
       </picker>
     </view>
   </view>
-</view>
+</view> -->
 
 <view class="input-item">
-  <view class="flex-wrp">
-    <view class="label-title">选择你的性别</view>
+    <view class='form-item'>
+      <label>生日</label>
+      <picker mode="date" value="{{birthday?birthday:'1980-01-01'}}" start="1920-01-01" end="2018-01-01" bindchange="birthdayChange" bindcancel="birthdayCancel">
+        <view class="picker {{birthday?'picker':'unpicker'}}">
+          {{birthday ? birthday : "请选择生日日期"}}
+        </view>
+      </picker>
+    </view>
+    <view class='form-item sex-box'>
+      <label>性别</label>
+      <view class='{{userInfo.sex == 1? "man-checked" : "man"}}' data-sex='1' bindtap="sexchange"></view>
+      <view class='{{userInfo.sex == 0? "women-checked" : "women"}}' data-sex='0' bindtap="sexchange"></view>
+    </view>
+
+    <!-- <view class="label-title">选择你的性别</view>
     <view class="input-con">
       <radio-group class="radio-group" bindchange="sexchange">
         <block wx:if="{{!userInfo.sex || userInfo.sex == 1}}">
@@ -44,8 +57,7 @@
           </label>
         </block>
       </radio-group>
-    </view>
-  </view>
+    </view> -->
 </view>
 
 <view class="dc-btn btn-gradient" bindtap="cardReceive">领取</view>
