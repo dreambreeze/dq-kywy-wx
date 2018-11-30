@@ -1,76 +1,56 @@
 <import src="../common/engin-nav.wxml" />
 <view>
-    <view class="container">
-        <!--banner轮播图 -->
-        <view class='swiper'>
-            <swiper indicator-dots="{{indicatorDots}}" interval="3500" duration="800" circular="true" previous-margin="160rpx" next-margin="160rpx" bindchange='bindchange' current-item-id="{{selected}}">
-                <block wx:for="{{bannerList}}" wx:key="bannerList">
-                    <swiper-item item-id="{{item.staffworkno}}" class="slide-image {{item.staffworkno==selected?'active':''}}">
-                        <text class="card-type">{{item.typeName}}</text>
-                        <image src="{{item.picurl}}" lazy-load/>
-                    </swiper-item>
-                </block>
-            </swiper>
-        </view>
-        <!-- 会员操作 -->
-        <view class='member-box'>
-            <button class='open-button' data-url="../component/pages/docard/docard" bindtap="jumpPage">
-                立即开通会员
-                <view class='iconfont icon-xiala-xiangyou go-icon'></view>
-            </button>
-            <view class='handle-list'>
-                <view class='handle-box' data-url="../component/pages/recharge/recharge" data-funname="会员充值" bindtap="jumpPage">
-                    <image src='../../images/vip-recharge_icon@2x.png' lazy-load></image>
-                    <text>会员充值</text>
-                </view>
-                <view class='handle-box' data-url="../component/pages/cardtrans/cardtrans" data-funname="会员卡转赠" bindtap="jumpPage">
-                    <image src='../../images/vip-transfer_icon@2x.png' lazy-load></image>
-                    <text>会员转赠</text>
-                </view>
-                <view class='handle-box' data-url="../component/pages/transrecord/transrecord" data-funname="转赠记录" bindtap="jumpPage">
-                    <image src='../../images/vip-record_icon@2x.png' lazy-load></image>
-                    <text>转赠记录</text>
-                </view>
-                <view class='handle-box' data-url="../component/pages/lqgiftcard/lqgiftcard" data-funname="领取转赠卡" bindtap="jumpPage">
-                    <image src='../../images/receive_icon@2x.png' lazy-load></image>
-                    <text>领取转赠</text>
-                </view>
-            </view>
-        </view>
-        <!-- 会员折扣列表 -->
-        <view class='discount-list'>
-            <view class='title'>
-                <view class='line'></view>
-                <text>会员优惠方案 </text>
-                <view class='line'></view>
-            </view>
-            <view class='discount-box' data-url="../component/pages/now-docard/now-docard" data-funname="会员充值" bindtap="jumpPage">
-                <text>7.5折</text>
-                <text>充值10000元</text>
-                <text>送3200元</text>
-                <button>立即办理</button>
-            </view>
-            <view class='discount-box' data-url="../component/pages/recharge/recharge" data-funname="会员充值" bindtap="jumpPage">
-                <text>7.7折</text>
-                <text>充值5000元</text>
-                <text>送1500元</text>
-                <button>立即办理</button>
-            </view>
-            <view class='discount-box' data-url="../component/pages/recharge/recharge" data-funname="会员充值" bindtap="jumpPage">
-                <text>7.9折</text>
-                <text>充值3000元</text>
-                <text>送800元</text>
-                <button>立即办理</button>
-            </view>
-        </view>
+  <view class="container">
+    <!--banner轮播图 -->
+    <view class='swiper'>
+      <swiper indicator-dots="{{indicatorDots}}" interval="3500" duration="800" circular="true" previous-margin="160rpx" next-margin="160rpx" bindchange='bindchange' current-item-id="{{selected}}">
+        <block wx:for="{{bannerList}}" wx:key="bannerList">
+          <swiper-item item-id="{{item.staffworkno}}" class="slide-image {{item.staffworkno==selected?'active':''}}">
+            <text class="card-type">{{item.typeName}}</text>
+            <image src="{{item.picurl}}" lazy-load/>
+          </swiper-item>
+        </block>
+      </swiper>
     </view>
-    <!-- 导航公用模版 -->
-    <template is="engin-nav" data="{{type:1,navArr: navTabBar,showImgUrl: showImgUrl}}" />
-    <!-- 分享按钮 -->
-    <view class="share-box" hidden>
-        <button hover-class="none" open-type="share">
-            <text>分享</text>
-        </button>
+    <!-- 会员操作 -->
+    <view class='member-box'>
+      <button class='open-button' data-url="../component/pages/docard/docard" bindtap="jumpPage">
+        立即开通会员
+        <view class='iconfont icon-xiala-xiangyou go-icon'></view>
+      </button>
+      <view class="handle-list">
+        <block wx:for="{{handList}}">
+          <view class="handle-box" data-url="{{item.url}}" data-funname="{{item.name}}" bindtap="jumpPage">
+            <image src="{{item.src}}" lazy-load></image>
+            <text>{{item.title}}</text>
+          </view>
+        </block>
+      </view>
     </view>
+    <!-- 会员折扣列表 -->
+    <view class='discount-list'>
+      <view class='title'>
+        <view class='line'></view>
+        <text>会员优惠方案 </text>
+        <view class='line'></view>
+      </view>
+        <block wx:for="{{discountList}}">
+          <view class="discount-box" data-url="{{item.url}}" data-funname="{{item.name}}" bindtap="jumpPage">
+            <text>{{item.discount}}</text>
+            <text>{{item.money}}</text>
+            <text>{{item.free}}</text>
+            <button>立即办理</button>
+          </view>
+        </block>
+    </view>
+  </view>
+  <!-- 导航公用模版 -->
+  <template is="engin-nav" data="{{type:1,navArr: navTabBar,showImgUrl: showImgUrl}}" />
+  <!-- 分享按钮 -->
+  <view class="share-box" hidden>
+    <button hover-class="none" open-type="share">
+      <text>分享</text>
+    </button>
+  </view>
 
 </view>

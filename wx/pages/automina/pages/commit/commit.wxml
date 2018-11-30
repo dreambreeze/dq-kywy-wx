@@ -99,14 +99,14 @@
         </view>
         <view class="desc">请选择付款方式</view>
       </view>
-      <block wx:for="{{payWayList}}">
-        <view class='pw_list'>
+      <block wx:for="{{payWayList}}"  wx:key="{{item.AutoID}}">
+        <view class='pw_list' bindtap="selectPayWay" data-autoId='{{item.AutoID}}'>
           <view class="pwl-lt">
             <view class='iconfont icon-aui-icon-weichat pwl-typeIcon'></view>
             <text class='pwl-name'>{{item.MembershipTypeName}}</text>
           </view>
-          <view class="pwl-rt">
-            <view class="iconfont icon-xuanzhong l-selIcon"></view>
+          <view class="pwl-rt" >
+            <view class="iconfont icon-xuanzhong l-selIcon" wx:if="{{item.AutoID==pwseleted}}"></view>
           </view>
         </view>
       </block>

@@ -186,8 +186,9 @@ Page({
   },
 
   /* ①第一步  选择切换支付方式   e.detail.currentItemId=0 微信支付，  否则会员卡支付  */
-  bindchange: function (e) {
-    var paywayindex = e.detail.currentItemId
+  selectPayWay: function (e) {
+    console.log("paywayindex", e)
+    var paywayindex = e.currentTarget.dataset.autoid
     var that = this
     that.setData({
       pyselected: paywayindex

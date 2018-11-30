@@ -194,18 +194,17 @@
     border-radius: 10rpx;
 }
 
-.image-box-1, .image-box-2, .image-box-3 {
+.image-box-1, .image-box-2 {
     font-size: 22rpx;
     position: relative;
     border-radius: 10rpx;
 }
 
-.image-box-2, .image-box-3 {
+.image-box-2{
     width: 353rpx;
     height: 151rpx;
     float: right;
 }
-
 .image-box-1 {
     width: 317rpx;
     height: 322rpx;

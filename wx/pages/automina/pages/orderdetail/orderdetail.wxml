@@ -47,7 +47,7 @@
       <view class='o-left'>
         <view>订单状态：</view>
         <view>手机号码：</view>
-        <view>房间名称：</view>
+        <view>订单类型：</view>
         <view>订单号：</view>
         <view>支付方式：</view>
         <view>下单时间：</view>
