@@ -40,7 +40,6 @@
   line-height: 74rpx;
   text-align: center;
   font-size: 30rpx;
-  border: 1rpx solid #caa876;
   color: #333;
   border-radius: 6rpx;
   vertical-align: top;
