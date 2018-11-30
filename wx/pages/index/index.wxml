@@ -10,10 +10,10 @@
             </block>
         </swiper>
         <view class='contact-tools'>
-            <view class='address-icon' bindtap="location"></view>
+            <view class='iconfont icon-ditu00 address-icon' bindtap="location"></view>
             <text bindtap="location">{{locationStore[0].address}}</text>
             <text>{{locationStore[0].distance}}</text>
-            <view class='nav-icon' bindtap="location"></view>
+            <view class='iconfont icon-jiantouarrow591 nav-icon' bindtap="location"></view>
             <text>|</text>
             <view class='tel-icon' data-phone="{{locationStore[0].tel}}" bindtap="phoneCall"></view>
         </view>

@@ -11,10 +11,10 @@
         <!-- 位置信息 -->
         <view class='contact-tools'>
             <view class='address' bindtap="location" data-location='{{currentStore}}'>
-                <view class='address-icon' ></view>
+                <view class='iconfont icon-ditu00 address-icon'></view>
                 <text>{{currentStore.address}}</text>
                 <text>{{currentStore.distance}}km</text>
-                <view class='nav-icon' ></view>
+                <view class='iconfont icon-jiantouarrow591 nav-icon' bindtap="location"></view>
             </view>
             <text>|</text>
             <view class='tel-icon' data-phone="{{currentStore.tel}}" bindtap="phoneCall"></view>

@@ -35,11 +35,15 @@
 }
 
 .box-title{
-    padding: 0 0 0 40rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB47645059b6d727e9f9deb9f918ca6f7b?method=download&shareKey=fdb89455e0ed3f80addcb5e5455c7094') no-repeat left center;
-    background-size: 26rpx 30rpx;
+  display: flex;
     font-size: 28rpx;
     line-height: 50rpx;
+}
+.fenleiIcon{
+  color: #3b81d6;
+}
+.box-title .title{
+  padding-left: 10rpx;
 }
 
 .store-item {

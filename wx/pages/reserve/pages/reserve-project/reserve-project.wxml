@@ -5,12 +5,13 @@
         <view class='store-name'>{{locationStore[0].store_name}}</view>
         <!-- 联系方式 -->
         <view class='contact-tools'>
-            <view class='address-icon' bindtap="location"></view>
+            <view class='iconfont icon-ditu00 address-icon' bindtap="location"></view>
             <view class='ellipsis' bindtap="location">{{locationStore[0].address}}</view>
         </view>
         <view class='contact-tools'>
             <text bindtap="location">{{locationStore[0].distance}}</text>
             <view class='nav-icon' bindtap="location"></view>
+            <view class='iconfont icon-jiantouarrow591 nav-icon' bindtap="location"></view>
             <text>|</text>
             <view class='tel-icon' data-phone="{{locationStore[0].tel}}" bindtap="phoneCall"></view>
         </view>

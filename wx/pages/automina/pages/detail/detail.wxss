@@ -198,36 +198,11 @@ page {
     text-align: center;
 }
 
-.goods .change-num {
-    color: #fff;
-    width: 40rpx;
-    line-height: 40rpx;
-    height:40rpx;
-    border-radius: 50%;
-    background: #3b81d6;
-    text-align: center;
-    font-size: 26rpx;
-    margin:5rpx;
-    position: relative;
+.jiaIcon {
+    color: #3b81d6;
+    font-size: 35rpx;
 }
 
-.goods .change-num:before{
-    content:'';
-    position: absolute;
-    left:0;
-    right:0;
-    top:-30rpx;
-    height:30rpx;
-}
-
-.goods .change-num:after{
-    content:'';
-    position: absolute;
-    left:0;
-    right:0;
-    bottom:-30rpx;
-    height:30rpx;
-}
 
 .sv-goods .deadline {
     text-align: center;
@@ -400,9 +375,9 @@ page {
 }
 
 .cart .cartimg {
-    width: 54rpx;
-    height: 54rpx;
-    margin: 18rpx 0;
+    font-size: 60rpx;
+    /* margin: 18rpx 0; */
+    color: #FF3D3D;
 }
 
 /* 项目列表 */

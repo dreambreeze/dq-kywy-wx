@@ -14,12 +14,12 @@
                 <block wx:if="{{store.project.length==1}}">
                     <view class='contact-tools'>
                         <view class='address' bindtap="location" data-location='{{store}}'>
-                            <view class='address-icon'></view>
+                          <view class='iconfont icon-ditu00 address-icon' bindtap="location"></view>
                             <text>{{store.address}}</text>
                         </view>
                         <view class='flex-wrap'>
                             <text bindtap="location" data-location='{{store}}'>{{store.distance}}km</text>
-                            <view class='nav-icon'></view>
+                            <view class='iconfont icon-jiantouarrow591 nav-icon' bindtap="location"></view>
                             <text>|</text>
                             <view class='tel-icon' data-phone="{{store.tel}}" bindtap="phoneCall"></view>
                         </view>
@@ -28,10 +28,10 @@
                 <block wx:else>
                     <view class='contact-tools'>
                         <view class='address' bindtap="location" data-location='{{store}}'>
-                            <view class='address-icon'></view>
+                            <view class='iconfont icon-ditu00 address-icon'></view>
                             <text>{{store.address}}</text>
                             <text>{{store.distance}}km</text>
-                            <view class='nav-icon'></view>
+                            <view class='iconfont icon-jiantouarrow591 nav-icon'></view>
                         </view>
                         <text>|</text>
                         <view class='tel-icon' data-phone='{{store.tel}}' bindtap="phoneCall"></view>

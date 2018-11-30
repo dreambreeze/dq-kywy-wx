@@ -114,10 +114,8 @@
 
 .address-icon {
     display: inline-block;
-    width: 42rpx;
-    height: 90rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB330ac01fc77c8bb32e84cb60c35ead81?method=download&shareKey=b31d7812be7686a3519fb7fdaeadc73f') no-repeat center;
-    background-size: 22rpx;
+    font-size: 30rpx;
+    color: #3b81d6
 }
 
 .contact-tools text:nth-of-type(1) {
@@ -126,15 +124,13 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-
 .nav-icon {
     display: inline-block;
-    width: 42rpx;
-    height: 90rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB6afc3b4cf94f96b65bd55ba80fa769fe?method=download&shareKey=84ac7821f01df125479b4b2748f6fe93') no-repeat center;
-    background-size: 22rpx;
+    font-size: 22rpx;
+    color: #3b81d6;
+    text-align: center;
+     width: 40rpx;
 }
-
 .tel-icon {
     display: inline-block;
     width: 40rpx;

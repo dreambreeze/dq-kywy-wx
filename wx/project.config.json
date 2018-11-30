@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 29,
+			"current": 30,
 			"list": [
 				{
 					"id": 0,
@@ -227,7 +227,13 @@
 				{
 					"id": -1,
 					"name": "充值订单详情",
-					"pathName": "pages/ucentermodel/pages/docardOrderdetail/docardOrderdetail"
+					"pathName": "pages/ucentermodel/pages/docardOrderdetail/docardOrderdetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "充值订单详情",
+					"pathName": "pages/automina/pages/order/order"
 				}
 			]
 		}
