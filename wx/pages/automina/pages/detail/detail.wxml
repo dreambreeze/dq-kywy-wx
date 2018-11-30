@@ -1,4 +1,3 @@
-<!--pages/detail/detail.wxml-->
 <view class='amcontainer'>
   <!--头部  -->
   <view class='my-order' bindtap='myorder'>{{my}}</view>

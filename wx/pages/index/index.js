@@ -623,11 +623,6 @@ Page({
      * 扫码下单
      */
     scancode: function () {
-        // var ShopNoRoomNo = "ShopNo=DQT02@RoomNo=221"
-        // wx.setStorageSync("ShopNoRoomNo", ShopNoRoomNo)
-        // wx.navigateTo({
-        //     url: '/pages/automina/pages/detail/detail',
-        // })
         wx.scanCode({
             onlyFromCamera: true,
             scanType: [],
@@ -639,7 +634,7 @@ Page({
                         var newpath = path[0]
                         var ShopNoRoomNo = path[1].substr(6, path[1].length - 1)
                         wx.setStorageSync("ShopNoRoomNo", ShopNoRoomNo)
-                        wx.redirectTo({
+                        wx.navigateTo({
                             url: '/pages/automina/pages/detail/detail',
                         })
                     } catch (e) {
