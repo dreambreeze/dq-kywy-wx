@@ -92,9 +92,6 @@
 
 </view>
 
-<!-- //返回首页按钮  -->
-<view class="backhome_btn">
-  <navigator url="/pages/index/index" hover-class="none" open-type="reLaunch">
-    <text>返回首页</text>
-  </navigator>
-</view>
+<!-- 返回首页按钮 -->
+<navigator class="back-home" url="/pages/index/index" hover-class="none" open-type="reLaunch">
+</navigator>

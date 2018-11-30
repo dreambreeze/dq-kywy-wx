@@ -29,8 +29,6 @@
             <view class='tel-icon' data-phone="{{storeProject[0].tel}}" bindtap="phoneCall"></view>
         </view>
     </view>
-
-
     <view wx:if="{{ordersData}}" class='orders {{mutiple==1?"oneorder":""}}'>
         <swiper indicator-dots="{{indicator}}" circular="{{true}}" display-multiple-items="{{mutiple}}" autoplay="{{true}}" interval="2000" duration="800" vertical="true">
             <block wx:for="{{ordersData}}" wx:key="">
@@ -44,10 +42,10 @@
                     <view class='mid'>
                         <view class='mtop'>还差
                             <text>{{item.nums}}</text> 人拼成</view>
-                        <view class='mbottom '>剩余 {{item.difftime}}</view>
+                        <view class='mbottom'>剩余 <text>{{item.difftime}}</text></view>
                     </view>
                     <view class='right flex' bindtap='buys' data-buytype="3" data-num="{{item.nums}}" data-groupno="{{item.groupno}}">
-                        <view class='gobuy flex'>去参团</view>
+                        <view class='gobuy flex'>去拼团</view>
                     </view>
                 </swiper-item>
             </block>

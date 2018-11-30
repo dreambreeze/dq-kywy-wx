@@ -87,10 +87,11 @@
   height: 56rpx;
   line-height: 56rpx;
   margin-top: 10rpx;
+  background: #3b81d6;
 }
 
 .get-verify.seconds {
-  background-color: #ccc;
+  background-color: #aaa;
 }
 
 .radio {
@@ -99,16 +100,14 @@
 }
 
 .dc-btn {
-  width: 576rpx;
-  height: 90rpx;
-  line-height: 90rpx;
+  height: 60rpx;
+  line-height: 60rpx;
   color: #fff;
-  box-shadow: 0 0 14px rgba(189, 144, 85, 0.6);
   text-align: center;
-  border-radius: 3px;
-  margin: 176rpx auto 0;
-  font-size: 34rpx;
-  font-weight: bold;
+  border-radius: 30px;
+  margin: 60rpx auto;
+  font-size: 30rpx;
+  background: #3b81d6;
 }
 
 .getPhoneNumber {

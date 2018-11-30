@@ -60,27 +60,12 @@
     left: 10rpx;
     bottom: 120rpx;
     text-align: center;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEB78a7e313f27823bdd752f19e6451384b?method=download&shareKey=ebd90bf36eae030c038d581212971438') no-repeat center;
+    width:90rpx;
+    height: 90rpx;
+    background-size: 90rpx;
 }
 
-.assess-btn text {
-    display: inline-block;
-    line-height: 1;
-    margin-top: 66rpx;
-}
-
-.assess-btn view {
-    display: inline-block;
-    width: 120rpx;
-    height: 120rpx;
-    text-align: center;
-    font-size: 24rpx;
-    color: #c7b498;
-    border-radius: 50%;
-    box-sizing: initial;
-    box-shadow: 0 4rpx 12rpx rgba(88, 88, 88, 0.4);
-    background: #585858 url(https://iservice.daqisoft.cn/Public/Home/images/assess_icon.png) no-repeat center 20rpx;
-    background-size: 32%;
-}
 
 .get-user-info {
     position: fixed;

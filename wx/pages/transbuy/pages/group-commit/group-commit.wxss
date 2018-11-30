@@ -136,7 +136,7 @@ color: #999;
 }
 .payorder .total{
   flex:1;
-  text-align: right;
+  text-align: center;
   padding: 0 20rpx;
   font-size: 28rpx;
   
@@ -153,10 +153,9 @@ color: #999;
   width: 240rpx;
   line-height: 100rpx;
   text-align: center;
-  background-color: #353535;
-  font-size: 34rpx;
-  font-weight: bold;
-  color: #caa876;
+  background: #3b81d6;
+  font-size: 32rpx;
+  color: #fff;
 }
 
 .note{

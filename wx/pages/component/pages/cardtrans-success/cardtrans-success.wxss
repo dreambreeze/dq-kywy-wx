@@ -51,7 +51,7 @@ button.again-reserve-btn::after{
 }
 
 .again-reserve-btn.active{
-  background-color: #caa876;
+  background-color: #3b81d6;
   color: #fff;
 }
 

@@ -294,6 +294,10 @@ swiper-item {
     flex: 1;
 }
 
+.mbottom text {
+    color:#ea3838;
+}
+
 .left  image {
     width: 64rpx;
     height: 64rpx;
@@ -316,7 +320,7 @@ swiper-item {
 
 .right .gobuy {
     padding: 8rpx 8rpx;
-    background-image: linear-gradient(to right bottom, #dfceb5, #caa776);
+    background: #ea3838;
     width: 120rpx;
     color: #ffe;
     border-radius: 8rpx;

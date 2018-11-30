@@ -56,12 +56,8 @@
 
 
 <!-- 评价按钮 -->
-<view class="assess-btn">
-    <view bindtap="toAssess">
-        <text>我要评价</text>
-    </view>
-</view>
-
+<view class="assess-btn" bindtap="toAssess"></view>
+<!-- 获取用户资料 -->
 <view class="mask" style="{{display}}"></view>
 <view class="get-user-info" style="{{display}}">
     <view class="getui-title">基本资料获取</view>
@@ -69,10 +65,5 @@
 </view>
 
 <!-- 返回首页按钮 -->
-<view class="backhome-btn">
-    <view>
-        <navigator url="/pages/index/index" hover-class="none" open-type="reLaunch">
-            <text>返回首页</text>
-        </navigator>
-    </view>
-</view>
+<navigator class="back-home" url="/pages/index/index" hover-class="none" open-type="reLaunch">
+</navigator>

@@ -240,31 +240,15 @@ button.blue.disabled {
 
 /* 返回首页按钮 */
 
-.backhome-btn {
+.back-home{
     position: fixed;
     right: 0;
     bottom: 120rpx;
     text-align: center;
-}
-
-.backhome-btn text {
-    display: inline-block;
-    line-height: 1;
-    margin-top: 66rpx;
-}
-
-.backhome-btn view {
-    display: inline-block;
-    width: 120rpx;
-    height: 120rpx;
-    text-align: center;
-    font-size: 22rpx;
-    color: #c7b498;
-    border-radius: 50%;
-    box-sizing: initial;
-    box-shadow: 0 4rpx 12rpx rgba(88, 88, 88, 0.5);
-    background: #585858 url(https://iservice.daqisoft.cn/Public/Home/images/home_check_icon.png) no-repeat center 20rpx;
-    background-size: 38%;
+    background: url('https://note.youdao.com/yws/api/personal/file/WEBffc1d0c0819b704cf4e4ecf5b705b798?method=download&shareKey=f6e1abfa453a1bc5901439278728d52b') no-repeat center;
+    background-size:90rpx;
+    width:90rpx;
+    height: 90rpx;
 }
 
 /*广告  */

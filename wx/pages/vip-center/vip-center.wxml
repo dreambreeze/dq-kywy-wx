@@ -31,6 +31,10 @@
                     <image src='../../images/vip-record_icon@2x.png' lazy-load></image>
                     <text>转赠记录</text>
                 </view>
+                <view class='handle-box' data-url="../component/pages/lqgiftcard/lqgiftcard" data-funname="领取转赠卡" bindtap="jumpPage">
+                    <image src='../../images/receive_icon@2x.png' lazy-load></image>
+                    <text>领取转赠</text>
+                </view>
             </view>
         </view>
         <!-- 会员折扣列表 -->
