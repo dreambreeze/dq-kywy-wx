@@ -25,10 +25,10 @@
         <!-- 联系方式 -->
         <view class='contact-tools'>
             <view class='address' bindtap="location" data-location='{{storeProject[0]}}'>
-                <view class='address-icon'></view>
+                <view class='iconfont icon-ditu00 address-icon'></view>
                 <text>{{storeProject[0].address_detail}}</text>
                 <text>{{storeProject[0].distance}}km</text>
-                <view class='nav-icon'></view>
+                <view class='iconfont icon-jiantouarrow591 nav-icon'></view>
             </view>
             <text>|</text>
             <view class='tel-icon' data-phone="{{storeProject[0].tel}}" bindtap="phoneCall"></view>
@@ -61,18 +61,18 @@
     <view class="buy-bar">
         <view class="flex-wrp">
             <view class="buy-car" bindtap='tocart'>
-                <image src="../../../../../images/jisuan_icon.png"></image>
+                <text class='iconfont icon-daikuanjisuanqi counterIcon'></text>
                 <text class="buy-car-t">去结算</text>
                 <block wx:if="{{cartNum}}">
                     <text class="num-tips">{{cartNum}}</text>
                 </block>
             </view>
             <view class="push-car" bindtap="pushCar">
-            <image class='shop-car' src="../../../../../images/shop-car.png"></image>
+            <text class='iconfont icon-tianchongxing- cartIcon'></text>
             加入购物车
             </view>
             <view class="buys" bindtap="buys">
-            <image class='now-buy' src="../../../../../images/now-buy.png"></image>
+            <text class='iconfont icon-qian qianIcon'></text>
             立即购买
             </view>
         </view>

@@ -246,13 +246,12 @@
 .shidden {
     visibility: hidden;
 }
-
-.index image {
-    width: 32rpx;
-    height: 32rpx;
-    margin: 0 10rpx 0 0;
+.homeIcon{
+  font-size: 30rpx;
+  color: #3b81d6;
+  display: block;
+  width: 32rpx
 }
-
 /* 订单滚动 */
 
 swiper {
@@ -341,13 +340,6 @@ swiper-item {
     display: flex;
 }
 
-.address-icon {
-    display: inline-block;
-    width: 30rpx;
-    height: 80rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB330ac01fc77c8bb32e84cb60c35ead81?method=download&shareKey=b31d7812be7686a3519fb7fdaeadc73f') no-repeat center left;
-    background-size: 22rpx;
-}
 
 .address text:nth-of-type(1) {
     flex: 1;
@@ -357,13 +349,6 @@ swiper-item {
     white-space: nowrap;
 }
 
-.nav-icon {
-    display: inline-block;
-    width: 40rpx;
-    height: 80rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB6afc3b4cf94f96b65bd55ba80fa769fe?method=download&shareKey=84ac7821f01df125479b4b2748f6fe93') no-repeat center;
-    background-size: 22rpx;
-}
 
 .tel-icon {
     display: inline-block;

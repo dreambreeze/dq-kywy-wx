@@ -137,9 +137,8 @@
 .arrowdown {
     display: inline-block;
     width: 24rpx;
-    height: 16rpx;
-    background: url(https://iservice.daqisoft.cn/Public/Home/images/arrowdown.png) no-repeat;
-    background-size: contain;
+    font-size: 35rpx;
+    color:#999;
     margin-left: 10rpx;
     top: -6rpx;
 }

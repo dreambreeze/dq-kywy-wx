@@ -93,34 +93,130 @@
         <block wx:else>
             <view class="empty-assess">无评价内容</view>
         </block>
-
+  <swiper class="banner" indicator-dots="{{indicatorDots}}" autoplay="true" interval="3000" duration="400" indicator-color="rgba(255, 255, 255, .5)" indicator-active-color="#caa876">
+    <block wx:for="{{banner}}" wx:key='index'>
+      <swiper-item>
+        <image src="{{item}}" class="item-image" mode="aspectFill" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="project-info" wx:for="{{storeProject[0].project}}" wx:key="">
+    <view class="project-msg">
+      <text class='project-name'>{{item.project}}</text>
+      <text class='peoples'>{{item.nums}}人团</text>
+      <text class='label'>优惠团购限时抢购</text>
+      <text class='order-num'>已拼 {{item.count}} 单</text>
     </view>
+    <view class="project-price">
+      <text><text>¥</text>{{item.groupprice}}</text>
+      <text>门市价 ¥ {{item.marketprice}}</text>
+    </view>
+    <view class='contact-tools'>
+      <view class='address' bindtap="location" data-location='{{storeProject[0]}}'>
+        <view class='iconfont icon-ditu00 address-icon'></view>
+        <text>{{storeProject[0].address}}</text>
+        <text>{{storeProject[0].distance}}km</text>
+        <view class='iconfont icon-jiantouarrow591 nav-icon'></view>
+      </view>
+      <text>|</text>
+      <view class='tel-icon' data-phone="{{storeProject[0].tel}}" bindtap="phoneCall"></view>
+    </view>
+  </view>
 
-    <!-- 分享按钮 -->
-    <!-- <view class="share-box">
+
+  <view wx:if="{{ordersData}}" class='orders {{mutiple==1?"oneorder":""}}'>
+    <swiper indicator-dots="{{indicator}}" circular="{{true}}" display-multiple-items="{{mutiple}}" autoplay="{{true}}" interval="2000" duration="800" vertical="true">
+      <block wx:for="{{ordersData}}" wx:key="">
+        <swiper-item class="oitem flex" item-id="{{item.groupno}}">
+          <!-- <image src="{{item.pavatar}}" class="slide-image" width="355" height="150"/> -->
+          <view class='left'>
+            <block wx:for="{{item.pavatar}}" wx:key="" wx:for-item="avatar">
+              <image src="{{avatar}}" class="avatar-image" width="32" height="32" />
+            </block>
+          </view>
+          <view class='mid'>
+            <view class='mtop'>还差
+              <text>{{item.nums}}</text> 人拼成</view>
+            <view class='mbottom '>剩余 {{item.difftime}}</view>
+          </view>
+          <view class='right flex' bindtap='buys' data-buytype="3" data-num="{{item.nums}}" data-groupno="{{item.groupno}}">
+            <view class='gobuy flex'>去参团</view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="project-dil">
+    <view class="dil-title">项目介绍</view>
+    <view class="dil-content">{{storeProject[0].project[0].tips}}</view>
+  </view>
+  <view class="project-dil totips techdetail" wx:for="{{storeProject[0].project}}" wx:key="">
+    <view class="dil-title">购买须知</view>
+    <view class='td-intro'>
+      <view class='td-head'>有效期</view>
+      <view class='td-desc'>{{item.validate}}至{{item.validateend}}</view>
+    </view>
+    <view class='td-intro'>
+      <view class='td-head'>除外日期</view>
+      <view class='td-desc'>{{item.exceptdate}}</view>
+    </view>
+    <view class='td-intro dil-content'>
+      <view class='td-head'>预约信息</view>
+      <view class='td-desc'>{{item.reservation}}</view>
+    </view>
+    <view class='td-intro dil-content'>
+      <view class='td-head'>规则提醒</view>
+      <view class='td-desc'>{{item.remind}}</view>
+    </view>
+    <view class='td-intro dil-content'>
+      <view class='td-head'>商家服务</view>
+      <view class='td-desc'>{{item.services}}</view>
+    </view>
+  </view>
+  <view class="assess">
+    <block wx:if="{{assesData}}">
+      <view class="assess-title clear">
+        <text>用户评论</text>
+        <view bindtap="lookAllAssess">查看全部
+          <image src="https://iservice.daqisoft.cn/Public/Home/images/arrowright1.png"></image>
+        </view>
+      </view>
+      <!-- 评论模版 -->
+      <template is="assess" data="{{assess: assesData}}" />
+      <view class="look-all" bindtap="lookAllAssess">查看全部</view>
+    </block>
+    <block wx:else>
+      <view class="empty-assess">无评价内容</view>
+    </block>
+
+  </view>
+
+  <!-- 分享按钮 -->
+  <!-- <view class="share-box">
     <button hover-class="none" open-type="share">
       <text>分享</text>
     </button>
   </view> -->
 
-    <view class="buy-bar">
-        <view class="flex-wrp">
-            <view class="index flex" bindtap="goindex">
-                <image src="https://note.youdao.com/yws/api/personal/file/WEBa8ae747f063959dccfb79236daeb0caa?method=download&shareKey=fc6f4669ead3f7bac33fe6e9ad8ed018"></image>
-                <text>返回首页</text>
-            </view>
-            <view class="onebuy" bindtap="buys" data-buytype="1">
-                <view>
-                    <view wx:if="{{storeProject[0].project[0].issingle}}">￥{{storeProject[0].project[0].singleprice}}</view>
-                    <view>单独购买</view>
-                </view>
-            </view>
-            <view class="buys" bindtap="buys" data-buytype="2">
-                <view>
-                    <view>￥{{storeProject[0].project[0].groupprice}}</view>
-                    <view>一键开团</view>
-                </view>
-            </view>
+  <view class="buy-bar">
+    <view class="flex-wrp">
+      <view class="index flex" bindtap="goindex">
+        <text class='iconfont icon-home homeIcon'></text>
+        <!-- <image src="https://note.youdao.com/yws/api/personal/file/WEBa8ae747f063959dccfb79236daeb0caa?method=download&shareKey=fc6f4669ead3f7bac33fe6e9ad8ed018"></image> -->
+        <text>返回首页</text>
+      </view>
+      <view class="onebuy" bindtap="buys" data-buytype="1">
+        <view>
+          <view wx:if="{{storeProject[0].project[0].issingle}}">￥{{storeProject[0].project[0].singleprice}}</view>
+          <view>单独购买</view>
         </view>
+      </view>
+      <view class="buys" bindtap="buys" data-buytype="2">
+        <view>
+          <view>￥{{storeProject[0].project[0].groupprice}}</view>
+          <view>一键开团</view>
+        </view>
+      </view>
     </view>
+  </view>
 </view>

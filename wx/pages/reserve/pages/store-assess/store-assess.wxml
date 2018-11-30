@@ -5,7 +5,7 @@
                 <picker mode="selector" bindchange="bindPickerChange" value="{{index}}" range="{{storeArr}}" range-key="store_name">
                     <view class="picker-val-parent">
                         <view class="picker-val">{{storeArr[index].store_name}}</view>
-                        <view class="arrowdown"></view>
+                        <view class="iconfont icon-xiangxia arrowdown"></view>
                     </view>
                 </picker>
             </view>

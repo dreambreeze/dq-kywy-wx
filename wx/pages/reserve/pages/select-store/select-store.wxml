@@ -5,7 +5,10 @@
         <label class='search-btn' bindtap="searchSubmit">搜索</label>
     </view>
     <!-- 门店列表 -->
-    <view class='box-title'>所有门店</view>
+    <view class='box-title'>
+      <view class='iconfont icon-fenlei fenleiIcon' bindtap="location"></view>
+      <view class='title'>所有门店</view>
+    </view>
     <view class="store-list">
         <block wx:if="{{!emptyMsg}}">
             <view class="store-item {{index == sidx ? 'active' : '' }}" wx:for="{{stores}}" wx:key="" bindtap="changeStore" data-sidx="{{index}}">{{item.store_name}}</view>

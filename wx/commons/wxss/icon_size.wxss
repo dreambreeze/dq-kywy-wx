@@ -1,0 +1,15 @@
+/* 地图 */
+.address-icon {
+    display: inline-block;
+    font-size: 30rpx;
+    color: #3b81d6;
+    background-size: 22rpx;
+}
+/* 右上箭头 */
+.nav-icon {
+    display: inline-block;
+    font-size: 22rpx;
+    color: #3b81d6;
+    text-align: center;
+     width: 40rpx;
+}
