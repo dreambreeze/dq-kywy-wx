@@ -17,6 +17,7 @@
     top: 0;
     left: 0;
     border-bottom: 1rpx solid #eee;
+    z-index:1;
 }
 
 .nav-item {

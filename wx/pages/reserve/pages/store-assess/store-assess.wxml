@@ -9,11 +9,11 @@
                     </view>
                 </picker>
             </view>
-        <!-- <view class="nav-item">
+        <view class="nav-item" wx:for='{{}}'>
             <navigator url="../store-assess/store-assess?type=" hover-class="none" open-type="redirect">
                 <text class="{{!navType ? 'active' : ''}}">全部</text>
             </navigator>
-        </view> -->
+        </view>
         <view class="nav-item">
             <navigator url="../store-assess/store-assess?type=1" hover-class="none" open-type="redirect">
                 <text class="{{navType == '1' ? 'active' : ''}}">好评</text>

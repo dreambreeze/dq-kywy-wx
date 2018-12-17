@@ -29,7 +29,7 @@
 .card-info .amout-money {
     display: block;
     font-size: 28rpx;
-    text-align-last: justify;
+    text-align: center;
 }
 
 .store-name, .card-type {
@@ -136,6 +136,10 @@
     padding: 0;
     border-radius: 25rpx;
     margin: 0 48rpx 0 0;
+}
+
+.verify-box .disable{
+    background: #999;
 }
 
 .verify-box input {

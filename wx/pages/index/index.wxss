@@ -5,6 +5,7 @@
     min-height: 1184rpx;
     padding-bottom: 100rpx;
 }
+
 /* banner轮播图 start */
 .swiper {
     height: 340rpx;

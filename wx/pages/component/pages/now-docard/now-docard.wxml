@@ -2,13 +2,14 @@
 <view class="container">
     <!-- banner卡图 -->
     <view class="card-banner">
-        <image src="{{!currentCard.PicUrl ? cardPicUrl : '../../images/open-vip-banner@2x.png'}}"></image>
+        <image src="{{currentCard.PicUrl?showImgUrl+currentCard.PicUrl:cardPicUrl}}"></image>
     </view>
     <!-- 门店与卡类型 -->
-    <view class='card-info'>
-        <text class='amout-money'>充值金额：￥1000（送￥3200）</text>
-        <text class='store-name'>门店：大旗A店</text>
-        <text class='card-type'>类型：贵宾卡</text>
+    <view class='card-info' wx:if='{{hasChoseAmout}}'>
+        <text class='amout-money'>充值金额：￥{{am}}元 </text>
+        <text class='amout-money'>赠送金额：￥{{gift}}元</text>
+        <text class='store-name'>门店：{{currentCard.ShopName}}</text>
+        <text class='card-type'>类型：{{currentCard.MembershipTypeName}}</text>
     </view>
     <!-- 用户信息表单 -->
     <form bindsubmit='formSubmit' report-submit>
@@ -20,11 +21,11 @@
             </view>
             <view class='form-item'>
                 <label>姓名</label>
-                <input placeholder='请输入真实姓名' name='names'></input>
+                <input placeholder='请输入真实姓名' value='{{userInfo.names}}' name='names'></input>
             </view>
             <view class='form-item'>
                 <label>手机</label>
-                <input placeholder='请输入手机号' type="number" name="phone" value="{{inputPhone}}" bindinput="inputPhone"></input>
+                <input placeholder='请输入手机号' type="number" name="phone" value="{{userInfo.phone}}" bindinput="inputPhone"></input>
             </view>
             <view class='form-item verify-box'>
                 <label>验证码</label>
@@ -33,7 +34,7 @@
                     <button bindtap="getVerify">发送验证码</button>
                 </block>
                 <block wx:else>
-                    <button bindtap="getVerify">{{seconds}}s重新获取</button>
+                    <button class='disable' bindtap="getVerify">{{seconds}}s重新获取</button>
                 </block>
             </view>
             <view class='form-item'>
@@ -48,32 +49,12 @@
                     </view>
                 </picker>
             </view>
-            <view class='form-item amount-box'>
+            <view class='form-item amount-box' wx:if='{{!hasChoseAmout}}'>
                 <label>请选择充值金额</label>
                 <view class='amount-list'>
-                    <view class='item {{amountIdx == 1 ? "current" : ""}}' bindtap='changeAmount' data-index="1">
-                        <text>1000元</text>
-                        <text>赠送159元</text>
-                    </view>
-                    <view class='item {{amountIdx == 2 ? "current" : ""}}' bindtap='changeAmount' data-index="2">
-                        <text>2000元</text>
-                        <text>赠送318元</text>
-                    </view>
-                    <view class='item {{amountIdx == 3 ? "current" : ""}}' bindtap='changeAmount' data-index="3">
-                        <text>3000元</text>
-                        <text>赠送600元</text>
-                    </view>
-                    <view class='item {{amountIdx == 4 ? "current" : ""}}' bindtap='changeAmount' data-index="4">
-                        <text>4000元</text>
-                        <text>赠送800元</text>
-                    </view>
-                    <view class='item {{amountIdx == 5 ? "current" : ""}}' bindtap='changeAmount' data-index="5">
-                        <text>5000元</text>
-                        <text>赠送1000元</text>
-                    </view>
-                    <view class='item {{amountIdx == 6 ? "current" : ""}}' bindtap='changeAmount' data-index="6">
-                        <text>6000元</text>
-                        <text>赠送1200元</text>
+                    <view class='item {{index == amountIdx ? "current" : ""}}' bindtap='changeAmount'  wx:for='{{recharRules}}' wx:key='{{index}}' data-index='{{index}}' data-amout='{{item.am}}' data-gift='{{item.gift}}'>
+                        <text>{{item.am}}元</text>
+                        <text>赠送{{item.gift}}元</text>
                     </view>
                 </view>
             </view>

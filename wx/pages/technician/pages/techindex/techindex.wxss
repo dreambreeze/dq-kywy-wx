@@ -152,7 +152,8 @@
     display: inline-block;
     line-height: 92rpx;
     color: #666;
-    padding: 0 60rpx 0 0;
+    font-size: 28rpx;
+    padding: 0 30rpx 0 0;
 }
 
 .c-item.active {

@@ -1,56 +1,60 @@
 <import src="../common/engin-nav.wxml" />
 <view>
-  <view class="container">
-    <!--banner轮播图 -->
-    <view class='swiper'>
-      <swiper indicator-dots="{{indicatorDots}}" interval="3500" duration="800" circular="true" previous-margin="160rpx" next-margin="160rpx" bindchange='bindchange' current-item-id="{{selected}}">
-        <block wx:for="{{bannerList}}" wx:key="bannerList">
-          <swiper-item item-id="{{item.staffworkno}}" class="slide-image {{item.staffworkno==selected?'active':''}}">
-            <text class="card-type">{{item.typeName}}</text>
-            <image src="{{item.picurl}}" lazy-load/>
-          </swiper-item>
-        </block>
-      </swiper>
+    <view class="container">
+        <view class='swiper'>
+            <!--banner轮播图 -->
+            <swiper indicator-dots="{{indicatorDots}}" interval="{{interval}}" duration="{{duration}}" circular="true" previous-margin="160rpx" next-margin="160rpx" bindchange='bindchange' current-item-id="{{selected}}">
+                <swiper-item wx:for="{{bannerList}}" wx:key="item.AutoID" item-id="{{item.AutoID}}" class="slide-image {{item.AutoID==selected?'active':''}}">
+                    <text class="card-type">{{item.MembershipTypeName}}</text>
+                    <image src="{{item.PicUrl?showImgUrl+item.PicUrl :'../../images/vip-banner-card@2x.png'}}" lazy-load/>
+                </swiper-item>
+            </swiper>
+            <!-- 门店信息 -->
+            <view class='store-info'>
+                <view class='store-name'>店名：{{currentCard.ShopName}}</view>
+                <view class='store-address'>地址：{{currentCard.address}}</view>
+            </view>
+        </view>
+        <!-- 会员操作 -->
+        <view class='member-box'>
+            <button class='open-button' data-url="../component/pages/docard/docard" bindtap="jumpPage">
+                立即开通会员
+                <view class='iconfont icon-xiala-xiangyou go-icon'></view>
+            </button>
+            <view class="handle-list">
+                <block wx:for="{{handList}}" wx:key='handList'>
+                    <view class="handle-box" data-url="{{item.url}}" data-funname="{{item.name}}" bindtap="jumpPage">
+                        <image src="{{item.src}}" lazy-load></image>
+                        <text>{{item.title}}</text>
+                    </view>
+                </block>
+            </view>
+        </view>
+        <!-- 会员折扣列表 -->
+        <view class='discount-list'>
+            <view class='title'>
+                <view class='line'></view>
+                <text>会员优惠方案 </text>
+                <view class='line'></view>
+            </view>
+            <view class="discount-box" wx:for="{{discountList}}" wx:key='index' wx:if="{{discountList.length>0 && index<6}}" data-url="{{item.url}}" data-funname="{{item.name}}" data-cardid='{{currentCard.AutoID}}' data-money='{{item.money}}' data-free= '{{item.free}}' bindtap="jumpPage">
+                <text>{{item.membershipTypeName}}</text>
+                <text>充{{item.money}}元</text>
+                <text>送{{item.free}}元</text>
+                <button>立即办理</button>
+            </view>
+            <view class='none-tips' wx:if='{{discountList.length == 0}}'>
+                <text>暂无优惠方案,敬请期待</text>
+            </view>
+        </view>
     </view>
-    <!-- 会员操作 -->
-    <view class='member-box'>
-      <button class='open-button' data-url="../component/pages/docard/docard" bindtap="jumpPage">
-        立即开通会员
-        <view class='iconfont icon-xiala-xiangyou go-icon'></view>
-      </button>
-      <view class="handle-list">
-        <block wx:for="{{handList}}">
-          <view class="handle-box" data-url="{{item.url}}" data-funname="{{item.name}}" bindtap="jumpPage">
-            <image src="{{item.src}}" lazy-load></image>
-            <text>{{item.title}}</text>
-          </view>
-        </block>
-      </view>
+    <!-- 导航公用模版 -->
+    <template is="engin-nav" data="{{type:1,navArr: navTabBar,showImgUrl: showImgUrl}}" />
+    <!-- 分享按钮 -->
+    <view class="share-box" hidden>
+        <button hover-class="none" open-type="share">
+            <text>分享</text>
+        </button>
     </view>
-    <!-- 会员折扣列表 -->
-    <view class='discount-list'>
-      <view class='title'>
-        <view class='line'></view>
-        <text>会员优惠方案 </text>
-        <view class='line'></view>
-      </view>
-        <block wx:for="{{discountList}}">
-          <view class="discount-box" data-url="{{item.url}}" data-funname="{{item.name}}" bindtap="jumpPage">
-            <text>{{item.discount}}</text>
-            <text>{{item.money}}</text>
-            <text>{{item.free}}</text>
-            <button>立即办理</button>
-          </view>
-        </block>
-    </view>
-  </view>
-  <!-- 导航公用模版 -->
-  <template is="engin-nav" data="{{type:1,navArr: navTabBar,showImgUrl: showImgUrl}}" />
-  <!-- 分享按钮 -->
-  <view class="share-box" hidden>
-    <button hover-class="none" open-type="share">
-      <text>分享</text>
-    </button>
-  </view>
 
 </view>

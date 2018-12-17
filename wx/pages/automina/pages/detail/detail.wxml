@@ -48,10 +48,10 @@
         <block wx:if="{{classify.id=='xm'}}">
           <view class="title">{{classify.classifyname}}</view>
           <view class="goods project-box" wx:for="{{classify.projects}}" wx:for-item="id" wx:key="" bindtap='toyy'>
-            <image class='project-image' src='{{projects[id].picurl?projects[id].picurl:"../../../../../images/group_discout_01@2x.png"}}' lazy-load></image>
+            <image class='project-image' src='{{projects[id].picurl[0]?projects[id].picurl[0]:"../../../../../images/group_discout_01@2x.png"}}' lazy-load></image>
             <view class='project-info'>
               <view class="name ">{{projects[id].serviceitemname}}</view>
-              <view class="price">￥{{projects[id].pturn}}</view>
+              <view class="price">￥{{projects[id].itembaseprice>0?projects[id].itembaseprice:'0.00'}}</view>
             </view>
           </view>
         </block>

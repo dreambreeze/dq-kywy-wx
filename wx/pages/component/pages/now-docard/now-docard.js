@@ -5,7 +5,7 @@ var currentCard = '';
 //充值规则
 var recharRules = [];
 //性别
-var sex;
+var sex = 1;
 //选中的充值金额
 var am = 0;
 //赠送金额
@@ -17,14 +17,13 @@ var verifyTimer = null;
 //用户手机号
 var inputPhone;
 //是否已同意开卡细则
-var openingRules = 0;
+var openingRules = 1;
 //当前要办的卡ID
 var cardid;
 //生日，默认为空
 var birthday = '';
 //当前的充值金额规则组
-var amountIdx = 1;
-
+var amountIdx = 0;
 Page({
 
     /**
@@ -45,9 +44,15 @@ Page({
         //生日，默认为空
         birthday: birthday,
         //性别
-        sex: 1,
+        sex: sex,
         //开卡细则
-        openingRules: 0,
+        openingRules: openingRules,
+        //当前用户信息
+        userInfo: null,
+        //优惠规则
+        discountList: [],
+        //是否已选充值金额
+        hasChoseAmout: false
     },
 
     /**
@@ -55,6 +60,8 @@ Page({
      */
     onLoad: function(options) {
         cardid = options.cardid;
+        am = options.money;
+        gift = options.free;
         if (!cardid) {
             wx.showModal({
                 title: '提示',
@@ -62,9 +69,19 @@ Page({
             });
             return false;
         }
+
+        if (am && gift) {
+            this.setData({
+                am: am.trim(),
+                gift: gift.trim(),
+                hasChoseAmout: true
+            });
+        }
+
         wx.showLoading({
             title: '加载中',
         });
+
         var openid = wx.getStorageSync('openid');
         var _this = this;
 
@@ -247,7 +264,9 @@ Page({
                             currentCard: currentCard,
                             recharRules: ruleArr,
                             NewAccLevel: parseFloat(currentCard.NewAccLevel),
-                            amountIdx: amountIdx
+                            amountIdx: amountIdx,
+                            am: ruleArr[0].am,
+                            gift: ruleArr[0].gift
                         });
 
                     } else {
@@ -309,29 +328,26 @@ Page({
                 });
             });
         }
-
-        //是否已同意开卡细则
-        openingRules = 0;
     },
     /**
      * 点击切换金额
      */
     changeAmount: function(e) {
-        //am = e.target.dataset.amout;
-        //gift = e.target.dataset.gift;
-
+        am = e.currentTarget.dataset.amout;
+        gift = e.currentTarget.dataset.gift;
         this.setData({
-            amountIdx: e.currentTarget.dataset.index
+            amountIdx: e.currentTarget.dataset.index,
+            am: am,
+            gift: gift
         });
     },
 
     /**
      * 点击确定按钮
      */
-
     formSubmit: function(e) {
         var _val = e.detail.value;
-
+        console.log(am + '--------' + gift)
         if (_val.names.trim() == '') {
             wx.showModal({
                 title: '提示',
@@ -423,7 +439,7 @@ Page({
         } catch (e) {
             systemInfo = '未知（获取失败）';
         }
-
+        console.log(sex)
         wx.request({
             url: common.config.host + '/index.php/Api/Requestdata/docardUniformOrders',
             data: {
@@ -465,7 +481,7 @@ Page({
                                     common.savePrepayId(app.globalData.authorizerId, openid, info.package);
                                     wx.showModal({
                                         title: '提示',
-                                        content: '提交成功',
+                                        content: '支付成功',
                                         mask: true,
                                         showCancel: false,
                                         success: function(res) {
@@ -532,6 +548,7 @@ Page({
      */
     changeSex: function(e) {
         sex = parseInt(e.currentTarget.dataset.sex);
+        console.log(sex)
         this.setData({
             sex: sex
         });
@@ -564,7 +581,7 @@ Page({
      * 点击同意开卡细则
      */
     changeOpeningRules: function(e) {
-        openingRules = e.currentTarget.dataset.openingRules == 1 ? 0 : 1;
+        openingRules = openingRules == 1 ? 0 : 1;
         this.setData({
             openingRules: openingRules
         });
