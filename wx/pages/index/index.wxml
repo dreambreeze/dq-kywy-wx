@@ -106,10 +106,11 @@
       </view>
     </view>
     <!-- 团购优惠 -->
-    <navigator url='../transbuy/pages/group-buy/group-buy'>
-      <view class="group-discount-title">团购优惠</view>
+      <view class="group-discount-title" bindtap='gotoGroup'>团购优惠</view>
+      
       <swiper class="group-discount-list" indicator-dots="{{indicatorDots}}" autoplay="{{true}}" interval="3500" duration="800" circular="true" display-multiple-items="2">
-      <block wx:for="{{projectList.project}}">
+      <block wx:for="{{projectList}}">
+      <navigator url="../transbuy/pages/project-detail/project-detail?pid={{item.id}}&nodeid={{item.nodeid}}" hover-class="none">
         <swiper-item class="item">
           <image src='{{imgurl}}{{item.imgurl[0]}}' lazy-load></image>
           <text>{{item.project_name}}</text>
@@ -117,34 +118,37 @@
           <text>￥{{item.shop_price}}</text>
           <text>￥{{item.discount_price}}</text>
         </swiper-item>
+        </navigator>
         </block>
       </swiper>
-    </navigator>
+    
     <!-- 拼团活动 -->
     <navigator url="../transbuy/pages/group-shopping/group-shopping">
       <view class="group-activity-title ">拼团活动</view>
-      <view class="group-activity clear ">
-        <image src='../../images/index_group_activity@2x.png' lazy-load></image>
-        <view class='center-box'>
-          <text>精品超级拼团</text>
-          <text>适应门店:{{item.store_name}}</text>
-          <text>已拼52件</text>
-          <view class="user-image-list ">
-            <image src='../../images/index_tou_01@2x.png' lazy-load></image>
-            <image src='../../images/index_tou_02@2x.png' lazy-load></image>
-            <image src='../../images/index_tou_03@2x.png' lazy-load></image>
-            <image src='../../images/index_tou_04@2x.png' lazy-load></image>
+      <!-- <block wx:for="{{grouptList}}"> -->
+        <view class="group-activity clear ">
+          <image src='../../images/index_group_activity@2x.png' lazy-load></image>
+          <view class='center-box'>
+            <text>精品超级拼团</text>
+            <text>适应门店:{{item.store_name}}</text>
+            <text>已拼52件</text>
+            <view class="user-image-list ">
+              <image src='../../images/index_tou_01@2x.png' lazy-load></image>
+              <image src='../../images/index_tou_02@2x.png' lazy-load></image>
+              <image src='../../images/index_tou_03@2x.png' lazy-load></image>
+              <image src='../../images/index_tou_04@2x.png' lazy-load></image>
+            </view>
+          </view>
+          <view class='right-box'>
+            <button>开团</button>
+            <text>5人团</text>
+            <view class='price'>
+              <text>￥89</text>
+              <text>￥119</text>
+            </view>
           </view>
         </view>
-        <view class='right-box'>
-          <button>开团</button>
-          <text>5人团</text>
-          <view class='price'>
-            <text>￥89</text>
-            <text>￥119</text>
-          </view>
-        </view>
-      </view>
+        <!-- </block> -->
     </navigator>
   </view>
 </view>

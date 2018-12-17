@@ -137,7 +137,6 @@ Page({
             });
           }
         }).catch(function(data) {
-          console.log(data)
           _this.setData({
             couponmaskDisplay: 'hidden',
           })
@@ -168,7 +167,6 @@ Page({
 
         //检查是否有可发的券
         common.haveCoupons(app.globalData.authorizerId, openid).then(function(data) {
-          console.log(data)
           if (data.status == 1) {
             _this.setData({
               has: data.has,
@@ -180,7 +178,6 @@ Page({
             });
           }
         }).catch(function(data) {
-          console.log(data)
           _this.setData({
             couponmaskDisplay: 'hidden',
           })
@@ -282,7 +279,6 @@ Page({
   getBannerList(){
     let _this = this;
     common.getBanner(app.globalData.authorizerId, 1).then(function (data) {
-      console.log("notice", data)
       _this.setData({
         bannerList: data.info
       })
@@ -296,7 +292,6 @@ Page({
     //加载首页后台分配的功能模块
     let fid = common.config.navTabBar[0].id;
     let homeNav = wx.getStorageSync('homeNav');
-    console.log("nav", homeNav)
     if (homeNav) {
       _this.setData({
         fmodule: homeNav,
@@ -304,7 +299,6 @@ Page({
       });
     } else {
       common.getFunction(fid, app.globalData.authorizerId, 1).then(function (data) {
-        console.log("function", data)
         wx.setStorageSync('homeNav', data.info);
         _this.setData({
           fmodule: data.info,
@@ -323,7 +317,6 @@ Page({
   getNoticeList() {
     let _this=this;
     common.getNotice(app.globalData.authorizerId, 1).then(function (data) {
-      console.log("notice",data)
       _this.setData({
         noticeList: data.info
       })
@@ -341,21 +334,35 @@ Page({
   getProject(){
     let _this = this;
     common.getProject(app.globalData.authorizerId, '', '', '','','').then(function (data) {
-      console.log("fa", data.info)
+      let projectArr=[];
+      for (let i = 0; i < data.info.length;i++){
+        for (let j = 0; j < data.info[i].project.length; j++) {
+          projectArr.push(data.info[i].project[j])
+        }
+      }
       _this.setData({
-        projectList: data.info[0]
+        projectList: projectArr
       })
-     
     })
   },
   //拼团列表
   getGroupList(){
     let _this = this;
     common.getGroupShopping(app.globalData.authorizerId, '', '', '', '', '', '').then(function (data) {
-      console.log("getProject", data.info)
+      
+      let groupArr = [];
+      for (let i = 0; i < data.info.length; i++) {
+        for (let j = 0; j < data.info[i].project.length; j++) {
+          groupArr.push(data.info[i].project[j])
+        }
+      }
       _this.setData({
-        groupList: data.info[0]
+        grouptList: groupArr
       })
+      console.log("getProject", groupArr)
+      // _this.setData({
+      //   groupList: data.info[0]
+      // })
     })
   },
   //获取推荐
@@ -1005,6 +1012,11 @@ Page({
   gotoCard(){
     wx.navigateTo({
       url: '../vip-center/vip-center',
+    })
+  },
+  gotoGroup(){
+    wx.navigateTo({
+      url: '../transbuy/pages/group-buy/group-buy',
     })
   },
   /**
