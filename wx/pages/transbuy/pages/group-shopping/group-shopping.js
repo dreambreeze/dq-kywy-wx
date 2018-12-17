@@ -25,6 +25,8 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+      // 获得拼团列表
+      this.getGroupShopping();
         //检查功能是否开启
         let promotions = wx.getStorageSync('promotions');
         if (promotions) {
@@ -43,70 +45,72 @@ Page({
             mask: true
         });
 
-        common.getGroupShopping(app.globalData.authorizerId, '', '', '', '', '', '').then(function(data) {
-            let storeProjectArr = data.info;
-            console.log(storeProjectArr)
-            wx.hideLoading();
-            if (storeProjectArr.length > 0) {
-                //定位最近的排在上面
-                if (storeProjectArr.length > 0) {
-                    var k = [];
-                    //计算门店距离
-                    for (let i = 0; i < storeProjectArr.length; i++) {
-                        common.geocoder(storeProjectArr[i].address).then(function(data) {
-                            common.calculateDistance([data]).then(function(data) {
-                                storeProjectArr[i]['distance'] = (data/1000).toFixed(2);
-                                k.push(1);
-                            }).catch(function(data) {
-                                storeProjectArr[i]['distance'] = '未知';
-                                k.push(2);
-                            });
-                        }).catch(function(data) {
-                            storeProjectArr[i]['distance'] = '未知';
-                            k.push(3);
-                        });
-                    }
-
-                    //定时检查定位计算距离是否有返回，已返回清除定时器
-                    clearInterval(storesortTime);
-                    storesortTime = setInterval(function() {
-                        if (k.length == storeProjectArr.length) {
-                            clearInterval(storesortTime);
-                            wx.hideLoading();
-                            //以距离最近的门店排序
-                            let projectArr = storeProjectArr.sort(common.compare('distance'));
-                            _this.setData({
-                                storeProject: storeProjectArr,
-                                currentStore: storeProjectArr[0],
-                            });
-                        }
-                    }, 1200);
-                } else {
-                    _this.setData({
-                        storeProject: storeProjectArr,
-                        currentStore: storeProjectArr[0],
-                    });
-                }
-            } else {
-                _this.setData({
-                    projectState: '无项目内容'
-                });
-            }
-
-        }).catch(function(data) {
-            wx.hideLoading();
-            wx.showModal({
-                title: '提示',
-                content: data,
-                showCancel: false
-            });
-
-            _this.setData({
-                projectState: '无项目内容'
-            });
-        });
+        
     },
+    getGroupShopping(){
+      let _this=this;
+    common.getGroupShopping(app.globalData.authorizerId, '', '', '', '', '', '').then(function (data) {
+      let storeProjectArr = data.info;
+      wx.hideLoading();
+      if (storeProjectArr.length > 0) {
+        //定位最近的排在上面
+        if (storeProjectArr.length > 0) {
+          var k = [];
+          //计算门店距离
+          for (let i = 0; i < storeProjectArr.length; i++) {
+            common.geocoder(storeProjectArr[i].address).then(function (data) {
+              common.calculateDistance([data]).then(function (data) {
+                storeProjectArr[i]['distance'] = (data / 1000).toFixed(2);
+                k.push(1);
+              }).catch(function (data) {
+                storeProjectArr[i]['distance'] = '未知';
+                k.push(2);
+              });
+            }).catch(function (data) {
+              storeProjectArr[i]['distance'] = '未知';
+              k.push(3);
+            });
+          }
 
+          //定时检查定位计算距离是否有返回，已返回清除定时器
+          clearInterval(storesortTime);
+          storesortTime = setInterval(function () {
+            if (k.length == storeProjectArr.length) {
+              clearInterval(storesortTime);
+              wx.hideLoading();
+              //以距离最近的门店排序
+              let projectArr = storeProjectArr.sort(common.compare('distance'));
+              _this.setData({
+                storeProject: storeProjectArr,
+                currentStore: storeProjectArr[0],
+              });
+            }
+          }, 1200);
+        } else {
+          _this.setData({
+            storeProject: storeProjectArr,
+            currentStore: storeProjectArr[0],
+          });
+        }
+      } else {
+        _this.setData({
+          projectState: '无项目内容'
+        });
+      }
+
+    }).catch(function (data) {
+      wx.hideLoading();
+      wx.showModal({
+        title: '提示',
+        content: data,
+        showCancel: false
+      });
+
+      _this.setData({
+        projectState: '无项目内容'
+      });
+    });
+    },
     /**
      * 跳转至详情页
      */
@@ -148,7 +152,6 @@ Page({
                                 success: function (res) {
                                     wx.hideLoading();
                                     if (res.status == 0) {
-                                        console.log(res)
                                         wx.openLocation({
                                             latitude: res.result.location.lat,
                                             longitude: res.result.location.lng,
@@ -280,7 +283,6 @@ Page({
         wx.showNavigationBarLoading() //在标题栏中显示加载
         common.getGroupShopping(app.globalData.authorizerId, '', '', '', '', '', '').then(function(data) {
             let storeProjectArr = data.info;
-            console.log(storeProjectArr)
             wx.hideLoading();
             if (storeProjectArr.length > 0) {
                 //定位最近的排在上面

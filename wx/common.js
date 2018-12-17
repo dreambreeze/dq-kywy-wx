@@ -102,6 +102,48 @@ function ismoney(money) {
   var reg = /^\d+[\.]?\d+$|\d+$/;
   return reg.test(money);
 }
+/**
+ * 获取首页banner
+ * id             一级导航的ID
+ * authorizerId   小程序APPID
+ * ischunk        是否拆分为每3个一个数组
+ */
+function getBanner(authorizerId) {
+  let p = new Promise(function (resolve, reject) {
+    wx.request({
+      url: host + '/Api/NewBase/getBanners',
+      data: {
+        'authorizerId': authorizerId
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        //返回成功
+        if (res.statusCode == 200) {
+          if (res.data.status == 1) {
+            resolve(res.data);
+          } else {
+            reject(res.data.info);
+          }
+
+        } else {
+          reject('请求失败');
+        }
+      },
+      fail: function (res) {
+        if (res.errMsg == 'request:fail timeout') {
+          reject('请求超时');
+        } else {
+          reject('请求失败');
+        }
+      }
+    });
+  });
+
+  return p;
+}
 
 /**
  * 获取小程序功能模块
@@ -112,7 +154,7 @@ function ismoney(money) {
 function getFunction(id, authorizerId, ischunk) {
   let p = new Promise(function(resolve, reject) {
     wx.request({
-      url: host + '/index.php/Api/Requestdata/getFunction',
+      url: host + '/Api/Requestdata/getFunction',
       data: {
         'authorizerId': authorizerId,
         'id': id,
@@ -149,13 +191,99 @@ function getFunction(id, authorizerId, ischunk) {
 }
 
 /**
+ * 获取咨讯接口
+ * authorizerId   小程序APPID
+ * num       获取数量
+ * */
+function getNotice( authorizerId, num) {
+  let p = new Promise(function(resolve, reject) {
+    wx.request({
+      url: host + '/Api/NewBase/getNotice',
+      data: {
+        'authorizerId': authorizerId,
+        'num': num
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function(res) {
+        //返回成功
+        if (res.statusCode == 200) {
+          if (res.data.status == 1) {
+            resolve(res.data);
+          } else {
+            reject(res.data.info);
+          }
+
+        } else {
+          reject('请求失败');
+        }
+      },
+      fail: function(res) {
+        if (res.errMsg == 'request:fail timeout') {
+          reject('请求超时');
+        } else {
+          reject('请求失败');
+        }
+      }
+    });
+  });
+
+  return p;
+}
+/**
+ * 获取推荐接口
+ * authorizerId   小程序APPID
+ * nodeid       
+ * */
+function getRecommend(authorizerId, nodeid) {
+  let p = new Promise(function (resolve, reject) {
+    wx.request({
+      url: host + '/Api/NewBase/getRecommend',
+      data: {
+        'authorizerId': authorizerId,
+        'nodeid': nodeid
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        //返回成功
+        if (res.statusCode == 200) {
+          if (res.data.status == 1) {
+            resolve(res.data);
+          } else {
+            reject(res.data.info);
+          }
+
+        } else {
+          reject('请求失败');
+        }
+      },
+      fail: function (res) {
+        if (res.errMsg == 'request:fail timeout') {
+          reject('请求超时');
+        } else {
+          reject('请求失败');
+        }
+      }
+    });
+  });
+
+  return p;
+}
+
+/**
  * 获取所有门店信息
  */
 function getStores(authorizerId, geocoder) {
   var p = new Promise(function(resolve, reject) {
     //获取所有门店信息
     wx.request({
-      url: host + '/index.php/Api/Base/getStores',
+      url: host + 'Api/Base/getStores',
+      // url: host + '/index.php/Api/Base/getStores',
       data: {
         'authorizerId': authorizerId,
         'geocoder': geocoder
@@ -633,20 +761,22 @@ function delOrder(authorizerId, guid) {
 }
 
 /**
- * 获取E团购项目
+ * 获取E团购优惠项目
  * authorizerId   小程序APPID
  * nodeid          门店节点标识
  * pid            项目唯一ID
+ * is_index       是否首页
  */
-function getProject(authorizerId, nodeid, pid, pname) {
+function getProject(authorizerId, nodeid, pid, pname,is_index) {
   let p = new Promise(function(resolve, reject) {
     wx.request({
-      url: host + '/index.php/Api/Requestdata/getProject',
+      url: host + '/Api/Requestdata/getProject',
       data: {
         'authorizerId': authorizerId,
         'nodeid': nodeid,
         'pid': pid,
-        'projectname': pname
+        'projectname': pname,
+        'is_index': is_index
       },
       method: 'POST',
       header: {
@@ -1238,7 +1368,7 @@ function getGroupShopping(authorizerId, nodeid, pid,openid, orderno, groupno,pst
 
   let p = new Promise(function (resolve, reject) {
     wx.request({
-      url: host + '/index.php/Api/AutoBase/getGroupShopping',
+      url: host + '/Api/AutoBase/getGroupShopping',
       data: {
         'authorizerId': authorizerId,
         'nodeid':nodeid,
@@ -1546,7 +1676,10 @@ module.exports.isemail = isemail;
 module.exports.istel = istel;
 module.exports.isnumber = isnumber;
 module.exports.ismoney = ismoney;
+module.exports.getBanner=getBanner;
 module.exports.getFunction = getFunction;
+module.exports.getNotice = getNotice;
+module.exports.getRecommend=getRecommend;
 module.exports.getStores = getStores;
 module.exports.likeFind = likeFind;
 module.exports.getProjectInfo = getProjectInfo;

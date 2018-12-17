@@ -91,7 +91,6 @@
     margin: 0 0 15rpx 0;
     border-radius: 50%;
 }
-
 .message-box {
     margin: 14rpx 0 0 0;
     padding: 10rpx 30rpx 10rpx 106rpx;
@@ -305,13 +304,14 @@
 }
 
 .group-activity {
-    margin: 0rpx auto;
+    margin: 0rpx auto 20rpx;
     width: 690rpx;
     height: 240rpx;
     border-radius: 10rpx;
     box-shadow: 2rpx 2rpx 2rpx 2rpx rgba(0, 0, 0, 0.1);
     display: flex;
     overflow: hidden;
+
 }
 
 .group-activity image {
