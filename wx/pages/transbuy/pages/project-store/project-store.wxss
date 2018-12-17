@@ -83,14 +83,11 @@
     margin: 30rpx 0 0 0;
 }
 
-.project-box{
-    box-shadow: 0rpx 4rpx 8rpx 4rpx rgba(0, 0, 0, 0.2);
-    width: 690rpx;
-    border-radius: 10rpx;
-    margin: 20rpx auto;
-}
-
 .project-box navigator {
+    width:690rpx;
+    border-radius:10rpx;
+    margin:20rpx auto;
+    box-shadow: 0rpx 4rpx 8rpx 4rpx rgba(0, 0, 0, 0.2);
     display: flex;
 }
 
@@ -134,7 +131,7 @@
     line-height: 40rpx;
     font-size: 22rpx;
     color: #777;
-    width: 100%;
+    width:470rpx;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

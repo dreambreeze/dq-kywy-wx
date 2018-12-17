@@ -362,7 +362,7 @@ Page({
 
 
 
-    //检查是否已发券 
+    //检查是否已发券
     // common.sendCoupons(app.globalData.authorizerId,openid).catch(){
     // }
   },
@@ -684,42 +684,52 @@ Page({
    * 扫码下单
    */
   scancode: function() {
-    wx.scanCode({
-      onlyFromCamera: true,
-      scanType: [],
-      success: function(res) {
-        if (res.path) {
-          console.log(res.path)
-          try {
-            var path = decodeURIComponent(res.path).split("?")
-            var newpath = path[0]
-            var ShopNoRoomNo = path[1].substr(6, path[1].length - 1)
-            wx.setStorageSync("ShopNoRoomNo", ShopNoRoomNo)
-            wx.navigateTo({
-              url: '/pages/automina/pages/detail/detail',
-            })
-          } catch (e) {
-            wx.showModal({
-              title: '提示',
-              content: '获取地址失败，无法跳转',
-              showCancel: false
-            });
-          }
-        } else {
-          wx.showModal({
-            title: '提示',
-            content: '获取地址失败，无法跳转',
-            showCancel: false
-          });
-        }
-      },
-      fail: function(res) {
-        wx.navigateBack({
-          delta: 1
-        })
-      },
-      complete: function(res) {},
-    })
+	  let _this = this;
+	  //门店与房间号是否存在
+	  let sceneStr = wx.getStorageSync('ShopNoRoomNo');
+	  if (!sceneStr){
+		  wx.scanCode({
+			  onlyFromCamera:true,
+			  scanType:[],
+			  success:function(res){
+				  if(res.path){
+					  console.log(res.path)
+					  try{
+						  var path = decodeURIComponent(res.path).split("?")
+						  var newpath = path[0]
+						  var ShopNoRoomNo = path[1].substr(6,path[1].length - 1)
+						  wx.setStorageSync("ShopNoRoomNo",ShopNoRoomNo)
+						  wx.navigateTo({
+							  url:'/pages/automina/pages/detail/detail',
+						  })
+					  }catch(e){
+						  wx.showModal({
+							  title:'提示',
+							  content:'获取地址失败，无法跳转',
+							  showCancel:false
+						  });
+					  }
+				  }else{
+					  wx.showModal({
+						  title:'提示',
+						  content:'获取地址失败，无法跳转',
+						  showCancel:false
+					  });
+				  }
+			  },
+			  fail:function(res){
+				  wx.navigateBack({
+					  delta:1
+				  })
+			  },
+			  complete:function(res){
+			  },
+		  })
+	  }else{
+		  wx.navigateTo({
+			  url:'/pages/automina/pages/detail/detail',
+		  })
+      }
   },
   /**
    * 受理呼叫服务

@@ -600,7 +600,7 @@ Page({
     var paystatus = that.data.paystatus
     var openid = wx.getStorageSync('openid');
     var cart = this.data.cart;
-    var nodeid = wx.getStorageSync("store").request_it
+    var nodeid = wx.getStorageSync("store").request_id
     var trid = ""
 
     wx.request({

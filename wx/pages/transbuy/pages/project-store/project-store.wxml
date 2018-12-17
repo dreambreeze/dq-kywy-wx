@@ -27,7 +27,7 @@
                         <view class='discount-price'>￥{{item.discount_price}}</view>
                         <view class='shop-price'>门市价：￥{{item.shop_price}}</view>
                     </view>
-                    <view class='project-tips'>{{item.tips}}</view>
+                    <view class='project-tips'>{{item.description}}</view>
                 </view>
             </navigator>
         </view>
