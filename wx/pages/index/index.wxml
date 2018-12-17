@@ -5,7 +5,7 @@
     <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" circular="true" previous-margin="120rpx" next-margin="120rpx" bindchange='bindchange' current-item-id="{{selected}}">
       <block wx:for="{{bannerList}}" wx:key="bannerList">
         <swiper-item item-id="{{item.staffworkno}}">
-          <image src="{{item.picurl}}" class="slide-image {{item.staffworkno==selected?'active':''}} " />
+          <image src="{{imgurl}}{{item.picurl}}" class="slide-image {{item.staffworkno==selected?'active':''}} " />
         </swiper-item>
       </block>
     </swiper>
@@ -20,17 +20,24 @@
   </view>
   <!--服务入口列表-->
   <view class="function-list">
-    <block wx:for="{{functionList0}}">
-      <view class='item' bindtap='{{item.jumpName}}'>
-        <image src='{{item.src}}' lazy-load></image>
-        <view>{{item.name}}</view>
+    <block wx:for="{{fmodule[0]}}">
+      <view class='item'>
+        <navigator url='{{item.applet_address}}'>
+        <image src='{{showImgUrl}}{{item.fun_img}}' lazy-load></image>
+        <view class='nowrap'>{{item.fun_name}}</view>
+         </navigator>
       </view>
     </block>
-    <block wx:for="{{functionList1}}">
-      <view class='item' bindtap='{{item.jumpName}}'>
-        <navigator url='{{item.url}}'>
-          <image src='{{item.src}}' lazy-load></image>
-          <view>{{item.name}}</view>
+    <block wx:for="{{fmodule[1]}}">
+      
+      <view class='item' wx-if="{{index==1}}" bindtap='showService'>
+          <image src='{{showImgUrl}}{{item.fun_img}}' lazy-load></image>
+          <view class='nowrap'>{{item.fun_name}}</view>
+      </view>
+      <view class='item' wx-if="{{index==0||index==2}}">
+        <navigator url='{{item.applet_address}}'>
+          <image src='{{imgurl}}{{item.fun_img}}' lazy-load></image>
+          <view class='nowrap'>{{item.fun_name}}</view>
         </navigator>
       </view>
     </block>
@@ -39,11 +46,11 @@
   <!-- 资讯列表 -->
   <view class="message-box">
     <image src='../../images/index_message@2x.png' lazy-load></image>
-    <swiper class="message-list" vertical="true" display-multiple-items="2" duration="500" interval="3000" circular="true" autoplay="true">
-      <block wx:for="{{msgList}}">
+    <swiper class="message-list" vertical="true" display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true">
+      <block wx:for="{{noticeList}}">
         <swiper-item class="item">
-          <text class="tag {{item.tag=='公告'?'green-tag':'red-tag'}}">{{item.tag}}</text>
-          <text class="summary">{{item.summary}}</text>
+          <text class="tag red-tag">{{item.title}}</text>
+          <text class="summary">{{item.desc}}</text>
         </swiper-item>
       </block>
 
@@ -60,94 +67,57 @@
         <view class='line reverse'></view>
       </view>
       <view class="clear">
-        <view class="image-box-1">
+        <view class="image-box-1" bindtap='gotoTechnician'>
           <text class='tag'>技师推荐</text>
           <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
-            <block wx:for="{{recommendList0}}">
+            <block wx:for="{{recommendList.technician}}">
               <swiper-item>
-                <image src='{{item.src}}' lazy-load></image>
-                <text class='summary'>{{item.title}}</text>
+                <image src="{{'../../images/index_recommend_01@2x.png'}}" lazy-load></image>
+                <text class='summary'>{{item.staffname}}</text>
               </swiper-item>
             </block>
 
           </swiper>
         </view>
-        <block wx:for="{{recommendList1}}">
-          <view class="image-box-2 {{index==1?'image-box-3':''}}" bindtap='{{item.jumpName}}'>
-            <text class='tag'>项目介绍</text>
-            <image src='{{item.src}}' lazy-load></image>
-            <text class='summary'>{{item.title}}</text>
+          <view >
+            <view class="image-box-2" bindtap='gotoProject'>
+              <text class='tag'>项目介绍</text>
+              <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
+              <block wx:for="{{recommendList.project}}">
+                <swiper-item>
+              <image src="{{'../../images/index_recommend_01@2x.png'}}" lazy-load></image>
+              <text class='summary'>{{item.serviceitemname}}</text>
+              </swiper-item>
+              </block>
+              </swiper>
+            </view>
+            <view class="image-box-2 image-box-3" bindtap='gotoCard'>
+              <text class='tag'>会员卡</text>
+              <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
+              <block wx:for="{{recommendList.cards}}">
+                <swiper-item>
+              <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'../../images/index_recommend_01@2x.png'}}" lazy-load></image>
+              <text class='summary'>{{item.MembershipTypeName}}</text>
+              </swiper-item>
+              </block>
+              </swiper>
+            </view>
           </view>
-        </block>
       </view>
     </view>
     <!-- 团购优惠 -->
     <navigator url='../transbuy/pages/group-buy/group-buy'>
       <view class="group-discount-title">团购优惠</view>
-      <swiper class="group-discount-list" indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" circular="true" display-multiple-items="3">
+      <swiper class="group-discount-list" indicator-dots="{{indicatorDots}}" autoplay="{{true}}" interval="3500" duration="800" circular="true" display-multiple-items="2">
+      <block wx:for="{{projectList.project}}">
         <swiper-item class="item">
-          <image src='../../images/group_discout_01@2x.png' lazy-load></image>
-          <text>益健足浴</text>
-          <text>60分钟</text>
-          <text>￥120</text>
-          <text>￥100</text>
+          <image src='{{imgurl}}{{item.imgurl[0]}}' lazy-load></image>
+          <text>{{item.project_name}}</text>
+          <text>{{item.project_time}}分钟</text>
+          <text>￥{{item.shop_price}}</text>
+          <text>￥{{item.discount_price}}</text>
         </swiper-item>
-        <swiper-item class="item">
-          <image src='../../images/group_discout_03@2x.png' lazy-load></image>
-          <text>养生按摩</text>
-          <text>90分钟</text>
-          <text>￥100</text>
-          <text>￥80</text>
-        </swiper-item>
-        <swiper-item class="item">
-          <image src='../../images/group_discout_02@2x.png' lazy-load></image>
-          <text>泰式足道</text>
-          <text>70分钟</text>
-          <text>￥120</text>
-          <text>￥100</text>
-        </swiper-item>
-        <swiper-item class="item">
-          <image src='../../images/group_discout_01@2x.png' lazy-load></image>
-          <text>益健足浴</text>
-          <text>60分钟</text>
-          <text>￥120</text>
-          <text>￥100</text>
-        </swiper-item>
-        <swiper-item class="item">
-          <image src='../../images/group_discout_03@2x.png' lazy-load></image>
-          <text>养生按摩</text>
-          <text>90分钟</text>
-          <text>￥100</text>
-          <text>￥80</text>
-        </swiper-item>
-        <swiper-item class="item">
-          <image src='../../images/group_discout_02@2x.png' lazy-load></image>
-          <text>泰式足道</text>
-          <text>70分钟</text>
-          <text>￥120</text>
-          <text>￥100</text>
-        </swiper-item>
-        <swiper-item class="item">
-          <image src='../../images/group_discout_01@2x.png' lazy-load></image>
-          <text>益健足浴</text>
-          <text>60分钟</text>
-          <text>￥120</text>
-          <text>￥100</text>
-        </swiper-item>
-        <swiper-item class="item">
-          <image src='../../images/group_discout_03@2x.png' lazy-load></image>
-          <text>养生按摩</text>
-          <text>90分钟</text>
-          <text>￥100</text>
-          <text>￥80</text>
-        </swiper-item>
-        <swiper-item class="item">
-          <image src='../../images/group_discout_02@2x.png' lazy-load></image>
-          <text>泰式足道</text>
-          <text>70分钟</text>
-          <text>￥120</text>
-          <text>￥100</text>
-        </swiper-item>
+        </block>
       </swiper>
     </navigator>
     <!-- 拼团活动 -->
@@ -157,7 +127,7 @@
         <image src='../../images/index_group_activity@2x.png' lazy-load></image>
         <view class='center-box'>
           <text>精品超级拼团</text>
-          <text>适应门店:大旗B店</text>
+          <text>适应门店:{{item.store_name}}</text>
           <text>已拼52件</text>
           <view class="user-image-list ">
             <image src='../../images/index_tou_01@2x.png' lazy-load></image>

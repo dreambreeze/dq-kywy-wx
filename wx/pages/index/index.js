@@ -34,60 +34,18 @@ Page({
     interval: 2500,
     duration: 500,
     selected: 1,
-    bannerList: [{
-        "staffworkno": "1",
-        "picurl": '../../images/index_banner@2x.png',
-      },
-      {
-        "staffworkno": "2",
-        "picurl": '../../images/index_banner@2x.png',
-      },
-      {
-        "staffworkno": "3",
-        "picurl": '../../images/index_banner@2x.png',
-      }
-    ],
+    bannerList: [],
+    imgurl: common.config.showImgUrl,
 
     // 服务列表
-    functionList0: [{
-      jumpName: 'scancode',
-      src: '../../images/index_features_01@2x.png',
-      name: "扫码下单",
-    }, {
-      jumpName: 'showService',
-      src: '../../images/index_features_02@2x.png',
-      name: "呼叫服务",
-    }],
-    functionList1: [{
-      jumpName: '',
-      src: '../../images/index_features_03@2x.png',
-      name: "预约技师",
-      url: '../technician/pages/techindex/techindex'
-    }, {
-      jumpName: '',
-      src: '../../images/index_features_04@2x.png',
-      name: "房间预约",
-      url: '../reserve/pages/reserve-room/reserve-room'
-    }, {
-      jumpName: '',
-      src: '../../images/index_features_05@2x.png',
-      name: "店面评价",
-      url: '../reserve/pages/store-assess/store-assess'
-    }],
+    fmodule: [],
+  
     //资讯列表
-    msgList: [{
-      tag: "最新",
-      summary: "自古中医就有云：万物皆生于春，长于夏，收于秋天，藏于冬,自古中医就有云：万物皆生于春，长于夏，收于秋天，藏于冬"
-    }, {
-      tag: "公告",
-      summary: "养生茶水养生按摩足浴"
-      },{
-        tag: "最新",
-        summary: "自古中医就有云：万物皆生于春，长于夏，收于秋天，藏于冬,自古中医就有云：万物皆生于春，长于夏，收于秋天，藏于冬"
-      }, {
-        tag: "公告",
-        summary: "养生茶水养生按摩足浴"
-      }],
+    noticeList: [],
+    //团购优惠
+    projectList:[],
+    //拼团活动
+    groupList:[],
       //推荐
       recommendList0:[{
         src:"../../images/index_recommend_01@2x.png",
@@ -119,6 +77,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.getNoticeList();
+    this.getBannerList();
+      this.getRecommend();
+    this.getProject();
+    this.getGroupList();
+    
     //加载小程序标题
     common.getAppletInfo(app.globalData.authorizerId).then(function(data) {
       wx.setNavigationBarTitle({
@@ -162,7 +126,6 @@ Page({
         openid = data
         //检查是否有可发的券
         common.haveCoupons(app.globalData.authorizerId, openid).then(function(data) {
-          console.log(data)
           if (data.status == 1) {
             _this.setData({
               has: data.has,
@@ -233,10 +196,6 @@ Page({
       });
     }
 
-
-
-
-
     //自动屏幕高
     var query = wx.createSelectorQuery();
     var minHeight = 0;
@@ -249,58 +208,7 @@ Page({
       });
     });
 
-    //获取门店banner图
-    banner = [];
-    wx.request({
-      url: common.config.host + '/index.php/Api/Base/getStores',
-      data: {
-        'authorizerId': app.globalData.authorizerId
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function(res) {
-        if (res.statusCode == 200 && res.data.status == 1) {
-          for (let i = 0; i < res.data.info.length; i++) {
-            if (res.data.info[i].store_img != '') {
-              var store_img = res.data.info[i].store_img.split(',');
-              for (let j = 0; j < store_img.length; j++) {
-                banner.push(common.config.showImgUrl + store_img[j]);
-              }
-            }
-          }
-
-          if (banner.length == 0) {
-            banner.push(common.config.bannerImg);
-          }
-
-          _this.setData({
-            banner: banner
-          });
-        } else {
-          _this.setData({
-            banner: [common.config.bannerImg]
-          });
-        }
-      },
-      fail: function(res) {
-        wx.hideLoading();
-        if (res.errMsg == 'request:fail timeout') {
-          wx.showModal({
-            title: '提示',
-            content: '请求超时',
-            showCancel: false
-          });
-        } else {
-          wx.showModal({
-            title: '提示',
-            content: '请求失败',
-            showCancel: false
-          });
-        }
-      }
-    });
+    
 
     //加载呼叫服务内容
     wx.request({
@@ -352,6 +260,10 @@ Page({
       }
     });
 
+   
+    
+    
+    
     //检查是否有权限使用
     common.isExpiredTime(app.globalData.authorizerId).catch(function() {
       wx.reLaunch({
@@ -366,7 +278,99 @@ Page({
     // common.sendCoupons(app.globalData.authorizerId,openid).catch(){
     // }
   },
+  //获取banner列表
+  getBannerList(){
+    let _this = this;
+    common.getBanner(app.globalData.authorizerId, 1).then(function (data) {
+      console.log("notice", data)
+      _this.setData({
+        bannerList: data.info
+      })
+    }).catch(function (data) {
 
+    })
+  },
+  //获取菜单列表
+  getfmoduleList(){
+    let _this=this;
+    //加载首页后台分配的功能模块
+    let fid = common.config.navTabBar[0].id;
+    let homeNav = wx.getStorageSync('homeNav');
+    console.log("nav", homeNav)
+    if (homeNav) {
+      _this.setData({
+        fmodule: homeNav,
+        info: ''
+      });
+    } else {
+      common.getFunction(fid, app.globalData.authorizerId, 1).then(function (data) {
+        console.log("function", data)
+        wx.setStorageSync('homeNav', data.info);
+        _this.setData({
+          fmodule: data.info,
+          info: ''
+        });
+      }).catch(function (data) {
+        _this.setData({
+          fmodule: false,
+          info: data
+        });
+      });
+    }
+  },
+
+  //获得资讯
+  getNoticeList() {
+    let _this=this;
+    common.getNotice(app.globalData.authorizerId, 1).then(function (data) {
+      console.log("notice",data)
+      _this.setData({
+        noticeList: data.info
+      })
+    }).catch(function (data) {
+      _this.setData({
+        noticeList: [{
+          title: "公告",
+          desc: "养生茶水养生按摩足浴"
+        }]
+        
+      });
+    });
+  },
+  //获取团购优惠
+  getProject(){
+    let _this = this;
+    common.getProject(app.globalData.authorizerId, '', '', '','','').then(function (data) {
+      console.log("fa", data.info)
+      _this.setData({
+        projectList: data.info[0]
+      })
+     
+    })
+  },
+  //拼团列表
+  getGroupList(){
+    let _this = this;
+    common.getGroupShopping(app.globalData.authorizerId, '', '', '', '', '', '').then(function (data) {
+      console.log("getProject", data.info)
+      _this.setData({
+        groupList: data.info[0]
+      })
+    })
+  },
+  //获取推荐
+  getRecommend(){
+    let _this = this;
+    let locationData = wx.getStorageSync('currentReserveStore');
+    let nodeid = locationData[0].nodeid ? locationData[0].nodeid:'';
+    common.getRecommend(app.globalData.authorizerId, nodeid).then(function (data) {
+      
+      _this.setData({
+        recommendList: data
+      })
+    }).catch(function (data) {
+    });
+  },
   /**
    * 监听页面分享  单聊不可获取shareTickets   群聊可以
    */
@@ -608,7 +612,7 @@ Page({
     var p = new Promise(function(resolve, reject) {
       //获取所有门店信息
       wx.request({
-        url: common.config.host + '/index.php/Api/Base/getStores',
+        url: common.config.host + '/Api/Base/getStores',
         data: {
           'authorizerId': app.globalData.authorizerId,
           'geocoder': 1
@@ -621,10 +625,12 @@ Page({
           //返回成功
           if (res.statusCode == 200) {
             if (res.data.status == 1) {
-              stores = res.data.info;
+              console.log("stores", res.data.info)
+              let stores = res.data.info;
               that.setData({
                 stores: stores
               });
+             
               resolve(stores);
             } else {
               reject(res.data.info);
@@ -798,7 +804,7 @@ Page({
 
     //下服务
     wx.request({
-      url: common.config.host + '/index.php/Api/Requestdata/serveracceptance',
+      url: common.config.host + '/Api/Requestdata/serveracceptance',
       data: {
         'authorizerId': app.globalData.authorizerId,
         'ShopNo': ShopNo,
@@ -869,28 +875,7 @@ Page({
    */
   onShow: function() {
     let _this = this;
-    //加载首页后台分配的功能模块
-    let fid = common.config.navTabBar[0].id;
-    let homeNav = wx.getStorageSync('homeNav');
-    if (homeNav) {
-      _this.setData({
-        fmodule: homeNav,
-        info: ''
-      });
-    } else {
-      common.getFunction(fid, app.globalData.authorizerId, 1).then(function(data) {
-        wx.setStorageSync('homeNav', data.info);
-        _this.setData({
-          fmodule: data.info,
-          info: ''
-        });
-      }).catch(function(data) {
-        _this.setData({
-          fmodule: false,
-          info: data
-        });
-      });
-    }
+    this.getfmoduleList();
 
     var test = wx.getStorageSync('test');
     if (test) {
@@ -914,16 +899,12 @@ Page({
           //获取定位
           new Promise(function(resolve, reject) {
             locationStore = [];
-
+            let stores=_this.data.stores;
             for (let i = 0; i < stores.length; i++) {
               var address = stores[i].province + stores[i].city + stores[i].area + stores[i].address_detail;
-
-              console.log(address)
               common.geocoder(address).then(function(loca) {
                 var address = stores[i].province + stores[i].city + stores[i].area + stores[i].address_detail;
-
                 common.calculateDistance([loca]).then(function(distance) {
-                  console.log(distance)
                   locationStore.push({
                     'store_name': stores[i].store_name,
                     'address': address == '' ? '未设置地址' : address,
@@ -963,7 +944,7 @@ Page({
               })
             }
           }).then(function(data) {
-
+            let timer = null;
             clearTimeout(timer);
 
             timer = setTimeout(function() {
@@ -1004,11 +985,26 @@ Page({
 
   },
   /**
-   * 预约项目
+   * 项目介绍
    */
-  toReserveProject() {
+  gotoProject() {
     wx.navigateTo({
       url: '../reserve/pages/reserve-project/reserve-project',
+    })
+  },
+  /**
+   * 技师推荐
+   */
+  gotoTechnician() {
+    wx.navigateTo({
+      
+      url: '../technician/pages/techindex/techindex',
+    })
+  },
+  // 储蓄卡
+  gotoCard(){
+    wx.navigateTo({
+      url: '../vip-center/vip-center',
     })
   },
   /**
