@@ -125,30 +125,30 @@
     <!-- 拼团活动 -->
     <navigator url="../transbuy/pages/group-shopping/group-shopping">
       <view class="group-activity-title ">拼团活动</view>
-      <!-- <block wx:for="{{grouptList}}"> -->
+      <block wx:for="{{grouptList}}">
         <view class="group-activity clear ">
-          <image src='../../images/index_group_activity@2x.png' lazy-load></image>
+          <image src='{{item.picurl[0]}}' lazy-load></image>
           <view class='center-box'>
-            <text>精品超级拼团</text>
-            <text>适应门店:{{item.store_name}}</text>
-            <text>已拼52件</text>
+            <text>{{item.project}}</text>
+            <text>使用时间:{{item.exceptdate}}</text>
+            <text>已拼{{item.count}}件</text>
             <view class="user-image-list ">
-              <image src='../../images/index_tou_01@2x.png' lazy-load></image>
-              <image src='../../images/index_tou_02@2x.png' lazy-load></image>
-              <image src='../../images/index_tou_03@2x.png' lazy-load></image>
-              <image src='../../images/index_tou_04@2x.png' lazy-load></image>
+              <block wx:for="{{item.orders}}">
+                <image src='{{item.pavatar}}' lazy-load></image>
+              </block>
             </view>
+
           </view>
           <view class='right-box'>
             <button>开团</button>
-            <text>5人团</text>
+            <text>{{item.nums}}人团</text>
             <view class='price'>
-              <text>￥89</text>
-              <text>￥119</text>
+              <text>￥{{item.groupprice}}</text>
+              <text>￥{{item.singleprice}}</text>
             </view>
           </view>
         </view>
-        <!-- </block> -->
+        </block>
     </navigator>
   </view>
 </view>
