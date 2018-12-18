@@ -26,7 +26,7 @@
                 </swiper-item>
             </block>
              <block wx:if="{{starList.length==0}}">
-                <swiper-item class='star-item'><view class='none_text'>暂无技师</view>
+                <swiper-item class='star-item'><view class='none_text'>暂无理疗师</view>
               </swiper-item> 
             </block>
         </swiper>

@@ -20,28 +20,18 @@
   </view>
   <!--服务入口列表-->
   <view class="function-list">
-    <block wx:for="{{fmodule[0]}}" wx:key="">
-      <view class='item'>
-        <navigator url='{{item.applet_address}}' hover-class="none">
-          <image src='{{item.fun_img}}' lazy-load></image>
-          <view class='nowrap'>{{item.fun_name}}</view>
+    <block wx:for="{{functionList}}" wx:key="">
+      <view class='item' wx:if="{{item.url}}">
+        <navigator url='{{item.url}}' hover-class="none">
+          <image src='{{item.src}}' lazy-load></image>
+          <view class='nowrap'>{{item.name}}</view>
         </navigator>
       </view>
-    </block>
-    <block wx:for="{{fmodule[1]}}" wx:key="">
-
-      <view class='item' wx-if="{{index==1}}" bindtap='showService'>
-        <image src='{{item.fun_img}}' lazy-load></image>
-        <view class='nowrap'>{{item.fun_name}}</view>
-      </view>
-      <view class='item' wx-if="{{index==0||index==2}}">
-        <navigator url='{{item.applet_address}}' hover-class="none">
-          <image src='{{item.fun_img}}' lazy-load></image>
-          <view class='nowrap'>{{item.fun_name}}</view>
-        </navigator>
+      <view class='item' wx:else bindtap='{{item.jumpName}}'>
+          <image src='{{item.src}}' lazy-load></image>
+          <view class='nowrap'>{{item.name}}</view>
       </view>
     </block>
-
   </view>
   <!-- 资讯列表 -->
   <view class="message-box">

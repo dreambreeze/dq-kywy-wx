@@ -42,7 +42,30 @@ Page({
     imgurl: common.config.showImgUrl,
 
     // 服务列表
-    fmodule: [],
+    functionList: [{
+      jumpName: 'scancode',
+      src: '../../images/index_features_01@2x.png',
+      name: "扫码下单",
+    }, {
+        jumpName: 'showService',
+        src: '../../images/index_features_02@2x.png',
+        name: "呼叫服务",
+      },{
+      jumpName: '',
+      src: '../../images/index_features_03@2x.png',
+      name: "预约技师",
+      url: '../technician/pages/techindex/techindex'
+    }, {
+      jumpName: '',
+      src: '../../images/index_features_04@2x.png',
+      name: "房间预约",
+      url: '../reserve/pages/reserve-room/reserve-room'
+    }, {
+      jumpName: '',
+      src: '../../images/index_features_05@2x.png',
+      name: "店面评价",
+      url: '../reserve/pages/store-assess/store-assess'
+    }],
 
     //资讯列表
     noticeList: [],
@@ -295,12 +318,6 @@ Page({
     //加载首页后台分配的功能模块
     let fid = common.config.navTabBar[0].id;
     let homeNav = wx.getStorageSync('homeNav');
-    let funImg0 = ['/images/index_features_01@2x.png', '/images/index_features_03@2x.png', '/images/index_features_04@2x.png'];
-    let funImg1 = ['/images/index_features_03@2x.png', '/images/index_features_02@2x.png', '/images/index_features_05@2x.png'];
-    for (let i = 0; i < funImg0.length;i++){
-      homeNav[0][i].fun_img = funImg0[i];
-      homeNav[1][i].fun_img = funImg1[i]
-    }
     
     if (homeNav) {
       _this.setData({
@@ -310,12 +327,6 @@ Page({
     } else {
       common.getFunction(fid, app.globalData.authorizerId, 1).then(function(data) {
         wx.setStorageSync('homeNav', data.info);
-        let funImg0 = ['/images/index_features_01@2x.png', '/images/index_features_03@2x.png', '/images/index_features_04@2x.png'];
-        let funImg1 = ['/images/index_features_03@2x.png', '/images/index_features_02@2x.png', '/images/index_features_05@2x.png'];
-        for (let i = 0; i < funImg0.length; i++) {
-          data.info[0][i].fun_img = funImg0[i];
-          data.info[1][i].fun_img = funImg1[i]
-        }
         _this.setData({
           fmodule: data.info,
           info: ''
@@ -912,7 +923,7 @@ Page({
    */
   onShow: function() {
     let _this = this;
-    this.getfmoduleList();
+    // this.getfmoduleList();
 
     var test = wx.getStorageSync('test');
     if (test) {
