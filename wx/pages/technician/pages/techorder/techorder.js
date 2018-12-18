@@ -200,9 +200,7 @@ Page({
             }
         }
         taskjson.TecInfos = arr
-        console.log(taskjson)
         var phone = that.data.phone
-        console.log(phone)
         taskjson.BSPhone = phone
         taskjson.BSName = that.data.names
         taskjson.ArriveTime = that.data.SelectedTime
@@ -213,7 +211,6 @@ Page({
         taskjson.RoomCategoryNo = nowroom ? nowroom.roomscategoryno : ""
         taskjson.RoomCategoryNa = nowroom ? nowroom.roomscategoryname : ""
         taskjson.BedNum = nowroom ? nowroom.bednum + "" : ""
-        console.log(taskjson)
 
         var shopno = data ? data[0].shopno : nowroom.nodeid
 
@@ -272,7 +269,6 @@ Page({
 
     //选择时间之后
     toSelectTime: function(e) {
-        console.log(e)
         var SelectedTime = e.currentTarget.dataset.selectedtime
         this.setData({
             SelectedTime: SelectedTime
@@ -321,7 +317,6 @@ Page({
     dealdata: function(res, operate) {
         switch (operate) {
             case 1:
-                //console.log(res)
                 var artime = this.data.SelectedTime
                 wx.redirectTo({
                     url: '../techpaycomplete/techpaycomplete?guid=' + res.data.guid + '&artime=' + artime,

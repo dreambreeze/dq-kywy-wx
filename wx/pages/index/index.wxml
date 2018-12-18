@@ -75,7 +75,7 @@
               <navigator url='../technician/pages/techindex/techindex' hover-class="none">
                 <swiper-item>
                   <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'../../images/index_recommend_01@2x.png'}}" lazy-load></image>
-                  <text class='summary'>{{item.staffname}}</text>
+                  <text class='summary'>{{item.staffworkno}}号</text>
                 </swiper-item>
               </navigator>
             </block>

@@ -123,7 +123,6 @@ Page({
                             var currStoreCache = res.data.info
 
                             var noedid = currStoreCache[0].request_id
-                            console.log(noedid)
                             var shopno = noedid.split("#")[0]
                             //加载技师及技师类别信息
                             if (shopno) {
@@ -212,7 +211,6 @@ Page({
     //去技师详情
     toTechdetail: function(e) {
         var selected = e.currentTarget.dataset.id
-        console.log("现在选的" + selected)
         var url = '../techdetail/techdetail'
         var typeDefault = this.data.typeDefault
         if (typeDefault == 0) {
@@ -498,12 +496,10 @@ Page({
                         for (let i = 0; i < stores.length; i++) {
                             var address = stores[i].province + stores[i].city + stores[i].area + stores[i].address_detail;
 
-                            console.log(address)
                             common.geocoder(address).then(function(loca) {
                                 var address = stores[i].province + stores[i].city + stores[i].area + stores[i].address_detail;
 
                                 common.calculateDistance([loca]).then(function(distance) {
-                                    console.log(distance)
                                     locationStore.push({
                                         'store_name': stores[i].store_name,
                                         'address': address == '' ? '未设置地址' : address,
@@ -516,7 +512,6 @@ Page({
 
                                     resolve(locationStore);
                                 }).catch(function(res) {
-                                    console.log(res)
                                     locationStore.push({
                                         'store_name': stores[i].store_name,
                                         'address': address == '' ? '未设置地址' : address,
@@ -603,7 +598,6 @@ Page({
                                 success: function(res) {
                                     wx.hideLoading();
                                     if (res.status == 0) {
-                                        console.log(res)
                                         wx.openLocation({
                                             latitude: res.result.location.lat,
                                             longitude: res.result.location.lng,
@@ -854,7 +848,6 @@ Page({
                 }
             },
             fail: function(res) {
-                console.log(res)
                 wx.hideLoading();
                 if (res.errMsg == 'request:fail timeout') {
                     wx.showModal({
