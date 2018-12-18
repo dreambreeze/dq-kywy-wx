@@ -150,7 +150,6 @@
 
 .white-wrap {
     background: #fff;
-    padding: 0 0 30rpx 0;
 }
 
 .recommend-box {
