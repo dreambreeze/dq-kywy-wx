@@ -310,6 +310,12 @@ Page({
     } else {
       common.getFunction(fid, app.globalData.authorizerId, 1).then(function(data) {
         wx.setStorageSync('homeNav', data.info);
+        let funImg0 = ['/images/index_features_01@2x.png', '/images/index_features_03@2x.png', '/images/index_features_04@2x.png'];
+        let funImg1 = ['/images/index_features_03@2x.png', '/images/index_features_02@2x.png', '/images/index_features_05@2x.png'];
+        for (let i = 0; i < funImg0.length; i++) {
+          data.info[0][i].fun_img = funImg0[i];
+          data.info[1][i].fun_img = funImg1[i]
+        }
         _this.setData({
           fmodule: data.info,
           info: ''
