@@ -369,8 +369,8 @@ Page({
                     mask: true,
                     duration: 2000,
                     success: function (res) {
-                      wx.redirectTo({
-                        url: '../all-order/all-order',
+                      wx.navigateTo({
+                        url: '/pages/ucentermodel/pages/orders/orders',
                       });
                     }
                   });

@@ -134,8 +134,9 @@
     border-radius: 4rpx;
     margin: 0 10rpx 0 0;
     vertical-align: top;
-    line-height: 23rpx;
-    height: 23rpx;
+    line-height: 26rpx;
+    font-size: 26rpx;
+    height: 26rpx;
 }
 
 .message-list .summary {
@@ -143,6 +144,7 @@
     width: 540rpx;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 26rpx;
     white-space: nowrap;
 }
 
@@ -679,4 +681,34 @@
     left: 50%;
     transform:translateX(-50%);
     top:-140rpx; 
+}
+.notice-box {
+    width: 600rpx;
+    min-height: 100rpx;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    margin-left: -300rpx;
+    background: #fff;
+    z-index: 20;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.close-qrcode {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 60rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    text-align: center;
+    font-size: 44rpx;
+    color: #aaa9a9;
+}
+.qrcode-title {
+    position: relative;
+    text-align: center;
+    color: #999;
+    padding: 40rpx 0 26rpx;
+    font-size: 26rpx;
 }

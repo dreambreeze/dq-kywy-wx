@@ -48,7 +48,11 @@
     <image src='../../images/index_message@2x.png' lazy-load></image>
     <swiper class="message-list" vertical="true" display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true">
       <block wx:for="{{noticeList}}" wx:key="">
-        <swiper-item class="item">
+        <swiper-item class="item" bindtap="showNotice" data-desc="{{item.desc}}">
+          <text class="tag red-tag">{{item.title}}</text>
+          <text class="summary">{{item.desc}}</text>
+        </swiper-item>
+        <swiper-item class="item" bindtap="showNotice" data-desc="{{item.desc}}">
           <text class="tag red-tag">{{item.title}}</text>
           <text class="summary">{{item.desc}}</text>
         </swiper-item>
@@ -224,4 +228,12 @@
     <image src='https://iservice.daqisoft.cn/Public/Home/images/redindex.png' lazy-load></image>
   </view>
   <view class='exdesc' bindtap='sendcoupon'>点击领取优惠券</view>
+</view>
+
+<view class="mask" wx:if="{{showNotice}}" bindtap='handleNotice'></view>
+<view class="notice-box" wx:if="{{showNotice}}">
+    <view class="qrcode-title">
+        <view>{{noticeMsg}}</view>
+        <view class="close-qrcode" bindtap='handleNotice'>×</view>
+    </view>
 </view>

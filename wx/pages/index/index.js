@@ -46,6 +46,7 @@ Page({
 
     //资讯列表
     noticeList: [],
+    showNotice: false,
     //团购优惠
     projectList: [],
     //拼团活动
@@ -342,6 +343,17 @@ Page({
 
       });
     });
+  },
+  showNotice(e){
+    this.setData({
+      showNotice: true,
+      noticeMsg: e.currentTarget.dataset.desc
+    })
+  },
+  handleNotice(){
+    this.setData({
+      showNotice:false
+    })
   },
   //获取团购优惠
   getProject() {
