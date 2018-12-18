@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+
   },
 
   /**
@@ -29,7 +29,7 @@ Page({
     var nodeid = option.nodeid
     //查询拼团订单详情
     common.getGroupShopping(app.globalData.authorizerId, nodeid, id, openid, orderno,groupno,'').then(function (data) {
-    
+
       wx.hideLoading();
       if (!data.info) {
         wx.showModal({
@@ -39,7 +39,7 @@ Page({
         });
       } else {
         var multiple = data.info
-       
+
         that.setData({
           store: multiple[0],
           project: multiple[0].project[0],
@@ -48,7 +48,6 @@ Page({
 
         //计算距离
         common.geocoder(multiple[0].address).then(function (data) {
-          console.log(data)
           common.calculateDistance([data]).then(function (data) {
             that.setData({
               distance: (parseInt(data) / 1000).toFixed(2) + 'km'
@@ -85,7 +84,7 @@ Page({
     });
   },
 
- 
+
   /**
    * 页面跳转
    */

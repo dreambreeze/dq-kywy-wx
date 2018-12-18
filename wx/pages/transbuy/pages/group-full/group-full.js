@@ -9,32 +9,28 @@ Page({
     whypng:"https://iservice.daqisoft.cn/Public/Home/images/why.png"
   },
   onLoad:function(options){
-    console.log(options)
     var that = this
-    
+
     var orderno = options.orderno
     var groupno = options.groupno
     var nodeid = options.nodeid
     var pid = options.pid
     this.setData({ groupno: groupno, orderno: orderno, nodeid: nodeid,pid:pid})
-    
-   
-   
+
+
+
     common.getGroupShopping(app.globalData.authorizerId, nodeid, pid, '', '', groupno, 2).then(function (res) {
-      console.log(res)
       var multiinfo = res.info[0]
-      console.log(multiinfo)
       that.setData({
         store: multiinfo,
         project: multiinfo.project[0],
       })
-      //项目订单   pstatus=2  
+      //项目订单   pstatus=2
       common.getGroupOrders(app.globalData.authorizerId, nodeid, '', "", '', groupno, 2).then(function (data) {
         if (data.status == 1) {
           var ordersData=data.info
           let lux =new Array
           for (var i = 0; i < ordersData[groupno].nums; i++){
-            console.log(i)
             lux.push(i)
           }
           that.setData({
@@ -73,7 +69,6 @@ Page({
   gobuy: function (e) {
     var pid = e.currentTarget.dataset.id
     var groupno = e.currentTarget.dataset.groupno
-    console.log(e)
     wx.navigateTo({
       url: '../group-commit/group-commit?groupno=' + groupno + '&pid=' + pid + '&buytype=3',
     })
@@ -89,7 +84,7 @@ Page({
   },
 
 
-  
+
 
   onUnload(){
     wx.removeStorageSync('grproject')

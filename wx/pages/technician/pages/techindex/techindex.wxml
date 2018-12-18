@@ -10,7 +10,7 @@
                 <swiper-item item-id="{{item.staffworkno}}" catchtap='toTechdetail' data-id='{{item.staffworkno}}' class='star-item'>
                     <view class='star-label'>明星技师</view>
                     <block wx:if="{{item.picurl}}">
-                        <image src='{{showImgUrl+item.picurl}}' lazy-load></image>
+                        <image src='{{item.picurl?showImgUrl+item.picurl:"https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png"}}' lazy-load></image>
                     </block>
                     <block wx:else>
                         <image src='https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png'></image>
@@ -50,13 +50,13 @@
         </scroll-view>
         <!-- 技师列表 -->
         <view class='tech-list'>
-            <image bindload="itemReset" wx:for="{{data}}" wx:key="{{index}}" mode="widthFix" data-item="{{item}}" data-index="{{index}}" src='{{item.picurl?item.picurl:"https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png"}}' style='display:none'></image>
+            <image bindload="itemReset" wx:for="{{data}}" wx:key="{{index}}" mode="widthFix" data-item="{{item}}" data-index="{{index}}" src='{{item.picurl?showImgUrl+item.picurl:"https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png"}}' style='display:none'></image>
             <!-- 瀑布流 左容器 -->
             <view class='left-box'>
                 <view class='tech-item' wx:for="{{leftItem}}" wx:key="" catchtap='toTechdetail' data-id='{{item.staffworkno}}'>
                     <view class='tech-label'>推荐技师</view>
                     <block wx:if="{{item.picurl}}">
-                        <image mode="widthFix" src='{{showImgUrl}}{{item.picurl}}' lazy-load></image>
+                        <image mode="widthFix" src='{{item.picurl?showImgUrl+item.picurl:"https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png"}}' lazy-load></image>
                     </block>
                     <block wx:else>
                         <image src='https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png' mode="widthFix" lazy-load></image>
@@ -76,7 +76,7 @@
                 <view class='tech-item' wx:for="{{rightItem}}" wx:key="" catchtap='toTechdetail' data-id='{{item.staffworkno}}'>
                     <view class='tech-label'>推荐技师</view>
                     <block wx:if="{{item.picurl}}">
-                        <image mode="widthFix" src='{{showImgUrl}}{{item.picurl}}' lazy-load></image>
+                        <image mode="widthFix" src='{{item.picurl?showImgUrl+item.picurl:"https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png"}}' lazy-load></image>
                     </block>
                     <block wx:else>
                         <image src='https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png' mode="widthFix" lazy-load></image>

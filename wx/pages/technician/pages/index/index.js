@@ -19,7 +19,7 @@ Page({
       url: '../logs/logs'
     })
   },
-  
+
   onPullDownRefresh: function () {
     wx.request({
       url: "https://www.slovty.cn/index.php/Home/Test/minaresponse",
@@ -28,7 +28,6 @@ Page({
         'content-type': 'application/json'
       },
       success: function (res) {
-        console.log(res)
       }
     })
   },
@@ -51,9 +50,6 @@ Page({
           for (var i = 0; i < res.data.length; i++) {
             dataobj.push(res.data[i]);
           }
-          console.log(dataobj)
-          console.log(res.data)
-          console.log(typeof (res.data))
           that.setData({ datainfo: dataobj })
           page++;
           }else{
@@ -63,8 +59,7 @@ Page({
         },
 
       })
-   
-    console.log(that.data.datainfo)
+
   },
 
   onLoad: function () {
@@ -72,8 +67,6 @@ Page({
       nickname:"shichuny"
     })
     wx.onNetworkStatusChange(function (res) {
-      console.log(res.isConnected)
-      console.log(res.networkType)
     })
 
     // wx.getLocation({
@@ -92,7 +85,6 @@ Page({
     // })
 
 
-    console.log(page)
     var wd = 78;
     var that = this
       wx.getSystemInfo({
@@ -103,7 +95,7 @@ Page({
            }
       });
       that.loadMore(that);
-   
+
 
 
 
@@ -112,13 +104,10 @@ Page({
         // res.supportMode = [] 不具备任何被SOTER支持的生物识别方式
         // res.supportMode = ['fingerPrint'] 只支持指纹识别
          res.supportMode = ['fingerPrint', 'facial'] //支持指纹识别和人脸识别
-         console.log(res)
       }
     })
 
     wx.onUserCaptureScreen(function (res) {
-      console.log(res)
-      console.log('用户截屏了')
     })
 
 
@@ -150,7 +139,6 @@ Page({
     }
   },
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,

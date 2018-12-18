@@ -31,7 +31,6 @@ Page({
     this.setData({
       selected: e.detail.currentItemId
     })
-    console.log(e.detail.currentItemId)
     wx.setNavigationBarTitle({
       title: e.detail.currentItemId+"号理疗师",
     })
@@ -49,11 +48,9 @@ Page({
     if (options.typeDefault) {
        typeDefault = options.typeDefault
     }
-    console.log(selected)
-    console.log(typeDefault)
     wx.setNavigationBarTitle({
       title: selected + "号理疗师",
-      
+
     })
     var currentReserveStore = wx.getStorageSync("currentReserveStore")
     var noedid = currentReserveStore[0].nodeid
@@ -69,7 +66,7 @@ Page({
   },
 
 
- 
+
 
 
   /**
@@ -112,7 +109,7 @@ Page({
     });
   },
 
-  /* 处理加载过来的数据 
+  /* 处理加载过来的数据
        res   成功的数据   operate   加载  1-
   */
   dealdata: function (res, operate) {
@@ -140,7 +137,6 @@ Page({
     var selected = that.data.selected
     var techdata =[]
     techdata.push(data[selected])
-    console.log(techdata)
     wx.setStorageSync("techdata", techdata)
     wx.navigateTo({
       url: '../techorder/techorder',

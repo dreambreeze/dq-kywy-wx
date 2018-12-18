@@ -154,7 +154,6 @@ Page({
                                     });
                                 }
 
-                                console.log(addressArr);
 
                                 var k = [];
 

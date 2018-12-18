@@ -116,7 +116,6 @@ Page({
    * 开卡点击性别切换
    */
   sexchange: function (e) {
-    console.log(e);
     sex = parseInt(e.currentTarget.dataset.sex);
     this.setData({
       'userInfo.sex': sex

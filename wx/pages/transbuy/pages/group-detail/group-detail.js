@@ -41,7 +41,7 @@ Page({
         qqmapsdk = new QQMapWX({
             key: common.config.QQMapWXKey
         });
-        
+
         wx.showLoading({
             title: '加载中',
             mask: true
@@ -108,7 +108,6 @@ Page({
             }
 
         }).catch(function(data) {
-            console.log(data)
             wx.hideLoading();
             wx.showModal({
                 title: '提示',
@@ -271,7 +270,6 @@ Page({
                                 success: function (res) {
                                     wx.hideLoading();
                                     if (res.status == 0) {
-                                        console.log(res)
                                         wx.openLocation({
                                             latitude: res.result.location.lat,
                                             longitude: res.result.location.lng,
@@ -479,10 +477,8 @@ Page({
         let ordersData = that.data.ordersData
 
         function nowTime() { //时间函数
-            // console.log(a)
             for (var i in ordersData) {
                 var intDiff = ordersData[i].limittime; //获取数据中的时间戳
-                // console.log(intDiff)
                 var day = 0,
                     hour = 0,
                     minute = 0,
@@ -497,14 +493,12 @@ Page({
                     if (second <= 9) second = '0' + second;
                     ordersData[i].limittime--;
                     var str = hour + ':' + minute + ':' + second
-                    // console.log(str)    
 
                 } else {
                     var str = "已结束！";
                     //delete ordersData[i]
                     //clearInterval(timer);
                 }
-                // console.log(str);
                 ordersData[i].difftime = str; //在数据中添加difftime参数名，把时间放进去
                 ordersData = ordersData
             }

@@ -28,7 +28,7 @@ Page({
             title: '加载中',
             mask: true
         });
-        
+
         // 实例化腾讯地图API核心类
         qqmapsdk = new QQMapWX({
             key: common.config.QQMapWXKey
@@ -36,7 +36,7 @@ Page({
 
         //获取项目
         common.getProject(app.globalData.authorizerId, nodeid, '').then(function(data) {
-            
+
             let storeProjectArr = data.info;
             if (storeProjectArr) {
 
@@ -163,7 +163,6 @@ Page({
                                 success: function (res) {
                                     wx.hideLoading();
                                     if (res.status == 0) {
-                                        console.log(res)
                                         wx.openLocation({
                                             latitude: res.result.location.lat,
                                             longitude: res.result.location.lng,

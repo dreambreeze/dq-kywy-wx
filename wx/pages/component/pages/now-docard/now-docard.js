@@ -347,7 +347,6 @@ Page({
      */
     formSubmit: function(e) {
         var _val = e.detail.value;
-        console.log(am + '--------' + gift)
         if (_val.names.trim() == '') {
             wx.showModal({
                 title: '提示',
@@ -439,7 +438,6 @@ Page({
         } catch (e) {
             systemInfo = '未知（获取失败）';
         }
-        console.log(sex)
         wx.request({
             url: common.config.host + '/index.php/Api/Requestdata/docardUniformOrders',
             data: {
@@ -475,7 +473,6 @@ Page({
                             signType: info.signType,
                             paySign: info.paySign,
                             success: function(res) {
-                                console.log(res);
                                 if (res.errMsg == 'requestPayment:ok') {
                                     //保存prepay_id用于发送小程序模版信息
                                     common.savePrepayId(app.globalData.authorizerId, openid, info.package);
@@ -548,7 +545,6 @@ Page({
      */
     changeSex: function(e) {
         sex = parseInt(e.currentTarget.dataset.sex);
-        console.log(sex)
         this.setData({
             sex: sex
         });

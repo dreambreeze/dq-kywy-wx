@@ -46,8 +46,6 @@ Page({
     this.setData({
       pwseleted: e.detail.value,
     });
-    console.log(e.detail.value)
-    console.log(this.data.payWayList[e.detail.value - 1].name)
   },
   paySubmit:function(){
     if (this.data.pwseleted<1){

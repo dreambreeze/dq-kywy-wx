@@ -43,7 +43,7 @@ Page({
   },
 
   onPullDownRefresh() {
-  
+
     wx.showNavigationBarLoading() //在标题栏中显示加载
     var conditions = " RGUID = '" + this.data.guid + "'"
     this.loaddata('/index.php/Api/OnLineTasks/lists',
@@ -96,7 +96,7 @@ Page({
   dealdata: function (res, operate) {
     switch (operate) {
       case 1:
-       
+
         break
       case 2:
         if (res.data.status == 0) {
@@ -112,15 +112,14 @@ Page({
               order[i].taskjson.TechNo += order[i].taskjson.TecInfos[j].WorkNo + "号、"
             }
             order[i].taskjson.TechNo = order[i].taskjson.TechNo.substring(0, order[i].taskjson.TechNo.length - 1)
-           
+
           }
-          console.log(order)
           this.setData({
             yyorder: order[0],
           })
         }
         wx.hideNavigationBarLoading() //完成停止加载
-       
+
         break
 
     }

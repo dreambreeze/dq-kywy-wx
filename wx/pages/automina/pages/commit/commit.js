@@ -6,12 +6,12 @@ Page({
 
   /**
    * 页面的初始数据
-   *  一、选择支付方式 默认微信 全选商品 
+   *  一、选择支付方式 默认微信 全选商品
    *  二、切换支付方式为会员卡  请求会员折扣  bindchange
    *  三、全选操作，勾选/取消商品   selectlList selectAll
    *  四、计算总价操作  cartCount
-   * 
-   * 
+   *
+   *
    * paystatus:true  付款状态   true 可以 提交订单付款  false 不可提交订单
    */
   data: {
@@ -121,7 +121,7 @@ Page({
     });
   },
 
-  /* 处理加载过来的数据 
+  /* 处理加载过来的数据
        res   成功的数据   operate   加载  1-加载会员卡信息   2-加载会员卡项目优惠信息
   */
   dealdata: function (res, operate) {
@@ -177,8 +177,6 @@ Page({
         })
         break
       case 3: //提交订单
-        console.log(res)
-        console.log("提交limittimeDOI" + this.data.paystatus)
         this.dealAfterOrder(res)
         break
     }
@@ -187,7 +185,6 @@ Page({
 
   /* ①第一步  选择切换支付方式   e.detail.currentItemId=0 微信支付，  否则会员卡支付  */
   selectPayWay: function (e) {
-    console.log("paywayindex", e)
     var paywayindex = e.currentTarget.dataset.autoid
     var that = this
     that.setData({
@@ -250,7 +247,6 @@ Page({
           })
           that.passiveSelectAll()
         }).catch(function (res) {
-          console.log(res + "222")
           wx.hideLoading()
           if (res.errMsg == 'request:fail timeout') {
             wx.showModal({
@@ -392,7 +388,6 @@ Page({
 
         //保存prepay_id用于发送小程序模版信息
         var prepay_id = e.detail.formId
-        console.log("前面的" + prepay_id)
         var openid = wx.getStorageSync("openid")
         common.savePrepayId(app.globalData.authorizerId, openid, prepay_id);
         this.submit(e, orderNO)
@@ -401,13 +396,11 @@ Page({
     } else {
       //选择的是微信支付
       if (cart.total > 0) {
-        console.log("微信支付的订单号" + orderNO)
         this.wechatPay(e, orderNO)
       } else {
 
         //保存prepay_id用于发送小程序模版信息
         var prepay_id = e.detail.formId
-        console.log("前面的" + prepay_id)
         var openid = wx.getStorageSync("openid")
         common.savePrepayId(app.globalData.authorizerId, openid, prepay_id)
         this.submit(e, orderNO)
@@ -561,7 +554,6 @@ Page({
     //测试模板消息
 
     if (taskjson.SignNo || (taskjson.SignNo == '' && taskjson.PayMoney == 0)) { //防止还未返回支付数据时就提交  发送模板消息请求
-      //测试模板消息console.log("taskjson.SignNo" + taskjson.SignNo)
 
 
 
@@ -595,7 +587,6 @@ Page({
   /* 微信支付*/
   wechatPay: function (e, ono) {
     //选择微信支付
-    console.log("微信支付")
     var that = this
     var paystatus = that.data.paystatus
     var openid = wx.getStorageSync('openid');
@@ -676,7 +667,6 @@ Page({
                     content: subres.errMsg,
                     showCancel: false
                   });
-                  console.log(subres.errMsg)
                 }
               },
 
@@ -748,7 +738,6 @@ Page({
         }
       } else {
         if (!goods[i].selected) {
-          console.log(goods[i].selected)
           selectAllStatus = !selectAllStatus
           break // 改变全选状态
         }
@@ -808,7 +797,7 @@ Page({
         count++;
       }
     }
-    if (count == 0) { //没有选择的商品   
+    if (count == 0) { //没有选择的商品
       selectAllStatus = false
     }
     this.setData({
@@ -922,7 +911,6 @@ Page({
     cart.count = count
     cart.total = total
     app.cart = cart
-    console.log(app.cart)
 
   },
 
@@ -952,7 +940,6 @@ Page({
       },
       success: function (res) {
         wx.hideLoading();
-        console.log(res.data)
       },
       fail: function (res) {
         wx.hideLoading();
@@ -971,7 +958,6 @@ Page({
         }
       }
     })
-    // console.log(this.data.paystatus)
     // var that=this
     // that.setData({paystatus:true})
   },

@@ -426,7 +426,6 @@ Page({
   },
 
   touchmove: function (e) {
-    console.log()
     if (e.touches.length == 1) {
       //手指移动时水平方向位置
       var moveX = e.touches[0].clientX;
@@ -436,7 +435,7 @@ Page({
 
       if (disX == 0 || disX < 0) {//如果移动距离小于等于0，回原
         console.log(disX)
-        
+
       } else if(disX > 0){//展示删除
         if (disX >= 30) {
           //控制手指移动距离最大值为删除按钮的宽度
@@ -444,7 +443,7 @@ Page({
             //设置触摸起始点水平方向位置
             editid: e.currentTarget.dataset.id,
             itemIdx:e.currentTarget.dataset.index,
-            
+
           });
         }
       }
@@ -475,7 +474,7 @@ Page({
           arrow:1
         });
       }
-      
+
     }
   },
 })

@@ -23,11 +23,9 @@ Page({
       title: '待消费团购券',
       success: function (res) {
         // 转发成功
-        console.log(res);
       },
       fail: function (res) {
         // 转发失败
-        console.log(res);
       }
     }
   },

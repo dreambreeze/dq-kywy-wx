@@ -54,7 +54,7 @@ Page({
         "swday": year + "-" + month + "-01",
         "ewday": year + "-" + month + "-" + day,
         "openid": wx.getStorageSync("openid"),
-       
+
         "shopno": "",
         "cardno": '',
         'beginnum': pageIndex,
@@ -66,7 +66,6 @@ Page({
   getcardtype:function(e){
     var index = e.currentTarget.dataset.id
     var cards = this.data.cards
-    console.log(index)
     for(var i in cards){
       if (i == index){
         cards[i].selected = true
@@ -76,7 +75,7 @@ Page({
       }
 
     }
-    this.setData({ 
+    this.setData({
      cards: cards,
      showcard:false,
      choosecard: cards[index]
@@ -86,9 +85,9 @@ Page({
     var year = ym.split("-")[0]
     var month = ym.split("-")[1]
     var day = new Date(year, month, 0);
-    var lastdate = day.getDate()//当月最后一天  
+    var lastdate = day.getDate()//当月最后一天
     month = month > 9 ? month : "0" + month
-   
+
     //分页
     pageIndex = 0;
     //重新开启上拉加载
@@ -106,9 +105,9 @@ Page({
         'beginnum': pageIndex,
         'endnum':10
       }, 1)
-     
+
   },
-  
+
   //切换选择卡界面
   changeshow:function(){
     this.setData({
@@ -121,22 +120,21 @@ Page({
    * 跳转至订单详情页
    */
   todetail: function(e){
-   
+
     var that =this
     var index = e.currentTarget.dataset.index
 
-    console.log(index)
     var bill = that.data.bills[index]
     var key = bill.ShopNo+""+bill.PayNo
     var choosecard = that.data.choosecard
-  
+
     wx.setStorageSync('hdbill', bill)
     wx.setStorageSync('choosecard', choosecard)
-   
+
     wx.navigateTo({
       url: '../hisdetail/hisdetail',
     });
-   
+
   },
 
   bindDateChange: function (e) {
@@ -145,11 +143,11 @@ Page({
     var month = ym[1]-1+1
     this.setData({
       date: year + "年" + month + "月",
-      ym: year + "-" + month 
+      ym: year + "-" + month
     })
     //加载技师及技师类别信息
     var day = new Date(year, month, 0);
-    var lastdate =day.getDate()//当月最后一天  
+    var lastdate =day.getDate()//当月最后一天
     month = month > 9 ?month:"0"+month
 
     //分页
@@ -214,13 +212,13 @@ Page({
     });
   },
 
-  /* 处理加载过来的数据 
-       res   成功的数据   operate   
+  /* 处理加载过来的数据
+       res   成功的数据   operate
        加载  1-   第一个结果集  会员卡信息
                   第二个结果集  结账单信息
                   第三个结果集  结账单详情
                   第四个结果集  消费明细
-       
+
        2-加载会员卡项目优惠信息
   */
   dealdata: function (res, operate) {
@@ -243,12 +241,11 @@ Page({
 
             }else{
               cards[0].selected = true
-              console.log(cards[0])
               this.setData({ cards: cards, choosecard: cards[0] })
             }
-           
+
           }
-          
+
           var bills       = data
           var totalcount = 0 //本月总支出  = bills[j].PayTime.date.toString().subtring(0,19)
           for(var j in bills){
@@ -256,7 +253,6 @@ Page({
             bills[j].PayTime = btime.substr(0, 19)
             totalcount += bills[j].OPIcon=='-' ? bills[j].OPMoney*1:0
           }
-          console.log(totalcount)
           var details = []
           // var billdetails = dataarr[2]
           // var paydetails  = dataarr[3]
@@ -286,22 +282,22 @@ Page({
             totalcount: 0,
             loadMtext: '无更多内容'
           })
-        
+
             wx.showModal({
               title: '提示',
               content: res.data.info+"",
               showCancel:false,
               success:function(res){ }
             })
-            
+
         }
         break
       case 2:
 
-     
+
 
         break
-    
+
 
     }
     wx.hideLoading()
@@ -314,19 +310,19 @@ Page({
     var that = this;
     if (loadState) {
     // 显示加载图标
-   
+
     pageIndex++;
     loadState = false;
     that.setData({
       loadMtext: '加载中...'
     });
-   
-   
+
+
     var ym = that.data.ym
     var year = ym.split("-")[0]
     var month = ym.split("-")[1]
     var day = new Date(year, month, 0);
-    var lastdate = day.getDate()//当月最后一天  
+    var lastdate = day.getDate()//当月最后一天
     month = month > 9 ? month : "0" + month
       var selectcard = that.data.choosecard
       var shopno = selectcard.CardNo == 1 ? '' : selectcard.ShopNo
@@ -351,10 +347,9 @@ Page({
       success: function (res) {
         if (res.data.status==1) {
           var data = res.data.info
-          console.log(data)
           var  totalcount = that.data.totalcount
           var bills = that.data.bills
-          
+
           // var totalcount = 0 //本月总支出  = bills[j].PayTime.date.toString().subtring(0,19)
           for (var j in data) {
             var btime = bills[j].LastOPTime.date
@@ -363,8 +358,7 @@ Page({
             bills.push(data[j]);
           }
 
-          console.log(totalcount)
-         
+
           if (data.length==10){
             loadState = true;
             that.setData({
@@ -386,7 +380,7 @@ Page({
           that.setData({
             loadMtext: '无更多内容'
           })
-         
+
 
         }
       },

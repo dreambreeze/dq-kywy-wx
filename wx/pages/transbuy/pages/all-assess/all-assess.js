@@ -27,7 +27,6 @@ Page({
   * 生命周期函数--监听页面加载
   */
   onLoad: function (options) {
-    console.log(options)
     let _this = this;
 
     wx.showLoading({
@@ -83,7 +82,6 @@ Page({
     } else {
       common.getAssess(app.globalData.authorizerId, nodeid, pid, types, pageIndex).then(function (data) {
         wx.hideLoading();
-        console.log(data)
         if (data.info) {
           assessData = data.info;
           _this.setData({
@@ -140,7 +138,6 @@ Page({
 
   onReachBottom: function () {
     let _this = this;
-    console.log(loadState)
     //获取评价内容
     if (loadState) {
       pageIndex++;
@@ -153,10 +150,9 @@ Page({
         title: '加载中...',
         mask: true
       });
-     
+
       if (afrom == 'group') {
         common.getgroupAssess(app.globalData.authorizerId, nodeid, pid, types, pageIndex, 'daqi_group_assess').then(function (data) {
-          console.log(data)
           wx.hideLoading();
           if (data.info) {
             for (let i = 0; i < data.info.length; i++) {

@@ -213,7 +213,7 @@
                         <view class='type-name'>￥{{item.project_price}} </view>
                         <view class='type-name'>适用门店：{{item.store_name?item.store_name:'全国通用'}} </view>
                     </view>
-                    <view class='order-status'>{{item.is_use == '0' ? '待使用' : '已使用' }}</view>
+                    <view class='order-status'>{{item.is_use == '0' ? '待消费' : '已消费' }}</view>
                 </view>
                 <view class='order-handle'>
                     <button wx:if="{{item.is_use == 0}}" class="primary-color" data-qrcode="{{item.qrcode_url}}" data-pname="{{item.project_name}}" data-price="{{item.project_price}}" data-orderno="{{item.order_num}}" catchtap="lijixiaofei">消费</button>

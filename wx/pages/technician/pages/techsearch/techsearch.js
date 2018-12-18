@@ -49,13 +49,12 @@ Page({
        showHistory:false,
      })
     } catch (e) {
-      console.log(e)
        wx.showToast({
          title: '清除出错',
        })
     }
   },
-  
+
   itemToSearch:function(e){
     wx.redirectTo({
       url: "../techindex/techindex?wd=" + e.target.dataset.value,

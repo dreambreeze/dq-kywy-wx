@@ -13,7 +13,6 @@ Page({
 
   onLoad:function(options){
     var that = this
-    console.log(options)
     //var multiinfo = wx.getStorageSync("grproject")
     let  groupno= options.groupno
     let  pid = options.pid
@@ -37,7 +36,7 @@ Page({
           wx.showLoading({
             title: '加载中...',
           })
-          
+
           wx.request({
             url: common.config.host + '/index.php/Api/Base/getUserInfo',
             data: {
@@ -65,7 +64,6 @@ Page({
               }
             },
             fail: function (res) {
-              console.log(res)
               wx.hideLoading();
               if (res.errMsg == 'request:fail timeout') {
                 wx.showModal({
@@ -114,7 +112,6 @@ Page({
             }
           },
           fail: function (res) {
-            console.log(res)
             wx.hideLoading();
             if (res.errMsg == 'request:fail timeout') {
               wx.showModal({
@@ -132,18 +129,17 @@ Page({
           }
         })
     }
-  
+
       common.getGroupShopping(app.globalData.authorizerId, nodeid, pid, openid, "", groupno,'').then(function (res) {
         var multiinfo = res.info[0]
-        console.log(multiinfo)
         that.setData({
           store: multiinfo,
           project: multiinfo.project[0],
         })
       }).catch()
-   
-   
-    
+
+
+
   },
 
   submit: function () {
@@ -163,11 +159,11 @@ Page({
         mask:true
       })
     }
-   
+
   },
 
   /* 微信支付
-    团购号  
+    团购号
   */
   wechatPay: function () {
     wx.showLoading({
@@ -181,12 +177,12 @@ Page({
     var total_fee = buytype == 1 ? project.singleprice : project.groupprice
     let is_creator = buytype == 3 ? 0 : 1//buytype 1-单独购买  2-开团 3-参团
     let groupno = that.data.groupno
-   
+
     var date = new Date()
     let timstamp = Date.parse(date) / 1000
     let otime = util.formatTime(date)
 
-   
+
 
     var y = date.getFullYear();
     var m = date.getMonth() + 1;
@@ -243,12 +239,12 @@ Page({
                 let project = that.data.project
                 let num = that.data.num
                 if (groupno) {//参团
-                  
+
                   var nownum = num
                 } else {
                   var nownum = project.nums
                 }
-                
+
                 if (subres.errMsg == 'requestPayment:ok') {
                   wx.request({
                     url: common.config.host + '/index.php/Api/AutoMina/getTransactionID',
@@ -276,7 +272,6 @@ Page({
                       'content-type': 'application/json'
                     },
                     success: function (trres) {//付款成功后才提交订单
-                      console.log(trres)
                       wx.request({
                         url: common.config.host + '/index.php/Api/AutoMina/sendMsg',
                         data: {
@@ -302,7 +297,7 @@ Page({
                           if (nums!=2&&num == 1 && buytype!=1){//满团
                             wx.redirectTo({
                               url: '../group-full/group-full?orderno=' + orderNO + '&groupno=' + trres.data.groupno + '&pid=' + project.id + '&nodeid=' + store.nodeid
-                            }) 
+                            })
                           } else if (nums == 2 && num == 0 && buytype != 1) {//2人团满团
                             wx.redirectTo({
                               url: '../group-full/group-full?orderno=' + orderNO + '&groupno=' + trres.data.groupno + '&pid=' + project.id + '&nodeid=' + store.nodeid
@@ -312,7 +307,7 @@ Page({
                               url: '../group-paycomplete/group-paycomplete?orderno=' + orderNO + '&groupno=' + trres.data.groupno + '&pid=' + project.id + '&nodeid=' + store.nodeid + '&buytype=' + buytype
                             })
                           }
-                         
+
                         },
                         fail: function (res) {
                           wx.hideLoading();
@@ -355,7 +350,6 @@ Page({
                     content: subres.errMsg,
                     showCancel: false
                   });
-                  console.log(subres.errMsg)
                 }
               },
 
@@ -384,5 +378,5 @@ Page({
     // wx.removeStorageSync("existorder")
     // wx.removeStorageSync("grproject")
   }
-  
+
 })

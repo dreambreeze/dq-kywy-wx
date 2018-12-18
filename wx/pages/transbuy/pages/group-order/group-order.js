@@ -26,20 +26,18 @@ Page({
     //用户openid
     let openid    = wx.getStorageSync('openid');
     let phoneinfo = wx.getStorageSync('phoneinfo');
-    let phone = phoneinfo.phone ? phoneinfo.phone : '' 
+    let phone = phoneinfo.phone ? phoneinfo.phone : ''
     let otype = ''
     //查询拼团订单
-   
+
     common.getSinGroupOrders(app.globalData.authorizerId, openid, phone, otype).then(function (data) {
       wx.hideLoading();
-      console.log(data)
         if (data.order) {
         _this.setData({
           order: data.order
         });
       }
     }).catch(function (data) {
-      console.log(data)
       wx.hideLoading();
       wx.showModal({
         title: '提示',
@@ -124,14 +122,13 @@ Page({
     let openid = wx.getStorageSync('openid');
     let phoneinfo = wx.getStorageSync('phoneinfo');
     let phone = phoneinfo.phone ? phoneinfo.phone : ''
-   
+
     //查询拼团订单
     var otype = showotype == 1 ? '' : showotype //等于1即为查询全部
-   
+
     common.getSinGroupOrders(app.globalData.authorizerId, openid, phone, otype).then(function (data) {
       wx.hideLoading();
-      console.log(otype)
-     
+
       if (data.order) {
         that.setData({
           order: data.order,
@@ -142,7 +139,6 @@ Page({
         scrollTop: 0
       })
     }).catch(function (data) {
-      console.log(data)
       wx.hideLoading();
       wx.showModal({
         title: '提示',

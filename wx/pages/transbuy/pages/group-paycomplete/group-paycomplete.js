@@ -10,7 +10,6 @@ Page({
     whypng: "https://iservice.daqisoft.cn/Public/Home/images/why.png",
   },
   onLoad: function(options) {
-    console.log(options)
     var that = this
 
     var orderno = options.orderno ? options.orderno : ''
@@ -35,16 +34,13 @@ Page({
     var openid = wx.getStorageSync('openid')
 
     common.getGroupShopping(app.globalData.authorizerId, nodeid, pid, '', '', groupno, '').then(function(res) {
-      console.log(res)
       var multiinfo = res.info[0]
-      console.log(multiinfo)
       var orders = multiinfo.project[0].orders
       if (!openid) {
         //调用获取openid   判断是否同一人
         common.getLogin(app.globalData.authorizerId).then(function(data) {
           openid = data
           wx.setStorageSync("openid", data)
-          //console.log(openid)
           for (var j in orders) {
             if (orders[j].openid == openid) {
 
@@ -79,17 +75,13 @@ Page({
 
       //项目订单
       let pstatus = buytype == 1 ? 2 : 1
-      console.log(buytype)
       common.getGroupOrders(app.globalData.authorizerId, '', '', "", "", groupno, pstatus).then(function(data) {
-        console.log(data)
         if (data.status == 1) {
           var ordersData = data.info
           let lux = new Array
           for (var i = 0; i < ordersData[groupno].nums; i++) {
-            console.log(i)
             lux.push(i)
           }
-          console.log("剩余人数" + ordersData[groupno].nums)
           that.setData({
             mutiple: data.mutiple,
             num: ordersData[groupno].nums,
@@ -115,7 +107,6 @@ Page({
           })
         }
 
-        console.log(data)
       })
     }).catch(function(data) {
 
@@ -149,7 +140,6 @@ Page({
     var nodeid = e.currentTarget.dataset.nodeid
     var groupno = e.currentTarget.dataset.groupno
     var num = this.data.num
-    console.log(e)
     wx.navigateTo({
       url: '../group-commit/group-commit?groupno=' + groupno + '&pid=' + pid + '&buytype=3' + '&num=' + num + '&nodeid=' + nodeid,
     })
@@ -169,30 +159,25 @@ Page({
    * 监听页面分享  单聊不可获取shareTickets   群聊可以
    */
   onShareAppMessage: function(options) {
-    console.log(this.data)
     let that = this;
     // that.setData({
     //   isshow: false
     // })
-    console.log(that.data.isshow)
     let groupno = that.data.groupno
     let orderno = that.data.orderno
     let pid = that.data.pid
     let nodeid = that.data.nodeid
     let project = that.data.project
-    console.log(nodeid)
     return {
       title: '邀您￥' + project.groupprice + '来拼' + project.project,
       path: 'pages/transbuy/pages/group-paycomplete/group-paycomplete?groupno=' + groupno + '&pid=' + pid + '&intype=2&nodeid=' + nodeid,
       success: function(res) {
-        console.log(res)
         that.setData({
           isshow: true
         })
 
       },
       fail: function(res) {
-        console.log(res)
         that.setData({
           isshow: true
         })
@@ -215,15 +200,12 @@ Page({
         that.setData({
           chakan: "查看订单1"
         })
-        console.log(res)
         if (res.shareTickets) { //群聊
           wx.getShareInfo({
             shareTicket: res.shareTickets[0],
             success: function(res) {
-              console.log(res)
             },
             fail: function(res) {
-              console.log(res)
             },
             complete: function(res) {}
           })
@@ -235,7 +217,6 @@ Page({
 
       },
       fail: function() {
-        console.log("取消")
         that.setData({
           chakan: "查看订单1",
           isshow: true
@@ -260,11 +241,9 @@ Page({
     let ordersData = that.data.ordersData
 
     function nowTime() { //时间函数
-      // console.log(a)
       for (var i in ordersData) {
 
         var intDiff = ordersData[i].limittime; //获取数据中的时间戳
-        // console.log(intDiff)
         var day = 0,
           hour = 0,
           minute = 0,
@@ -279,14 +258,12 @@ Page({
           if (second <= 9) second = '0' + second;
           ordersData[i].limittime--;
           var str = hour + ':' + minute + ':' + second
-          // console.log(str)    
 
         } else {
           var str = "已结束！";
           //delete ordersData[i]
           //clearInterval(timer);
         }
-        // console.log(str);
         ordersData[i].difftime = str; //在数据中添加difftime参数名，把时间放进去
         ordersData = ordersData
       }
