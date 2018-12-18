@@ -2,7 +2,7 @@
 <view class="container" style="min-height:{{minHeight}}">
   <!--banner轮播图 -->
   <view class='swiper'>
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" circular="true" previous-margin="120rpx" next-margin="120rpx" bindchange='bindchange' current-item-id="{{selected}}">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" circular="true" previous-margin="120rpx" next-margin="120rpx" bindchange='bindchange' current-item-id="{{currentItemId}}">
       <block wx:for="{{bannerList}}" wx:key="bannerList">
         <swiper-item item-id="{{item.staffworkno}}">
           <image src="{{imgurl}}{{item.picurl}}" class="slide-image {{item.staffworkno==selected?'active':''}} " />
@@ -20,22 +20,23 @@
   </view>
   <!--服务入口列表-->
   <view class="function-list">
-    <block wx:for="{{fmodule[0]}}">
+    <block wx:for="{{fmodule[0]}}" wx:key="">
       <view class='item'>
-        <navigator url='{{item.applet_address}}'>
-        <image src='{{showImgUrl}}{{item.fun_img}}' lazy-load></image>
-        <view class='nowrap'>{{item.fun_name}}</view>
-         </navigator>
+        <navigator url='{{item.applet_address}}' hover-class="none">
+          <image src='{{item.fun_img}}' lazy-load></image>
+          <view class='nowrap'>{{item.fun_name}}</view>
+        </navigator>
       </view>
     </block>
-    <block wx:for="{{fmodule[1]}}">
+    <block wx:for="{{fmodule[1]}}" wx:key="">
+
       <view class='item' wx-if="{{index==1}}" bindtap='showService'>
-          <image src='{{showImgUrl}}{{item.fun_img}}' lazy-load></image>
-          <view class='nowrap'>{{item.fun_name}}</view>
+        <image src='{{item.fun_img}}' lazy-load></image>
+        <view class='nowrap'>{{item.fun_name}}</view>
       </view>
       <view class='item' wx-if="{{index==0||index==2}}">
-        <navigator url='{{item.applet_address}}'>
-          <image src='{{imgurl}}{{item.fun_img}}' lazy-load></image>
+        <navigator url='{{item.applet_address}}' hover-class="none">
+          <image src='{{item.fun_img}}' lazy-load></image>
           <view class='nowrap'>{{item.fun_name}}</view>
         </navigator>
       </view>
@@ -46,7 +47,7 @@
   <view class="message-box">
     <image src='../../images/index_message@2x.png' lazy-load></image>
     <swiper class="message-list" vertical="true" display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true">
-      <block wx:for="{{noticeList}}">
+      <block wx:for="{{noticeList}}" wx:key="">
         <swiper-item class="item">
           <text class="tag red-tag">{{item.title}}</text>
           <text class="summary">{{item.desc}}</text>
@@ -66,89 +67,109 @@
         <view class='line reverse'></view>
       </view>
       <view class="clear">
-        <view class="image-box-1" bindtap='gotoTechnician'>
+        <view class="image-box-1">
           <text class='tag'>技师推荐</text>
           <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
-            <block wx:for="{{recommendList.technician}}">
-              <swiper-item>
-                <image src="{{'../../images/index_recommend_01@2x.png'}}" lazy-load></image>
-                <text class='summary'>{{item.staffname}}</text>
-              </swiper-item>
+
+            <block wx:for="{{recommendList.technician?recommendList.technician:recommendList0}}" wx:key="">
+              <navigator url='../technician/pages/techindex/techindex' hover-class="none">
+                <swiper-item>
+                  <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'../../images/index_recommend_01@2x.png'}}" lazy-load></image>
+                  <text class='summary'>{{item.staffworkno}}号</text>
+                </swiper-item>
+              </navigator>
             </block>
 
           </swiper>
         </view>
-          <view >
-            <view class="image-box-2" bindtap='gotoProject'>
-              <text class='tag'>项目介绍</text>
-              <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
-              <block wx:for="{{recommendList.project}}">
-                <swiper-item>
-              <image src="{{'../../images/index_recommend_01@2x.png'}}" lazy-load></image>
-              <text class='summary'>{{item.serviceitemname}}</text>
-              </swiper-item>
+        <view>
+          <view class="image-box-2">
+            <text class='tag'>项目介绍</text>
+            <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
+              <block wx:for="{{recommendList.project?recommendList.project:recommendList1}}" wx:key="">
+                <navigator url='../reserve/pages/reserve-project/reserve-project'>
+                  <swiper-item>
+                    <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'../../images/index_recommend_02@2x.png'}}" lazy-load></image>
+                    <text class='summary'>{{item.serviceitemname}}</text>
+                  </swiper-item>
+                </navigator>
               </block>
-              </swiper>
-            </view>
-            <view class="image-box-2 image-box-3" bindtap='gotoCard'>
-              <text class='tag'>会员卡</text>
-              <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
-              <block wx:for="{{recommendList.cards}}">
-                <swiper-item>
-              <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'../../images/index_recommend_01@2x.png'}}" lazy-load></image>
-              <text class='summary'>{{item.MembershipTypeName}}</text>
-              </swiper-item>
-              </block>
-              </swiper>
-            </view>
+            </swiper>
           </view>
+          <view class="image-box-2 image-box-3" bindtap='gotoCard'>
+            <text class='tag'>会员卡</text>
+            <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
+              <block wx:for="{{recommendList.cards?recommendList.cards:recommendList3}}" wx:key="">
+                <navigator url='../vip-center/vip-center' hover-class="none">
+                  <swiper-item>
+                    <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'../../images/index_recommend_03@2x.png'}}" lazy-load></image>
+                    <text class='summary'>{{item.MembershipTypeName}}</text>
+                  </swiper-item>
+                </navigator>
+              </block>
+            </swiper>
+          </view>
+        </view>
       </view>
     </view>
     <!-- 团购优惠 -->
+    <navigator url="../transbuy/pages/group-buy/group-buy" hover-class="none">
       <view class="group-discount-title" bindtap='gotoGroup'>团购优惠</view>
-      
-      <swiper class="group-discount-list" indicator-dots="{{indicatorDots}}" autoplay="{{true}}" interval="3500" duration="800" circular="true" display-multiple-items="2">
-      <block wx:for="{{projectList}}">
-      <navigator url="../transbuy/pages/project-detail/project-detail?pid={{item.id}}&nodeid={{item.nodeid}}" hover-class="none">
-        <swiper-item class="item">
-          <image src='{{imgurl}}{{item.imgurl[0]}}' lazy-load></image>
-          <text>{{item.project_name}}</text>
-          <text>{{item.project_time}}分钟</text>
-          <text>￥{{item.shop_price}}</text>
-          <text>￥{{item.discount_price}}</text>
-        </swiper-item>
-        </navigator>
-        </block>
-      </swiper>
-    
-    <!-- 拼团活动 -->
-    <navigator url="../transbuy/pages/group-shopping/group-shopping">
-      <view class="group-activity-title ">拼团活动</view>
-      <block wx:for="{{grouptList}}">
-        <view class="group-activity clear ">
-          <image src='{{item.picurl[0]}}' lazy-load></image>
-          <view class='center-box'>
-            <text>{{item.project}}</text>
-            <text>使用时间:{{item.exceptdate}}</text>
-            <text>已拼{{item.count}}件</text>
-            <view class="user-image-list ">
-              <block wx:for="{{item.orders}}">
-                <image src='{{item.pavatar}}' lazy-load></image>
-              </block>
-            </view>
-
-          </view>
-          <view class='right-box'>
-            <button>开团</button>
-            <text>{{item.nums}}人团</text>
-            <view class='price'>
-              <text>￥{{item.groupprice}}</text>
-              <text>￥{{item.singleprice}}</text>
-            </view>
-          </view>
-        </view>
-        </block>
     </navigator>
+
+    <swiper class="group-discount-list" indicator-dots="{{indicatorDots}}" autoplay="{{true}}" interval="3500" duration="800" circular="true" display-multiple-items="3">
+      <block wx:for="{{projectArr}}" wx:for-item="data" wx:key="">
+        <block wx:for="{{data.project}}" wx:for-item="item" wx:key="">
+          <navigator url="../transbuy/pages/project-detail/project-detail?pid={{item.id}}&nodeid={{item.nodeid}}" hover-class="none">
+            <swiper-item class="item">
+              <image src='{{imgurl}}{{item.imgurl[0]}}' lazy-load></image>
+              <text>{{item.project_name}}</text>
+              <text>{{item.project_time}}分钟</text>
+              <text>￥{{item.shop_price}}</text>
+              <text>￥{{item.discount_price}}</text>
+            </swiper-item>
+          </navigator>
+        </block>
+      </block>
+    </swiper>
+
+    <!-- 拼团活动 -->
+    <navigator url="../transbuy/pages/group-shopping/group-shopping" hover-class="none">
+      <view class="group-activity-title">拼团活动</view>
+    </navigator>
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{true}}" interval="3500" duration="800" circular="true" display-multiple-items="1">
+
+    <block wx:for="{{grouptArr}}" wx:for-item="data" wx:key="">
+      <block wx:for="{{data.project}}" wx:for-item="item" wx:key="">
+      <swiper-item>
+        <navigator url="../transbuy/pages/group-detail/group-detail?pid={{item.id}}&nodeid={{data.nodeid}}" hover-class="none">
+          <view class="group-activity clear ">
+            <image src='{{item.picurl[0]}}' lazy-load></image>
+            <view class='center-box'>
+              <text>{{item.project}}</text>
+              <text>适用门店:{{data.store_name}}</text>
+              <text>已拼{{item.count}}件</text>
+              <view class="user-image-list ">
+                <block wx:for="{{item.orders}}" wx:key="orders">
+                  <image src='{{item.pavatar}}' lazy-load></image>
+                </block>
+              </view>
+
+            </view>
+            <view class='right-box'>
+              <button>开团</button>
+              <text>{{item.nums}}人团</text>
+              <view class='price'>
+                <text>￥{{item.groupprice}}</text>
+                <text>￥{{item.singleprice}}</text>
+              </view>
+            </view>
+          </view>
+        </navigator>
+        </swiper-item>
+      </block>
+    </block>
+</swiper>
   </view>
 </view>
 <!-- 导航公用模版 -->

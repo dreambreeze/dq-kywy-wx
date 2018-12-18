@@ -6,7 +6,7 @@
             <view class="change-store" bindtap="changeStoreBtn">切换门店 </view>
         </view>
         <swiper class='star-swiper' indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" circular="true" previous-margin="180rpx" next-margin="180rpx" current-item-id="{{selected}}">
-            <block wx:for="{{starList}}" wx:key="item.staffworkno">
+            <block wx:for="{{starList}}" wx:key="item.staffworkno" >
                 <swiper-item item-id="{{item.staffworkno}}" catchtap='toTechdetail' data-id='{{item.staffworkno}}' class='star-item'>
                     <view class='star-label'>明星技师</view>
                     <block wx:if="{{item.picurl}}">
@@ -22,7 +22,12 @@
                             <view class="reserve-btn" bindtap='reserveStar' data-item='{{item}}'>预约</view>
                         </view>
                     </view>
+                    
                 </swiper-item>
+            </block>
+             <block wx:if="{{starList.length==0}}">
+                <swiper-item class='star-item'><view class='none_text'>暂无技师</view>
+              </swiper-item> 
             </block>
         </swiper>
     </view>

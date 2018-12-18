@@ -32,7 +32,6 @@ Page({
       title: '加载中',
       mask: true
     });
-    console.log(options)
     var pid = options.id;
     var index = options.index ? options.index:0
     var proData = wx.getStorageSync("proData")
@@ -70,7 +69,6 @@ Page({
     var that =this
 
     var proData = that.data.proData
-    console.log(proData)
     for (let i in proData){
       if(i==index){
         proData[i].choose =true 

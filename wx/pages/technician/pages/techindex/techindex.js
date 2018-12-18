@@ -279,7 +279,7 @@ Page({
         });
     },
 
-    /* 处理加载过来的数据 
+    /* 处理加载过来的数据
          res   成功的数据   operate   加载  1-加载会员卡信息   2-加载会员卡项目优惠信息
     */
     dealdata: function(res, operate) {
@@ -334,7 +334,7 @@ Page({
                     this.setData({
                         starList: starList
                     })
-                } 
+                }
                 break
         }
         wx.hideLoading()
@@ -498,6 +498,7 @@ Page({
 
                         for (let i = 0; i < stores.length; i++) {
                             var address = stores[i].province + stores[i].city + stores[i].area + stores[i].address_detail;
+
                             common.geocoder(address).then(function(loca) {
                                 var address = stores[i].province + stores[i].city + stores[i].area + stores[i].address_detail;
 
@@ -600,6 +601,7 @@ Page({
                                 success: function(res) {
                                     wx.hideLoading();
                                     if (res.status == 0) {
+                                        console.log(res)
                                         wx.openLocation({
                                             latitude: res.result.location.lat,
                                             longitude: res.result.location.lng,
@@ -850,6 +852,7 @@ Page({
                 }
             },
             fail: function(res) {
+                console.log(res)
                 wx.hideLoading();
                 if (res.errMsg == 'request:fail timeout') {
                     wx.showModal({

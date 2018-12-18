@@ -237,7 +237,7 @@ Page({
     lookAllAssess: function() {
         let nodeid = this.data.nodeid
         wx.navigateTo({
-            url: '../all-assess/all-assess?nodeid=' + nodeid + '&pid=' + pid + '&afrom=group',
+          url: '../../../reserve/pages/store-assess/store-assess?nodeid=' + nodeid + '&pid=' + pid + '&afrom=group',
         });
     },
     /**

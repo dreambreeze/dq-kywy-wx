@@ -1,15 +1,6 @@
 <view class="container">
-  <!-- <view  class='swiper'>
-    <swiper indicator-dots="true" autoplay="true" interval="3000" duration="400" indicator-color="rgba(255, 255, 255, .5)" indicator-active-color="#caa876">
-      <block wx:for="{{!reserveProject[0].picurlarr ? banner : reserveProject[0].picurlarr}}">
-        <swiper-item>
-          <image src="{{!reserveProject[0].picurlarr ? item : showImgUrl + item}}" class="item-image" mode="aspectFill"></image>
-        </swiper-item>
-      </block>
-    </swiper>
-  </view> -->
  <view class='swiper'>
-    <swiper  duration="800" previous-margin="120rpx" next-margin="120rpx" bindchange='bindchange' current-item-id="{{index}}">
+    <swiper  duration="800" autoplay="true" previous-margin="120rpx" next-margin="120rpx" bindchange='bindchange' current-item-id="{{index}}">
       <block wx:for="{{proData}}"  wx:key="imgid">
         <swiper-item item-id="{{index}}">
         <image src="{{item.picurl?showImgUrl+item.picurl:projectImg}}" mode="aspectFill" class="slide-image {{item.choose?'active':''}}" />
@@ -28,8 +19,6 @@
     <view class="project-time">
       <text>中式推拉</text>
       <text class='pro_time'>{{proData[index].servicetime}}分钟</text>
-      <!-- <text>门市价 ¥ 399.00</text>  -->
-      <!-- <text>已售170笔</text> -->
     </view>
   </view>
 

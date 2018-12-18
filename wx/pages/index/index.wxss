@@ -114,6 +114,8 @@
     height: 25rpx;
     line-height: 25rpx;
     margin-bottom: 10rpx;
+    display: flex;
+    align-items: center
 }
 
 .message-list .red-tag {
