@@ -148,11 +148,17 @@ Page({
                     showCancel: false
                 });
             });
-        } else {
-
+        } else if (idx ==2){
             this.setData({
                 typeOrderDisplay: (typeclick == 1 ? true : false),
                 tIdx: idx,
+                topTypeHeight: (typeclick == 1 ? 'height: 176rpx;' : 'height: 86rpx;'),
+                typeclick: (typeclick == 1 ? 2 : 1)
+            });
+        } else if (idx == 3){
+            this.setData({
+                typeOrderDisplay: (typeclick == 1 ? true : false),
+                tIdx: 2,
                 topTypeHeight: (typeclick == 1 ? 'height: 176rpx;' : 'height: 86rpx;'),
                 typeclick: (typeclick == 1 ? 2 : 1)
             });
@@ -211,7 +217,6 @@ Page({
      */
     orderStateChange: function(ev) {
         var idx = ev.currentTarget.dataset.idx;
-
         this.setData({
             sIdx: idx
         });

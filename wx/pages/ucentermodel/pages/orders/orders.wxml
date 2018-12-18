@@ -3,7 +3,7 @@
     <view class="main-type">
         <view class="main-item {{tIdx == 1 || !tIdx ? 'active' : ''}}" bindtap="orderTypeTitleChange" data-idx="1">全部订单</view>
         <view class="main-item {{tIdx == 2 ? 'active' : ''}} {{typeOrderDisplay? 'current' : ''}}" bindtap="orderTypeTitleChange" data-idx="2" data-typeclick="{{typeclick}}">{{tname}}</view>
-        <view class='type-order-mask' wx:if="{{typeOrderDisplay}}"></view>
+        <view class='type-order-mask' wx:if="{{typeOrderDisplay}}" bindtap="orderTypeTitleChange" data-idx="3" data-typeclick="{{typeclick}}"></view>
         <view class="type-order clear" wx:if="{{typeOrderDisplay}}">
             <view class="type-item" wx:for="{{orderType}}" wx:key="{{index}}" bindtap="orderTypeChange" data-tname="{{item.name}}" data-type="{{item.type}}">{{item.name}}</view>
         </view>
@@ -185,6 +185,7 @@
                     <image src="{{item.gspicurl ? showImgUrl + item.gspicurl : cardPicUrl}}" lazy-load class="order-pic" mode="aspectFill"></image>
                     <view class='order-info'>
                         <view class='name'>{{item.project?item.project:'拼团订单'}} </view>
+                        <view class='type-name primary-font'>拼团订单</view>
                         <view class='type-name'>￥{{item.payprice}} </view>
                         <view class='type-name'>适用门店：{{item.canshopna?item.canshopna:'全国通用'}} </view>
                     </view>
@@ -208,6 +209,7 @@
                     <image src="{{item.picurl ? showImgUrl + item.picurl : cardPicUrl}}" lazy-load class="order-pic" mode="aspectFill"></image>
                     <view class='order-info'>
                         <view class='name'>{{item.project_name?item.project_name:'团购订单'}} </view>
+                        <view class='type-name'>e团购订单</view>
                         <view class='type-name'>￥{{item.project_price}} </view>
                         <view class='type-name'>适用门店：{{item.store_name?item.store_name:'全国通用'}} </view>
                     </view>

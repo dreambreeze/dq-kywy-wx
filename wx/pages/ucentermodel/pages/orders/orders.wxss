@@ -200,6 +200,10 @@
     font-size: 24rpx;
 }
 
+.primary-font{
+    color:#3b81d6;
+}
+
 .order-right {
     text-align: right;
     padding-right: 20rpx;
