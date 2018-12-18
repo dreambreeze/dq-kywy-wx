@@ -34,37 +34,31 @@ Page({
     interval: 2500,
     duration: 500,
     selected: 1,
-    bannerList: [],
+    bannerList: {},
+    banner: [{
+      picurl: '../../images/index_banner@2x.png',
+      staffworkno: 1
+    }],
     imgurl: common.config.showImgUrl,
 
     // 服务列表
     fmodule: [],
-  
+
     //资讯列表
     noticeList: [],
     //团购优惠
-    projectList:[],
+    projectList: [],
     //拼团活动
-    groupList:[],
-      //推荐
-      recommendList0:[{
-        src:"../../images/index_recommend_01@2x.png",
-        title:"获得高级按摩师认证"
-      }, {
-        src: "../../images/index_recommend_02@2x.png",
-        title: "好口碑项目推荐"
-        }, {
-        src: "../../images/index_recommend_03@2x.png",
-        title: "会员充值 乐享优惠"
-        }],
+    groupList: [],
+    //推荐默认
+    recommendList0: [{
+      staffname: "获得高级按摩师认证"
+    }],
     recommendList1: [{
-      bindtap:'toReserveProject',
-      src: "../../images/index_recommend_02@2x.png",
-      title: "toReserveProject"
-    }, {
-        bindtap: '',
-      src: "../../images/index_recommend_03@2x.png",
-        title: "会员充值 乐享优惠"
+      serviceitemname: "经典足浴"
+    }],
+    recommendList3: [{
+      MembershipTypeName: "会员充值 乐享优惠"
     }],
     data: {}
   },
@@ -77,12 +71,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    var locationData = wx.getStorageSync('currentReserveStore');
+    this.setData({
+      nodeid: locationData[0].nodeid ? locationData[0].nodeid : ''
+    })
     this.getNoticeList();
     this.getBannerList();
-      this.getRecommend();
+    this.getRecommend();
     this.getProject();
     this.getGroupList();
-    
+
     //加载小程序标题
     common.getAppletInfo(app.globalData.authorizerId).then(function(data) {
       wx.setNavigationBarTitle({
@@ -205,7 +203,7 @@ Page({
       });
     });
 
-    
+
 
     //加载呼叫服务内容
     wx.request({
@@ -257,10 +255,10 @@ Page({
       }
     });
 
-   
-    
-    
-    
+
+
+
+
     //检查是否有权限使用
     common.isExpiredTime(app.globalData.authorizerId).catch(function() {
       wx.reLaunch({
@@ -276,19 +274,22 @@ Page({
     // }
   },
   //获取banner列表
-  getBannerList(){
+  getBannerList() {
     let _this = this;
-    common.getBanner(app.globalData.authorizerId, 1).then(function (data) {
-      _this.setData({
-        bannerList: data.info
-      })
-    }).catch(function (data) {
+    common.getBanner(app.globalData.authorizerId, 1).then(function(data) {
+      if (data.info) {
+        _this.setData({
+          bannerList: data.info
+        })
+      }
+
+    }).catch(function(data) {
 
     })
   },
   //获取菜单列表
-  getfmoduleList(){
-    let _this=this;
+  getfmoduleList() {
+    let _this = this;
     //加载首页后台分配的功能模块
     let fid = common.config.navTabBar[0].id;
     let homeNav = wx.getStorageSync('homeNav');
@@ -298,13 +299,13 @@ Page({
         info: ''
       });
     } else {
-      common.getFunction(fid, app.globalData.authorizerId, 1).then(function (data) {
+      common.getFunction(fid, app.globalData.authorizerId, 1).then(function(data) {
         wx.setStorageSync('homeNav', data.info);
         _this.setData({
           fmodule: data.info,
           info: ''
         });
-      }).catch(function (data) {
+      }).catch(function(data) {
         _this.setData({
           fmodule: false,
           info: data
@@ -315,68 +316,69 @@ Page({
 
   //获得资讯
   getNoticeList() {
-    let _this=this;
-    common.getNotice(app.globalData.authorizerId, 1).then(function (data) {
+    let _this = this;
+    common.getNotice(app.globalData.authorizerId, 1).then(function(data) {
+      let msg = new Array;
+      for (let i = 0; i < data.info.length; i++) {
+        data.info[i].desc = data.info[i].desc.replace("<p>", '').replace("</p>", '')
+      }
       _this.setData({
         noticeList: data.info
       })
-    }).catch(function (data) {
+
+    }).catch(function(data) {
       _this.setData({
         noticeList: [{
           title: "公告",
           desc: "养生茶水养生按摩足浴"
         }]
-        
+
       });
     });
   },
   //获取团购优惠
-  getProject(){
+  getProject() {
     let _this = this;
-    common.getProject(app.globalData.authorizerId, '', '', '','','').then(function (data) {
-      let projectArr=[];
-      for (let i = 0; i < data.info.length;i++){
+    common.getProject(app.globalData.authorizerId, '', '', '', '', '').then(function(data) {
+      let projectArr = [];
+      for (let i = 0; i < data.info.length; i++) {
         for (let j = 0; j < data.info[i].project.length; j++) {
           projectArr.push(data.info[i].project[j])
         }
       }
       _this.setData({
-        projectList: projectArr
+        projectArr: data.info
       })
     })
   },
   //拼团列表
-  getGroupList(){
+  getGroupList() {
     let _this = this;
-    common.getGroupShopping(app.globalData.authorizerId, '', '', '', '', '', '').then(function (data) {
-      
-      let groupArr = [];
-      for (let i = 0; i < data.info.length; i++) {
-        for (let j = 0; j < data.info[i].project.length; j++) {
-          groupArr.push(data.info[i].project[j])
-        }
-      }
+
+    common.getGroupShopping(app.globalData.authorizerId, '', '', '', '', '', '').then(function(data) {
       _this.setData({
-        grouptList: groupArr
+        grouptArr: data.info,
       })
-      console.log("getProject", groupArr)
-      // _this.setData({
-      //   groupList: data.info[0]
-      // })
+    })
+  },
+  /**
+   * 跳转至详情页
+   */
+  todetail: function(e) {
+    let pid = e.currentTarget.dataset.pid
+    let nodeid = e.currentTarget.dataset.nodeid
+    wx.navigateTo({
+      url: './transbuy/pages/group-detail/group-detail?pid=' + pid + '&nodeid=' + nodeid,
     })
   },
   //获取推荐
-  getRecommend(){
+  getRecommend() {
     let _this = this;
-    let locationData = wx.getStorageSync('currentReserveStore');
-    let nodeid = locationData[0].nodeid ? locationData[0].nodeid:'';
-    common.getRecommend(app.globalData.authorizerId, nodeid).then(function (data) {
-      
+    common.getRecommend(app.globalData.authorizerId, _this.data.nodeid).then(function(data) {
       _this.setData({
         recommendList: data
       })
-    }).catch(function (data) {
-    });
+    }).catch(function(data) {});
   },
   /**
    * 监听页面分享  单聊不可获取shareTickets   群聊可以
@@ -400,12 +402,8 @@ Page({
         if (res.shareTickets) { //群聊
           wx.getShareInfo({
             shareTicket: res.shareTickets[0],
-            success: function(res) {
-              console.log(res)
-            },
-            fail: function(res) {
-              console.log(res)
-            },
+            success: function(res) {},
+            fail: function(res) {},
             complete: function(res) {}
           })
         } else { //单聊
@@ -498,7 +496,6 @@ Page({
                 success: function(res) {
                   wx.hideLoading();
                   if (res.status == 0) {
-                    console.log(res)
                     wx.openLocation({
                       latitude: res.result.location.lat,
                       longitude: res.result.location.lng,
@@ -632,12 +629,11 @@ Page({
           //返回成功
           if (res.statusCode == 200) {
             if (res.data.status == 1) {
-              console.log("stores", res.data.info)
               let stores = res.data.info;
               that.setData({
                 stores: stores
               });
-             
+
               resolve(stores);
             } else {
               reject(res.data.info);
@@ -697,52 +693,50 @@ Page({
    * 扫码下单
    */
   scancode: function() {
-	  let _this = this;
-	  //门店与房间号是否存在
-	  let sceneStr = wx.getStorageSync('ShopNoRoomNo');
-	  if (!sceneStr){
-		  wx.scanCode({
-			  onlyFromCamera:true,
-			  scanType:[],
-			  success:function(res){
-				  if(res.path){
-					  console.log(res.path)
-					  try{
-						  var path = decodeURIComponent(res.path).split("?")
-						  var newpath = path[0]
-						  var ShopNoRoomNo = path[1].substr(6,path[1].length - 1)
-						  wx.setStorageSync("ShopNoRoomNo",ShopNoRoomNo)
-						  wx.navigateTo({
-							  url:'/pages/automina/pages/detail/detail',
-						  })
-					  }catch(e){
-						  wx.showModal({
-							  title:'提示',
-							  content:'获取地址失败，无法跳转',
-							  showCancel:false
-						  });
-					  }
-				  }else{
-					  wx.showModal({
-						  title:'提示',
-						  content:'获取地址失败，无法跳转',
-						  showCancel:false
-					  });
-				  }
-			  },
-			  fail:function(res){
-				  wx.navigateBack({
-					  delta:1
-				  })
-			  },
-			  complete:function(res){
-			  },
-		  })
-	  }else{
-		  wx.navigateTo({
-			  url:'/pages/automina/pages/detail/detail',
-		  })
-      }
+    let _this = this;
+    //门店与房间号是否存在
+    let sceneStr = wx.getStorageSync('ShopNoRoomNo');
+    if (!sceneStr) {
+      wx.scanCode({
+        onlyFromCamera: true,
+        scanType: [],
+        success: function(res) {
+          if (res.path) {
+            try {
+              var path = decodeURIComponent(res.path).split("?")
+              var newpath = path[0]
+              var ShopNoRoomNo = path[1].substr(6, path[1].length - 1)
+              wx.setStorageSync("ShopNoRoomNo", ShopNoRoomNo)
+              wx.navigateTo({
+                url: '/pages/automina/pages/detail/detail',
+              })
+            } catch (e) {
+              wx.showModal({
+                title: '提示',
+                content: '获取地址失败，无法跳转',
+                showCancel: false
+              });
+            }
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: '获取地址失败，无法跳转',
+              showCancel: false
+            });
+          }
+        },
+        fail: function(res) {
+          wx.navigateBack({
+            delta: 1
+          })
+        },
+        complete: function(res) {},
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/automina/pages/detail/detail',
+      })
+    }
   },
   /**
    * 受理呼叫服务
@@ -916,7 +910,7 @@ Page({
           //获取定位
           new Promise(function(resolve, reject) {
             locationStore = [];
-            let stores=_this.data.stores;
+            let stores = _this.data.stores;
             for (let i = 0; i < stores.length; i++) {
               var address = stores[i].province + stores[i].city + stores[i].area + stores[i].address_detail;
               common.geocoder(address).then(function(loca) {
@@ -934,7 +928,6 @@ Page({
 
                   resolve(locationStore);
                 }).catch(function(res) {
-                  console.log(res)
                   locationStore.push({
                     'store_name': stores[i].store_name,
                     'address': address == '' ? '未设置地址' : address,
@@ -1000,34 +993,6 @@ Page({
     }
 
 
-  },
-  /**
-   * 项目介绍
-   */
-  gotoProject() {
-    wx.navigateTo({
-      url: '../reserve/pages/reserve-project/reserve-project',
-    })
-  },
-  /**
-   * 技师推荐
-   */
-  gotoTechnician() {
-    wx.navigateTo({
-      
-      url: '../technician/pages/techindex/techindex',
-    })
-  },
-  // 储蓄卡
-  gotoCard(){
-    wx.navigateTo({
-      url: '../vip-center/vip-center',
-    })
-  },
-  gotoGroup(){
-    wx.navigateTo({
-      url: '../transbuy/pages/group-buy/group-buy',
-    })
   },
   /**
    * 页面跳转
@@ -1125,7 +1090,6 @@ Page({
             return false;
           }
         }).catch(function(data) {
-          console.log(data)
 
         });
       } else {
@@ -1159,7 +1123,6 @@ Page({
     var openid = wx.getStorageSync('openid')
     var has = that.data.has
     common.sendCoupon(app.globalData.authorizerId, openid, has).then(function(data) {
-      console.log(data)
       if (data.status == 1) {
         wx.showModal({
           title: '提示',
@@ -1171,7 +1134,6 @@ Page({
         couponmaskDisplay: 'hidden',
       });
     }).catch(function(data) {
-      console.log(data)
       that.setData({
         couponmaskDisplay: 'hidden',
       });

@@ -282,8 +282,7 @@ function getStores(authorizerId, geocoder) {
   var p = new Promise(function(resolve, reject) {
     //获取所有门店信息
     wx.request({
-      url: host + 'Api/Base/getStores',
-      // url: host + '/index.php/Api/Base/getStores',
+      url: host + '/Api/Base/getStores',
       data: {
         'authorizerId': authorizerId,
         'geocoder': geocoder
