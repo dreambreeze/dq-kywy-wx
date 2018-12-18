@@ -10,7 +10,7 @@
                 <swiper-item item-id="{{item.staffworkno}}" catchtap='toTechdetail' data-id='{{item.staffworkno}}' class='star-item'>
                     <view class='star-label'>明星技师</view>
                     <block wx:if="{{item.picurl}}">
-                        <image src='{{showImgUrl}}{{item.picurl}}' lazy-load></image>
+                        <image src='{{showImgUrl+item.picurl}}' lazy-load></image>
                     </block>
                     <block wx:else>
                         <image src='https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png'></image>

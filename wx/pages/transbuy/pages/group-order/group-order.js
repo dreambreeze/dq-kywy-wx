@@ -210,5 +210,4 @@ Page({
       url: '../group-paycomplete/group-paycomplete?orderno=' + orderno + '&groupno=' + groupno + '&pid=' + pid + '&nodeid=' + nodeid
     })
   }
-
 })

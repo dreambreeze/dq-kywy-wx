@@ -23,6 +23,9 @@ var leftItem = [];
 var rightItem = [];
 //判断第一次加载明星技师列表数据
 var starFlag = true;
+//明星技师数据
+var starList = []
+
 Page({
     /**
      * 页面的初始数据
@@ -43,7 +46,8 @@ Page({
         rHeight: 0,
         imgWidth: 0,
         imgHeight: 0,
-        starList: {},
+        //明星技师列表
+        starList: starList,
     },
     itemReset: function(e) {
         //图片原始宽度
@@ -98,7 +102,10 @@ Page({
                 'currPage': currPage,
                 'num': totalPage,
             }, 1)
-
+            that.loaddata('/index.php/Api/NewBase/getTechnician', {
+                "authorizerId": app.globalData.authorizerId,
+                "nodeid": noedid,
+            }, 2)
             var currTime = new Date().getTime() - 3600000;
             if (currStoreCache[0].cache < currTime) {
                 wx.removeStorageSync('currentReserveStore');
@@ -119,11 +126,8 @@ Page({
                     //返回成功
                     if (res.statusCode == 200) {
                         if (res.data.status == 1) {
-
                             var currStoreCache = res.data.info
-
                             var noedid = currStoreCache[0].request_id
-                            console.log(noedid)
                             var shopno = noedid.split("#")[0]
                             //加载技师及技师类别信息
                             if (shopno) {
@@ -131,15 +135,13 @@ Page({
                                     "authorizerId": app.globalData.authorizerId,
                                     "shopno": shopno,
                                     "openid": wx.getStorageSync("openid"),
-
                                 }, 1)
                             }
-
-
-                        } else {
-
+                            that.loaddata('/index.php/Api/NewBase/getTechnician', {
+                                "authorizerId": app.globalData.authorizerId,
+                                "nodeid": noedid,
+                            }, 2)
                         }
-
                     }
                 },
                 fail: function(res) {
@@ -212,7 +214,6 @@ Page({
     //去技师详情
     toTechdetail: function(e) {
         var selected = e.currentTarget.dataset.id
-        console.log("现在选的" + selected)
         var url = '../techdetail/techdetail'
         var typeDefault = this.data.typeDefault
         if (typeDefault == 0) {
@@ -240,7 +241,7 @@ Page({
 
 
     /**
-     * 加载技师数据
+     * 加载数据
      */
     loaddata: function(url, data, operate) {
         wx.showLoading({
@@ -312,13 +313,6 @@ Page({
                         typeLists: typeLists,
                         data: res.data.data,
                     })
-                    //初始化明星技师列表
-                    if (starFlag) {
-                        starFlag = false
-                        this.setData({
-                            starList: res.data.data,
-                        })
-                    }
                 } else {
                     //获取数据失
                     wx.showModal({
@@ -334,6 +328,13 @@ Page({
                 }
                 break
             case 2:
+                if (res.data.status == 1) {
+                    starList = res.data.technician
+                    console.log(starList)
+                    this.setData({
+                        starList: starList
+                    })
+                } 
                 break
         }
         wx.hideLoading()
@@ -497,13 +498,10 @@ Page({
 
                         for (let i = 0; i < stores.length; i++) {
                             var address = stores[i].province + stores[i].city + stores[i].area + stores[i].address_detail;
-
-                            console.log(address)
                             common.geocoder(address).then(function(loca) {
                                 var address = stores[i].province + stores[i].city + stores[i].area + stores[i].address_detail;
 
                                 common.calculateDistance([loca]).then(function(distance) {
-                                    console.log(distance)
                                     locationStore.push({
                                         'store_name': stores[i].store_name,
                                         'address': address == '' ? '未设置地址' : address,
@@ -516,7 +514,6 @@ Page({
 
                                     resolve(locationStore);
                                 }).catch(function(res) {
-                                    console.log(res)
                                     locationStore.push({
                                         'store_name': stores[i].store_name,
                                         'address': address == '' ? '未设置地址' : address,
@@ -603,7 +600,6 @@ Page({
                                 success: function(res) {
                                     wx.hideLoading();
                                     if (res.status == 0) {
-                                        console.log(res)
                                         wx.openLocation({
                                             latitude: res.result.location.lat,
                                             longitude: res.result.location.lng,
@@ -854,7 +850,6 @@ Page({
                 }
             },
             fail: function(res) {
-                console.log(res)
                 wx.hideLoading();
                 if (res.errMsg == 'request:fail timeout') {
                     wx.showModal({

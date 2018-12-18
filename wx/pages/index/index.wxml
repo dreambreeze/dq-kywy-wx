@@ -29,7 +29,6 @@
       </view>
     </block>
     <block wx:for="{{fmodule[1]}}">
-      
       <view class='item' wx-if="{{index==1}}" bindtap='showService'>
           <image src='{{showImgUrl}}{{item.fun_img}}' lazy-load></image>
           <view class='nowrap'>{{item.fun_name}}</view>

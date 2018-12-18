@@ -1,37 +1,19 @@
 <import src="../../../common/assess.wxml" />
 <view class="top-nav">
     <view class="flex-wrp">
-            <view class="select-store">
-                <picker mode="selector" bindchange="bindPickerChange" value="{{index}}" range="{{storeArr}}" range-key="store_name">
-                    <view class="picker-val-parent">
-                        <view class="picker-val">{{storeArr[index].store_name}}</view>
-                        <view class="iconfont icon-xiangxia arrowdown"></view>
-                    </view>
-                </picker>
-            </view>
-        <view class="nav-item" wx:for='{{}}'>
-            <navigator url="../store-assess/store-assess?type=" hover-class="none" open-type="redirect">
-                <text class="{{!navType ? 'active' : ''}}">全部</text>
-            </navigator>
+        <view class="select-store">
+            <picker mode="selector" bindchange="bindPickerChange" range="{{storeArr}}" value="{{index}}" range-key="store_name">
+                <view class="picker-val-parent">
+                    <view class="picker-val">{{storeArr[index].store_name}}</view>
+                    <view class="iconfont icon-xiangxia arrowdown"></view>
+                </view>
+            </picker>
         </view>
-        <view class="nav-item">
-            <navigator url="../store-assess/store-assess?type=1" hover-class="none" open-type="redirect">
-                <text class="{{navType == '1' ? 'active' : ''}}">好评</text>
-            </navigator>
-        </view>
-        <view class="nav-item">
-            <navigator url="../store-assess/store-assess?type=2" hover-class="none" open-type="redirect">
-                <text class="{{navType == '2' ? 'active' : ''}}">中评</text>
-            </navigator>
-        </view>
-        <view class="nav-item">
-            <navigator url="../store-assess/store-assess?type=3" hover-class="none" open-type="redirect">
-                <text class="{{navType == '3' ? 'active' : ''}}">差评</text>
-            </navigator>
+        <view class="nav-item" wx:for='{{typeList}}' wx:key='index'>
+            <text class="{{currentType == item.value ? 'active' : ''}}" data-type='{{item.value}}' bindtap='changeType'>{{item.name}}</text>
         </view>
     </view>
 </view>
-
 <view class="container">
     <block wx:if="{{selfAssess}}">
         <view class="assess selfAssess">
@@ -39,7 +21,6 @@
             <template is="assess" data="{{assess: selfAssess,isStore:true}}" />
         </view>
     </block>
-
     <block wx:if="{{assesData || selfAssess}}">
         <view class="assess">
             <!-- 评论模版 -->

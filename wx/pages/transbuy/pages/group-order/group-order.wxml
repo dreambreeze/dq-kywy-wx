@@ -43,7 +43,7 @@
       <view class="order-oper clear">
         <block wx:if="{{item.pstatus == 2}}">
           <view class="oper-l">
-            {{item.pstatus == 2 && item.petime ? '有效期至：' + item.petime : ''}}
+            {{item.pstatus == 2 && item.validateend ? '有效期至：' + item.validateend : ''}}
           </view>
         </block>
         <block wx:else>

@@ -3,6 +3,8 @@ var app = getApp();
 var common = require('../../../../common.js');
 //订单类型
 var orderType = '';
+//二维码弹窗数据
+var showQrcode = {}
 Page({
     /**
      * 页面的初始数据
@@ -27,8 +29,15 @@ Page({
             {
                 'name': '自助点单',
                 'type': 7
+            },
+            {
+                'name': '拼团订单',
+                'type': 8
+            },
+            {
+                'name': '团购订单',
+                'type': 9
             }
-
         ],
         orderState: [
             '全部',
@@ -43,7 +52,11 @@ Page({
         cardPicUrl: common.config.orderCardIcon,
         typeclick: 1,
         //分类弹窗是否显示
-        typeOrderDisplay:false,
+        typeOrderDisplay: false,
+        //二维码弹窗显隐
+        qrDisplay:'none',
+        //弹窗数据
+        showQrcode: showQrcode
     },
 
     /**
@@ -191,12 +204,6 @@ Page({
                 showCancel: false
             });
         });
-
-        // this.setData({
-        //   typeOrderDisplay: 'display:none',
-        //   tIdx: 2,
-        //   tname: tname
-        // });
     },
 
     /**
@@ -213,9 +220,59 @@ Page({
     /**
      * 点击立即消费
      */
-    lijixiaofei: function() {
+    lijixiaofei: function(e) {
+        showQrcode.qrcode = e.currentTarget.dataset.qrcode
+        showQrcode.pname = e.currentTarget.dataset.pname
+        showQrcode.price = e.currentTarget.dataset.price
+        showQrcode.orderno = e.currentTarget.dataset.orderno
         this.setData({
-            qrDisplay: 'display:block'
+            qrDisplay: 'block',
+            showQrcode: showQrcode
+        });
+    },
+
+    //未满团  去分享
+    toshare(e) {
+        let pid = e.currentTarget.dataset.pid
+        let orderno = e.currentTarget.dataset.orderno
+        let groupno = e.currentTarget.dataset.groupno
+        let nodeid = e.currentTarget.dataset.nodeid + "#china"
+        wx.navigateTo({
+            url: '/pages/transbuy/pages/group-paycomplete/group-paycomplete?orderno=' + orderno + '&groupno=' + groupno + '&pid=' + pid + '&nodeid=' + nodeid
+        })
+    },
+
+    /**
+     * 前往拼团订单详情
+     */
+    toGroupOrderDetail(e){
+        var id = e.currentTarget.dataset.id;
+        var orderno = e.currentTarget.dataset.orderno;
+        var nodeid = e.currentTarget.dataset.nodeid + "#china";
+        wx.navigateTo({
+            url: '/pages/transbuy/pages/group-orderdetail/group-orderdetail?orderno=' + orderno + '&pid=' + id + '&nodeid=' + nodeid,
+        });
+    },
+
+    /**
+     * 前往团购订单详情
+     */
+    toEGroupOrderDetail(e){
+        var id = e.currentTarget.dataset.id;
+        wx.navigateTo({
+            url: '/pages/ucentermodel/pages/orderdetail/orderdetail?id=' + id,
+        });
+    },
+    /**
+     * 评价页
+     */
+    assess: function(e) {
+        let pid = e.currentTarget.dataset.pid;
+        let nodeid = e.currentTarget.dataset.nodeid + "#china";
+        let id = e.currentTarget.dataset.id;
+
+        wx.navigateTo({
+            url: '../group-assess/group-assess?pid=' + pid + '&nodeid=' + nodeid + '&id=' + id,
         });
     },
 
@@ -224,7 +281,7 @@ Page({
      */
     closeQrcode: function() {
         this.setData({
-            qrDisplay: 'display:none'
+            qrDisplay: 'none'
         });
     },
 

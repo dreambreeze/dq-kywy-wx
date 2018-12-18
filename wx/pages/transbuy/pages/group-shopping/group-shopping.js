@@ -266,6 +266,7 @@ Page({
     //我的订单
     tomyorder() {
         wx.navigateTo({
+            // url: '../group-order/group-order',
             url: '/pages/ucentermodel/pages/orders/orders',
         })
     },

@@ -18,6 +18,7 @@
     justify-content: space-around;
     align-items: center;
     z-index:3;
+    box-shadow: 2rpx 2rpx 8rpx rgba(0, 0, 0, 0.2)
 }
 
 .main-item {
@@ -148,6 +149,33 @@
     padding-bottom: 24rpx;
     border-bottom: 1rpx solid #e5e5e5;
     padding-left: 20rpx;
+    position: relative;
+}
+
+.order-status{
+    position: absolute;
+    top:0;
+    right:40rpx;
+    font-size:24rpx;
+    color:#3b81d6;
+}
+
+.order-handle{
+    text-align:right;
+    padding:0 20rpx;
+    height:84rpx;
+}
+
+.order-handle button{    
+    height:42rpx;
+    line-height:40rpx;
+    border:1rpx solid #3b81d6;
+    border-radius:6rpx;
+    font-size:24rpx;
+    color:#3b81d6;
+    display: inline-block;
+    margin:20rpx 0 20rpx 20rpx;
+    padding: 0 20rpx;
 }
 
 .order-pic {
@@ -269,7 +297,7 @@
 .qrcode-title {
     position: relative;
     text-align: center;
-    color: #c4a06b;
+    color: #3b81d6;
     padding: 40rpx 0 26rpx;
     border-bottom: 1rpx solid #e5e5e5;
     font-size: 30rpx;

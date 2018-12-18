@@ -4,7 +4,6 @@ let common = require('../../../../common.js');
 let pageIndex = 0;
 //加载状态
 let loadState = true;
-let types = '';
 //评价数据
 let assessData = [];
 //评价门店数据
@@ -13,6 +12,16 @@ let storeArr = [];
 let storesortTime = null;
 //选择门店的下标
 let index = 0;
+//选择门店的nodeid
+let nodeid = '';
+//当前评价类型
+let currentType = ''
+//所有门店
+let allStore = {
+    store_name: '所有门店',
+    request_id: '',
+    distance: 0
+}
 Page({
 
     /**
@@ -23,33 +32,48 @@ Page({
         display: 'display:none',
         //加载态度
         currentState: '加载中...',
-        index: index ,
+        index: index,
+        nodeid: nodeid,
+        //评价类型列表
+        typeList: [{
+                name: '全部',
+                value: ''
+            },
+            {
+                name: '好评',
+                value: 1
+            },
+            {
+                name: '中评',
+                value: 2
+            },
+            {
+                name: '差评',
+                value: 3
+            }
+        ],
         //评价类型
-        navType: types
+        currentType: currentType,
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        let _this = this;
-        types = !options.type ? '' : options.type;
-        this.setData({
-            navType: types
-        })
+        this.getStoreArr();
     },
 
     /**
      * 门店评价完成刷新页面
      */
     onShow() {
-        this.loadData();
+        this.getAssessData();
     },
 
     /**
-     * 初始化数据
+     * 获取评论数据
      */
-    loadData(types){
+    getAssessData() {
         let _this = this;
         //分页
         pageIndex = 0;
@@ -65,18 +89,17 @@ Page({
 
         let openid = wx.getStorageSync('openid');
         if (!openid) {
-            common.getLogin(app.globalData.authorizerId).then(function (data) {
+            common.getLogin(app.globalData.authorizerId).then(function(data) {
                 openid = data;
                 //加载所有评价内容
-                common.getStoreAssess(app.globalData.authorizerId, openid, pageIndex, types).then(function (data) {
+                common.getStoreAssess(app.globalData.authorizerId, openid, pageIndex, currentType,nodeid).then(function(data) {
                     wx.hideLoading();
+                    assessData = data.info;
+                    _this.setData({
+                        assesData: assessData,
+                        selfAssess: data.selfAssess
+                    });
                     if (data.info || data.selfAssess) {
-                        assessData = data.info;
-                        _this.setData({
-                            assesData: assessData,
-                            selfAssess: data.selfAssess
-                        });
-
                         if (assessData.length == 15) {
                             loadState = true;
                             _this.setData({
@@ -95,7 +118,7 @@ Page({
                             currentState: '无评价内容'
                         });
                     }
-                }).catch(function (data) {
+                }).catch(function(data) {
                     wx.hideLoading();
                     loadState = false;
                     _this.setData({
@@ -103,7 +126,7 @@ Page({
                         currentState: data
                     });
                 });
-            }).catch(function (data) {
+            }).catch(function(data) {
                 wx.hideLoading();
                 loadState = false;
                 _this.setData({
@@ -113,15 +136,14 @@ Page({
             });
         } else {
             //加载所有评价内容
-            common.getStoreAssess(app.globalData.authorizerId, openid, pageIndex, types).then(function (data) {
+            common.getStoreAssess(app.globalData.authorizerId, openid, pageIndex, currentType,nodeid).then(function(data) {
                 wx.hideLoading();
+                assessData = data.info;
+                _this.setData({
+                    assesData: assessData,
+                    selfAssess: data.selfAssess
+                });
                 if (data.info || data.selfAssess) {
-                    assessData = data.info;
-                    _this.setData({
-                        assesData: assessData,
-                        selfAssess: data.selfAssess
-                    });
-
                     if (assessData.length == 15) {
                         loadState = true;
                         _this.setData({
@@ -140,7 +162,7 @@ Page({
                         currentState: '无评价内容'
                     });
                 }
-            }).catch(function (data) {
+            }).catch(function(data) {
                 wx.hideLoading();
                 loadState = false;
                 _this.setData({
@@ -149,8 +171,14 @@ Page({
                 });
             });
         }
+    },
 
-        //获取门店
+    /**
+     * 获取门店
+     */
+    getStoreArr(){
+        var _this =  this
+
         wx.showLoading({
             title: '加载中',
             mask: true
@@ -174,16 +202,20 @@ Page({
                     currrntArr.push(1);
                 });
             }
+            storeArr = storeArr.sort(common.compare('distance'));
+            wx.hideLoading();
+            storeArr.unshift(allStore)
+            _this.setData({
+                storeArr: storeArr
+            });
 
             //定时检查定位计算距离是否有返回，已返回清除定时器
             clearInterval(storesortTime);
             storesortTime = setInterval(function () {
                 if (currrntArr.length >= storeArr.length) {
                     clearInterval(storesortTime);
-
                     //以距离最近的门店排序
                     storeArr = storeArr.sort(common.compare('distance'));
-
                     wx.hideLoading();
                     _this.setData({
                         storeArr: storeArr
@@ -206,6 +238,16 @@ Page({
         });
     },
     /**
+     * 切换评论类型
+     */
+    changeType(e){
+        currentType = e.currentTarget.dataset.type
+        this.setData({
+            currentType: currentType
+        })
+        this.getAssessData()
+    },
+    /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function() {
@@ -224,7 +266,7 @@ Page({
 
         let openid = wx.getStorageSync('openid');
         //加载评价内容
-        common.getStoreAssess(app.globalData.authorizerId, openid, pageIndex, types).then(function(data) {
+        common.getStoreAssess(app.globalData.authorizerId, openid, pageIndex, currentType,nodeid).then(function(data) {
             wx.hideLoading();
             if (data.info || data.selfAssess) {
                 assessData = data.info;
@@ -261,7 +303,7 @@ Page({
         });
 
         _this.setData({
-            navType: types
+            currentType: currentType
         });
 
         wx.stopPullDownRefresh();
@@ -398,16 +440,18 @@ Page({
      * 选择门店
      */
     bindPickerChange: function(e) {
-        index = e.detail.value;
-
+        index = e.detail.value
+        nodeid = storeArr[index].request_id
         this.setData({
-            index: e.detail.value
+            nodeid: nodeid,
+            index: index
         })
+        this.getAssessData()
     },
+
     /**
      * 上位加载更多评价
      */
-
     onReachBottom: function() {
         let _this = this;
         //获取评价内容
@@ -426,7 +470,7 @@ Page({
                     mask: true
                 });
 
-                common.getStoreAssess(app.globalData.authorizerId, openid, pageIndex, types).then(function(data) {
+                common.getStoreAssess(app.globalData.authorizerId, openid, pageIndex, currentType,nodeid).then(function(data) {
                     wx.hideLoading();
                     if (data.info) {
                         for (let i = 0; i < data.info.length; i++) {
