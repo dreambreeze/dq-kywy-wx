@@ -23,7 +23,7 @@
     <block wx:for="{{fmodule[0]}}" wx:key="">
       <view class='item'>
         <navigator url='{{item.applet_address}}' hover-class="none">
-          <image src='{{showImgUrl}}{{item.fun_img}}' lazy-load></image>
+          <image src='{{item.fun_img}}' lazy-load></image>
           <view class='nowrap'>{{item.fun_name}}</view>
         </navigator>
       </view>
@@ -31,12 +31,12 @@
     <block wx:for="{{fmodule[1]}}" wx:key="">
 
       <view class='item' wx-if="{{index==1}}" bindtap='showService'>
-        <image src='{{showImgUrl}}{{item.fun_img}}' lazy-load></image>
+        <image src='{{item.fun_img}}' lazy-load></image>
         <view class='nowrap'>{{item.fun_name}}</view>
       </view>
       <view class='item' wx-if="{{index==0||index==2}}">
         <navigator url='{{item.applet_address}}' hover-class="none">
-          <image src='{{imgurl}}{{item.fun_img}}' lazy-load></image>
+          <image src='{{item.fun_img}}' lazy-load></image>
           <view class='nowrap'>{{item.fun_name}}</view>
         </navigator>
       </view>
@@ -117,7 +117,7 @@
       <view class="group-discount-title" bindtap='gotoGroup'>团购优惠</view>
     </navigator>
 
-    <swiper class="group-discount-list" indicator-dots="{{indicatorDots}}" autoplay="{{true}}" interval="3500" duration="800" circular="true" display-multiple-items="2">
+    <swiper class="group-discount-list" indicator-dots="{{indicatorDots}}" autoplay="{{true}}" interval="3500" duration="800" circular="true" display-multiple-items="3">
       <block wx:for="{{projectArr}}" wx:for-item="data" wx:key="">
         <block wx:for="{{data.project}}" wx:for-item="item" wx:key="">
           <navigator url="../transbuy/pages/project-detail/project-detail?pid={{item.id}}&nodeid={{item.nodeid}}" hover-class="none">
@@ -137,8 +137,11 @@
     <navigator url="../transbuy/pages/group-shopping/group-shopping" hover-class="none">
       <view class="group-activity-title">拼团活动</view>
     </navigator>
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{true}}" interval="3500" duration="800" circular="true" display-multiple-items="1">
+
     <block wx:for="{{grouptArr}}" wx:for-item="data" wx:key="">
       <block wx:for="{{data.project}}" wx:for-item="item" wx:key="">
+      <swiper-item>
         <navigator url="../transbuy/pages/group-detail/group-detail?pid={{item.id}}&nodeid={{data.nodeid}}" hover-class="none">
           <view class="group-activity clear ">
             <image src='{{item.picurl[0]}}' lazy-load></image>
@@ -163,9 +166,10 @@
             </view>
           </view>
         </navigator>
+        </swiper-item>
       </block>
     </block>
-
+</swiper>
   </view>
 </view>
 <!-- 导航公用模版 -->

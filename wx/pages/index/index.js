@@ -277,6 +277,7 @@ Page({
   getBannerList() {
     let _this = this;
     common.getBanner(app.globalData.authorizerId, 1).then(function(data) {
+     
       if (data.info) {
         _this.setData({
           bannerList: data.info
@@ -293,6 +294,13 @@ Page({
     //加载首页后台分配的功能模块
     let fid = common.config.navTabBar[0].id;
     let homeNav = wx.getStorageSync('homeNav');
+    let funImg0 = ['/images/index_features_01@2x.png', '/images/index_features_03@2x.png', '/images/index_features_04@2x.png'];
+    let funImg1 = ['/images/index_features_03@2x.png', '/images/index_features_02@2x.png', '/images/index_features_05@2x.png'];
+    for (let i = 0; i < funImg0.length;i++){
+      homeNav[0][i].fun_img = funImg0[i];
+      homeNav[1][i].fun_img = funImg1[i]
+    }
+    
     if (homeNav) {
       _this.setData({
         fmodule: homeNav,
@@ -318,7 +326,6 @@ Page({
   getNoticeList() {
     let _this = this;
     common.getNotice(app.globalData.authorizerId, 1).then(function(data) {
-      let msg = new Array;
       for (let i = 0; i < data.info.length; i++) {
         data.info[i].desc = data.info[i].desc.replace("<p>", '').replace("</p>", '')
       }
@@ -355,10 +362,11 @@ Page({
   getGroupList() {
     let _this = this;
 
-    common.getGroupShopping(app.globalData.authorizerId, '', '', '', '', '', '').then(function(data) {
+    common.getGroupShopping(app.globalData.authorizerId, _this.data.nodeid, '', '', '', '', '').then(function(data) {
       _this.setData({
         grouptArr: data.info,
       })
+      console.log("aa",data.info)
     })
   },
   /**
