@@ -62,10 +62,10 @@
       </view>
       <view class="clear">
         <view class="image-box-1">
-          <text class='tag'>技师推荐</text>
+          <text class='tag'>理疗师推荐</text>
           <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
 
-            <block wx:for="{{recommendList.technician?recommendList.technician:recommendList0}}" wx:key="">
+            <block wx:for="{{recommendList.technician&&recommendList.technician.length>1?recommendList.technician:recommendList0}}" wx:key="">
               <navigator url='../technician/pages/techindex/techindex' hover-class="none">
                 <swiper-item>
                   <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'../../images/index_recommend_01@2x.png'}}" lazy-load></image>
@@ -80,7 +80,7 @@
           <view class="image-box-2">
             <text class='tag'>项目介绍</text>
             <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
-              <block wx:for="{{recommendList.project?recommendList.project:recommendList1}}" wx:key="">
+              <block wx:for="{{recommendList.project&&recommendList.project.length>1?recommendList.project:recommendList1}}" wx:key="">
                 <navigator url='../reserve/pages/reserve-project/reserve-project'>
                   <swiper-item>
                     <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'../../images/index_recommend_02@2x.png'}}" lazy-load></image>
@@ -93,7 +93,7 @@
           <view class="image-box-2 image-box-3" bindtap='gotoCard'>
             <text class='tag'>会员卡</text>
             <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
-              <block wx:for="{{recommendList.cards?recommendList.cards:recommendList3}}" wx:key="">
+              <block wx:for="{{recommendList.cards&&recommendList.cards.length>1?recommendList.cards:recommendList3}}" wx:key="">
                 <navigator url='../vip-center/vip-center' hover-class="none">
                   <swiper-item>
                     <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'../../images/index_recommend_03@2x.png'}}" lazy-load></image>
