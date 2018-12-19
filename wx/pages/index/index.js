@@ -55,7 +55,7 @@ Page({
         }, {
             jumpName: '',
             src: '../../images/index_features_03@2x.png',
-            name: "预约技师",
+            name: "预约理疗师",
             url: '../technician/pages/techindex/techindex'
         }, {
             jumpName: '',
