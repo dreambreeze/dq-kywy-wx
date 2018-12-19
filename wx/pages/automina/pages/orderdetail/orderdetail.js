@@ -4,7 +4,7 @@ Page({
 
   data: {
     toright: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/toright.png',
-    storeimg: '/images/index_recommend_01@2x.png',
+    storeimg: 'https://note.youdao.com/yws/api/personal/file/WEBc8c0e20b2ee37d133bf603f7553a7d88?method=download&shareKey=abb65cb7492c620b90c2ec6e530136cf',
     cart:{},
     goods:{},
     userinfo: {},
@@ -101,7 +101,7 @@ Page({
         if (res.data.status == 0) {
           //var order = this.data.order
           var order = res.data.data
-        
+
           var orderlength = Object.keys(order).length
           for (var i in order) {
             order[i].taskjson = JSON.parse(order[i].taskjson)
@@ -114,7 +114,7 @@ Page({
                 }
               }
             }
-            
+
           }
           console.log('orderDara',order);
           this.setData({
@@ -148,13 +148,13 @@ Page({
           wx.stopPullDownRefresh() //停止下拉刷新
         }
         break
-     
+
     }
     wx.hideLoading()
   },
 
   onPullDownRefresh() {
-   
+
     wx.showNavigationBarLoading() //在标题栏中显示加载
     var  conditions = this.data.conditions
     this.loaddata('/index.php/Api/OnLineTasks/lists',
@@ -175,5 +175,5 @@ Page({
         common.jishuzhichi(adurl);
       }
     }
-  
+
 })

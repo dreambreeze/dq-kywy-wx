@@ -66,7 +66,7 @@
                         <block wx:for="{{recommendList.technician?recommendList.technician:recommendList0}}" wx:key="">
                             <navigator url='../technician/pages/techindex/techindex' hover-class="none">
                                 <swiper-item>
-                                    <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'../../images/index_recommend_01@2x.png'}}" lazy-load></image>
+                                    <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'https://note.youdao.com/yws/api/personal/file/WEBc8c0e20b2ee37d133bf603f7553a7d88?method=download&shareKey=abb65cb7492c620b90c2ec6e530136cf'}}" lazy-load></image>
                                     <text class='summary'>{{item.staffworkno}}号</text>
                                 </swiper-item>
                             </navigator>
@@ -81,7 +81,7 @@
                             <block wx:for="{{recommendList.project?recommendList.project:recommendList1}}" wx:key="">
                                 <navigator url='../reserve/pages/reserve-project/reserve-project'>
                                     <swiper-item>
-                                        <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'../../images/index_recommend_02@2x.png'}}" lazy-load></image>
+                                        <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'https://note.youdao.com/yws/api/personal/file/WEBa78d0bf7656b84db345abe43a6d02d72?method=download&shareKey=57ac01018d756246ba7101db71fe58c2'}}" lazy-load></image>
                                         <text class='summary'>{{item.serviceitemname}}</text>
                                     </swiper-item>
                                 </navigator>

@@ -3,20 +3,20 @@
     <!-- 活动列表 -->
     <view class='activity-list' wx:if="{{fmodule}}">
         <view class='activity-box' bindtap="jumpPage" data-url="../transbuy/pages/group-buy/group-buy" wx:if="{{checkmodule.isebuy}}">
-            <image src='../../images/activity-img01@2x.png' lazy-load></image>
+            <image src='https://note.youdao.com/yws/api/personal/file/WEB7a31a16350bcfedfbcf0f7d0ea6cd02d?method=download&shareKey=82513e5d8adbd0f9def248b14072e33d' lazy-load></image>
             <text>团购项目请签收</text>
         </view>
         <view class='activity-box' bindtap="jumpPage" data-url="../transbuy/pages/group-shopping/group-shopping" wx:if="{{checkmodule.group}}">
-            <image src='../../images/activity-img02@2x.png' lazy-load></image>
+            <image src='https://note.youdao.com/yws/api/personal/file/WEBbf350af92647f4ce603b440b4a360285?method=download&shareKey=6bfc5798bbcf878e6856d17ce6c4dfd2' lazy-load></image>
             <text>爱拼团，享受惊喜优惠</text>
         </view>
         <view class='activity-box' data-url="../component/pages/coupons-pack/coupons-pack" bindtap="jumpPage" wx:if="{{checkmodule.u}}">
-            <image src='../../images/activity-img03@2x.png' lazy-load></image>
+            <image src='https://note.youdao.com/yws/api/personal/file/WEB27dbfcae9e760a4aad8ded7c58c22c3f?method=download&shareKey=c70b5244a470000477fc8b2bca7f3a04' lazy-load></image>
             <text>您有一份优惠券待领取</text>
         </view>
     </view>
     <!-- 分享按钮 -->
-    
+
     <button class='share-btn' bindtouchstart='shareTouchStar' bindtouchmove='shareTouchMove' bindtouchend='shareTouchEnd' open-type="share" wx:if="{{checkmodule.share}}" style='left:{{left}};top:{{top}};' hover-class="none"></button>
     <!-- 技术支持 -->
     <view class="jishu-zhichi" bindtap="jishuzhichi">技术支持：大旗软件</view>
