@@ -1,170 +1,168 @@
 <import src="../common/engin-nav.wxml" />
+<!-- html字符串 转文本  -->
+<import src="../../wxParse/wxParse.wxml" />
 <view class="container" style="min-height:{{minHeight}}">
-  <!--banner轮播图 -->
-  <view class='swiper'>
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" circular="true" previous-margin="120rpx" next-margin="120rpx" bindchange='bindchange' current-item-id="{{currentItemId}}">
-      <block wx:for="{{bannerList}}" wx:key="bannerList">
-        <swiper-item item-id="{{item.staffworkno}}">
-          <image src="{{imgurl}}{{item.picurl}}" class="slide-image {{item.staffworkno==selected?'active':''}} " />
-        </swiper-item>
-      </block>
-    </swiper>
-    <view class='contact-tools'>
-      <view class='iconfont icon-ditu00 address-icon' bindtap="location"></view>
-      <text bindtap="location">{{locationStore[0].address}}</text>
-      <text>{{locationStore[0].distance}}</text>
-      <view class='iconfont icon-jiantouarrow591 nav-icon' bindtap="location"></view>
-      <text>|</text>
-      <view class='tel-icon' data-phone="{{locationStore[0].tel}}" bindtap="phoneCall"></view>
-    </view>
-  </view>
-  <!--服务入口列表-->
-  <view class="function-list">
-    <block wx:for="{{functionList}}" wx:key="">
-      <view class='item' wx:if="{{item.url}}">
-        <navigator url='{{item.url}}' hover-class="none">
-          <image src='{{item.src}}' lazy-load></image>
-          <view class='nowrap'>{{item.name}}</view>
-        </navigator>
-      </view>
-      <view class='item' wx:else bindtap='{{item.jumpName}}'>
-          <image src='{{item.src}}' lazy-load></image>
-          <view class='nowrap'>{{item.name}}</view>
-      </view>
-    </block>
-  </view>
-  <!-- 资讯列表 -->
-  <view class="message-box">
-    <image src='../../images/index_message@2x.png' lazy-load></image>
-    <swiper class="message-list" vertical="true" display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true">
-      <block wx:for="{{noticeList}}" wx:key="">
-        <swiper-item class="item" bindtap="showNotice" data-desc="{{item.desc}}">
-          <text class="tag red-tag">{{item.title}}</text>
-          <text class="summary">{{item.desc}}</text>
-        </swiper-item>
-        <swiper-item class="item" bindtap="showNotice" data-desc="{{item.desc}}">
-          <text class="tag red-tag">{{item.title}}</text>
-          <text class="summary">{{item.desc}}</text>
-        </swiper-item>
-      </block>
-
-    </swiper>
-  </view>
-  <view class="white-wrap">
-    <!-- 精品推荐 -->
-    <view class="recommend-box">
-      <view class="title">
-        <view class='line'></view>
-        <view class='icon'></view>
-        <text>精品推荐</text>
-        <view class='icon'></view>
-        <view class='line reverse'></view>
-      </view>
-      <view class="clear">
-        <view class="image-box-1">
-          <text class='tag'>技师推荐</text>
-          <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
-
-            <block wx:for="{{recommendList.technician?recommendList.technician:recommendList0}}" wx:key="">
-              <navigator url='../technician/pages/techindex/techindex' hover-class="none">
-                <swiper-item>
-                  <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'../../images/index_recommend_01@2x.png'}}" lazy-load></image>
-                  <text class='summary'>{{item.staffworkno}}号</text>
+    <!--banner轮播图 -->
+    <view class='swiper'>
+        <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" circular="true" previous-margin="120rpx" next-margin="120rpx" bindchange='bindchange' current-item-id="{{currentItemId}}">
+            <block wx:for="{{bannerList}}" wx:key="bannerList">
+                <swiper-item item-id="{{item.staffworkno}}">
+                    <image src="{{imgurl}}{{item.picurl}}" class="slide-image {{item.staffworkno==selected?'active':''}} " />
                 </swiper-item>
-              </navigator>
+            </block>
+        </swiper>
+        <view class='contact-tools'>
+            <view class='iconfont icon-ditu00 address-icon' bindtap="location"></view>
+            <text bindtap="location">{{locationStore[0].address}}</text>
+            <text>{{locationStore[0].distance}}</text>
+            <view class='iconfont icon-jiantouarrow591 nav-icon' bindtap="location"></view>
+            <text>|</text>
+            <view class='tel-icon' data-phone="{{locationStore[0].tel}}" bindtap="phoneCall"></view>
+        </view>
+    </view>
+    <!--服务入口列表-->
+    <view class="function-list">
+        <block wx:for="{{functionList}}" wx:key="">
+            <view class='item' wx:if="{{item.url}}">
+                <navigator url='{{item.url}}' hover-class="none">
+                    <image src='{{item.src}}' lazy-load></image>
+                    <view class='nowrap'>{{item.name}}</view>
+                </navigator>
+            </view>
+            <view class='item' wx:else bindtap='{{item.jumpName}}'>
+                <image src='{{item.src}}' lazy-load></image>
+                <view class='nowrap'>{{item.name}}</view>
+            </view>
+        </block>
+    </view>
+    <!-- 资讯列表 -->
+    <view class="message-box">
+        <image src='../../images/index_message@2x.png' lazy-load></image>
+        <swiper class="message-list" vertical="true" display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true">
+            <block wx:for="{{noticeList}}" wx:key="">
+                <swiper-item class="item" bindtap="showNotice" data-desc="{{item.desc}}">
+                    <text class="tag red-tag">{{item.title}}</text>
+                    <text class="summary">{{item.textDesc}}</text>
+                </swiper-item>
             </block>
 
-          </swiper>
-        </view>
-        <view>
-          <view class="image-box-2">
-            <text class='tag'>项目介绍</text>
-            <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
-              <block wx:for="{{recommendList.project?recommendList.project:recommendList1}}" wx:key="">
-                <navigator url='../reserve/pages/reserve-project/reserve-project'>
-                  <swiper-item>
-                    <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'../../images/index_recommend_02@2x.png'}}" lazy-load></image>
-                    <text class='summary'>{{item.serviceitemname}}</text>
-                  </swiper-item>
-                </navigator>
-              </block>
-            </swiper>
-          </view>
-          <view class="image-box-2 image-box-3" bindtap='gotoCard'>
-            <text class='tag'>会员卡</text>
-            <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
-              <block wx:for="{{recommendList.cards?recommendList.cards:recommendList3}}" wx:key="">
-                <navigator url='../vip-center/vip-center' hover-class="none">
-                  <swiper-item>
-                    <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'../../images/index_recommend_03@2x.png'}}" lazy-load></image>
-                    <text class='summary'>{{item.MembershipTypeName}}</text>
-                  </swiper-item>
-                </navigator>
-              </block>
-            </swiper>
-          </view>
-        </view>
-      </view>
+        </swiper>
     </view>
-    <!-- 团购优惠 -->
-    <navigator url="../transbuy/pages/group-buy/group-buy" hover-class="none">
-      <view class="group-discount-title" bindtap='gotoGroup'>团购优惠</view>
-    </navigator>
-
-    <swiper class="group-discount-list" indicator-dots="{{indicatorDots}}" autoplay="{{true}}" interval="3500" duration="800" circular="true" display-multiple-items="3">
-      <block wx:for="{{projectArr}}" wx:for-item="data" wx:key="">
-        <block wx:for="{{data.project}}" wx:for-item="item" wx:key="">
-          <navigator url="../transbuy/pages/project-detail/project-detail?pid={{item.id}}&nodeid={{item.nodeid}}" hover-class="none">
-            <swiper-item class="item">
-              <image src='{{imgurl}}{{item.imgurl[0]}}' lazy-load></image>
-              <text>{{item.project_name}}</text>
-              <text>{{item.project_time}}分钟</text>
-              <text>￥{{item.shop_price}}</text>
-              <text>￥{{item.discount_price}}</text>
-            </swiper-item>
-          </navigator>
-        </block>
-      </block>
-    </swiper>
-
-    <!-- 拼团活动 -->
-    <navigator url="../transbuy/pages/group-shopping/group-shopping" hover-class="none">
-      <view class="group-activity-title">拼团活动</view>
-    </navigator>
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{true}}" interval="3500" duration="800" circular="true" display-multiple-items="1">
-
-    <block wx:for="{{grouptArr}}" wx:for-item="data" wx:key="">
-      <block wx:for="{{data.project}}" wx:for-item="item" wx:key="">
-      <swiper-item>
-        <navigator url="../transbuy/pages/group-detail/group-detail?pid={{item.id}}&nodeid={{data.nodeid}}" hover-class="none">
-          <view class="group-activity clear ">
-            <image src='{{item.picurl[0]}}' lazy-load></image>
-            <view class='center-box'>
-              <text>{{item.project}}</text>
-              <text>适用门店:{{data.store_name}}</text>
-              <text>已拼{{item.count}}件</text>
-              <view class="user-image-list ">
-                <block wx:for="{{item.orders}}" wx:key="orders">
-                  <image src='{{item.pavatar}}' lazy-load></image>
-                </block>
-              </view>
-
+    <view class="white-wrap">
+        <!-- 精品推荐 -->
+        <view class="recommend-box">
+            <view class="title">
+                <view class='line'></view>
+                <view class='icon'></view>
+                <text>精品推荐</text>
+                <view class='icon'></view>
+                <view class='line reverse'></view>
             </view>
-            <view class='right-box'>
-              <button>开团</button>
-              <text>{{item.nums}}人团</text>
-              <view class='price'>
-                <text>￥{{item.groupprice}}</text>
-                <text>￥{{item.singleprice}}</text>
-              </view>
+            <view class="clear">
+                <view class="image-box-1">
+                    <text class='tag'>技师推荐</text>
+                    <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
+
+                        <block wx:for="{{recommendList.technician?recommendList.technician:recommendList0}}" wx:key="">
+                            <navigator url='../technician/pages/techindex/techindex' hover-class="none">
+                                <swiper-item>
+                                    <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'../../images/index_recommend_01@2x.png'}}" lazy-load></image>
+                                    <text class='summary'>{{item.staffworkno}}号</text>
+                                </swiper-item>
+                            </navigator>
+                        </block>
+
+                    </swiper>
+                </view>
+                <view>
+                    <view class="image-box-2">
+                        <text class='tag'>项目介绍</text>
+                        <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
+                            <block wx:for="{{recommendList.project?recommendList.project:recommendList1}}" wx:key="">
+                                <navigator url='../reserve/pages/reserve-project/reserve-project'>
+                                    <swiper-item>
+                                        <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'../../images/index_recommend_02@2x.png'}}" lazy-load></image>
+                                        <text class='summary'>{{item.serviceitemname}}</text>
+                                    </swiper-item>
+                                </navigator>
+                            </block>
+                        </swiper>
+                    </view>
+                    <view class="image-box-2 image-box-3" bindtap='gotoCard'>
+                        <text class='tag'>会员卡</text>
+                        <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
+                            <block wx:for="{{recommendList.cards?recommendList.cards:recommendList3}}" wx:key="">
+                                <navigator url='../vip-center/vip-center' hover-class="none">
+                                    <swiper-item>
+                                        <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'../../images/index_recommend_03@2x.png'}}" lazy-load></image>
+                                        <text class='summary'>{{item.MembershipTypeName}}</text>
+                                    </swiper-item>
+                                </navigator>
+                            </block>
+                        </swiper>
+                    </view>
+                </view>
             </view>
-          </view>
+        </view>
+        <!-- 团购优惠 -->
+        <navigator url="../transbuy/pages/group-buy/group-buy" hover-class="none">
+            <view class="group-discount-title" bindtap='gotoGroup'>团购优惠</view>
         </navigator>
-        </swiper-item>
-      </block>
-    </block>
-</swiper>
-  </view>
+
+        <swiper class="group-discount-list" indicator-dots="{{indicatorDots}}" autoplay="{{true}}" interval="3500" duration="800" circular="true" display-multiple-items="3">
+            <block wx:for="{{projectArr}}" wx:for-item="data" wx:key="">
+                <block wx:for="{{data.project}}" wx:for-item="item" wx:key="">
+                    <navigator url="../transbuy/pages/project-detail/project-detail?pid={{item.id}}&nodeid={{item.nodeid}}" hover-class="none">
+                        <swiper-item class="item">
+                            <image src='{{imgurl}}{{item.imgurl[0]}}' lazy-load></image>
+                            <text>{{item.project_name}}</text>
+                            <text>{{item.project_time}}分钟</text>
+                            <text>￥{{item.shop_price}}</text>
+                            <text>￥{{item.discount_price}}</text>
+                        </swiper-item>
+                    </navigator>
+                </block>
+            </block>
+        </swiper>
+
+        <!-- 拼团活动 -->
+        <navigator url="../transbuy/pages/group-shopping/group-shopping" hover-class="none">
+            <view class="group-activity-title">拼团活动</view>
+        </navigator>
+        <swiper indicator-dots="{{indicatorDots}}" autoplay="{{true}}" interval="3500" duration="800" circular="true" display-multiple-items="1">
+
+            <block wx:for="{{grouptArr}}" wx:for-item="data" wx:key="">
+                <block wx:for="{{data.project}}" wx:for-item="item" wx:key="">
+                    <swiper-item>
+                        <navigator url="../transbuy/pages/group-detail/group-detail?pid={{item.id}}&nodeid={{data.nodeid}}" hover-class="none">
+                            <view class="group-activity clear ">
+                                <image src='{{item.picurl[0]}}' lazy-load></image>
+                                <view class='center-box'>
+                                    <text>{{item.project}}</text>
+                                    <text>适用门店:{{data.store_name}}</text>
+                                    <text>已拼{{item.count}}件</text>
+                                    <view class="user-image-list ">
+                                        <block wx:for="{{item.orders}}" wx:key="orders">
+                                            <image src='{{item.pavatar}}' lazy-load></image>
+                                        </block>
+                                    </view>
+
+                                </view>
+                                <view class='right-box'>
+                                    <button>开团</button>
+                                    <text>{{item.nums}}人团</text>
+                                    <view class='price'>
+                                        <text>￥{{item.groupprice}}</text>
+                                        <text>￥{{item.singleprice}}</text>
+                                    </view>
+                                </view>
+                            </view>
+                        </navigator>
+                    </swiper-item>
+                </block>
+            </block>
+        </swiper>
+    </view>
 </view>
 <!-- 导航公用模版 -->
 <template is="engin-nav" data="{{type: 0,navArr: navTabBar,showImgUrl: showImgUrl}}" />
@@ -172,58 +170,58 @@
 <view class="mask" style="display:{{maskDisplay}}" bindtap="hideService"></view>
 <!-- 呼叫服务 -->
 <view class="call-service" style="display:{{maskDisplay}}">
-  <image class='close-btn' src='../../images/window_close@2x.png' bindtap="hideService"></image>
-  <image src="../../images/service_title@2x.png" lazy-load class="donald_duck_title"></image>
-  <view class="donald-duck {{donaldshowIn}}" bindtap="hideService">
-    <image src="../../images/service_icon@2x.png" lazy-load></image>
-  </view>
-  <view class="donald-duck-con {{donaldconshowIn}}">
-    <view class="service-box">
-      <scroll-view scroll-y>
-        <view class="service-list ">
-          <view bindtap="serveracceptance" data-voice="呼叫服务员 ">
-            <image src='../../images/servicer@2x.png' lazy-load></image>
-            呼叫服务员
-          </view>
-          <view bindtap="serveracceptance" data-voice="添加茶水 ">
-            <image src='../../images/service_tea@2x.png' lazy-load></image>
-            添加茶水
-          </view>
-          <view bindtap="serveracceptance" data-voice="消费买单 ">
-            <image src='../../images/service_check@2x.png' lazy-load></image>
-            消费买单
-          </view>
-          <view bindtap="serveracceptance" data-voice="呼叫服务 ">
-            <image src='../../images/service_call@2x.png' lazy-load></image>
-            呼叫服务
-          </view>
-          <view bindtap="serveracceptance" data-voice="点小吃 ">
-            <image src='../../images/service_eat@2x.png' lazy-load></image>
-            点小吃
-          </view>
-          <!-- <view wx:for="{{callService}}" bindtap="serveracceptance" data-voice="{{item.voice_name}} " wx:key="callService">{{item.voice_name}}</view> -->
-        </view>
-      </scroll-view>
+    <image class='close-btn' src='../../images/window_close@2x.png' bindtap="hideService"></image>
+    <image src="../../images/service_title@2x.png" lazy-load class="donald_duck_title"></image>
+    <view class="donald-duck {{donaldshowIn}}" bindtap="hideService">
+        <image src="../../images/service_icon@2x.png" lazy-load></image>
     </view>
-  </view>
+    <view class="donald-duck-con {{donaldconshowIn}}">
+        <view class="service-box">
+            <scroll-view scroll-y>
+                <view class="service-list ">
+                    <view bindtap="serveracceptance" data-voice="呼叫服务员 ">
+                        <image src='../../images/servicer@2x.png' lazy-load></image>
+                        呼叫服务员
+                    </view>
+                    <view bindtap="serveracceptance" data-voice="添加茶水 ">
+                        <image src='../../images/service_tea@2x.png' lazy-load></image>
+                        添加茶水
+                    </view>
+                    <view bindtap="serveracceptance" data-voice="消费买单 ">
+                        <image src='../../images/service_check@2x.png' lazy-load></image>
+                        消费买单
+                    </view>
+                    <view bindtap="serveracceptance" data-voice="呼叫服务 ">
+                        <image src='../../images/service_call@2x.png' lazy-load></image>
+                        呼叫服务
+                    </view>
+                    <view bindtap="serveracceptance" data-voice="点小吃 ">
+                        <image src='../../images/service_eat@2x.png' lazy-load></image>
+                        点小吃
+                    </view>
+                    <!-- <view wx:for="{{callService}}" bindtap="serveracceptance" data-voice="{{item.voice_name}} " wx:key="callService">{{item.voice_name}}</view> -->
+                </view>
+            </scroll-view>
+        </view>
+    </view>
 </view>
 <!-- 点击领券mask -->
 <view class="couponmask" style="visibility:{{couponmaskDisplay}}" bindtap="hidecouponmask"></view>
 <!-- 点击领券 -->
 <view class="coupon" style="visibility:{{couponmaskDisplay}}">
-  <view class='close' bindtap="hidecouponmask">
-    <image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/close.png' lazy-load></image>
-  </view>
-  <view class='redpacket' bindtap='sendcoupon'>
-    <image src='https://iservice.daqisoft.cn/Public/Home/images/redindex.png' lazy-load></image>
-  </view>
-  <view class='exdesc' bindtap='sendcoupon'>点击领取优惠券</view>
+    <view class='close' bindtap="hidecouponmask">
+        <image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/close.png' lazy-load></image>
+    </view>
+    <view class='redpacket' bindtap='sendcoupon'>
+        <image src='https://iservice.daqisoft.cn/Public/Home/images/redindex.png' lazy-load></image>
+    </view>
+    <view class='exdesc' bindtap='sendcoupon'>点击领取优惠券</view>
 </view>
 
 <view class="mask" wx:if="{{showNotice}}" bindtap='handleNotice'></view>
 <view class="notice-box" wx:if="{{showNotice}}">
-    <view class="qrcode-title">
-        <view>{{noticeMsg}}</view>
-        <view class="close-qrcode" bindtap='handleNotice'>×</view>
+    <view class="close-qrcode" bindtap='handleNotice'>×</view>
+    <view class="wxParse">
+        <template is="wxParse" data="{{wxParseData:noticeMsg.nodes}}" />
     </view>
 </view>

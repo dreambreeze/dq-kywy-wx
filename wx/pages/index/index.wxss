@@ -1,5 +1,8 @@
 @import "../common/engin-nav.wxss";
 
+/*html内容转义插件样式*/
+@import "../../wxParse/wxParse.wxss";
+
 .container {
     background-color: #eee;
     min-height: 1184rpx;
@@ -7,6 +10,7 @@
 }
 
 /* banner轮播图 start */
+
 .swiper {
     height: 340rpx;
     background: url('https://note.youdao.com/yws/api/personal/file/WEB4b5fc02bb93552bbb11e6d740d7bacd0?method=download&shareKey=ae0d2887000c971eb19f90d85d7f81f3') repeat-x;
@@ -27,15 +31,12 @@
     border-bottom: 1rpx #ddd solid;
 }
 
-
-
 .contact-tools text:nth-of-type(1) {
     flex: 1;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-
 
 .tel-icon {
     display: inline-block;
@@ -56,7 +57,7 @@
 }
 
 .swiper image {
-    width: 450rpx!important;
+    width: 450rpx !important;
     height: 161rpx;
     opacity: 0.5;
     z-index: 2;
@@ -64,7 +65,7 @@
 }
 
 .swiper .active {
-    width: 500rpx!important;
+    width: 500rpx !important;
     height: 245rpx;
     transition: all 0.2s ease-in-out 0.3s;
     opacity: 1;
@@ -77,7 +78,7 @@
     padding: 30rpx;
     border-top: 1rpx #f5f1f1 solid;
     font-size: 24rpx;
-    justify-content:space-around;
+    justify-content: space-around;
 }
 
 .function-list .item {
@@ -91,8 +92,9 @@
     margin: 0 0 15rpx 0;
     border-radius: 50%;
 }
+
 .message-box {
-    margin: 14rpx 0 0 0;
+    margin: 14rpx 0;
     padding: 10rpx 30rpx 10rpx 106rpx;
     overflow: hidden;
     background: #fff;
@@ -115,7 +117,7 @@
     line-height: 25rpx;
     margin-bottom: 10rpx;
     display: flex;
-    align-items: center
+    align-items: center;
 }
 
 .message-list .red-tag {
@@ -134,18 +136,21 @@
     border-radius: 4rpx;
     margin: 0 10rpx 0 0;
     vertical-align: top;
-    line-height: 26rpx;
-    font-size: 26rpx;
-    height: 26rpx;
+    line-height: 35rpx;
+    font-size: 24rpx;
+    height: 35rpx;
 }
 
 .message-list .summary {
     display: inline-block;
     width: 540rpx;
+    height: 35rpx;
+    line-height: 35rpx;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 26rpx;
+    font-size: 24rpx;
     white-space: nowrap;
+    position: relative;
 }
 
 .white-wrap {
@@ -153,7 +158,6 @@
 }
 
 .recommend-box {
-    margin: 14rpx 0 0 0;
     padding: 0 30rpx;
 }
 
@@ -203,11 +207,12 @@
     border-radius: 10rpx;
 }
 
-.image-box-2{
+.image-box-2 {
     width: 353rpx;
     height: 151rpx;
     float: right;
 }
+
 .image-box-1 {
     width: 317rpx;
     height: 322rpx;
@@ -314,7 +319,6 @@
     box-shadow: 2rpx 2rpx 2rpx 2rpx rgba(0, 0, 0, 0.1);
     display: flex;
     overflow: hidden;
-
 }
 
 .group-activity image {
@@ -360,8 +364,8 @@
     border-radius: 50%;
 }
 
-.user-image-list image:first-child{
-    margin:0;
+.user-image-list image:first-child {
+    margin: 0;
 }
 
 .right-box {
@@ -493,9 +497,9 @@
 
 .donald-duck {
     position: absolute;
-    bottom:0;
-    left:0;
-    padding:0 0 0 20rpx;
+    bottom: 0;
+    left: 0;
+    padding: 0 0 0 20rpx;
     width: 226rpx;
     height: 459rpx;
     animation-fill-mode: forwards;
@@ -648,7 +652,7 @@
 }
 
 .service-box {
-    margin:60rpx 0 0 0;
+    margin: 60rpx 0 0 0;
 }
 
 .service-box scroll-view {
@@ -656,7 +660,7 @@
 }
 
 .service-list {
-    width:100%;
+    width: 100%;
 }
 
 .service-list view {
@@ -667,32 +671,38 @@
     text-align: left;
 }
 
-.service-list image{
-    width:70rpx;
+.service-list image {
+    width: 70rpx;
     height: 70rpx;
-    margin:22rpx 25rpx 0 0;
+    margin: 22rpx 25rpx 0 0;
 }
 
-.close-btn{
+.close-btn {
     position: absolute;
-    width:60rpx;
-    height:60rpx;
+    width: 60rpx;
+    height: 60rpx;
     left: 50%;
-    transform:translateX(-50%);
-    top:-140rpx; 
+    transform: translateX(-50%);
+    top: -140rpx;
 }
+
 .notice-box {
     width: 600rpx;
     min-height: 100rpx;
+    max-height: 900rpx;
+    overflow-y: auto;
     position: fixed;
-    top: 30%;
+    transform: translateY(-50%);
+    top: 40%;
     left: 50%;
     margin-left: -300rpx;
     background: #fff;
     z-index: 20;
     border-radius: 3px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding:20rpx;
 }
+
 .close-qrcode {
     position: absolute;
     right: 0;
@@ -704,6 +714,7 @@
     font-size: 44rpx;
     color: #aaa9a9;
 }
+
 .qrcode-title {
     position: relative;
     text-align: center;
