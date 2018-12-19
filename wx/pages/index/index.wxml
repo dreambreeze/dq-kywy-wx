@@ -60,7 +60,7 @@
             </view>
             <view class="clear">
                 <view class="image-box-1">
-                    <text class='tag'>技师推荐</text>
+                    <text class='tag'>理疗师推荐</text>
                     <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
 
                         <block wx:for="{{recommendList.technician?recommendList.technician:recommendList0}}" wx:key="">
