@@ -65,19 +65,19 @@
             <view class='td-head'>有效期</view>
             <view class='td-desc'>{{item.validate}}至{{item.validateend}}</view>
         </view>
-        <view class='td-intro'>
+        <view class='td-intro' wx:if="{{item.exceptdate}}">
             <view class='td-head'>除外日期</view>
             <view class='td-desc'>{{item.exceptdate}}</view>
         </view>
-        <view class='td-intro dil-content'>
+        <view class='td-intro dil-content' wx:if="{{item.reservation}}">
             <view class='td-head'>预约信息</view>
             <view class='td-desc'>{{item.reservation}}</view>
         </view>
-        <view class='td-intro dil-content'>
+        <view class='td-intro dil-content' wx:if="{{item.remind}}">
             <view class='td-head'>规则提醒</view>
             <view class='td-desc'>{{item.remind}}</view>
         </view>
-        <view class='td-intro dil-content'>
+        <view class='td-intro dil-content' wx:if="{{item.services}}">
             <view class='td-head'>商家服务</view>
             <view class='td-desc'>{{item.services}}</view>
         </view>
