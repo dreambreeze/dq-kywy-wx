@@ -77,13 +77,13 @@ Page({
         //拼团活动
         groupList: [],
         //推荐默认
-        recommendList0: [{
+        recommendListFst: [{
             staffname: "获得高级按摩师认证"
         }],
-        recommendList1: [{
+        recommendListSed: [{
             serviceitemname: "经典足浴"
         }],
-        recommendList3: [{
+        recommendListThid: [{
             MembershipTypeName: "会员充值 乐享优惠"
         }],
         data: {}

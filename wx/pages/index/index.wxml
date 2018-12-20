@@ -63,7 +63,7 @@
                     <text class='tag'>理疗师推荐</text>
                     <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
 
-                        <block wx:for="{{recommendList.technician?recommendList.technician:recommendList0}}" wx:key="">
+                        <block wx:for="{{recommendList.technician&&recommendList.technician.length>0?recommendList.technician:recommendListFst}}" wx:key="">
                             <navigator url='../technician/pages/techindex/techindex' hover-class="none">
                                 <swiper-item>
                                     <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'https://note.youdao.com/yws/api/personal/file/WEBc8c0e20b2ee37d133bf603f7553a7d88?method=download&shareKey=abb65cb7492c620b90c2ec6e530136cf'}}" lazy-load></image>
@@ -78,7 +78,7 @@
                     <view class="image-box-2">
                         <text class='tag'>项目介绍</text>
                         <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
-                            <block wx:for="{{recommendList.project?recommendList.project:recommendList1}}" wx:key="">
+                            <block wx:for="{{recommendList.project&&recommendList.project.length>0?recommendList.project:recommendListSed}}" wx:key="">
                                 <navigator url='../reserve/pages/reserve-project/reserve-project'>
                                     <swiper-item>
                                         <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'https://note.youdao.com/yws/api/personal/file/WEBa78d0bf7656b84db345abe43a6d02d72?method=download&shareKey=57ac01018d756246ba7101db71fe58c2'}}" lazy-load></image>
@@ -91,7 +91,7 @@
                     <view class="image-box-2 image-box-3" bindtap='gotoCard'>
                         <text class='tag'>会员卡</text>
                         <swiper display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true" style="height:100%">
-                            <block wx:for="{{recommendList.cards?recommendList.cards:recommendList3}}" wx:key="">
+                            <block wx:for="{{recommendList.cards&&recommendList.cards.length>0?recommendList.cards:recommendListThid}}" wx:key="">
                                 <navigator url='../vip-center/vip-center' hover-class="none">
                                     <swiper-item>
                                         <image src="{{item.PicUrl?showImgUrl+item.PicUrl:'../../images/index_recommend_03@2x.png'}}" lazy-load></image>
@@ -127,7 +127,7 @@
 
         <!-- 拼团活动 -->
         <navigator url="../transbuy/pages/group-shopping/group-shopping" hover-class="none">
-            <view class="group-activity-title">拼团活动</view>
+            <view class="group-activity-title"  wx:if="{{grouptArr}}">拼团活动</view>
         </navigator>
         <swiper indicator-dots="{{indicatorDots}}" autoplay="{{true}}" interval="3500" duration="800" circular="true" display-multiple-items="1">
 
