@@ -129,11 +129,7 @@ Page({
       case 1:
         if (res.data.status == 1) {
           //初始付款方式
-          var payWayList = [{
-            AutoID: -1,
-            MembershipTypeName: '微信支付',
-            pic: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/wechat.png'
-          }]
+          var payWayList = []
           for (var i in res.data.info)
             //payWayList.unshift(res.data.info[i])
             payWayList.push(res.data.info[i])
@@ -219,7 +215,7 @@ Page({
         })
         new Promise(function (resolve, reject) {
           wx.request({
-            url: common.config.host + '/index.php/Api/AutoMina/commit',
+            url: common.config.host + '/Api/AutoMina/commit',
             data: {
               'authorizerId': app.globalData.authorizerId,
               "nodeId": wx.getStorageSync('store')['request_id'],
@@ -702,7 +698,8 @@ Page({
   selectList(e) {
     const id = e.currentTarget.dataset.id; // 获取data- 传进来的ID
     let goods = this.data.goods; // 获取购物车列表
-    let pyselected = this.data.pyselected //获取支付方式
+    let pyselected = this.data.pyselected; //获取支付方式
+    console.log("pyselected", pyselected);
     if (pyselected > 0 && goods[id].onlycash == 1) {
       wx.showToast({
         icon: "none",
@@ -715,7 +712,7 @@ Page({
     }
     const selected = goods[id].selected; // 获取当前商品的选中状态
     goods[id].selected = !selected; // 改变状态
-
+    
     this.setData({
       goods: goods,
 

@@ -366,12 +366,6 @@ Page({
                 noticeList: noticeList
             })
         }).catch(function(data) {
-            _this.setData({
-                noticeList: [{
-                    title: "公告",
-                    desc: "养生茶水,养生按摩足浴,敬请光临"
-                }]
-            });
         });
     },
     showNotice(e) {

@@ -468,6 +468,7 @@ Page({
           showCancel: false
         });
       }
+      
       wx.hideLoading();
       _this.setData({
         proData: proData,

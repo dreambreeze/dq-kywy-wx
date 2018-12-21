@@ -11,7 +11,6 @@ Page({
   },
   onLoad: function(options) {
     var that = this
-
     var orderno = options.orderno ? options.orderno : ''
     var groupno = options.groupno
     let nodeid = options.nodeid
@@ -160,9 +159,9 @@ Page({
    */
   onShareAppMessage: function(options) {
     let that = this;
-    // that.setData({
-    //   isshow: false
-    // })
+    that.setData({
+      isshow: false
+    })
     let groupno = that.data.groupno
     let orderno = that.data.orderno
     let pid = that.data.pid
@@ -218,7 +217,7 @@ Page({
       },
       fail: function() {
         that.setData({
-          chakan: "查看订单1",
+          chakan: "查看订单",
           isshow: true
         })
         wx.showToast({

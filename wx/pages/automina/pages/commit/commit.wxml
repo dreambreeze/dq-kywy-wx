@@ -17,7 +17,13 @@
     <view class='select-payway'>
       <view class='ssway'>支付方式</view>
       <view class='ssrt' bindtap='showPayWay'>
-        <text class='iconfont icon-aui-icon-weichat typeIcon'></text>
+      <block wx:if="{{payWayList[pyselected].PicUrl}}">
+              <image src='{{showImgUrl+payWayList[pyselected].PicUrl}}' class="pwl-img"></image>
+            </block>
+
+            <block wx:elif="{{payWayList[pyselected].pic}}">
+              <image src='{{payWayList[pyselected].pic}}' class="pwl-img"></image>
+            </block>
         <text class='rt_type'>{{payWayList[pyselected].MembershipTypeName}}</text>
         <text class='iconfont icon-right sw_rt'></text>
       </view>
@@ -102,11 +108,21 @@
       <block wx:for="{{payWayList}}"  wx:key="{{item.AutoID}}">
         <view class='pw_list' bindtap="selectPayWay" data-autoId='{{item.AutoID}}'>
           <view class="pwl-lt">
-            <view class='iconfont icon-aui-icon-weichat pwl-typeIcon'></view>
+           <block wx:if="{{item.PicUrl}}">
+              <image src='{{showImgUrl+item.PicUrl}}' class="pwl-img"></image>
+            </block>
+
+            <block wx:elif="{{item.pic}}">
+              <image src='{{item.pic}}' class="pwl-img"></image>
+            </block>
             <text class='pwl-name'>{{item.MembershipTypeName}}</text>
+            
           </view>
+           
           <view class="pwl-rt" >
-            <view class="iconfont icon-xuanzhong l-selIcon" wx:if="{{item.AutoID==pwseleted}}"></view>
+          <view class="pwl-select">
+              <radio value="{{item.AutoID}}" checked="{{item.AutoID==pwseleted}}" />
+            </view>
           </view>
         </view>
       </block>

@@ -133,7 +133,7 @@ page {
     font-size:26rpx;
     color:#999;
     position: relative;
-    margin: 0 0 120rpx;
+    margin-bottom:120rpx;
 }
 
 .remarks-box label{
@@ -157,6 +157,8 @@ page {
 .sure-order{
     position: fixed;
     bottom: 0;
+    left: 0;
+    width: 100%;
     text-align: center;
     background: #3b81d6;
     color:#fff;

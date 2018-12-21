@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 31,
+			"current": 33,
 			"list": [
 				{
 					"id": 0,
@@ -241,6 +241,20 @@
 					"name": "我的订单",
 					"pathName": "pages/ucentermodel/pages/orders/orders",
 					"query": "openid=omd4W0cMbxQnUkZITcq5ggoWXJtI"
+				},
+				{
+					"id": -1,
+					"name": "确认下单",
+					"pathName": "pages/technician/pages/techorder/techorder",
+					"query": "shopno=DQT01&roomno=101",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "结算",
+					"pathName": "pages/automina/pages/commit/commit",
+					"query": "shopno=DQT01&roomno=101",
+					"scene": "1011"
 				}
 			]
 		}
