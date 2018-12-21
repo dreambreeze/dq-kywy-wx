@@ -22,7 +22,7 @@
             </block>
 
             <block wx:elif="{{payWayList[pyselected].pic}}">
-              <image src='{{payWayList[pyselected].pic}}' class="pwl-img"></image>
+            <view class='iconfont {{payWayList[pyselected].pic}} pwl-typeIcon'></view>
             </block>
         <text class='rt_type'>{{payWayList[pyselected].MembershipTypeName}}</text>
         <text class='iconfont icon-right sw_rt'></text>
@@ -106,22 +106,22 @@
         <view class="desc">请选择付款方式</view>
       </view>
       <block wx:for="{{payWayList}}"  wx:key="{{item.AutoID}}">
-        <view class='pw_list' bindtap="selectPayWay" data-autoId='{{item.AutoID}}'>
+        <view class='pw_list' bindtap="selectPayWay" data-autoId='{{index}}'>
           <view class="pwl-lt">
            <block wx:if="{{item.PicUrl}}">
               <image src='{{showImgUrl+item.PicUrl}}' class="pwl-img"></image>
             </block>
 
             <block wx:elif="{{item.pic}}">
-              <image src='{{item.pic}}' class="pwl-img"></image>
+              <view class='iconfont {{item.pic}} pwl-typeIcon'></view>
             </block>
             <text class='pwl-name'>{{item.MembershipTypeName}}</text>
             
           </view>
            
           <view class="pwl-rt" >
-          <view class="pwl-select">
-              <radio value="{{item.AutoID}}" checked="{{item.AutoID==pwseleted}}" />
+            <view class="pwl-select">
+              <radio value="{{item.CardNo}}" checked="{{index==pyselected}}"/>
             </view>
           </view>
         </view>

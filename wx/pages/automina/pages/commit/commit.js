@@ -31,11 +31,7 @@ Page({
     defaultcardimg: "https://iservice.daqisoft.cn/Public/Home/images/amimgs/3mcard.png",
     note: '口味、偏好、要求等',
     noteword: "",
-    payWayList: [{
-      AutoID: -1,
-      MembershipTypeName: '微信支付',
-      pic: 'icon-aui-icon-weichat'
-    }
+    payWayList: [
     ],
     pwseleted: 0,
     showPayWay: false,
@@ -129,10 +125,15 @@ Page({
       case 1:
         if (res.data.status == 1) {
           //初始付款方式
-          var payWayList = []
+          var payWayList = [{
+            AutoID: -1,
+            MembershipTypeName: '微信支付',
+            pic: 'icon-aui-icon-weichat'
+          }]
           for (var i in res.data.info)
             //payWayList.unshift(res.data.info[i])
             payWayList.push(res.data.info[i])
+            
           this.setData({
             payWayList: payWayList
           })
@@ -180,11 +181,12 @@ Page({
   },
 
   /* ①第一步  选择切换支付方式   e.detail.currentItemId=0 微信支付，  否则会员卡支付  */
+
   selectPayWay: function (e) {
-    var paywayindex = e.currentTarget.dataset.autoid
+    var paywayindex = e.currentTarget.dataset.autoid;
     var that = this
     that.setData({
-      pyselected: paywayindex
+      pyselected: paywayindex,
     })
     var goods = that.data.goods
     var cart = that.data.cart
