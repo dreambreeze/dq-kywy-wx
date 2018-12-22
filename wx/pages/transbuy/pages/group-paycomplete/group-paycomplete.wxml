@@ -53,7 +53,6 @@
       <view class='avatar_time'>拼单时间: {{ordersData[groupno].ptime}}</view>
       <!-- 邀请好友 -->
       <block wx:if="{{ordersData[groupno].nums>0&&issameone}}">
-
         <view class="share" hidden='{{!isshow}}'>
           <button hover-class="none" open-type="share">
             <text>邀请好友来拼团</text>

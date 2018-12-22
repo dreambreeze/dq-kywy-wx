@@ -17,6 +17,7 @@
     background-size: auto 380rpx;
     padding: 0 0 40rpx;
     position: relative;
+    overflow: hidden;
 }
 
 .contact-tools {
@@ -319,6 +320,7 @@
     box-shadow: 2rpx 2rpx 2rpx 2rpx rgba(0, 0, 0, 0.1);
     display: flex;
     overflow: hidden;
+    position: relative;
 }
 
 .group-activity image {
@@ -401,7 +403,11 @@
 }
 
 .price {
-    margin: 50rpx 0 0 0;
+    position: absolute;
+    bottom:10rpx;
+    right:0rpx;
+    z-index:99;
+    width:200rpx;
 }
 
 .price text:nth-of-type(1) {
@@ -430,39 +436,34 @@
     position: fixed;
     top: 0;
     left: 0;
+    z-index:4;
 }
 
 .coupon {
-    width: 100%;
     position: fixed;
-    z-index: 2;
-    bottom: 500rpx;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    left:50%;
+    top:40%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index:5;
 }
 
-.coupon .redpacket {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.coupon .redpacket image {
-    width: 332rpx;
-    height: 388rpx;
+.coupon image {
+    width: 405rpx;
+    height: 442rpx;
 }
 
 .coupon .exdesc {
     font-size: 26rpx;
     color: #caa876;
-    margin-top: -80rpx;
+    text-align: center;
+    position: absolute;
+    left:0;
+    right:0;
+    margin-top:-80rpx;
 }
 
 .coupon .close {
+    position: absolute;
     margin-top: -200rpx;
 }
 

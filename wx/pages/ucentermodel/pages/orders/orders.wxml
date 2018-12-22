@@ -180,8 +180,8 @@
         </block>
         <!-- 拼团订单 -->
         <block wx:elif="{{item.orderType == 8}}">
-            <view class="order-item" catchtap="toGroupOrderDetail" data-id="{{item.projectid}}" data-nodeid="{{item.pshopno}}" data-orderno="{{item.orderno}}">
-                <view class='flex-wrp'>
+            <view class="order-item">
+                <view class='flex-wrp' catchtap="toGroupOrderDetail" data-id="{{item.projectid}}" data-nodeid="{{item.pshopno}}" data-orderno="{{item.orderno}}">
                     <image src="{{item.gspicurl ? showImgUrl + item.gspicurl : cardPicUrl}}" lazy-load class="order-pic" mode="aspectFill"></image>
                     <view class='order-info'>
                         <view class='name'>{{item.project?item.project:'拼团订单'}} </view>
@@ -204,8 +204,8 @@
         </block>
         <!-- 团购订单 -->
         <block wx:elif="{{item.orderType == 9}}">
-            <view class="order-item" catchtap="toEGroupOrderDetail" data-index="{{index}}" data-id="{{item.id}}">
-                <view class='flex-wrp'>
+            <view class="order-item">
+                <view class='flex-wrp' catchtap="toEGroupOrderDetail" data-index="{{index}}" data-id="{{item.id}}">
                     <image src="{{item.picurl ? showImgUrl + item.picurl : cardPicUrl}}" lazy-load class="order-pic" mode="aspectFill"></image>
                     <view class='order-info'>
                         <view class='name'>{{item.project_name?item.project_name:'团购订单'}} </view>

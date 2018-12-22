@@ -110,6 +110,7 @@ page {
 }
 
 .sv-goods {
+    width:100%;
     padding: 0 30rpx;
 }
 
@@ -204,7 +205,7 @@ page {
 }
 
 
-.sv-goods .deadline {
+.deadline {
     text-align: center;
     margin: 60rpx;
     font-size: 20rpx;
@@ -212,11 +213,11 @@ page {
     margin-bottom: 150rpx;
 }
 
-.sv-goods .deadline::before {
+.deadline::before {
     content: "---";
 }
 
-.sv-goods .deadline::after {
+.deadline::after {
     content: "---";
 }
 

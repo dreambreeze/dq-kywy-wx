@@ -1,111 +1,93 @@
 <view class='amcontainer'>
-  <!--头部  -->
-  <view class='my-order' bindtap='myorder'>{{my}}</view>
-  <!--内容 start  -->
-  <view class=" {{classifySeleted=='xm'?'newcontent':'content'}}">
-    <!--左边菜单  -->
-    <scroll-view class="sv-classify" scroll-y>
-      <!-- 了解项目 -->
-      <view class="classify  {{classifySeleted=='xm'?'xmactive':''}}" wx:for="{{projectsList}}" wx:for-item="classify" wx:key="id" data-id="{{classify.id}}" bindtap="tapClassify">
-        <view class="name">{{classify.classifyname}}</view>
-      </view>
-      <view class="classify {{classifySeleted==classify.id?'active':''}} " wx:for="{{goodsList}}" wx:for-item="classify" wx:key="id" data-id="{{classify.id}}" bindtap="tapClassify">
-        <view class="name">{{classify.classifyname}}</view>
-      </view>
-    </scroll-view>
-    <!--右边 项 scroll-into-view="cate{{classifyViewed}}"  -->
-    <scroll-view class="sv-goods" scroll-y="true" scroll-top='{{topNum}}'>
-      <!-- 内容主项  -->
-      <view wx:for="{{knowproject?projectsList:goodsList}}" wx:for-item="classify" wx:key="" id="cate{{classify.id}}">
-        <block wx:if="{{classify.id!='xm'}}">
-          <view class="title" wx:if="{{classify.id == classifySeleted}}">{{classify.classifyname}}</view>
-          <view class="goods" wx:for="{{classify.goods}}" wx:if="{{goods[id].servicecategoryno == classifySeleted}}" wx:for-item="id" wx:key="" bindtap='goodsdetail' data-id="{{id}}">
-            <image class="pic" src="{{goods[id].picurl[0]?showImgUrl+goods[id].picurl[0]:fooddefpic}}"></image>
-            <view class="name {{goods[id].onlycash==1?'gflex':''}}">
-              <view class='gname'>{{goods[id].serviceitemname}}</view>
-              <view class='novip' wx:if="{{goods[id].onlycash==1}}">
-                仅支持微信支付
-              </view>
+    <!--头部  -->
+    <view class='my-order' bindtap='myorder'>{{my}}</view>
+    <!--内容 start  -->
+    <view class=" {{classifySeleted=='xm'?'newcontent':'content'}}">
+        <!--左边菜单  -->
+        <scroll-view class="sv-classify" scroll-y>
+            <!-- 了解项目 -->
+            <view class="classify  {{classifySeleted=='xm'?'xmactive':''}}" wx:for="{{projectsList}}" wx:for-item="classify" wx:key="id" data-id="{{classify.id}}" bindtap="tapClassify">
+                <view class="name">{{classify.classifyname}}</view>
             </view>
-            <view class="price">
-              ￥{{goods[id].itembaseprice*1}}
-            </view>
-            <block wx:if="{{!goods[id].size}}">
-              <view class='addorreduce'>
-                <block wx:for="{{cart.list}}" wx:for-index="oid" wx:for-item="num" wx:key="oid">
-                  <view class="flex-wrap" wx:if="{{oid == id}}">
-                    <view class="iconfont icon-jian jiaIcon" catchtap="tapReduceCart" data-id="{{id}}"></view>
-                    <view class="num">{{num}}</view>
-                  </view>
-                </block>
-                <view class="iconfont icon-jia jiaIcon" catchtap="tapAddCart" data-id="{{id}}"></view>
-              </view>
-            </block>
-          </view>
-        </block>
-
-        <!--了解项目 START  -->
-        <block wx:if="{{classify.id=='xm'}}">
-          <view class="title">{{classify.classifyname}}</view>
-          <view class="goods project-box" wx:for="{{classify.projects}}" wx:for-item="id" wx:key="" bindtap='toyy'>
-            <image class='project-image' src='{{projects[id].picurl[0]?projects[id].picurl[0]:"../../../../../images/group_discout_01@2x.png"}}' lazy-load></image>
-            <view class='project-info'>
-              <view class="name ">{{projects[id].serviceitemname}}</view>
-              <view class="price">￥{{projects[id].itembaseprice>0?projects[id].itembaseprice:'0.00'}}</view>
-            </view>
-          </view>
-        </block>
-      </view>
-      <view class='deadline'>人家也是有底线的哦</view>
-    </scroll-view>
-  </view>
-  <!-- 购物车弹窗 -->
-  <view class="cart-detail" hidden="{{!showCartDetail||!cart.count}}">
-    <view class="mask" bindtap="hideCartDetail"></view>
-    <view class="list">
-      <view class="clear" bindtap="clear">
-        <view class="desc">共{{cart.count}}件商品</view>
-        清空
-      </view>
-      <view class="item" wx:for="{{cart.list}}" wx:for-index="id" wx:for-item="num" wx:key="id">
-        <view class="name ellipsis">{{goods[id].serviceitemname}}</view>
-        <view class="total">￥{{goods[id].itembaseprice*cart.list[id]}}</view>
-        <view class='iconfont icon-jian jiaIcon' data-id="{{id}}" bindtap="tapReduceCart"></view>
-        <view class="num">{{num}}</view>
-        <view class='iconfont icon-jia jiaIcon' data-id="{{id}}" bindtap="tapAddCart"></view>
-      </view>
-    </view>
-  </view>
-  <!-- 购物车 -->
-  <view class="cart" hidden="{{classifySeleted=='xm'}}">
-    <view class="data" bindtap="showCartDetail">
-      <view class="icon">
-        <view class='iconfont icon-icon cartimg'></view>
-        <view class="count">{{cart.count}}</view>
-      </view>
-      <view class="total">￥{{cart.total}}</view>
-    </view>
-    <form bindsubmit="submit" report-submit="true">
-      <button class="sure-button {{cart.count?'':'disabled'}}" formType="submit" disabled="{{!cart.count}}">确定</button>
-    </form>
-  </view>
-  <!--公告弹窗 -->
-  <!-- <view class="mask" style="display:{{showMask ? 'block' : 'none'}}" bindtap="closeRules"></view>
-    <view class="rules" style="display:{{showMask ? 'block' : 'none'}}">
-        <view class="close-r" bindtap="closeRules">×</view>
-        <scroll-view scroll-y enable-back-to-top>
-            <view class="rules-con">
-                <view class="rules-t">{{currentCard.MembershipTypeName}}公告</view>
-                <view class="rules-c">{{text}}</view>
+            <view class="classify {{classifySeleted==classify.id?'active':''}} " wx:for="{{goodsList}}" wx:for-item="classify" wx:key="id" data-id="{{classify.id}}" bindtap="tapClassify">
+                <view class="name">{{classify.classifyname}}</view>
             </view>
         </scroll-view>
-    </view> -->
-</view>
-<!-- //返回首页按钮  -->
-<view class="backhome-btn">
-    <view>
-        <navigator url="/pages/index/index" hover-class="none" open-type="reLaunch">
-            <text>返回首页</text>
-        </navigator>
+        <!--右边 项 scroll-into-view="cate{{classifyViewed}}"  -->
+        <scroll-view scroll-y="true" scroll-top='{{topNum}}'>
+            <view class="sv-goods">
+                <!-- 内容主项  -->
+                <view wx:for="{{knowproject?projectsList:goodsList}}" wx:for-item="classify" wx:key="" id="cate{{classify.id}}">
+                    <block wx:if="{{classify.id!='xm'}}">
+                        <view class="title" wx:if="{{classify.id == classifySeleted}}">{{classify.classifyname}}</view>
+                        <view class="goods" wx:for="{{classify.goods}}" wx:if="{{goods[id].servicecategoryno == classifySeleted}}" wx:for-item="id" wx:key="" bindtap='goodsdetail' data-id="{{id}}">
+                            <image class="pic" src="{{goods[id].picurl[0]?showImgUrl+goods[id].picurl[0]:fooddefpic}}"></image>
+                            <view class="name {{goods[id].onlycash==1?'gflex':''}}">
+                                <view class='gname'>{{goods[id].serviceitemname}}</view>
+                                <view class='novip' wx:if="{{goods[id].onlycash==1}}">
+                                    仅支持微信支付
+                                </view>
+                            </view>
+                            <view class="price">
+                                ￥{{goods[id].itembaseprice*1}}
+                            </view>
+                            <block wx:if="{{!goods[id].size}}">
+                                <view class='addorreduce'>
+                                    <block wx:for="{{cart.list}}" wx:for-index="oid" wx:for-item="num" wx:key="oid">
+                                        <view class="flex-wrap" wx:if="{{oid == id}}">
+                                            <view class="iconfont icon-jian jiaIcon" catchtap="tapReduceCart" data-id="{{id}}"></view>
+                                            <view class="num">{{num}}</view>
+                                        </view>
+                                    </block>
+                                    <view class="iconfont icon-jia jiaIcon" catchtap="tapAddCart" data-id="{{id}}"></view>
+                                </view>
+                            </block>
+                        </view>
+                    </block>
+                    <!--了解项目 START  -->
+                    <block wx:if="{{classify.id=='xm'}}">
+                        <view class="title">{{classify.classifyname}}</view>
+                        <view class="goods project-box" wx:for="{{classify.projects}}" wx:for-item="id" wx:key="" bindtap='toyy'>
+                            <image class='project-image' src='{{projects[id].picurl[0]?projects[id].picurl[0]:projectImg}}' lazy-load></image>
+                            <view class='project-info'>
+                                <view class="name ">{{projects[id].serviceitemname}}</view>
+                                <view class="price">￥{{projects[id].itembaseprice>0?projects[id].itembaseprice:'0.00'}}</view>
+                            </view>
+                        </view>
+                    </block>
+                </view>
+                <view class='deadline'>人家也是有底线的哦</view>
+            </view>
+        </scroll-view>
+    </view>
+    <!-- 购物车弹窗 -->
+    <view class="cart-detail" hidden="{{!showCartDetail||!cart.count}}">
+        <view class="mask" bindtap="hideCartDetail"></view>
+        <view class="list">
+            <view class="clear" bindtap="clear">
+                <view class="desc">共{{cart.count}}件商品</view>
+                清空
+            </view>
+            <view class="item" wx:for="{{cart.list}}" wx:for-index="id" wx:for-item="num" wx:key="id">
+                <view class="name ellipsis">{{goods[id].serviceitemname}}</view>
+                <view class="total">￥{{goods[id].itembaseprice*cart.list[id]}}</view>
+                <view class='iconfont icon-jian jiaIcon' data-id="{{id}}" bindtap="tapReduceCart"></view>
+                <view class="num">{{num}}</view>
+                <view class='iconfont icon-jia jiaIcon' data-id="{{id}}" bindtap="tapAddCart"></view>
+            </view>
+        </view>
+    </view>
+    <!-- 购物车 -->
+    <view class="cart" hidden="{{classifySeleted=='xm'}}">
+        <view class="data" bindtap="showCartDetail">
+            <view class="icon">
+                <view class='iconfont icon-icon cartimg'></view>
+                <view class="count">{{cart.count}}</view>
+            </view>
+            <view class="total">￥{{cart.total}}</view>
+        </view>
+        <form bindsubmit="submit" report-submit="true">
+            <button class="sure-button {{cart.count?'':'disabled'}}" formType="submit" disabled="{{!cart.count}}">确定</button>
+        </form>
     </view>
 </view>

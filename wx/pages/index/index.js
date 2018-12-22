@@ -16,6 +16,8 @@ let ShopNo = '';
 let RoomNo = '';
 //定位的门店地址、距离信息
 var locationStore = [];
+//呼叫服务显隐
+var maskDisplay = 'none'
 Page({
 
     /**
@@ -23,7 +25,7 @@ Page({
      */
     data: {
         banner: banner,
-        maskDisplay: 'none',
+        maskDisplay: maskDisplay ,
         couponmaskDisplay: 'hidden',
         //图片地址前缀
         showImgUrl: common.config.showImgUrl,
@@ -108,6 +110,16 @@ Page({
         this.getBannerList();
         this.getProject();
         this.getGroupList();
+
+        //查看是否呼叫服务
+        maskDisplay = options.maskDisplay
+        if (maskDisplay == 'block') {
+            this.setData({
+                maskDisplay: maskDisplay,
+                donaldshowIn: 'donaldshowIn',
+                donaldconshowIn: 'donaldconshowIn'
+            })
+        }
 
         //加载小程序标题
         common.getAppletInfo(app.globalData.authorizerId).then(function(data) {
@@ -293,9 +305,7 @@ Page({
                 url: '/pages/component/pages/checkPrivilege/checkPrivilege?message=小程序使用权限已过期&notJump=1',
             });
         });
-
-
-
+        
 
         //检查是否已发券
         // common.sendCoupons(app.globalData.authorizerId,openid).catch(){
@@ -399,8 +409,7 @@ Page({
     //拼团列表
     getGroupList() {
         let _this = this;
-
-        common.getGroupShopping(app.globalData.authorizerId, _this.data.nodeid, '', '', '', '', '').then(function(data) {
+        common.getGroupShopping(app.globalData.authorizerId, '', '', '', '', '', '').then(function(data) {
             _this.setData({
                 grouptArr: data.info,
             })
@@ -431,6 +440,7 @@ Page({
     onShareAppMessage: function(options) {
         let that = this;
         var sharefrom = options.from
+
         let title = that.data.title ? that.data.title : ""
         if (sharefrom == "menu") { //button：页面内转发按钮；menu：右上角转发菜单
             sharefrom = "menu"
@@ -438,7 +448,7 @@ Page({
             sharefrom = "button"
         }
         var shareObj = new Object
-
+    
         shareObj = {
             title: title,
             url: "pages/index/index",
@@ -495,11 +505,56 @@ Page({
      * 点击显示呼叫服务
      */
     showService: function() {
-        this.setData({
-            maskDisplay: 'block',
-            donaldshowIn: 'donaldshowIn',
-            donaldconshowIn: 'donaldconshowIn'
-        });
+        let ShopNoRoomNo = wx.getStorageSync('ShopNoRoomNo');
+        if (!ShopNoRoomNo) {
+            wx.showModal({
+                title: '提示',
+                content: '门店标识与房号不存在，请扫描桌面二维码',
+                showCancel: true,
+                success: function (re) {
+                    if (re.confirm) {
+                        wx.scanCode({
+                            onlyFromCamera: true,
+                            success: function (res) {
+                                if (res.path) {
+                                    try {
+                                        wx.reLaunch({
+                                            url: '/' + res.path +'&maskDisplay=block',
+                                        });
+                                    } catch (e) {
+                                        wx.showModal({
+                                            title: '提示',
+                                            content: '获取地址失败，无法跳转',
+                                            showCancel: false
+                                        });
+                                    }
+                                } else {
+                                    wx.showModal({
+                                        title: '提示',
+                                        content: '获取地址失败，无法跳转',
+                                        showCancel: false
+                                    });
+                                }
+                            },
+                            fail: function (res) {
+                                wx.showModal({
+                                    title: '提示',
+                                    content: '调起客户端扫码界面失败',
+                                    showCancel: false
+                                })
+                            }
+                        });
+                    }
+                }
+            });
+
+        } else {
+            this.setData({
+                maskDisplay: 'block',
+                donaldshowIn: 'donaldshowIn',
+                donaldconshowIn: 'donaldconshowIn'
+            });
+        }
     },
     /**
      * 点击隐藏呼叫服务
@@ -1036,8 +1091,6 @@ Page({
                 });
             });
         }
-
-
     },
     /**
      * 页面跳转

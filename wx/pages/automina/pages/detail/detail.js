@@ -32,7 +32,8 @@ Page({
         knowproject: false,
         fooddefpic: 'https://iservice.daqisoft.cn/Public/Home/images/fooddef.png',
         topNum: 0,
-
+        //无项目图片的默认项目图
+        projectImg: common.config.projectImg,
         showImgUrl: '',
     },
     onLoad: function(options) {

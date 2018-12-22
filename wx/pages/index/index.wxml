@@ -36,7 +36,7 @@
         </block>
     </view>
     <!-- 资讯列表 -->
-    <view class="message-box"  wx:if="{{noticeList}}">
+    <view class="message-box" wx:if="{{noticeList}}">
         <image src='../../images/index_message@2x.png' lazy-load></image>
         <swiper class="message-list" vertical="true" display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true">
             <block wx:for="{{noticeList}}" wx:key="">
@@ -129,7 +129,7 @@
         <navigator url="../transbuy/pages/group-shopping/group-shopping" hover-class="none">
             <view class="group-activity-title">拼团活动</view>
         </navigator>
-        <swiper indicator-dots="{{indicatorDots}}" autoplay="{{true}}" interval="3500" duration="800" circular="true" display-multiple-items="1" wx:if="{{grouptArr}}">
+        <swiper indicator-dots="{{indicatorDots}}" interval="3500" autoplay="true" duration="800" circular="true" display-multiple-items="1" wx:if="{{grouptArr}}">
 
             <block wx:for="{{grouptArr}}" wx:for-item="data" wx:key="">
                 <block wx:for="{{data.project}}" wx:for-item="item" wx:key="">
@@ -151,10 +151,10 @@
                                 <view class='right-box'>
                                     <button>开团</button>
                                     <text>{{item.nums}}人团</text>
-                                    <view class='price'>
-                                        <text>￥{{item.groupprice}}</text>
-                                        <text>￥{{item.singleprice}}</text>
-                                    </view>
+                                </view>
+                                <view class='price'>
+                                    <text>￥{{item.groupprice}}</text>
+                                    <text>￥{{item.singleprice}}</text>
                                 </view>
                             </view>
                         </navigator>
@@ -208,14 +208,8 @@
 <!-- 点击领券mask -->
 <view class="couponmask" style="visibility:{{couponmaskDisplay}}" bindtap="hidecouponmask"></view>
 <!-- 点击领券 -->
-<view class="coupon" style="visibility:{{couponmaskDisplay}}">
-    <view class='close' bindtap="hidecouponmask">
-        <image src='https://iservice.daqisoft.cn/Public/Home/images/shopmina/imgs/close.png' lazy-load></image>
-    </view>
-    <view class='redpacket' bindtap='sendcoupon'>
-        <image src='https://iservice.daqisoft.cn/Public/Home/images/redindex.png' lazy-load></image>
-    </view>
-    <view class='exdesc' bindtap='sendcoupon'>点击领取优惠券</view>
+<view class="coupon" bindtap='sendcoupon' style="visibility:{{couponmaskDisplay}}">
+    <image src='https://note.youdao.com/yws/api/personal/file/WEB4eb37b92b73ce723725624a21649ee13?method=download&shareKey=9d3157626a2633eda3b2d94de913c08b' lazy-load></image>
 </view>
 
 <view class="mask" wx:if="{{showNotice}}" bindtap='handleNotice'></view>
