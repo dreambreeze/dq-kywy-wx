@@ -15,6 +15,7 @@ Page({
         let nodeid = options.nodeid
         let intype = options.intype ? options.intype : 1
         var buytype = options.buytype ? options.buytype : 3
+        console.log(options)
         // if (nodeid.indexOf("#china") == -1){
         //   nodeid+='#china'
         // }
@@ -94,7 +95,7 @@ Page({
                         showCancel: false,
                         complete: function(res) {
                             if (res.confirm) {
-                                wx.reLaunch({
+                                wx.navigateTo({
                                     url: '../group-shopping/group-shopping',
                                 })
                             }
@@ -165,7 +166,7 @@ Page({
         let project = that.data.project
         return {
             title: '邀您￥' + project.groupprice + '来拼' + project.project,
-            path: 'pages/transbuy/pages/group-paycomplete/group-paycomplete?groupno=' + groupno + '&pid=' + pid + '&intype=2&nodeid=' + nodeid,
+            path: 'pages/transbuy/pages/group-paycomplete/group-paycomplete?groupno=' + groupno + '&pid=' + pid + '&intype=2&nodeid=' + nodeid+'&orderno='+orderno,
             success: function(res) {
                 that.setData({
                     isshow: true
