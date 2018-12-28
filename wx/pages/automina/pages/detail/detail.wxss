@@ -141,6 +141,10 @@ page {
     border-radius: 10rpx;
 }
 
+.goods .gname{
+   display: inline-block;
+}
+
 .goods .gflex {
     display: flex;
     align-items: center;
@@ -170,6 +174,7 @@ page {
     color: #333;
     float: left;
     margin-right: 12rpx;
+    display: block;
 }
 
 .goods .oldprice {
@@ -183,7 +188,7 @@ page {
 .goods .addorreduce {
     position: absolute;
     right: 0;
-    bottom: 30rpx;
+    bottom: 10rpx;
     display: -webkit-flex;
     align-items: center;
 }
@@ -194,16 +199,26 @@ page {
 }
 
 .goods .num {
-    padding: 0 20rpx;
+    padding: 40rpx 0 0;
     line-height: 50rpx;
     text-align: center;
 }
 
 .jiaIcon {
+    border-width: 20rpx 20rpx 20rpx 20rpx;
+    border-style: solid;
+    border-color: transparent;
     color: #3b81d6;
     font-size: 35rpx;
 }
 
+.goods .jiaIcon {
+    border-width: 60rpx 20rpx 20rpx 20rpx;
+    border-style: solid;
+    border-color: transparent;
+    color: #3b81d6;
+    font-size: 35rpx;
+}
 
 .deadline {
     text-align: center;
@@ -261,7 +276,7 @@ page {
 }
 
 .cart-detail  .name {
-    flex: 1;
+    display: inline-block;
     font-size: 32rpx;
 }
 

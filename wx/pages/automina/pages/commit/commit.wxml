@@ -116,7 +116,7 @@
               <view class='iconfont {{item.pic}} pwl-typeIcon'></view>
             </block>
             <text class='pwl-name'>{{item.MembershipTypeName}}</text>
-            
+            <text class='balance' wx:if='{{item.CardNum*1.00 + item.SendNum*1.00>0}}' >余额:{{item.CardNum*1.00 + item.SendNum*1.00}}</text>
           </view>
            
           <view class="pwl-rt" >

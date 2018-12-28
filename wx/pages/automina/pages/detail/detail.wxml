@@ -20,15 +20,15 @@
                 <view wx:for="{{knowproject?projectsList:goodsList}}" wx:for-item="classify" wx:key="" id="cate{{classify.id}}">
                     <block wx:if="{{classify.id!='xm'}}">
                         <view class="title" wx:if="{{classify.id == classifySeleted}}">{{classify.classifyname}}</view>
-                        <view class="goods" wx:for="{{classify.goods}}" wx:if="{{goods[id].servicecategoryno == classifySeleted}}" wx:for-item="id" wx:key="" bindtap='goodsdetail' data-id="{{id}}">
-                            <image class="pic" src="{{goods[id].picurl[0]?showImgUrl+goods[id].picurl[0]:fooddefpic}}"></image>
+                        <view class="goods" wx:for="{{classify.goods}}" wx:if="{{goods[id].servicecategoryno == classifySeleted}}" wx:for-item="id" wx:key="" >
+                            <image class="pic" bindtap='goodsdetail' data-id="{{id}}" src="{{goods[id].picurl[0]?showImgUrl+goods[id].picurl[0]:fooddefpic}}" ></image>
                             <view class="name {{goods[id].onlycash==1?'gflex':''}}">
-                                <view class='gname'>{{goods[id].serviceitemname}}</view>
+                                <view class='gname'  bindtap='goodsdetail' data-id="{{id}}">{{goods[id].serviceitemname}}</view>
                                 <view class='novip' wx:if="{{goods[id].onlycash==1}}">
                                     仅支持微信支付
                                 </view>
                             </view>
-                            <view class="price">
+                            <view class="price" bindtap='goodsdetail' data-id="{{id}}">
                                 ￥{{goods[id].itembaseprice*1}}
                             </view>
                             <block wx:if="{{!goods[id].size}}">

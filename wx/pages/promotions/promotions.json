@@ -1,5 +1,6 @@
 {
-  "backgroundColor": "#ffffff",
-  "navigationBarTitleText": "优惠活动",
-  "disableScroll": true
+    "navigationBarBackgroundColor": "#2E2E2E",
+    "backgroundColor": "#eeeeee",
+    "navigationBarTitleText": "优惠活动",
+    "disableScroll": true
 }

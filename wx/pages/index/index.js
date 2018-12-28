@@ -205,7 +205,7 @@ Page({
 
                 //检查是否有可发的券
                 common.haveCoupons(app.globalData.authorizerId, openid).then(function(data) {
-                    if (data.status == 1) {
+                    if (data.status == 1 && maskDisplay != 'block') {
                         _this.setData({
                             has: data.has,
                             couponmaskDisplay: 'visiable',
@@ -296,9 +296,8 @@ Page({
         });
 
 
-
-
-
+        //检查是否有需要退单的拼团
+        common.groupRefound(app.globalData.authorizerId);
         //检查是否有权限使用
         common.isExpiredTime(app.globalData.authorizerId).catch(function() {
             wx.reLaunch({

@@ -363,6 +363,7 @@ Page({
         for (var i in roomData) {
             roomData[i].selected = i == idx ? !roomData[i].selected : false;
         }
+        console.log(roomData)
         wx.setStorageSync('roomStorage', roomData)
         var phoneinfo = wx.getStorageSync("phoneinfo")
         if (phoneinfo.phone) {

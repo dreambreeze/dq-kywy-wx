@@ -243,7 +243,7 @@ button.blue.disabled {
 
 .back-home{
     position: fixed;
-    right: 0;
+    right: 10rpx;
     bottom: 120rpx;
     text-align: center;
     background: url('https://note.youdao.com/yws/api/personal/file/WEBffc1d0c0819b704cf4e4ecf5b705b798?method=download&shareKey=f6e1abfa453a1bc5901439278728d52b') no-repeat center;

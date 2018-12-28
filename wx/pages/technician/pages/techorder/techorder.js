@@ -318,11 +318,11 @@ Page({
         switch (operate) {
             case 1:
                 var artime = this.data.SelectedTime
+                wx.removeStorageSync("roomStorage")
+                wx.removeStorageSync("techdata")
                 wx.redirectTo({
                     url: '../techpaycomplete/techpaycomplete?guid=' + res.data.guid + '&artime=' + artime,
                 })
-                wx.removeStorageSync("roomStorage")
-                wx.removeStorageSync("techdata")
                 break
         }
         wx.hideLoading()

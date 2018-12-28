@@ -26,6 +26,8 @@ var config = {
     projectImg: host + '/Public/Home/images/promotions_banner.png',
     //无房间图片的默认房间图片
     roomDefaultImg: host + '/Public/Home/images/room.jpg',
+    //2018-12改版默认图片路径
+    newDefualtImg: host + '/Public/Home/newimages',
     //导航数据tabBar
     navTabBar: [{
         "fun_name": "首页",
@@ -1670,6 +1672,40 @@ function isVip(authorizerId, phone) {
     return p;
 }
 
+//检测是否有需要退款的订单，有则退款
+function groupRefound(authorizerId) {
+    let p = new Promise(function (resolve, reject) {
+        wx.request({
+            url: host + '/index.php/Api/Base/grouprefound',
+            data: {
+                'authorizerId': authorizerId,
+            },
+            method: 'POST',
+            header: {
+                'content-type': 'application/json'
+            },
+            success: function (res) {
+                //返回成功
+                if (res.statusCode == 200) {
+
+                    resolve(res.data);
+
+                } else {
+                    reject('请求失败');
+                }
+            },
+            fail: function (res) {
+                if (res.errMsg == 'request:fail timeout') {
+                    reject('请求超时');
+                } else {
+                    reject('请求失败');
+                }
+            }
+        });
+    });
+    return p;
+}
+
 module.exports.config = config;
 module.exports.jishuzhichi = jishuzhichi;
 module.exports.ismobile = ismobile;
@@ -1717,3 +1753,4 @@ module.exports.haveCoupons = haveCoupons;
 module.exports.sendCoupon = sendCoupon;
 module.exports.isVip = isVip;
 module.exports.location = location;
+module.exports.groupRefound = groupRefound;

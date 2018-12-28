@@ -57,7 +57,7 @@
                     </navigator>
                 </view>
             </view>
-            <view class='more-project' wx:if='{{store.project.length<3}}' bindtap="goProjectStore" data-nodeid="{{store.nodeid}}">查看更多该门店团购项目</view>
+            <view class='more-project' wx:if='{{store.project.length > 3}}' bindtap="goProjectStore" data-nodeid="{{store.nodeid}}">查看更多该门店团购项目</view>
         </view>
         <view class='no-more'>已展示所有全部内容</view>
     </block>

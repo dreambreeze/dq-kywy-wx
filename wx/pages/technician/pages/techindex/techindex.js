@@ -469,10 +469,9 @@ Page({
      * 点击切换门店
      */
     changeStoreBtn: function() {
-
         wx.removeStorageSync("techdata")
         wx.removeStorageSync("roomStorage")
-        wx.redirectTo({
+        wx.navigateTo({
             url: '/pages/reserve/pages/select-store/select-store?type=1',
         })
     },

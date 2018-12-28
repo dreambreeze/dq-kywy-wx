@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "结算"
+    "navigationBarBackgroundColor": "#2E2E2E",
+    "backgroundColor": "#eeeeee",
+    "navigationBarTitleText": "结算"
 }

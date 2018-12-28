@@ -33,7 +33,7 @@
     <!-- 预约理疗师 -->
     <view class='form-item' bindtap='goyy' data-type="1">
         <label>预约理疗师</label>
-        <view>{{tech}}</view>
+        <view class="{{tech?'':'gray-font'}}">{{tech?tech:'尚未预约'}}</view>
         <button>添加技师</button>
     </view>
     <!-- 预约房间  -->

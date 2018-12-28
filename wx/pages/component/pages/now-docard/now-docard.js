@@ -413,7 +413,7 @@ Page({
         }
 
         //是否已同意开卡细则
-        if (currentCard.MMInfo && openingRules != 1) {
+        if (openingRules != 1) {
             wx.showModal({
                 title: '提示',
                 content: '请仔细阅读开卡细则并同意开卡细则',
