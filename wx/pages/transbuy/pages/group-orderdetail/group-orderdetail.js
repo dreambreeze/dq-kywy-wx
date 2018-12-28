@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    qrDisplay: 'none',
   },
 
   /**
@@ -35,7 +35,12 @@ Page({
         wx.showModal({
           title: '提示',
           content: '项目不存在',
-          showCancel: false
+          showCancel: false,
+          success: res => {
+            if (res.confirm) {
+              wx.navigateBack();
+            }
+          }
         });
       } else {
         var multiple = data.info
@@ -45,7 +50,7 @@ Page({
           project: multiple[0].project[0],
           showImgUrl: common.config.showImgUrl
         });
-
+        console.log("dd", multiple[0].project[0])
         //计算距离
         common.geocoder(multiple[0].address).then(function (data) {
           common.calculateDistance([data]).then(function (data) {
@@ -67,8 +72,13 @@ Page({
       wx.hideLoading();
       wx.showModal({
         title: '提示',
-        content: data,
-        showCancel: false
+        content: '订单不存在',
+        showCancel: false,
+        success: res => {
+          if (res.confirm) {
+            wx.navigateBack();
+          }
+        }
       });
     });
 
@@ -106,7 +116,12 @@ Page({
       wx.showModal({
         title: '提示',
         content: '未设置电话',
-        showCancel: false
+        showCancel: false,
+        success: res => {
+          if (res.confirm) {
+            wx.navigateBack();
+          }
+        }
       });
       return false;
     }
@@ -147,8 +162,13 @@ Page({
                   wx.hideLoading();
                   wx.showModal({
                     title: '提示',
-                    content: data,
-                    showCancel: false
+                    content: 订单不存在,
+                    showCancel: false,
+                    success: res => {
+                      if (res.confirm) {
+                        wx.navigateBack();
+                      }
+                    }
                   });
                 });
               },
@@ -228,5 +248,19 @@ Page({
     if (adurl) {
       common.jishuzhichi(adurl);
     }
-  }
+  },
+  showLargeImg: function () {
+    this.setData({
+      qrDisplay: 'block'
+    });
+  },
+  /**
+    * 关闭二维码
+    */
+  closeQrcode: function () {
+    this.setData({
+      qrDisplay: 'none'
+    });
+  },
+
 })

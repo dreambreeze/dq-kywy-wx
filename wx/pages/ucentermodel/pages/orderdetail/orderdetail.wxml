@@ -1,4 +1,6 @@
+
 <view class="qrcode-content">
+
   <view class="con-box">
     <view class="head-info flex-wrp">
       <image src="{{orderData.imgurl[0]}}" lazy-load mode="aspectFill"></image>
@@ -12,7 +14,7 @@
     </view>
 
     <view class="qrcode-box">
-      <image src="{{orderData.qrcode_url}}" lazy-load></image>
+      <image src="{{orderData.qrcode_url}}" lazy-load bindtap="showLargeImg"></image>
 
       <view class="sumption-tips">出示二维码消费</view>
       <view class="verify-code">{{orderData.order_num}}</view>
@@ -79,7 +81,10 @@
     </view>
   </block>
 </view>
-
+<view class="mask" style="display:{{qrDisplay}}" bindtap="closeQrcode"></view>
+<view class="qrcode-large-box" style="display:{{qrDisplay}}">
+       <image src="{{orderData.qrcode_url}}" lazy-load ></image>
+</view>
 <!-- 返回首页按钮 -->
 <navigator class="back-home" url="/pages/index/index" hover-class="none" open-type="reLaunch">
 </navigator>

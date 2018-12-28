@@ -15,7 +15,7 @@ Page({
         let nodeid = options.nodeid
         let intype = options.intype ? options.intype : 1
         var buytype = options.buytype ? options.buytype : 3
-        console.log(options)
+        
         // if (nodeid.indexOf("#china") == -1){
         //   nodeid+='#china'
         // }
@@ -91,7 +91,7 @@ Page({
                 if (data === '未查询到拼团订单') {
                     wx.showModal({
                         title: '提示',
-                        content: '当前拼团已满团或已过期，点击确定前往开团',
+                      content: data,
                         showCancel: false,
                         complete: function(res) {
                             if (res.confirm) {
@@ -156,9 +156,6 @@ Page({
      */
     onShareAppMessage: function(options) {
         let that = this;
-        that.setData({
-            isshow: false
-        })
         let groupno = that.data.groupno
         let orderno = that.data.orderno
         let pid = that.data.pid
