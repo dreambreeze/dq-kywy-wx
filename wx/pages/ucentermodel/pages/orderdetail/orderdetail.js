@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    qrDisplay: 'none',
   },
 
   /**
@@ -228,5 +229,19 @@ Page({
     if (adurl) {
       common.jishuzhichi(adurl);
     }
-  }
+  },
+  showLargeImg: function () {
+    this.setData({
+      qrDisplay: 'block'
+    });
+    console.log(1)
+  },
+  /**
+    * 关闭二维码
+    */
+  closeQrcode: function () {
+    this.setData({
+      qrDisplay: 'none'
+    });
+  },
 })

@@ -43,6 +43,7 @@
 .qrcode-box {
   padding: 40rpx 38rpx;
   position: relative;
+  
 }
 
 .useed {
@@ -195,3 +196,18 @@
   color: #fff;
   margin-left: 75rpx;
 }
+
+
+.qrcode-large-box image{
+    width:500rpx;
+    height:500rpx;
+  }
+.qrcode-large-box {
+    position: absolute;
+    top: 30%;
+    left: 125rpx;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center
+}
+ 

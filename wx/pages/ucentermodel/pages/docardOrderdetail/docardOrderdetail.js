@@ -38,7 +38,7 @@ Page({
     });
     //查询办卡订单详情
     if (option.type == 1) {
-      common.checkingOrder(app.globalData.authorizerId, option.guid,'').then(function (data) {
+      common.checkingOrder(app.globalData.authorizerId, option.guid, option.type).then(function (data) {
         wx.hideLoading();
         if (!data.info) {
           wx.showModal({
