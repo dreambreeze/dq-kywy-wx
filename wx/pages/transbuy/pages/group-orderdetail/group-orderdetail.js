@@ -29,12 +29,12 @@ Page({
     var nodeid = option.nodeid
     //查询拼团订单详情
     common.getGroupShopping(app.globalData.authorizerId, nodeid, id, openid, orderno,groupno,'').then(function (data) {
-
+      console.log("data",data)
       wx.hideLoading();
       if (!data.info) {
         wx.showModal({
           title: '提示',
-          content: '项目不存在',
+          content: '订单不存在',
           showCancel: false,
           success: res => {
             if (res.confirm) {
@@ -50,7 +50,6 @@ Page({
           project: multiple[0].project[0],
           showImgUrl: common.config.showImgUrl
         });
-        console.log("dd", multiple[0].project[0])
         //计算距离
         common.geocoder(multiple[0].address).then(function (data) {
           common.calculateDistance([data]).then(function (data) {
@@ -72,7 +71,7 @@ Page({
       wx.hideLoading();
       wx.showModal({
         title: '提示',
-        content: '订单不存在',
+        content: data,
         showCancel: false,
         success: res => {
           if (res.confirm) {
@@ -162,7 +161,7 @@ Page({
                   wx.hideLoading();
                   wx.showModal({
                     title: '提示',
-                    content: 订单不存在,
+                    content: data,
                     showCancel: false,
                     success: res => {
                       if (res.confirm) {

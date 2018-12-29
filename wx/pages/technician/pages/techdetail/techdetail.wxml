@@ -1,21 +1,26 @@
 <!--技师详情  -->
+<view class='largeImg-box animatedSelf zoomIn' wx:if="{{largeImg}}" bindtap='hiddenLargeImg'>
+<image  src='{{largePicurl}}' class='largeImg'></image>
+</view>
+
 <view class='container'>
   <!-- 轮播图 -->
   <view class='swiper'>
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" previous-margin="160rpx" next-margin="160rpx" bindchange='bindchange' current-item-id="{{selected}}">
       <block wx:for="{{data}}" wx:key="imgid">
         <swiper-item item-id="{{item.staffworkno}}">
-          <block wx:if="{{item.picurl}}">
-            <image src="{{showImgUrl}}{{item.picurl[0]}}" class="slide-image {{item.staffworkno==selected?'active':''}} " />
+          <block wx:if="{{item.picurl}}" > 
+            <image src="{{showImgUrl+item.picurl[0]}}" class="slide-image {{item.staffworkno==selected?'active':''}}" 
+           data-picurl="{{showImgUrl+item.picurl[0]}}" bindtap="showLargeImg"
+             />
           </block>
-          <block wx:else>
-            <image src='{{defaulttechpic}}' class="slide-image {{item.staffworkno==selected?'active':''}} "></image>
+          <block wx:else picurl-item-id="{{defaulttechpic}}">
+            <image src='{{defaulttechpic}}' class="slide-image {{item.staffworkno==selected?'active':''}}" data-picurl="{{defaulttechpic}}" bindtap="showLargeImg" ></image>
           </block>
         </swiper-item>
       </block>
     </swiper>
   </view>
-
   <!-- 技师信息 -->
   <view class='techinfo'>
     <view class='t-no'>{{selected}}号

@@ -81,7 +81,7 @@
     </block>
 </view>
 <view class="mask" style="display:{{qrDisplay}}" bindtap="closeQrcode"></view>
-<view class="qrcode-large-box" style="display:{{qrDisplay}}">
+<view class="qrcode-large-box animatedSelf zoomIn" style="display:{{qrDisplay}}">
        <image src="{{showImgUrl}}{{project.orders[0].picurl}}" lazy-load ></image>
 </view>
 <!-- 返回首页按钮 -->

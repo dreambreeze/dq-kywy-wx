@@ -1,5 +1,5 @@
 <view class='container'>
-    <!-- 门店信息与明星技师推荐 -->
+    <!-- 门店信息与明星理疗师推荐 -->
     <view class='banner-box'>
         <view class='store-box'>
             <view class='store-name'>{{locationStore[0].store_name}}</view>
@@ -8,7 +8,7 @@
         <swiper class='star-swiper' indicator-dots="{{indicatorDots}}" autoplay="true" interval="3500" duration="800" circular="true" previous-margin="180rpx" next-margin="180rpx" current-item-id="{{selected}}">
             <block wx:for="{{starList}}" wx:key="item.staffworkno" >
                 <swiper-item item-id="{{item.staffworkno}}" catchtap='toTechdetail' data-id='{{item.staffworkno}}' class='star-item'>
-                    <view class='star-label'>明星技师</view>
+                    <view class='star-label'>明星理疗师</view>
                     <block wx:if="{{item.picurl}}">
                         <image src='{{item.picurl?showImgUrl+item.picurl:"https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png"}}' lazy-load></image>
                     </block>
@@ -54,7 +54,7 @@
             <!-- 瀑布流 左容器 -->
             <view class='left-box'>
                 <view class='tech-item' wx:for="{{leftItem}}" wx:key="" catchtap='toTechdetail' data-id='{{item.staffworkno}}'>
-                    <view class='tech-label'>推荐技师</view>
+                    <view class='tech-label'>推荐理疗师</view>
                     <block wx:if="{{item.picurl}}">
                         <image mode="widthFix" src='{{item.picurl?showImgUrl+item.picurl:"https://iservice.daqisoft.cn/Public/Home/images/techimgs/tech.png"}}' lazy-load></image>
                     </block>

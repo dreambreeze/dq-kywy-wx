@@ -1,4 +1,4 @@
-<view class='amcontainer'>
+<view class='amcontainer' wx:if="{{order[0]}}">
   <view class='shop-container'>
     <view class='sc_head'>
       {{order[0].taskjson.BShopName}}
@@ -65,3 +65,4 @@
     </view>
   </view>
 </view>
+<view wx:else class='tips-text'>加载中...</view>

@@ -15,6 +15,8 @@ Page({
     interval: 5000,
     duration: 800,
     selected:0,
+    largeImg:false,
+    largePicurl:'',
     imgCerts: [
       'https://iservice.daqisoft.cn/Public/Home/images/techimgs/cert.png',
       'https://iservice.daqisoft.cn/Public/Home/images/techimgs/cert.png',
@@ -141,6 +143,19 @@ Page({
     wx.navigateTo({
       url: '../techorder/techorder',
     })
+  },
+  showLargeImg: function (e) {
+    var picurl = e.currentTarget.dataset.picurl
+    var that = this
+    that.setData({
+      largeImg:  true,
+      largePicurl: picurl
+  })
+},
+  hiddenLargeImg:function(){
+    var that = this
+    that.setData({
+      largeImg: false
+    })
   }
-
 })

@@ -19,6 +19,7 @@ Page({
     let  buytype=options.buytype
     let  num = options.num  //剩余人数，，如果剩余人数==1 那么跳转到满团界面
     let  nodeid = options.nodeid   //门店节点
+    
     that.setData({
       buytype: options.buytype,
       groupno: options.groupno,
