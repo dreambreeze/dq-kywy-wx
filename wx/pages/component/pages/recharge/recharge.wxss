@@ -19,7 +19,7 @@ page {
 
 .recharge-icon {
     height: 100rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB508196fb25401c0fa238cb023d133f85?method=download&shareKey=64843d47940344cc0f434e93334673a2') no-repeat center center;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/rechange_icon@2x.png') no-repeat center center;
     background-size: 64rpx;
 }
 
@@ -32,7 +32,7 @@ page {
 }
 
 .d-cards, .d-cards scroll-view {
-    height: 910rpx;
+    height: 1000rpx;
 }
 
 .dc-select {
@@ -55,7 +55,7 @@ page {
 }
 
 .address {
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB9385772b1ac4356f459170b01e3d69f2?method=download&shareKey=cf2f7587c0235b5e506a0e1de0dc5bda') no-repeat left 10rpx;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/index_address@2x.png') no-repeat left 10rpx;
     background-size: 20rpx;
     padding: 0 0 0 30rpx;
 }
@@ -72,6 +72,10 @@ page {
     margin: 0 0 30rpx;
 }
 
+.cards:last-child{
+    margin: 0 0 60rpx;
+}
+
 .card-type {
     position: absolute;
     right: 65rpx;
@@ -82,9 +86,10 @@ page {
     width: 133rpx;
     height: 74rpx;
     line-height: 55rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEBfdec213a57c79960a9f69847eab386cd?method=download&shareKey=03503e56337c37ff9beab76534de3f89') no-repeat center;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/label@2x.png') no-repeat center;
     background-size: 100%;
     padding: 0 0 0 10rpx;
+    overflow: hidden;
 }
 
 .is-fyr {

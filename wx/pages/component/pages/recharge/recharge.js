@@ -63,6 +63,7 @@ Page({
                     success: function(res) {
                         height = res.windowHeight - dcH;
                         dcSHeight = res.windowHeight - dcH - siH;
+                        console.log(dcSHeight)
                         _this.setData({
                             height: height,
                             dcSHeight: dcSHeight

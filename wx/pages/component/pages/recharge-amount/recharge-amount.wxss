@@ -28,13 +28,14 @@
     line-height: 50rpx;
     padding:5rpx 0 0 10rpx;
     text-align: left;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB5c27a80033a5e18f12f2159637864ada?method=download&shareKey=9486ef4c58c9caf8a5dc7a1512a75cc7') no-repeat center;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/card-left-title@2x.png') no-repeat center;
     background-size: 126rpx 55rpx;
     color: #fff;
     font-size: 30rpx;
     position: absolute;
     left: -5rpx;
     top: 45rpx;
+    overflow: hidden;
 }
 
 .card-info{

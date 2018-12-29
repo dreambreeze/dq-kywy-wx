@@ -1,6 +1,5 @@
 <view class="contianer">
-  <block wx:if="{{receiveCard}}">
-    <view class="card-banner" wx:for="{{receiveCard}}">
+    <view class="card-banner"  wx:if="{{receiveCard}}" wx:for="{{receiveCard}}">
       <view class="card-box">
         <image src="{{!item.picurl ? cardPicUrl : showImgUrl + item.picurl}}" lazy-load></image>
       </view>
@@ -23,48 +22,9 @@
         <button class="active" data-rguid="{{item.rguid}}" data-phone="{{item.phoneno}}" data-recipient="{{item.mutexsign}}" bindtap="cardReceive">领取</button>
       </view>
     </view>
-  </block>
-  <form bindsubmit="formSubmit" report-submit="report-submit" style="{{!receiveCard ? 'display:block' : 'display:none'}}">
-    <view class="info-input">
-      <view class="input-item">
-        <view class="flex-wrp">
-          <view class="i-label">
-            <text>*</text>姓名</view>
-          <view class="i-input">
-            <input type="text" name="names" value="{{names}}" />
-          </view>
-        </view>
-      </view>
-      <view class="input-item">
-        <view class="flex-wrp">
-          <view class="i-label">
-            <text>*</text>手机</view>
-          <view class="i-input">
-            <input type="number" name="phone" value="{{phone}}" bindinput="inputPhone" />
-          </view>
-          <view class="getPhoneNumber">
-            <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">自动输入</button>
-          </view>
-        </view>
-      </view>
-      <view class="input-item">
-        <view class="flex-wrp">
-          <view class="i-label">
-            <text>*</text>验证码</view>
-          <view class="verify-input">
-            <input type="number" name="verify" />
-          </view>
-          <block wx:if="{{!seconds}}">
-            <view class="get-verify" bindtap="getVerify" data-phone="{{phone}}">发送验证码</view>
-          </block>
-          <block wx:else>
-            <view class="get-verify seconds">{{seconds}}秒重新获取</view>
-          </block>
-        </view>
-      </view>
-      <button class="dc-btn" form-type="submit">确定</button>
+    <view class='none-tips' wx:if="{{!receiveCard}}">
+        暂无转赠卡可领
     </view>
-  </form>
 </view>
 <!-- 返回首页按钮 -->
 <navigator class="back-home" url="/pages/index/index" hover-class="none" open-type="reLaunch">

@@ -4,7 +4,7 @@
 
 .banner-box {
     padding: 0 0 30rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB6d7c50b65c79b7e2b471f20a03e593ed?method=download&shareKey=7c1a73dc748c4cbebe32772433e45290') repeat-x;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/tech_top_back.png') repeat-x;
     background-size: auto 100%;
 }
 

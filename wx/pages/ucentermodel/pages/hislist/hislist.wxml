@@ -16,7 +16,7 @@
             </picker>
             <!--选择卡  -->
             <view class='cards' hidden='{{!showcard}}'>
-                <view wx:for="{{cards}}" wx:key="" bindtap='getcardtype' class="item {{item.CardNo==choosecard.CardNo?'active':''}}" data-id="{{index}}">{{item.showname}}</view>
+                <view wx:for="{{cards}}" wx:key="" bindtap='getcardtype' class="item {{index==selected?'active':''}}" data-id="{{index}}">{{item.showname}}</view>
             </view>
         </view>
         <scroll-view scroll-y>

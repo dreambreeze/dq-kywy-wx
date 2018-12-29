@@ -24,12 +24,11 @@
                             <block wx:if="{{item.IsFyr == 1}}">
                                 <view class="is-fyr"></view>
                             </block>
-                            <block wx:if="{{item.NewAccLevel > 0}}">
-                                <view class="docard-tips">最低充值{{item.NewAccLevel}}元含以上</view>
-                            </block>
-                            <block wx:else>
-                                <view class="docard-tips">无最低充值标准</view>
-                            </block>
+                            <swiper class="rule-list" vertical="true" display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true">
+                                <swiper-item wx:for="{{item.rules}}" wx:key="" class="item" wx:for-item='rule'>
+                                    {{rule}}
+                                </swiper-item>
+                            </swiper>
                         </view>
                     </block>
                 </scroll-view>

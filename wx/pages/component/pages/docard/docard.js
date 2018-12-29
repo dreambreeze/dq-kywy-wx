@@ -25,6 +25,8 @@ Page({
         showMask: false,
         //图片地址前缀
         showImgUrl: common.config.showImgUrl,
+        //新版默认图片地址前缀
+        newDefaultImg: common.config.newDefaultImg,
         //无会员卡图片的默认会员卡图
         cardPicUrl: common.config.cardPicUrl,
         //所有卡类型
@@ -48,12 +50,10 @@ Page({
             }).exec();
 
             query.select('.s-info').boundingClientRect(function(res) {
-                console.log(res);
                 siH = res ? res.height : 0;
             }).exec();
 
             setTimeout(function() {
-                console.log(siH);
                 wx.getSystemInfo({
                     success: function(res) {
                         height = res.windowHeight - dcH;
@@ -94,7 +94,7 @@ Page({
 
         this.setData({
             storeIdx: e.target.dataset.index,
-            cardType: cardTypeData[dcStoreList[e.target.dataset.index]],
+            cardType: this.formatRules(cardTypeData[dcStoreList[e.target.dataset.index]]),
             //获取门店电话和地址
             shopInfo: shopInfo
         });
@@ -187,10 +187,9 @@ Page({
                                             address: !cardTypeData[addressArr[0].storename][0].address ? '' : cardTypeData[addressArr[0].storename][0].address,
                                             storename: dcStoreList[0]
                                         }
-
                                         _this.setData({
                                             dcStore: dcStoreList,
-                                            cardType: cardTypeData[addressArr[0].storename],
+                                            cardType: _this.formatRules(cardTypeData[addressArr[0].storename]),
                                             shopInfo: shopInfo
                                         });
                                     }
@@ -212,7 +211,7 @@ Page({
 
                                 _this.setData({
                                     dcStore: dcStoreList,
-                                    cardType: cardTypeData[dcStoreList[0]],
+                                    cardType: _this.formatRules(cardTypeData[dcStoreList[0]]),
                                     shopInfo: shopInfo
                                 });
                             }
@@ -263,6 +262,22 @@ Page({
         });
     },
 
+    /**
+     * 格式化优惠规则
+     */
+    formatRules(cardTypeTemp) {
+        for (let card of cardTypeTemp) {
+            if (Object.prototype.toString.call(card.rules) == '[object String]') {
+                let ruleArr = card.rules.split(';')
+                for (let i = 0; i < ruleArr.length; i++) {
+                    let ruleStr = ruleArr[i].split('=')
+                    ruleArr[i] = '充值' + ruleStr[0] + '元送' + ruleStr[1] + '元'
+                }
+                card.rules = ruleArr
+            }
+        }
+        return cardTypeTemp
+    },
     /**
      * 点击跳转至办卡
      */

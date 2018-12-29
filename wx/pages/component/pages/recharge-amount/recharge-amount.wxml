@@ -1,14 +1,14 @@
 <import src="../../../common/amount.wxml" />
 <view class='banner-box'>
     <view class='image-box'>
-        <image src='../../../../images/open-vip-banner@2x.png'></image>
+        <image src="{{rechargeCard.PicUrl?showImgUrl+rechargeCard.PicUrl :newDefaultImg+'open-vip-banner@2x.png'}}"></image>
         <view class='left-label'>{{rechargeCard.MembershipTypeName}}</view>
     </view>
 </view>
 <view class='card-info'>
     <view class='card-header'>
         <view>门店：{{rechargeCard.ShopName}}</view>
-         <view>余额：{{rechargeCard.Balance}}元</view>
+        <view>余额：{{rechargeCard.Balance}}元</view>
     </view>
     <view class='card-content'>
         <view>姓名：{{rechargeCard.MemberName}}</view>
@@ -19,29 +19,9 @@
 <view class='amount-box'>
     <label>请选择充值金额</label>
     <view class='amount-list'>
-        <view class='item {{amountIdx == 1 ? "current" : ""}}' bindtap='changeAmount' data-index="1">
-            <text>1000元</text>
-            <text>赠送159元</text>
-        </view>
-        <view class='item {{amountIdx == 2 ? "current" : ""}}' bindtap='changeAmount' data-index="2">
-            <text>2000元</text>
-            <text>赠送318元</text>
-        </view>
-        <view class='item {{amountIdx == 3 ? "current" : ""}}' bindtap='changeAmount' data-index="3">
-            <text>3000元</text>
-            <text>赠送600元</text>
-        </view>
-        <view class='item {{amountIdx == 4 ? "current" : ""}}' bindtap='changeAmount' data-index="4">
-            <text>4000元</text>
-            <text>赠送800元</text>
-        </view>
-        <view class='item {{amountIdx == 5 ? "current" : ""}}' bindtap='changeAmount' data-index="5">
-            <text>5000元</text>
-            <text>赠送1000元</text>
-        </view>
-        <view class='item {{amountIdx == 6 ? "current" : ""}}' bindtap='changeAmount' data-index="6">
-            <text>6000元</text>
-            <text>赠送1200元</text>
+        <view class='item {{index == amountIdx ? "current" : ""}}' bindtap='changeAmount' wx:for='{{recharRules}}' wx:key='{{index}}' data-index='{{index}}' data-amout='{{item.am}}' data-gift='{{item.gift}}'>
+            <text>{{item.am}}元</text>
+            <text>赠送{{item.gift}}元</text>
         </view>
     </view>
 </view>

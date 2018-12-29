@@ -17,9 +17,9 @@ var config = {
     //腾讯地图API KEY
     QQMapWXKey: 'SEABZ-R7CKF-56RJH-NMADQ-ECCZJ-W3FRG',
     //无会员卡图片的默认会员卡图
-    cardPicUrl: 'https://note.youdao.com/yws/api/personal/file/WEBb5f7eb3766ee279fc3a8496d7715869b?method=download&shareKey=c969cf0aa8db1957124cbd1f79c86226',
+    cardPicUrl: host + '/Public/Home/images/newimages/need-card@2x.png',
     //订单列表会员卡图片
-    orderCardIcon: 'https://note.youdao.com/yws/api/personal/file/WEB582903b6322138ce21b0ef2d3c5d7a3a?method=download&shareKey=d554c4c447183a2af516fb5835627918',
+    orderCardIcon: host + '/Public/Home/images/newimages/order-card.png',
     //默认首页banner图
     bannerImg: host + '/Public/Home/images/home_banner.png',
     //无上传项目图片的默认项目图片
@@ -27,34 +27,34 @@ var config = {
     //无房间图片的默认房间图片
     roomDefaultImg: host + '/Public/Home/images/room.jpg',
     //2018-12改版默认图片路径
-    newDefualtImg: host + '/Public/Home/newimages',
+    newDefaultImg: host + '/Public/Home/images/newimages/',
     //导航数据tabBar
     navTabBar: [{
         "fun_name": "首页",
-        "fun_img": "https://note.youdao.com/yws/api/personal/file/WEBa8ae747f063959dccfb79236daeb0caa?method=download&shareKey=fc6f4669ead3f7bac33fe6e9ad8ed018",
+        "fun_img": "https://iservice.daqisoft.cn/Public/Home/images/newimages/footer_tab_index_checked@2x.png",
         "applet_address": "../index/index",
-        "notcheck_img": "https://note.youdao.com/yws/api/personal/file/WEBff69204521108f6103560f7e22c14891?method=download&shareKey=fdbee227e26d42402cdaab5293152a60",
+        "notcheck_img": "https://iservice.daqisoft.cn/Public/Home/images/newimages/footer_tab_index@2x.png",
         "isTo": true,
         "id": 11
     }, {
         "fun_name": "会员中心",
-        "fun_img": "https://note.youdao.com/yws/api/personal/file/WEBf80338360e2ca94d907d7049565db046?method=download&shareKey=84077bafb39fcc2d4256ad368c5a6fba",
+            "fun_img": "https://iservice.daqisoft.cn/Public/Home/images/newimages/footer_tab_vip_checked@2x.png",
         "applet_address": "../vip-center/vip-center",
-        "notcheck_img": "https://note.youdao.com/yws/api/personal/file/WEB57b09b32b210cc608401c6cd615efff0?method=download&shareKey=29fc8e5864f0c19abc12cc99a359e7cf",
+            "notcheck_img": "https://iservice.daqisoft.cn/Public/Home/images/newimages/footer_tab_vip@2x.png",
         "isTo": true,
         "id": 15
     }, {
         "fun_name": "优惠活动",
-        "fun_img": "https://note.youdao.com/yws/api/personal/file/WEBec13e85e2dc123b2159b0c92708467e1?method=download&shareKey=358a1eaca2aa0ccd0ad532a60ad4f81b",
+            "fun_img": "https://iservice.daqisoft.cn/Public/Home/images/newimages/footer_tab_promotions_checked@2x.png",
         "applet_address": "../promotions/promotions",
-        "notcheck_img": "https://note.youdao.com/yws/api/personal/file/WEB22b5ca29747ad3153e388a6c53af8c1c?method=download&shareKey=90332b099218989f4e8a6706ad9ccc47",
+            "notcheck_img": "https://iservice.daqisoft.cn/Public/Home/images/newimages/footer_tab_promotions@2x.png",
         "isTo": true,
         "id": 16
     }, {
         "fun_name": "我的",
-        "fun_img": "https://note.youdao.com/yws/api/personal/file/WEB1be6a1c5ce01449b6c739ff067dabe05?method=download&shareKey=1fc4d9ea9359573927fff1a14f3b70c2",
+            "fun_img": "https://iservice.daqisoft.cn/Public/Home/images/newimages/footer_tab_mine_checked@2x.png",
         "applet_address": "../ucenter/ucenter",
-        "notcheck_img": "https://note.youdao.com/yws/api/personal/file/WEB453fef44f5cda7d7d9ffdf941f16f724?method=download&shareKey=5bd98cc4a1b7ed30f595a7c98a67633a",
+            "notcheck_img": "https://iservice.daqisoft.cn/Public/Home/images/newimages/footer_tab_mine@2x.png",
         "isTo": true,
         "id": 17
     }]

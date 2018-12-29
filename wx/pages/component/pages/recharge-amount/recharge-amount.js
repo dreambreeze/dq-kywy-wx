@@ -17,7 +17,7 @@ var openPageTime = 0;
 //跳转目标
 var jumpBack;
 //当前的充值金额规则组
-var amountIdx = 1;
+var amountIdx = 0;
 Page({
 
     /**
@@ -26,7 +26,11 @@ Page({
     data: {
         amountIdx: amountIdx,
         //当前要充值的会员卡
-        rechargeCard: rechargeCard
+        rechargeCard: rechargeCard,
+        //图片地址前缀,
+        showImgUrl: common.config.showImgUrl,
+        //2018-12版本默认图片地址前缀,
+        newDefaultImg: common.config.newDefaultImg,
     },
 
     /**
@@ -126,11 +130,13 @@ Page({
                                     break;
                                 }
                             }
+                            am = ruleArr[amountIdx].am,
+                            gift = ruleArr[amountIdx].gift,
                             _this.setData({
                                 rechargeCard: rechargeCard,
                                 recharRules: ruleArr,
                                 NewAccLevel: parseFloat(rechargeCard.ReNewLevel),
-                                amountIdx: amountIdx
+                                amountIdx: amountIdx,
                             });
                         }
                     } else {
@@ -183,13 +189,11 @@ Page({
      * 点击切换金额
      */
     changeAmount: function(e) {
-        // if (parseFloat(e.target.dataset.am) < parseFloat(rechargeCard.ReNewLevel)) {
-        //   return false;
-        // }
-
-        // am = e.target.dataset.am;
-        // gift = e.target.dataset.gift;
-
+        if (parseFloat(e.target.dataset.am) < parseFloat(rechargeCard.ReNewLevel)) {
+          return false;
+        }
+        am = e.target.dataset.am;
+        gift = e.target.dataset.gift;
         this.setData({
             amountIdx: e.currentTarget.dataset.index
         });

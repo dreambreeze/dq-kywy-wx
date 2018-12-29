@@ -32,7 +32,7 @@ page {
 }
 
 .d-cards, .d-cards scroll-view {
-    height: 910rpx;
+    height: 1000rpx;
 }
 
 .dc-select {

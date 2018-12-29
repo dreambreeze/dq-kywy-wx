@@ -152,7 +152,6 @@ Page({
                         }
                     }
                     if (!onlycashFlag) {
-                        console.log(onlycashFlag)
                         for (var i in res.data.info) {
                             payWayList.push(res.data.info[i])
                             //当拥有当前门店会员卡时默认支付方式为当前门店第一张卡

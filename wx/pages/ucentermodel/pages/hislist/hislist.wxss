@@ -152,6 +152,8 @@
     background: url('https://note.youdao.com/yws/api/personal/file/WEB6182dfcb119971af092946dd38adb198?method=download&shareKey=a472c49fa5a6c29aab860301503ce5e5') no-repeat center;
     background-size: 18rpx 10rpx;
     margin: 0 0 0 10rpx;
+    transform: rotate(0deg);
+    transition: transfrom 0.3s;
 }
 
 .cardinfo.active  .arrow {
@@ -159,12 +161,8 @@
 }
 
 .cards {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 130rpx;
     position: absolute;
+    top: 130rpx;
     background-color: #fff;
     z-index: 12;
     width: 100%;
@@ -172,18 +170,19 @@
     padding: 0 30rpx;
     color: #3b81d6;
     box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.2);
+    margin:0 -20rpx 0 0 ;
 }
 
 .cards .item {
-    width: 210rpx;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    float: left;
     height: 70rpx;
+    line-height: 70rpx;
+    text-align: center;
     border: 1rpx solid #3b81d6;
     border-radius: 8rpx;
-    flex-wrap: wrap;
-    margin: 0 30rpx 30rpx 30rpx;
+    margin: 0 0 30rpx 20rpx;
+    word-break:break-all;
+    padding:0 20rpx;
 }
 
 .cards .item.active {

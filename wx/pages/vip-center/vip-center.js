@@ -1,8 +1,6 @@
 var common = require('../../common.js');
 //获取应用实例
 const app = getApp();
-//会员卡数据
-var cmArr = [];
 
 var CardSwiperItem = 0;
 //当前卡的上一张卡
@@ -28,6 +26,8 @@ Page({
         funClassName: '',
         //图片地址前缀
         showImgUrl: common.config.showImgUrl,
+        //新版默认图片路径
+        newDefaultImg: common.config.newDefaultImg,
         //主机域名
         host: common.config.host,
         //无会员卡图片的默认会员卡图
@@ -41,22 +41,22 @@ Page({
         handList: [{
             url: "../component/pages/recharge/recharge",
             name: "会员充值",
-            src: '../../images/vip-recharge_icon@2x.png',
+            src: 'https://iservice.daqisoft.cn/Public/Home/images/newimages/vip-recharge_icon@2x.png',
             title: "会员充值"
         }, {
             url: "../component/pages/cardtrans/cardtrans",
             name: "会员卡转赠",
-            src: '../../images/vip-transfer_icon@2x.png',
+                src: 'https://iservice.daqisoft.cn/Public/Home/images/newimages/vip-transfer_icon@2x.png',
             title: "会员转赠"
         }, {
             url: "../component/pages/transrecord/transrecord",
             name: "转赠记录",
-            src: '../../images/vip-record_icon@2x.png',
+            src: 'https://iservice.daqisoft.cn/Public/Home/images/newimages/vip-record_icon@2x.png',
             title: "转赠记录"
         }, {
             url: "../component/pages/lqgiftcard/lqgiftcard",
             name: "领取转赠卡",
-            src: '../../images/receive_icon@2x.png',
+            src: 'https://iservice.daqisoft.cn/Public/Home/images/newimages/receive_icon@2x.png',
             title: "领取转赠"
         }],
         //折扣优惠列表
@@ -66,6 +66,7 @@ Page({
         //当前卡
         currentCard: null,
         selected: null,
+        selectedIndex:0,
         //轮播图参数
         indicatorDots: false,
         autoplay: true,
@@ -320,7 +321,7 @@ Page({
                     data: {
                         'authorizerId': app.globalData.authorizerId,
                         'openid': openid,
-                        'type': 1
+                        'type': 2
                     },
                     method: 'POST',
                     header: {
@@ -386,7 +387,7 @@ Page({
                 data: {
                     'authorizerId': app.globalData.authorizerId,
                     'openid': openid,
-                    'type': 1
+                    'type': 2
                 },
                 method: 'POST',
                 header: {
@@ -394,6 +395,7 @@ Page({
                 },
                 success: function(res) {
                     wx.hideLoading();
+                    console.log('cardUrls' + res.data)
                     if (res.statusCode == 200) {
                         if (res.data.status == 1) {
                             bannerList = res.data.info;
@@ -444,10 +446,11 @@ Page({
     //监听滑动顶部会员卡事件
     topCardChange: function(e) {
         CardSwiperItem = e.detail.current;
+        console.log(e)
         nextCardSwiperItem = (CardSwiperItem + 1);
         prevCardSwiperItem = (CardSwiperItem - 1);
         this.setData({
-            balance: (parseFloat(cmArr[e.detail.current].CardNum) + parseFloat(cmArr[e.detail.current].SendNum)).toFixed(0),
+            balance: (parseFloat(bannerList[e.detail.current].CardNum) + parseFloat(bannerList[e.detail.current].SendNum)).toFixed(0),
             cardIdx: CardSwiperItem,
             nextCardSwiperItem: nextCardSwiperItem,
             prevCardSwiperItem: prevCardSwiperItem
@@ -522,7 +525,7 @@ Page({
                     name: "优惠方案",
                     membershipTypeName: currentCard.MembershipTypeName,
                     money: ruleDetail[0],
-                    free:ruleDetail[1],
+                    free: ruleDetail[1],
                 }
                 if (ruleDetail[0] != 0 || ruleDetail[1] != 0) {
                     discountList.push(discountRule)
@@ -543,11 +546,12 @@ Page({
                 break
             }
         }
-        this.setDiscountList(currentCard)
         this.setData({
+            balance: (parseFloat(bannerList[e.detail.current].CardNum) + parseFloat(bannerList[e.detail.current].SendNum)).toFixed(0),
             selected: e.detail.currentItemId,
-            currentCard: currentCard
-        })
+            currentCard: currentCard,
+            selectedIndex:e.detail.current
+        });
     },
     /**
      * 监听页面分享  单聊不可获取shareTickets   群聊可以

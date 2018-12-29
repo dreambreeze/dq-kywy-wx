@@ -18,7 +18,7 @@ page{
 
 .apply-card {
     height: 100rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB2ac226ecbab38969930ede970a6fc48c?method=download&shareKey=513281fe8c52d6fb0047b385f1f201e5') no-repeat center center;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/apply-card.png') no-repeat center center;
     background-size: 64rpx;
 }
 /* 办卡下边选卡 */
@@ -53,13 +53,13 @@ page{
 }
 
 .address{
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB9385772b1ac4356f459170b01e3d69f2?method=download&shareKey=cf2f7587c0235b5e506a0e1de0dc5bda') no-repeat left 10rpx;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/index_address@2x.png') no-repeat left 10rpx;
     background-size: 20rpx;
     padding:0 0 0 30rpx;
 }
 
 .tel{
-    background: url('https://note.youdao.com/yws/api/personal/file/WEBb6c7e74a45b67253e4c9fd3cab156b6d?method=download&shareKey=1cd3ec2bc537f2c79b872edf18809935') no-repeat left 10rpx;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/index_tel@2x.png') no-repeat left 10rpx;
     background-size: 20rpx;
     padding:0 0 0 30rpx;
 }
@@ -68,6 +68,10 @@ page{
     position: relative;
     padding: 8rpx 0 0 0;
     margin: 0 0 30rpx;
+}
+
+.cards:last-child{
+    margin: 0 0 60rpx;
 }
 
 .card-type {
@@ -80,9 +84,10 @@ page{
     width: 133rpx;
     height: 74rpx;
     line-height: 55rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEBfdec213a57c79960a9f69847eab386cd?method=download&shareKey=03503e56337c37ff9beab76534de3f89') no-repeat center;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/label@2x.png') no-repeat center;
     background-size: 100%;
     padding: 0 0 0 10rpx;
+    overflow: hidden;
 }
 
 .is-fyr {
@@ -104,14 +109,20 @@ page{
     border-radius: 10rpx;
 }
 
-.docard-tips {
-    width:543rpx;
-    height: 50rpx;
+.rule-list{
+    width:543rpx!important;
+    height: 50rpx!important;
+    background: #265389;
+    margin:-10rpx auto 0!important;
+    border-radius: 25rpx!important;
+    line-height: 50rpx!important;
+}
+
+.rule-list .item {
+    width:543rpx!important;
+    height: 50rpx!important;
     line-height: 50rpx;
-    padding:0 25rpx;
     font-size: 22rpx;
     color: #fff;
-    margin:-10rpx auto 0;
-    background: #265389;
-    border-radius: 25rpx;
+    text-align: center;
 }

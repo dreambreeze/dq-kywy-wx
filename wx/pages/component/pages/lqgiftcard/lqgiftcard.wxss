@@ -1,6 +1,7 @@
 /* .contianer {
   background: #fff;
 } */
+
 /* 卡图片 */
 .card-box {
     height: 300rpx;
@@ -8,6 +9,13 @@
     background: url('https://note.youdao.com/yws/api/personal/file/WEB18806b97d9c5123256ee2a5a73ec6222?method=download&shareKey=2c42d11923842efcd03777d8be00138f') no-repeat;
     background-size: 100%;
     padding: 20rpx 0 0 0;
+}
+
+.none-tips{
+    font-size:30rpx;
+    color:#666;
+    line-height: 100rpx;
+    text-align: center;
 }
 
 .card-box image {

@@ -4,15 +4,17 @@
         <view class='swiper'>
             <!--banner轮播图 -->
             <swiper indicator-dots="{{indicatorDots}}" interval="{{interval}}" duration="{{duration}}" circular="true" previous-margin="160rpx" next-margin="160rpx" bindchange='bindchange' current-item-id="{{selected}}">
-                <swiper-item wx:for="{{bannerList}}" wx:key="item.AutoID" item-id="{{item.AutoID}}" class="slide-image {{item.AutoID==selected?'active':''}}">
+                <swiper-item wx:if='{{bannerList}}' wx:for="{{bannerList}}" wx:key="index" item-id="{{item.AutoID}}" class="slide-image {{index==selectedIndex?'active':''}}">
                     <text class="card-type">{{item.MembershipTypeName}}</text>
-                    <image src="{{item.PicUrl?showImgUrl+item.PicUrl :'../../images/vip-banner-card@2x.png'}}" lazy-load/>
+                    <image src="{{item.PicUrl?showImgUrl+item.PicUrl :cardPicUrl}}" lazy-load/>
                 </swiper-item>
             </swiper>
+            <!-- 暂无会员卡 -->
+            <view class='no-data' data-url="../component/pages/docard/docard" bindtap="jumpPage" wx:if='{{!bannerList}}'>暂无会员卡，立即开通 </view>
             <!-- 门店信息 -->
-            <view class='store-info'>
-                <view class='store-name'>店名：{{currentCard.ShopName}}</view>
-                <view class='store-address'>地址：{{currentCard.address}}</view>
+            <view class='store-info' wx:if='{{bannerList}}'>
+                <view class='store-name'>门店：{{currentCard.ShopName}}</view>
+                <view class='store-address'>卡余额：{{balance}}</view>
             </view>
         </view>
         <!-- 会员操作 -->
@@ -30,23 +32,6 @@
                 </block>
             </view>
         </view>
-        <!-- 会员折扣列表 -->
-        <view class='discount-list'>
-            <view class='title'>
-                <view class='line'></view>
-                <text>会员优惠方案 </text>
-                <view class='line'></view>
-            </view>
-            <view class="discount-box" wx:for="{{discountList}}" wx:key='index' wx:if="{{discountList.length>0 && index<6}}" data-url="{{item.url}}" data-funname="{{item.name}}" data-cardid='{{currentCard.AutoID}}' data-money='{{item.money}}' data-free= '{{item.free}}' bindtap="jumpPage">
-                <text>{{item.membershipTypeName}}</text>
-                <text>充{{item.money}}元</text>
-                <text>送{{item.free}}元</text>
-                <button>立即办理</button>
-            </view>
-            <view class='none-tips' wx:if='{{discountList.length == 0}}'>
-                <text>暂无优惠方案,敬请期待</text>
-            </view>
-        </view>
     </view>
     <!-- 导航公用模版 -->
     <template is="engin-nav" data="{{type:1,navArr: navTabBar,showImgUrl: showImgUrl}}" />
@@ -56,5 +41,4 @@
             <text>分享</text>
         </button>
     </view>
-
 </view>

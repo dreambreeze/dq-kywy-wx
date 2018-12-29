@@ -16,7 +16,7 @@
                         <view wx:if="{{shopInfo.shoptel != ''}}" class='tel' data-tel="{{shopInfo.shoptel}}" bindtap="callphone">电话：{{shopInfo.shoptel}}</view>
                     </view>
                 </block>
-                <scroll-view scroll-y enable-back-to-top style="height:{{dcSHeight}}px">
+                <scroll-view scroll-y enable-back-to-top>
                     <block wx:for="{{cardType}}" wx:key='index'>
                         <view class="cards" data-url="../../pages/recharge-amount/recharge-amount?cardno={{item.CardNo}}&shopno={{item.ShopNo}}" bindtap="jumpurl">
                             <view class="card-type">{{item.MembershipTypeName}}</view>

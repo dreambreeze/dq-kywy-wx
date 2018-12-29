@@ -25,10 +25,12 @@ Page({
      */
     data: {
         banner: banner,
-        maskDisplay: maskDisplay ,
+        maskDisplay: maskDisplay,
         couponmaskDisplay: 'hidden',
         //图片地址前缀
         showImgUrl: common.config.showImgUrl,
+        //2018-12版本默认图片地址前缀,
+        newDefaultImg: common.config.newDefaultImg,
         //导航tabBar
         navTabBar: common.config.navTabBar,
         //功能模块加载中
@@ -304,7 +306,7 @@ Page({
                 url: '/pages/component/pages/checkPrivilege/checkPrivilege?message=小程序使用权限已过期&notJump=1',
             });
         });
-        
+
 
         //检查是否已发券
         // common.sendCoupons(app.globalData.authorizerId,openid).catch(){
@@ -374,8 +376,7 @@ Page({
             _this.setData({
                 noticeList: noticeList
             })
-        }).catch(function(data) {
-        });
+        }).catch(function(data) {});
     },
     showNotice(e) {
         var noticeMsg = e.currentTarget.dataset.desc
@@ -447,7 +448,7 @@ Page({
             sharefrom = "button"
         }
         var shareObj = new Object
-    
+
         shareObj = {
             title: title,
             url: "pages/index/index",
@@ -510,15 +511,19 @@ Page({
                 title: '提示',
                 content: '门店标识与房号不存在，请扫描桌面二维码',
                 showCancel: true,
-                success: function (re) {
+                success: function(re) {
                     if (re.confirm) {
                         wx.scanCode({
                             onlyFromCamera: true,
-                            success: function (res) {
+                            success: function(res) {
                                 if (res.path) {
                                     try {
+                                        var path = decodeURIComponent(res.path).split("?")
+                                        var newpath = path[0]
+                                        var ShopNoRoomNo = path[1].substr(6, path[1].length - 1)
+                                        wx.setStorageSync("ShopNoRoomNo", ShopNoRoomNo)
                                         wx.reLaunch({
-                                            url: '/' + res.path +'&maskDisplay=block',
+                                            url: '/' + res.path + '&maskDisplay=block',
                                         });
                                     } catch (e) {
                                         wx.showModal({
@@ -535,7 +540,7 @@ Page({
                                     });
                                 }
                             },
-                            fail: function (res) {
+                            fail: function(res) {
                                 wx.showModal({
                                     title: '提示',
                                     content: '调起客户端扫码界面失败',
@@ -856,6 +861,10 @@ Page({
                             success: function(res) {
                                 if (res.path) {
                                     try {
+                                        var path = decodeURIComponent(res.path).split("?")
+                                        var newpath = path[0]
+                                        var ShopNoRoomNo = path[1].substr(6, path[1].length - 1)
+                                        wx.setStorageSync("ShopNoRoomNo", ShopNoRoomNo)
                                         wx.reLaunch({
                                             url: '/' + res.path,
                                         });
@@ -1124,6 +1133,10 @@ Page({
                                 success: function(res) {
                                     if (res.path) {
                                         try {
+                                            var path = decodeURIComponent(res.path).split("?")
+                                            var newpath = path[0]
+                                            var ShopNoRoomNo = path[1].substr(6, path[1].length - 1)
+                                            wx.setStorageSync("ShopNoRoomNo", ShopNoRoomNo)
                                             wx.reLaunch({
                                                 url: '/' + res.path,
                                             });
