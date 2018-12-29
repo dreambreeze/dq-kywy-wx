@@ -91,7 +91,7 @@ Page({
                 if (data === '未查询到拼团订单') {
                     wx.showModal({
                         title: '提示',
-                      content: data,
+                         content: '未查询到拼团订单',
                         showCancel: false,
                         complete: function(res) {
                             if (res.confirm) {

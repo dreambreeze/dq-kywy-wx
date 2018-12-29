@@ -1,3 +1,4 @@
+@import "/pages/common/lib/animate.wxss";
 .qrcode-content {
     padding: 30rpx;
 }
@@ -213,13 +214,13 @@
 }
 
 .qrcode-large-box image{
-    width:500rpx;
-    height:500rpx;
+    width:600rpx;
+    height:600rpx;
   }
 .qrcode-large-box {
     position: absolute;
-    top: 30%;
-    left: 125rpx;
+    top: 25%;
+    left: 75rpx;
     margin: 0 auto;
     display: flex;
     justify-content: center

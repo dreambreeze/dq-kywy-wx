@@ -4,17 +4,17 @@
       {{order[0].taskjson.BShopName}}
     </view>
     <view class='sc_content'>
-      <block wx:for='{{order[0].taskjson.arr}}' wx:key='id' wx:for-index="id" wx:for-item="item">
+      <block wx:for='{{order[0].taskjson.arr}}'  wx:for-index="id" wx:for-item="item">
       <view class='sc_list'>
         <view class='list_lt'>
-          <image src='{{fooddefpic}}'></image>
+          <image src='{{storeimg}}'></image>
           <text>{{item.ServiceItemName}}</text>
         </view>
         <view class='list_midden'>
           X{{item.ServiceNum}}
         </view>
         <view class='list_right'>
-          ￥{{item.RPrice == 0 ? '0.00' :item.RPrice}}
+          ￥{{item.RPrice}}
         </view>
         </view>
       </block>
@@ -68,3 +68,4 @@
 <!-- 返回首页按钮 -->
 <navigator class="back-home" url="/pages/index/index" hover-class="none" open-type="reLaunch">
 </navigator>
+<view wx:else class='tips-text'>加载中...</view>

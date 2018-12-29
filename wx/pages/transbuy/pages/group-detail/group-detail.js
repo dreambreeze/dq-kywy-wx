@@ -401,7 +401,8 @@ Page({
       wx.setStorageSync("existorder", existorder)
 
       ///根据openid  判断是否是同一人
-      var isorders = grproject.project[0].ordersData
+      // var isorders = grproject.project[0].ordersData
+      var isorders = that.data.ordersData
       for (var i in isorders) {
         if (isorders[i].openid == openid) {
           wx.showModal({

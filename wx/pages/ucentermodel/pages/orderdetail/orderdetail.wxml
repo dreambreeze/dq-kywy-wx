@@ -43,8 +43,6 @@
         <text>订单状态：</text>{{orderData.is_use == 1 ? '已消费' : '待消费...'}}</view>
       <view>
         <text>实付金额：</text>￥{{orderData.project_price}}</view>
-      <!-- <view>
-        <text>备注信息：</text>肩颈痛</view> -->
       <view>
         <text>订 单 号：</text>{{orderData.order_num}}</view>
       <view>
@@ -82,8 +80,8 @@
   </block>
 </view>
 <view class="mask" style="display:{{qrDisplay}}" bindtap="closeQrcode"></view>
-<view class="qrcode-large-box" style="display:{{qrDisplay}}">
-       <image src="{{orderData.qrcode_url}}" lazy-load ></image>
+<view class="qrcode-large-box  animatedSelf zoomIn" style="display:{{qrDisplay}}">
+       <image src="{{orderData.qrcode_url}}" lazy-load bindtap="closeQrcode"></image>
 </view>
 <!-- 返回首页按钮 -->
 <navigator class="back-home" url="/pages/index/index" hover-class="none" open-type="reLaunch">
