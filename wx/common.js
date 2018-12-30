@@ -476,7 +476,6 @@ function getRoomInfo(authorizerId, ShopNo, currPage, totalPage, autoid, category
 function checkingOrder(authorizerId, guid, orderType) {
     var p = new Promise(function(resolve, reject) {
         var openid = wx.getStorageSync('openid');
-
         wx.request({
             url: host + '/index.php/Api/Requestdata/getUserOrder',
             data: {

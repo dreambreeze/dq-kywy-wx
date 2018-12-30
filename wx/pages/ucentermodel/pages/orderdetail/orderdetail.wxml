@@ -16,7 +16,7 @@
     <view class="qrcode-box">
       <image src="{{orderData.qrcode_url}}" lazy-load bindtap="showLargeImg"></image>
 
-      <view class="sumption-tips">出示二维码消费</view>
+      <view class="sumption-tips" bindtap="showLargeImg">出示二维码消费</view>
       <view class="verify-code">{{orderData.order_num}}</view>
       <block wx:if="{{orderData.is_use == 1}}">
         <view class="useed"></view>
@@ -65,10 +65,10 @@
         {{orderData.address_detail ? orderData.address_detail : '未设置门店地址'}}
       </view>
       <view class="location" data-address="{{orderData.address_detail}}" data-sname="{{orderData.store_name}}" bindtap="location">{{distance}}
-        <image src="https://iservice.daqisoft.cn/Public/Home/images/location_icon_2.png" lazy-load></image>
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/newimages/index_address@2x.png" lazy-load></image>
       </view>
       <view class="telphone" data-tel="{{orderData.tel}}" bindtap="callphone">
-        <image src="https://iservice.daqisoft.cn/Public/Home/images/telphone_icon_1.png" lazy-load></image>
+        <image src="https://iservice.daqisoft.cn/Public/Home/images/newimages/index_tel@2x.png" lazy-load></image>
       </view>
     </view>
   </view>

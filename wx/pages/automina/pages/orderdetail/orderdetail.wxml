@@ -7,7 +7,7 @@
             <block wx:for='{{order[0].taskjson.arr}}' wx:for-index="id" wx:for-item="item">
                 <view class='sc_list'>
                     <view class='list_lt'>
-                        <image src='{{storeimg}}'></image>
+                        <image src='{{item.picurl?showImgUrl+item.picurl: fooddefpic}}'></image>
                         <text>{{item.ServiceItemName}}</text>
                     </view>
                     <view class='list_midden'>
@@ -23,22 +23,6 @@
             <view>共{{order[0].taskjson.Count}}件商品</view>
             <view class='ft_price'>实付:￥{{order[0].taskjson.PayMoney}}</view>
         </view>
-        <!-- <view class='shop-msg'>
-      <view class='sc_image'>
-        <image src="{{storeimg}}"> </image>
-      </view>
-      <view class='sc_message'>
-        <view class='mg_shopNmae'>{{order[0].taskjson.BShopName}}</view>
-      </view>
-    </view>
-    <view class='shop_QR'>
-      <view class='QR_img'>
-        <!-- 需要增加二维码图片 -->
-        <!-- <image src='/images/ewm@2x.png'></image>
-      </view>
-      <view class='QR_btn'>出示二维码消费</view>
-      <view class='QR_code'>{{order[0].mutexsign}}</view>
-    </view> -->
     </view>
 
     <view class='order-container'>
@@ -68,4 +52,3 @@
 <!-- 返回首页按钮 -->
 <navigator gator class="back-home" url="/pages/index/index" hover-class="none" open-type="reLaunch">
 </navigator>
-<view wx:else class='tips-text'>加载中...</view>

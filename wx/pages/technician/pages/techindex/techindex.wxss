@@ -55,14 +55,14 @@
 
 .star-label {
     position: absolute;
+    top:0;
     margin-left: -123rpx;
-    margin-top: -195rpx;
     color: #fff;
     font-size: 22rpx;
     text-align: center;
     width: 110rpx;
     line-height: 40rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEBe7c75ce14387e80b331aa6cd3ced5254?method=download&shareKey=c39315914c1f9a23789c3eabef48788f') no-repeat center;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/tech-star-label.png') no-repeat center;
     background-size: 100%;
 }
 
@@ -97,10 +97,11 @@
     width: 90rpx;
     line-height: 40rpx;
     color: #fff;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB1a243ae1a5f2b974b36e1a71ff42d1ab?method=download&shareKey=8856fd1ba20256c8913ca28566786bcc') no-repeat center;
+    background:linear-gradient(to right bottom,#ff7065,#ff3323);
     font-size: 26rpx;
     background-size: 100%;
     text-align: center;
+    border-radius: 20rpx;
 }
 
 .contact-tools {
@@ -135,7 +136,7 @@
     display: inline-block;
     width: 40rpx;
     height: 90rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEBa516da57a01247147f37437f62dee584?method=download&shareKey=cb8e52113991cd5c2cfdd5e2529efeec') no-repeat center;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/index_tel@2x.png') no-repeat center;
     background-size: 22rpx;
 }
 
@@ -186,7 +187,7 @@
 
 .tech-label {
     position: absolute;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB03c4c83e67de448e0b8e89deabdd826c?method=download&shareKey=8ecdc9a25e823139f46cb2ab13ecbf07') no-repeat center;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/tech-label.png') no-repeat center;
     background-size: 100%;
     width: 110rpx;
     line-height: 40rpx;
@@ -202,9 +203,6 @@
 }
 
 .tech-item .reserve-btn {
-    /* background: url('https://note.youdao.com/yws/api/personal/file/WEB1a243ae1a5f2b974b36e1a71ff42d1ab?method=download&shareKey=8856fd1ba20256c8913ca28566786bcc') no-repeat center; 
-    background-size:100%;
-    */
     background: #ffa03a;
     border-radius: 20rpx;
 }

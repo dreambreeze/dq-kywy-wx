@@ -3,8 +3,8 @@ var common = require('../../../../common.js');
 Page({
 
     data: {
+        showImgUrl:common.config.showImgUrl,
         toright: 'https://iservice.daqisoft.cn/Public/Home/images/amimgs/toright.png',
-        storeimg: 'https://note.youdao.com/yws/api/personal/file/WEBc8c0e20b2ee37d133bf603f7553a7d88?method=download&shareKey=abb65cb7492c620b90c2ec6e530136cf',
         fooddefpic: 'https://iservice.daqisoft.cn/Public/Home/images/fooddef.png',
         cart: {},
         goods: {},

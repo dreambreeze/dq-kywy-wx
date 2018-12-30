@@ -66,6 +66,12 @@ Page({
         wx.hideLoading()
         this.getDateArray(0, 0, 0)
     },
+    /**
+    * 页面展示事刷新数据
+    */
+    onShow() {
+        
+    },
     getDateArray: function(endDate, splitTime, count) {
         var that = this
         if (!endDate) {
@@ -495,5 +501,6 @@ Page({
                 showCancel: false
             })
         }
-    }
+    },
+   
 })

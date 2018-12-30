@@ -13,7 +13,7 @@
 
 .swiper {
     height: 340rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB4b5fc02bb93552bbb11e6d740d7bacd0?method=download&shareKey=ae0d2887000c971eb19f90d85d7f81f3') repeat-x;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/index_banner_back.png') repeat-x;
     background-size: auto 380rpx;
     padding: 0 0 40rpx;
     position: relative;
@@ -43,7 +43,7 @@
     display: inline-block;
     width: 40rpx;
     height: 40rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEBa516da57a01247147f37437f62dee584?method=download&shareKey=cb8e52113991cd5c2cfdd5e2529efeec') no-repeat center;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/index_tel@2x.png') no-repeat center;
     background-size: 22rpx;
 }
 

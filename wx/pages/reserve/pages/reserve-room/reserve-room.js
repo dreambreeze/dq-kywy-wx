@@ -36,7 +36,7 @@ var totalPage = 0;
 //加载状态
 var loadState = true;
 //房间类型数据
-var roomTypeRow;
+var roomTypeRow = [];
 //房间人数数据
 var roomNumRow;
 //当前选中房间人数数据
@@ -203,7 +203,7 @@ Page({
             }
         }).then(function() {
             //获取所有房间信息
-            common.getRoomInfo(app.globalData.authorizerId, locationStore[0].nodeid, currPage, totalPage, 0, roomTypeIdx, roomNumIdx).then(function(data) {
+            common.getRoomInfo(app.globalData.authorizerId, locationStore[0].nodeid, currPage, totalPage, 0, 0, roomNumIdx).then(function(data) {
                 wx.hideLoading();
                 if (data.info.length == 0) {
                     wx.showModal({
@@ -214,10 +214,7 @@ Page({
                     return false;
                 }
 
-                var rmda = wx.getStorageSync('roomStorage')
-                roomData = rmda ? rmda : data.info;
-
-
+                roomData = data.info
                 if (data.info.length < totalPage) {
                     loadState = false;
                     _this.setData({
@@ -258,7 +255,10 @@ Page({
                         if (res.data.status == 1) {
                             roomTypeRow = res.data.info.roomcate;
                             roomNumRow = res.data.info.roompnum;
-
+                            let allType = {
+                                autoid:0,
+                                roomscategoryname:'全部房型'
+                            }
                             _this.setData({
                                 roomTypeRow: roomTypeRow,
                                 roomNumRow: roomNumRow
@@ -361,9 +361,8 @@ Page({
         var idx = ev.currentTarget.dataset.id
         var roomData = this.data.roomData
         for (var i in roomData) {
-            roomData[i].selected = i == idx ? !roomData[i].selected : false;
+            roomData[i].selected = i == idx ? true : false;
         }
-        console.log(roomData)
         wx.setStorageSync('roomStorage', roomData)
         var phoneinfo = wx.getStorageSync("phoneinfo")
         if (phoneinfo.phone) {
@@ -394,22 +393,6 @@ Page({
         wx.navigateTo({
             url: '../room-detail/room-detail?id=' + id,
         });
-    },
-
-    /**
-     * 监听页面显示事件
-     */
-    onShow: function() {
-        var currPage = getCurrentPages();
-
-        var roomStorage = wx.getStorageSync('roomStorage');
-        if (roomStorage !== '') {
-            this.setData({
-                iconHide: 'display:block',
-                reserveBtnHide: 'display:none',
-                roomData: roomStorage
-            });
-        }
     },
 
     /**

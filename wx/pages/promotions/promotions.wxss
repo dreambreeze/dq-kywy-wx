@@ -32,7 +32,7 @@
     position: fixed;
     width: 90rpx;
     height: 90rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB0a8d688dfebe3fa997bd86e946ba34f0?method=download&shareKey=1b9ec96483f857d6c0a74ca3552b7fe2') no-repeat center;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/share@2x.png') no-repeat center;
     background-size: 90rpx;
     z-index: 2;
 }

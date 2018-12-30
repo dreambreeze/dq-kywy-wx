@@ -17,7 +17,7 @@
               bindtap='showLargeImg'
             ></image>
 
-            <view class="sumption-tips">出示二维码消费</view>
+            <view class="sumption-tips" bindtap='showLargeImg'>出示二维码消费</view>
             <view class="verify-code">{{project.orders[0].orderno}}</view>
             <block wx:if="{{project.orders[0].pstatus == 4}}">
                 <view class="useed"></view>

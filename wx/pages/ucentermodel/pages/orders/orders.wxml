@@ -15,7 +15,7 @@
         <!-- 办卡订单 -->
         <block wx:if="{{item.taskid == 1 || item.taskid == 2}}">
             <view class="order-item">
-                <view class="flex-wrp" catchtap="docardOrderdetail" data-guid="{{item.rguid}}">
+                <view class="flex-wrp" catchtap="docardOrderdetail" data-guid="{{item.rguid}}" data-type='{{item.taskid}}'>
                     <image src="{{item.picurl ? showImgUrl + item.picurl : cardPicUrl}}" lazy-load class="order-pic" mode="aspectFill"></image>
                     <view class="order-info">
                         <view class='order-left'></view>
@@ -132,7 +132,7 @@
         <block wx:elif="{{item.taskid == 5}}">
             <view class="order-item">
                 <view class="flex-wrp" catchtap="toOrderDetail" data-index="{{index}}" data-guid="{{item.rguid}}" data-taskid="{{item.taskid}}">
-                    <image src="https://note.youdao.com/yws/api/personal/file/WEB13623a585bc3bbb6117823480be33c97?method=download&shareKey=7afe24da77b4c14078e9f2479d18d0f8" lazy-load class="order-pic"></image>
+                    <image src="https://iservice.daqisoft.cn/Public/Home/images/newimages/reserve-icon.png" lazy-load class="order-pic"></image>
                     <view class="order-info">
                         <view class="name">预约</view>
                         <view class="type-name">下单时间：{{item.tasktime}}</view>
@@ -182,11 +182,11 @@
         <block wx:elif="{{item.orderType == 8}}">
             <view class="order-item">
                 <view class='flex-wrp' catchtap="toGroupOrderDetail" data-id="{{item.projectid}}" data-nodeid="{{item.pshopno}}" data-orderno="{{item.orderno}}">
-                    <image src="{{item.gspicurl ? showImgUrl + item.gspicurl : cardPicUrl}}" lazy-load class="order-pic" mode="aspectFill"></image>
+                    <image src="{{item.gspicurl ? showImgUrl+item.gspicurl : cardPicUrl}}" lazy-load class="order-pic" mode="aspectFill"></image>
                     <view class='order-info'>
                         <view class='name'>{{item.project?item.project:'拼团订单'}} </view>
-                        <view class='type-name primary-font'>拼团订单</view>
-                        <view class='type-name'>￥{{item.payprice}} </view>
+                        <view class='type-name'>下单时间：{{item.tasktime}}</view>
+                        <view class='type-name'>拼团订单：￥{{item.payprice}} </view>
                         <view class='type-name'>适用门店：{{item.canshopna?item.canshopna:'全国通用'}} </view>
                     </view>
                     <view class='order-status'>{{item.presult}}</view>
@@ -195,9 +195,9 @@
                     <button wx:if="{{item.pstatus == 1}}" class="primary-color" bindtap="toshare" data-pid="{{item.projectid}}" data-groupno="{{item.groupno}}" data-orderno="{{item.orderno}}" data-nodeid="{{item.pshopno}}">去分享</button>
                     <button wx:if="{{item.pstatus == 2}}" class="primary-color" data-qrcode="{{item.picurl}}" data-pname="{{item.project}}" data-price="{{item.payprice}}" data-orderno="{{item.orderno}}" catchtap="lijixiaofei">消费</button>
                     <block wx:if="{{item.pstatus == 4}}">
-                        <button bindtap="delOrderItem" data-id="{{item.id}}">删除</button>
-                        <button bindtap="againBuy" data-pid="{{item.projectid}}" data-nodeid="{{item.pshopno}}">再次购买</button>
-                        <button wx:if="{{item.is_assess == 0}}" bindtap="assess" data-pid="{{item.projectid}}" data-nodeid="{{item.pshopno}}" data-id="{{item.id}}">评价</button>
+                        <button bindtap="delGroupOrderItem" data-id="{{item.id}}">删除</button>
+                        <button bindtap="againBuyGroup" data-pid="{{item.projectid}}" data-nodeid="{{item.pshopno}}">再次购买</button>
+                        <button wx:if="{{item.is_assess == 0}}" bindtap="assessGroup" data-pid="{{item.projectid}}" data-nodeid="{{item.pshopno}}" data-id="{{item.id}}">评价</button>
                     </block>
                 </view>
             </view>
@@ -209,8 +209,8 @@
                     <image src="{{item.picurl ? showImgUrl + item.picurl : cardPicUrl}}" lazy-load class="order-pic" mode="aspectFill"></image>
                     <view class='order-info'>
                         <view class='name'>{{item.project_name?item.project_name:'团购订单'}} </view>
-                        <view class='type-name'>e团购订单</view>
-                        <view class='type-name'>￥{{item.project_price}} </view>
+                        <view class='type-name'>下单时间：{{item.tasktime}}</view>
+                        <view class='type-name'>e团购订单：￥{{item.project_price}} </view>
                         <view class='type-name'>适用门店：{{item.store_name?item.store_name:'全国通用'}} </view>
                     </view>
                     <view class='order-status'>{{item.is_use == '0' ? '待消费' : '已消费' }}</view>
@@ -218,9 +218,9 @@
                 <view class='order-handle'>
                     <button wx:if="{{item.is_use == 0}}" class="primary-color" data-qrcode="{{item.qrcode_url}}" data-pname="{{item.project_name}}" data-price="{{item.project_price}}" data-orderno="{{item.order_num}}" catchtap="lijixiaofei">消费</button>
                     <block wx:if="{{item.is_use == 1}}">
-                        <button bindtap="delOrderItem" data-id="{{item.id}}">删除</button>
-                        <button bindtap="againBuy" data-pid="{{item.pid}}" data-nodeid="{{item.nodeid}}">再次购买</button>
-                        <button wx:if="{{item.is_assess == 0}}" bindtap="assess" data-pid="{{item.pid}}" data-nodeid="{{item.nodeid}}" data-id="{{item.id}}">评价</button>
+                        <button bindtap="delEGroupOrderItem" data-id="{{item.id}}">删除</button>
+                        <button bindtap="againBuyEGroup" data-pid="{{item.pid}}" data-nodeid="{{item.nodeid}}">再次购买</button>
+                        <button wx:if="{{item.is_assess == 0}}" bindtap="assessEGroup" data-pid="{{item.pid}}" data-nodeid="{{item.nodeid}}" data-id="{{item.id}}">评价</button>
                     </block>
                 </view>
             </view>
@@ -236,7 +236,7 @@
     </view>
     <view class="qrcodes">
         <view class="qr-t">请出示二维码或券码</view>
-        <image src="{{showImgUrl+showQrcode.qrcode}}" mode="aspectFit"></image>
+        <image src="{{showQrcode.qrcode?showImgUrl+showQrcode.qrcode:''}}" mode="aspectFit"></image>
         <text class="coupon-num" space="nbsp" decode>{{showQrcode.orderno}}</text>
     </view>
 </view>

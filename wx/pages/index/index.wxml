@@ -208,7 +208,7 @@
 <view class="couponmask" style="visibility:{{couponmaskDisplay}}" bindtap="hidecouponmask"></view>
 <!-- 点击领券 -->
 <view class="coupon" bindtap='sendcoupon' style="visibility:{{couponmaskDisplay}}">
-    <image src='https://note.youdao.com/yws/api/personal/file/WEB4eb37b92b73ce723725624a21649ee13?method=download&shareKey=9d3157626a2633eda3b2d94de913c08b' lazy-load></image>
+    <image src='https://iservice.daqisoft.cn/Public/Home/images/newimages/redindex.png' lazy-load></image>
 </view>
 
 <view class="mask" wx:if="{{showNotice}}" bindtap='handleNotice'></view>

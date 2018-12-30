@@ -54,7 +54,7 @@ Page({
         //分类弹窗是否显示
         typeOrderDisplay: false,
         //二维码弹窗显隐
-        qrDisplay:'none',
+        qrDisplay: 'none',
         //弹窗数据
         showQrcode: showQrcode
     },
@@ -148,14 +148,14 @@ Page({
                     showCancel: false
                 });
             });
-        } else if (idx ==2){
+        } else if (idx == 2) {
             this.setData({
                 typeOrderDisplay: (typeclick == 1 ? true : false),
                 tIdx: idx,
                 topTypeHeight: (typeclick == 1 ? 'height: 176rpx;' : 'height: 86rpx;'),
                 typeclick: (typeclick == 1 ? 2 : 1)
             });
-        } else if (idx == 3){
+        } else if (idx == 3) {
             this.setData({
                 typeOrderDisplay: (typeclick == 1 ? true : false),
                 tIdx: 2,
@@ -250,7 +250,7 @@ Page({
     /**
      * 前往拼团订单详情
      */
-    toGroupOrderDetail(e){
+    toGroupOrderDetail(e) {
         var id = e.currentTarget.dataset.id;
         var orderno = e.currentTarget.dataset.orderno;
         var nodeid = e.currentTarget.dataset.nodeid + "#china";
@@ -262,25 +262,127 @@ Page({
     /**
      * 前往团购订单详情
      */
-    toEGroupOrderDetail(e){
+    toEGroupOrderDetail(e) {
         var id = e.currentTarget.dataset.id;
         wx.navigateTo({
             url: '/pages/ucentermodel/pages/orderdetail/orderdetail?id=' + id,
         });
     },
     /**
-     * 评价页
+     * 再次购买团购
      */
-    assess: function(e) {
+    againBuyEGroup: function(e) {
+        let pid = e.currentTarget.dataset.pid;
+        let nodeid = e.currentTarget.dataset.nodeid;
+        wx.navigateTo({
+            url: '/pages/transbuy/pages/project-detail/project-detail?pid=' + pid + '&nodeid=' + nodeid,
+        });
+    },
+    /**
+     * 再次购买拼团
+     */
+    againBuyGroup: function(e) {
+        let pid = e.currentTarget.dataset.pid;
+        let nodeid = e.currentTarget.dataset.nodeid;
+        nodeid += "#china"
+        wx.navigateTo({
+            url: '/pages/transbuy/pages/group-detail/group-detail?pid=' + pid + '&nodeid=' + nodeid,
+        });
+    },
+    /**
+     * 删除拼团订单
+     */
+    delGroupOrderItem: function(e) {
+        let id = e.currentTarget.dataset.id;
+        let _this = this;
+
+        wx.showModal({
+            title: '提示',
+            content: '确定要删除吗？',
+            success: function(res) {
+                if (res.confirm) {
+                    wx.showLoading({
+                        title: '加载中',
+                        mask: true
+                    });
+
+                    //用户openid
+                    let openid = wx.getStorageSync('openid');
+
+                    common.delEBuyItem(app.globalData.authorizerId, id).then(function(data) {
+                        wx.hideLoading();
+                        _this.refreshOrder()
+                    }).catch(function(data) {
+                        wx.hideLoading();
+                        wx.showModal({
+                            title: '提示',
+                            content: data,
+                            showCancel: false
+                        });
+                    });
+                }
+            }
+        })
+    },
+    /**
+     * 删除团购订单
+     */
+    delEGroupOrderItem: function(e) {
+        let id = e.currentTarget.dataset.id;
+        let _this = this;
+
+        wx.showModal({
+            title: '提示',
+            content: '确定要删除吗？',
+            success: function(res) {
+                if (res.confirm) {
+                    wx.showLoading({
+                        title: '加载中',
+                        mask: true
+                    });
+                    _this = _this
+                    //用户openid
+                    let openid = wx.getStorageSync('openid');
+
+                    common.delEBuyItem(app.globalData.authorizerId, id).then(function(data) {
+                        wx.hideLoading();
+                        _this.refreshOrder()
+                    }).catch(function(data) {
+                        wx.hideLoading();
+                        wx.showModal({
+                            title: '提示',
+                            content: data,
+                            showCancel: false
+                        });
+                    });
+                }
+            }
+        })
+    },
+    /**
+     * 评价拼团
+     */
+    assessGroup(e) {
         let pid = e.currentTarget.dataset.pid;
         let nodeid = e.currentTarget.dataset.nodeid + "#china";
         let id = e.currentTarget.dataset.id;
 
         wx.navigateTo({
-            url: '../group-assess/group-assess?pid=' + pid + '&nodeid=' + nodeid + '&id=' + id,
+            url: '/pages/transbuy/pages/group-assess/group-assess?pid=' + pid + '&nodeid=' + nodeid + '&id=' + id,
         });
     },
+    /**
+     * 评价团购
+     */
+    assessEGroup: function(e) {
+        let pid = e.currentTarget.dataset.pid;
+        let nodeid = e.currentTarget.dataset.nodeid;
+        let id = e.currentTarget.dataset.id;
 
+        wx.navigateTo({
+            url: '/pages/transbuy/pages/assess/assess?pid=' + pid + '&nodeid=' + nodeid + '&id=' + id,
+        });
+    },
     /**
      * 关闭二维码
      */
@@ -329,8 +431,9 @@ Page({
      */
     docardOrderdetail: function(e) {
         var guid = e.currentTarget.dataset.guid;
+        var orderType = e.currentTarget.dataset.type
         wx.navigateTo({
-            url: '../docardOrderdetail/docardOrderdetail?type=1&guid=' + guid,
+            url: '../docardOrderdetail/docardOrderdetail?type=' + orderType + '&guid=' + guid,
         });
     },
 
@@ -526,6 +629,40 @@ Page({
             })
         }
 
-    }
+    },
+
+    /**
+     * 刷新订单
+     */
+    refreshOrder() {
+        let _this = this
+        common.checkingOrder(app.globalData.authorizerId, '', orderType).then(function(data) {
+            wx.hideLoading();
+            if (data.info.length > 0) {
+                _this.setData({
+                    orderData: data.info
+                });
+            } else {
+                _this.setData({
+                    orderData: ''
+                });
+                wx.showModal({
+                    title: '提示',
+                    content: '没有查询到订单信息',
+                    showCancel: false
+                });
+            }
+        }).catch(function(data) {
+            wx.hideLoading();
+            _this.setData({
+                orderData: ''
+            });
+            wx.showModal({
+                title: '提示',
+                content: data,
+                showCancel: false
+            });
+        });
+    },
 
 })

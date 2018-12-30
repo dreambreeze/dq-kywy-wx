@@ -11,6 +11,8 @@ Page({
     data: {
         //图片地址前缀
         showImgUrl: common.config.showImgUrl,
+        //2018-12版本默认图片地址前缀,
+        newDefaultImg: common.config.newDefaultImg,
         //导航tabBar
         navTabBar: common.config.navTabBar,
         //功能模块加载中

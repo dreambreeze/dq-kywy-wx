@@ -152,16 +152,16 @@ Page({
                         }
                     }
                     if (!onlycashFlag) {
-                        for (var i in res.data.info) {
+                        for (let i in res.data.info) {
                             payWayList.push(res.data.info[i])
                             //当拥有当前门店会员卡时默认支付方式为当前门店第一张卡
                             if (this.data.pyselected == 0 &&
                                 res.data.info[i].ShopNo == shopno) {
                                 this.setData({
-                                    pyselected : i
+                                    pyselected: (parseInt(i)+1)
                                 })
                                 //更换选中会员卡
-                                this.selectPayWay(i, 2)
+                                this.selectPayWay((parseInt(i) + 1), 2)
                             }
                         }
                     }
@@ -217,7 +217,6 @@ Page({
         } else {
             paywayindex = e.currentTarget.dataset.autoid;
         }
-        console.log('paywayindex' + paywayindex)
         var that = this
         that.setData({
             pyselected: paywayindex,
@@ -512,6 +511,7 @@ Page({
         for (var id in cart.list) {
             if (goods[id].selected) {
                 var taskjsonchild = new Object
+                taskjsonchild.picurl = goods[id].picurl[0] ? goods[id].picurl[0] : ""
                 taskjsonchild.ServiceItemNo = id
                 taskjsonchild.ServiceItemName = goods[id].serviceitemname
                 sname += taskjsonchild.ServiceItemName + ","

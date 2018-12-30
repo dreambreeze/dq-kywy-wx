@@ -7,7 +7,7 @@ page {
 
 .top-box {
     padding: 30rpx 0 30rpx 30rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB6d7c50b65c79b7e2b471f20a03e593ed?method=download&shareKey=7c1a73dc748c4cbebe32772433e45290') repeat-x;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/tech_top_back.png') repeat-x;
     background-size: auto 410rpx;
     overflow: hidden;
 }
@@ -58,7 +58,7 @@ page {
     display: inline-block;
     width: 32rpx;
     height: 50rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB330ac01fc77c8bb32e84cb60c35ead81?method=download&shareKey=b31d7812be7686a3519fb7fdaeadc73f') no-repeat left center;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/index_address@2x.png') no-repeat left center;
     background-size: 22rpx;
 }
 
@@ -73,7 +73,7 @@ page {
     display: inline-block;
     width: 42rpx;
     height: 50rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB6afc3b4cf94f96b65bd55ba80fa769fe?method=download&shareKey=84ac7821f01df125479b4b2748f6fe93') no-repeat center;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/index_nav@2x.png') no-repeat center;
     background-size: 22rpx;
 }
 
@@ -81,7 +81,7 @@ page {
     display: inline-block;
     width: 40rpx;
     height: 50rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEBa516da57a01247147f37437f62dee584?method=download&shareKey=cb8e52113991cd5c2cfdd5e2529efeec') no-repeat center;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/index_tel@2x.png') no-repeat center;
     background-size: 22rpx;
 }
 
@@ -158,7 +158,7 @@ page {
     position: absolute;
     width: 77rpx;
     height: 77rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB7167980f4ad25116419fd6135582e826?method=download&shareKey=c3ec7a5f06171f640c5e01b72ad69fb5') no-repeat top left;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/room-label.png') no-repeat top left;
     background-size: 77rpx;
 }
 

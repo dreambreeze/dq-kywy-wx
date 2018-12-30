@@ -6,7 +6,7 @@ page {
 
 .top-box {
     padding: 30rpx 0 30rpx 30rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB6d7c50b65c79b7e2b471f20a03e593ed?method=download&shareKey=7c1a73dc748c4cbebe32772433e45290') repeat-x;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/index_banner_back.png') repeat-x;
     background-size: auto 410rpx;
     overflow: hidden;
 }
@@ -57,7 +57,7 @@ page {
     display: inline-block;
     width: 32rpx;
     height: 50rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB330ac01fc77c8bb32e84cb60c35ead81?method=download&shareKey=b31d7812be7686a3519fb7fdaeadc73f') no-repeat left center;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/index_address@2x.png') no-repeat left center;
     background-size: 22rpx;
 }
 
@@ -72,7 +72,7 @@ page {
     display: inline-block;
     width: 42rpx;
     height: 50rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB6afc3b4cf94f96b65bd55ba80fa769fe?method=download&shareKey=84ac7821f01df125479b4b2748f6fe93') no-repeat center;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/tech_top_back.png') no-repeat center;
     background-size: 22rpx;
 }
 
@@ -80,12 +80,12 @@ page {
     display: inline-block;
     width: 40rpx;
     height: 50rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEBa516da57a01247147f37437f62dee584?method=download&shareKey=cb8e52113991cd5c2cfdd5e2529efeec') no-repeat center;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/index_tel@2x.png') no-repeat center;
     background-size: 22rpx;
 }
 
 .info-box {
-    width:690rpx;
+    width: 690rpx;
     margin: 30rpx auto;
     padding: 30rpx;
     border-radius: 10rpx;
@@ -129,28 +129,32 @@ page {
     margin:5rpx 0 5rpx 15rpx;
 }
 
-.remarks-box{
-    font-size:26rpx;
-    color:#999;
+.remarks-box {
+    font-size: 26rpx;
+    color: #999;
     position: relative;
-    margin-bottom:120rpx;
+    margin-bottom: 120rpx;
 }
 
-.remarks-box label{
-    font-size:26rpx;
-    color:#333;
+.remarks-box label {
+    font-size: 26rpx;
+    color: #333;
     line-height: 30rpx;
 }
 
-.remarks-box textarea{
-    padding:20rpx 0;
+.remarks-box textarea {
+    padding: 20rpx 0;
     line-height: 1.5;
 }
 
-.input-limit{
+.tech_box{
+    padding: 0 0 0 5rpx;
+}
+
+.input-limit {
     position: absolute;
-    right:30rpx;
-    bottom:30rpx;
+    right: 30rpx;
+    bottom: 30rpx;
 }
 
 /* 确认下单按钮 */
@@ -161,78 +165,79 @@ page {
     width: 100%;
     text-align: center;
     background: #3b81d6;
-    color:#fff;
+    color: #fff;
     line-height: 90rpx;
-    font-size:40rpx;
+    font-size: 40rpx;
+    z-index: 2;
 }
 
 /* 时间选择弹窗 */
-.time-window{
+
+.time-window {
     position: fix;
-    bottom:0;
-    right:0;
-    left:0;
-    top:0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
 }
 
-.time-window .mask{
+.time-window .mask {
     position: fix;
-    bottom:0;
-    right:0;
-    left:0;
-    top:0;
-    z-index:1;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+    z-index: 1;
     background: rgba(0, 0, 0, 0.6);
 }
 
-.time-window .window-box{
+.time-window .window-box {
     position: fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    z-index:2;
-    padding:30rpx;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding: 30rpx;
     background: #fff;
-    font-size:26rpx;
+    font-size: 26rpx;
 }
 
-.time-list{
+.time-list {
     overflow: hidden;
 }
 
-.time-item{
+.time-item {
     float: left;
-    width:200rpx;
+    width: 200rpx;
     line-height: 68rpx;
-    margin:30rpx 31rpx 0 0;
-    font-size:26rpx;
+    margin: 30rpx 31rpx 0 0;
+    font-size: 26rpx;
     text-align: center;
     border-radius: 10rpx;
-    color:#3b81d6;
-    border:#3b81d6 1rpx solid;
+    color: #3b81d6;
+    border: #3b81d6 1rpx solid;
 }
 
-.time-item.active{
+.time-item.active {
     background: #3b81d6;
-    color:#fff;
+    color: #fff;
 }
 
-.close-btn{
-    width:60rpx;
+.close-btn {
+    width: 60rpx;
     height: 60rpx;
     position: absolute;
-    left:50%;
+    left: 50%;
     transform: translateX(-50%);
-    top:-90rpx;
+    top: -90rpx;
 }
 
-.sure-select{
+.sure-select {
     line-height: 70rpx;
-    color:#fff;
+    color: #fff;
     background: #3b81d6;
-    margin:30rpx 0 10rpx;
-    padding:0;
+    margin: 30rpx 0 10rpx;
+    padding: 0;
     border-radius: 35rpx;
     text-align: center;
 }
-

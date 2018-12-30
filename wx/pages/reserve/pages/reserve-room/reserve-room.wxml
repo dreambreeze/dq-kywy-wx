@@ -23,7 +23,7 @@
             <view class="type-item {{roomNumIdx == -1 ? 'active' : ''}}" bindtap="changeRoomNum" data-idx="-1">全部房间</view>
             <view class="type-item {{roomNumIdx == item.bednum ? 'active' : ''}}" wx:for="{{roomNumRow}}" bindtap="changeRoomNum" wx:key="index" data-idx="{{item.bednum}}">{{item.bednum}}人间</view>
         </view>
-        <view class='more-type-btn' data-height='{{numTypeBoxHeight}}' data-box='num' bindtap='changeBoxHeight'>更多</view>
+        <view class='more-type-btn' wx:if='{{roomNumRow.length > 5}}' data-height='{{numTypeBoxHeight}}' data-box='num' bindtap='changeBoxHeight'>更多</view>
     </view>
     <!-- 房间项目类型切换 -->
     <view class='type-box room-project-type' style='height:{{projectTypeBoxHeight}};max-height:{{projectTypeBoxMaxHeight}};'>
