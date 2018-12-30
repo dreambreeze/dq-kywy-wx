@@ -994,7 +994,6 @@ Page({
      */
     onShow: function() {
         let _this = this;
-        // this.getfmoduleList();
 
         var test = wx.getStorageSync('test');
         if (test) {

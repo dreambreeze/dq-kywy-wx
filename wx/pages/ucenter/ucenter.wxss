@@ -6,7 +6,7 @@
 
 .user-info-box {
     height: 300rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEB0c8d4ac4e445ca63f4d5062f46d4e59d?method=download&shareKey=6f4519c41520987fd5db9a4e6218c83d') no-repeat center;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/user-center-back@2x.png') no-repeat center;
     background-size: 100% 300rpx;
     padding:60rpx 0 0 0;
     text-align: center;
@@ -52,7 +52,7 @@
     content:'';
     width: 30rpx;
     height:40rpx;
-    background: url('https://note.youdao.com/yws/api/personal/file/WEBe4ae25a47243af801a798cef7a19fea3?method=download&shareKey=30209ee4701693214d4b5fd91eb82de9') no-repeat center;
+    background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/right-arrow@2x.png') no-repeat center;
     background-size:12rpx 18rpx;
     position: absolute;
     right:0;

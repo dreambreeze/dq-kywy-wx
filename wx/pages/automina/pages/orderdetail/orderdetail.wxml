@@ -1,29 +1,29 @@
 <view class='amcontainer'>
-  <view class='shop-container'>
-    <view class='sc_head'>
-      {{order[0].taskjson.BShopName}}
-    </view>
-    <view class='sc_content'>
-      <block wx:for='{{order[0].taskjson.arr}}'  wx:for-index="id" wx:for-item="item">
-      <view class='sc_list'>
-        <view class='list_lt'>
-          <image src='{{storeimg}}'></image>
-          <text>{{item.ServiceItemName}}</text>
+    <view class='shop-container'>
+        <view class='sc_head'>
+            {{order[0].taskjson.BShopName}}
         </view>
-        <view class='list_midden'>
-          X{{item.ServiceNum}}
+        <view class='sc_content'>
+            <block wx:for='{{order[0].taskjson.arr}}' wx:for-index="id" wx:for-item="item">
+                <view class='sc_list'>
+                    <view class='list_lt'>
+                        <image src='{{storeimg}}'></image>
+                        <text>{{item.ServiceItemName}}</text>
+                    </view>
+                    <view class='list_midden'>
+                        X{{item.ServiceNum}}
+                    </view>
+                    <view class='list_right'>
+                        ￥{{item.RPrice}}
+                    </view>
+                </view>
+            </block>
         </view>
-        <view class='list_right'>
-          ￥{{item.RPrice}}
+        <view class='sc_foot'>
+            <view>共{{order[0].taskjson.Count}}件商品</view>
+            <view class='ft_price'>实付:￥{{order[0].taskjson.PayMoney}}</view>
         </view>
-        </view>
-      </block>
-    </view>
-    <view class='sc_foot'>
-      <view>共{{order[0].taskjson.Count}}件商品</view>
-      <view class='ft_price'>实付:￥{{order[0].taskjson.PayMoney}}</view>
-    </view>
-    <!-- <view class='shop-msg'>
+        <!-- <view class='shop-msg'>
       <view class='sc_image'>
         <image src="{{storeimg}}"> </image>
       </view>
@@ -39,33 +39,33 @@
       <view class='QR_btn'>出示二维码消费</view>
       <view class='QR_code'>{{order[0].mutexsign}}</view>
     </view> -->
-  </view>
-
-  <view class='order-container'>
-    <view class='o-head'>订单信息</view>
-    <view class='o-content'>
-      <view class='o-left'>
-        <view>订单状态：</view>
-        <view>手机号码：</view>
-        <view>订单类型：</view>
-        <view>订单号：</view>
-        <view>支付方式：</view>
-        <view>下单时间：</view>
-        <view>订单备注：</view>
-      </view>
-      <view class='o-right'>
-        <view>{{order[0].taskresult?order[0].taskresult:"正在处理..."}}</view>
-        <view>{{order[0].phoneno}}</view>
-        <view>{{order[0].taskname}}</view>
-        <view>{{order[0].mutexsign}}</view>
-        <view>{{order[0].taskjson.PayType?"会员卡支付":"微信支付"}}</view>
-        <view>{{order[0].tasktime}}</view>
-        <view>{{order[0].taskjson.Note?order[0].taskjson.Note:'无'}}</view>
-      </view>
     </view>
-  </view>
+
+    <view class='order-container'>
+        <view class='o-head'>订单信息</view>
+        <view class='o-content'>
+            <view class='o-left'>
+                <view>订单状态：</view>
+                <view>手机号码：</view>
+                <view>订单类型：</view>
+                <view>订单号：</view>
+                <view>支付方式：</view>
+                <view>下单时间：</view>
+                <view>订单备注：</view>
+            </view>
+            <view class='o-right'>
+                <view>{{order[0].taskresult?order[0].taskresult:"正在处理..."}}</view>
+                <view>{{order[0].phoneno}}</view>
+                <view>{{order[0].taskname}}</view>
+                <view>{{order[0].mutexsign}}</view>
+                <view>{{order[0].taskjson.PayType?"会员卡支付":"微信支付"}}</view>
+                <view>{{order[0].tasktime}}</view>
+                <view>{{order[0].taskjson.Note?order[0].taskjson.Note:'无'}}</view>
+            </view>
+        </view>
+    </view>
 </view>
 <!-- 返回首页按钮 -->
-<navigator class="back-home" url="/pages/index/index" hover-class="none" open-type="reLaunch">
+<navigator gator class="back-home" url="/pages/index/index" hover-class="none" open-type="reLaunch">
 </navigator>
 <view wx:else class='tips-text'>加载中...</view>

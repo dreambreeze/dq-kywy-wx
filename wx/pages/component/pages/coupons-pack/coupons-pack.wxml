@@ -12,9 +12,9 @@
             <view class="empty-coupon">
                 <icon type="warn" size="80" color="#d6d6d6"></icon>
                 <view class="empty-t">暂无优惠券</view>
-                <view class="empty-btn">
+                <!-- <view class="empty-btn">
                     <navigator url="../coupons/coupons" open-type="redirect" hover-class="none">去领取</navigator>
-                </view>
+                </view> -->
             </view>
         </block>
     </view>
