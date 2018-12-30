@@ -68,4 +68,3 @@
 <!-- 返回首页按钮 -->
 <navigator class="back-home" url="/pages/index/index" hover-class="none" open-type="reLaunch">
 </navigator>
-<view wx:else class='tips-text'>加载中...</view>
