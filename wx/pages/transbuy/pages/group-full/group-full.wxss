@@ -5,7 +5,6 @@
 } 
 .head {
   background-color: #fff;
-  height: 260rpx;
   margin: 24rpx 34rpx;
   border-radius: 20rpx;
 }
@@ -14,8 +13,8 @@
   justify-content: center;
 }
 .h-img image{
-  width: 126rpx;
-  height: 138rpx;
+  width: 420rpx;
+  height: 230rpx;
 }
 .head .h-desc{
   color: #333;
@@ -56,9 +55,10 @@
   color: #666;
   margin: 0 40rpx ;
 }
+
 .nav view:last-child{
-   border: 1rpx solid #caa876;
-   background-color: #e6e3d6;
+   background: #3b81d6;
+   color:#fff;
 }
 
 .ad-box{

@@ -6,6 +6,11 @@
     "pages/promotions/promotions",
     "pages/webView/webView"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于获取最近的门店为您服务"
+    }
+  },
   "subPackages": [
     {
       "root": "pages/component/",

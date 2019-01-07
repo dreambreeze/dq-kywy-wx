@@ -194,7 +194,7 @@
                 <view class='order-handle'>
                     <button wx:if="{{item.pstatus == 1}}" class="primary-color" bindtap="toshare" data-pid="{{item.projectid}}" data-groupno="{{item.groupno}}" data-orderno="{{item.orderno}}" data-nodeid="{{item.pshopno}}">去分享</button>
                     <button wx:if="{{item.pstatus == 2}}" class="primary-color" data-qrcode="{{item.picurl}}" data-pname="{{item.project}}" data-price="{{item.payprice}}" data-orderno="{{item.orderno}}" catchtap="lijixiaofei">消费</button>
-                    <block wx:if="{{item.pstatus == 4}}">
+                    <block wx:if="{{item.pstatus == 4 || item.pstatus == 0}}">
                         <button bindtap="delGroupOrderItem" data-id="{{item.id}}">删除</button>
                         <button bindtap="againBuyGroup" data-pid="{{item.projectid}}" data-nodeid="{{item.pshopno}}">再次购买</button>
                         <button wx:if="{{item.is_assess == 0}}" bindtap="assessGroup" data-pid="{{item.projectid}}" data-nodeid="{{item.pshopno}}" data-id="{{item.id}}">评价</button>

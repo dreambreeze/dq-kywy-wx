@@ -976,6 +976,49 @@ function getEBuyDetail(authorizerId, openid, id) {
     return p;
 }
 
+
+
+/**
+ * 删除拼团订单
+ */
+function delGroupItem(authorizerId, id) {
+    let p = new Promise(function (resolve, reject) {
+        wx.request({
+            url: host + '/index.php/Api/AutoMina/delGroupOrder',
+            data: {
+                'authorizerId': authorizerId,
+                'id': id
+            },
+            method: 'POST',
+            header: {
+                'content-type': 'application/json'
+            },
+            success: function (res) {
+                //返回成功
+                if (res.statusCode == 200) {
+                    if (res.data.status == 1) {
+                        resolve(res.data);
+                    } else {
+                        reject(res.data.info);
+                    }
+                } else {
+                    reject('请求失败');
+                }
+            },
+            fail: function (res) {
+                if (res.errMsg == 'request:fail timeout') {
+                    reject('请求超时');
+                } else {
+                    reject('请求失败');
+                }
+            }
+        });
+    });
+
+    return p;
+}
+
+
 /**
  * 删除E团购项目订单
  */
@@ -1753,3 +1796,4 @@ module.exports.sendCoupon = sendCoupon;
 module.exports.isVip = isVip;
 module.exports.location = location;
 module.exports.groupRefound = groupRefound;
+module.exports.delGroupItem = delGroupItem;

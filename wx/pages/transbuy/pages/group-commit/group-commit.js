@@ -294,16 +294,12 @@ Page({
                           wx.hideLoading();
                           that.setData({ paystatus: true })
                           let nums = that.data.project.nums
-                          let num =that.data.num
-                          if (nums!=2&&num == 1 && buytype!=1){//满团
+                        
+                          if (trres.data.isfull==1 && buytype!=1){//满团
                             wx.redirectTo({
                               url: '../group-full/group-full?orderno=' + orderNO + '&groupno=' + trres.data.groupno + '&pid=' + project.id + '&nodeid=' + store.nodeid
                             })
-                          } else if (nums == 2 && num == 0 && buytype != 1) {//2人团满团
-                            wx.redirectTo({
-                              url: '../group-full/group-full?orderno=' + orderNO + '&groupno=' + trres.data.groupno + '&pid=' + project.id + '&nodeid=' + store.nodeid
-                            })
-                          }else{//不满图需要分享的 与 单独购买的
+                          } else{//不满图需要分享的 与 单独购买的
                             wx.redirectTo({
                               url: '../group-paycomplete/group-paycomplete?orderno=' + orderNO + '&groupno=' + trres.data.groupno + '&pid=' + project.id + '&nodeid=' + store.nodeid + '&buytype=' + buytype
                             })

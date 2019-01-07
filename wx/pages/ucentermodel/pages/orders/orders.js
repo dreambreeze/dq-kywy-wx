@@ -309,7 +309,7 @@ Page({
                     //用户openid
                     let openid = wx.getStorageSync('openid');
 
-                    common.delEBuyItem(app.globalData.authorizerId, id).then(function(data) {
+                    common.delGroupItem(app.globalData.authorizerId, id).then(function(data) {
                         wx.hideLoading();
                         _this.refreshOrder()
                     }).catch(function(data) {
