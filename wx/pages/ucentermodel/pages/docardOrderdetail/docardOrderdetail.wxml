@@ -43,7 +43,7 @@
     </view>
   </view>
 
-  <view class='o-content' wx:if="{{orderData[0].taskid == 4 && orderData[0].srctype}}">
+  <view class='o-content' wx:if="{{orderData[0].taskid == 4 }}">
     <view class='o-left'>
       <view>订单类型：</view>
       <view>订单状态：</view>
@@ -59,7 +59,7 @@
       <view>{{orderData[0].taskstate == 1?'接收中':orderData[0].taskstate == 2?'会员卡被退回':orderData[0].taskstate == 3?'超时未领取被退回':'其他'}}</view>
       <view>{{orderData[0].cardno}}</view>
       <view>{{orderData[0].mysqldocardinfo.szphone}}</view>
-      <view>{{orderData[0].guid}}</view>
+      <view>{{orderData[0].rguid}}</view>
       <view>{{orderData[0].tasktime}}</view>
       <view>{{orderData[0].synctime}}</view>
       <view>{{order[0].taskresult?order[0].taskresult:'无'}}</view>

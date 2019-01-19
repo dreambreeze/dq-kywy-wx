@@ -85,6 +85,9 @@ page {
     background: url('https://note.youdao.com/yws/api/personal/file/WEBfdec213a57c79960a9f69847eab386cd?method=download&shareKey=03503e56337c37ff9beab76534de3f89') no-repeat center;
     background-size: 100%;
     padding: 0 0 0 10rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .is-fyr {

@@ -31,13 +31,13 @@ Page({
         qqmapsdk = new QQMapWX({
             key: common.config.QQMapWXKey
         });
-
+        console.log(option)
         wx.showLoading({
             title: '加载中',
             mask: true
         });
         //查询办卡订单详情
-        if (option.type == 1 || option.type == 2) {
+        if (option.type == 1 || option.type == 2 || option.type == 4) {
             common.checkingOrder(app.globalData.authorizerId, option.guid, option.type).then(function(data) {
                 wx.hideLoading();
                 if (!data.info) {

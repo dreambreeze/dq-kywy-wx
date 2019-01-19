@@ -26,7 +26,9 @@ Page({
         cardPicUrl: common.config.cardPicUrl,
         //所有卡类型
         cardType: cardType,
-        selectCardDisplay: 'display:none;'
+        selectCardDisplay: 'display:none;',
+        //卡图片
+        payWayList: [],
     },
 
     /**
@@ -50,11 +52,6 @@ Page({
 
         ShopNo = 'DQT02';
         BusinessNo = '201812050001';
-
-        // wx.showModal({
-        //   title: '参数',
-        //   content: decodeURIComponent(options.scene)
-        // });
 
         if (!ShopNo || !BusinessNo) {
             wx.showModal({
@@ -94,6 +91,14 @@ Page({
                 return false;
             });
         }
+
+        this.loaddata('/index.php/Api/AutoBase/getMMVipCard', {
+            "authorizerId": app.globalData.authorizerId,
+            "type": "2",
+            "openid": wx.getStorageSync("openid"),
+            "isstoresort": 0,
+            "shopno": ShopNo
+        }, 1)
 
         clearInterval(openidTime);
         openidTime = setInterval(function() {
@@ -166,9 +171,9 @@ Page({
                         });
 
                         _this.setData({
-                            cardType: cardType,
-                            checkoutCard: checkoutCard,
-                            selectCard: selectCard
+                            cardType: [],
+                            checkoutCard: null,
+                            selectCard: []
                         });
                     });
                 }).catch(function(data) {
@@ -188,7 +193,139 @@ Page({
         }, 800);
 
     },
+    /* 加载数据 */
+    loaddata: function (url, data, operate) {
+        wx.showLoading({
+            title: '加载中...',
+            mask: true
+        })
+        var that = this
+        new Promise(function (resolve, reject) {
+            wx.request({
+                url: common.config.host + url,
+                data: data,
+                method: 'POST',
+                header: {
+                    'content-type': 'application/json'
+                },
+                success: function (res) {
+                    //resolve(res, operate)
+                    that.dealdata(res, operate)
+                },
+                fail: function (res) {
+                    wx.hideLoading();
+                    if (res.errMsg == 'request:fail timeout') {
+                        wx.showModal({
+                            title: '提示',
+                            content: '请求超时',
+                            showCancel: false
+                        });
+                    } else {
+                        wx.showModal({
+                            title: '提示',
+                            content: '网络连接失败，请检查您的网络',
+                            showCancel: false
+                        });
+                    }
+                }
+            });
+        });
+    },
 
+    /* 处理加载过来的数据
+      res   成功的数据   operate   加载  1-加载会员卡信息   2-加载会员卡项目优惠信息
+    */
+    dealdata: function (res, operate) {
+        switch (operate) {
+            case 1:
+                if (res.data.status == 1) {
+                    //初始付款方式
+                    var payWayList = [{
+                        AutoID: -1,
+                        MembershipTypeName: '微信支付',
+                        pic: 'icon-aui-icon-weichat'
+                    }]
+                    var store = wx.getStorageSync("store")
+                    var shopno = store['request_id'].split("#")[0]
+                    var cart = this.data.cart
+                    var shopgoods = this.data.goods
+                    let onlycashFlag = true;
+
+
+                    for (var i in res.data.info) {
+                        payWayList.push(res.data.info[i])
+                    }
+
+                    this.setData({
+                        payWayList: payWayList
+                    })
+
+                    //选中默认结算商品
+                    this.passiveSelectAll()
+
+                    //待付款商品列表的商品只包含微信支付的商品时不更改默认支付方式
+                    for (var id in cart.list) {
+                        if (shopgoods[id].selected && shopgoods[id].onlycash != 1) {
+                            onlycashFlag = false
+                            break
+                        }
+                    }
+                    if (!onlycashFlag) {
+                        for (let i in res.data.info) {
+                            payWayList.push(res.data.info[i])
+                            //当拥有当前门店会员卡时默认支付方式为当前门店第一张卡
+                            if (this.data.pyselected == 0 &&
+                                res.data.info[i].ShopNo == shopno) {
+                                this.setData({
+                                    pyselected: (parseInt(i) + 1)
+                                })
+                                //更换选中会员卡
+                                this.selectPayWay((parseInt(i) + 1), 2)
+                            }
+                        }
+                    }
+                } else {
+                    wx.showToast({
+                        icon: "none",
+                        title: '未查询到适用本店的会员卡！',
+                    })
+                }
+                break
+            case 2:
+                // 被动全选商品
+                this.passiveSelectAll()
+
+                var cart = this.data.cart
+                var goods = res.data.iteminfo
+                var shopgoods = this.data.goods
+
+                var count = 0
+                var total = 0
+
+                for (var id in cart.list) {
+                    var cartinfo = new Object;
+                    // count += cart.list[id];  计算请求会员折扣后的购物车数据
+                    if (shopgoods[id].selected && shopgoods[id].onlycash != 1) {
+                        total += (goods[id].BasePrice * cart.list[id]);
+                        goods[id].BasePrice = parseFloat(goods[id].BasePrice)
+                    }
+                }
+                cart.iteminfo = goods
+
+                total = parseFloat((total).toFixed(2))
+
+                cart.total = total;
+
+                this.setData({
+                    cart: cart,
+                })
+                break
+            case 3: //提交订单
+                this.dealAfterOrder(res)
+                break
+        }
+        wx.hideLoading()
+    },
     /**
      * 获取当前用户所有卡类型
      */
@@ -317,7 +454,7 @@ Page({
                 need: need,
                 bsname: data.bsname,
                 selectCardDisplay: 'display:none;',
-                checkoutCard: checkoutCard,
+                checkoutCard: null,
                 offer_amount: data.offer_amount
             });
 

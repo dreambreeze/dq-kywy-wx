@@ -71,7 +71,7 @@
         <!-- 会员卡转赠订单 -->
         <block wx:if="{{item.taskid == 4 && item.srctype}}">
             <view class="order-item">
-                <view class="flex-wrp" catchtap="docardOrderdetail" data-guid="{{item.rguid}}">
+                <view class="flex-wrp" catchtap="docardOrderdetail" data-type='{{item.taskid}}'   data-guid="{{item.rguid}}">
                     <image src="{{item.picurl ? showImgUrl + item.picurl : cardPicUrl}}" lazy-load class="order-pic"></image>
                     <view class="order-info">
                         <view class="name">{{item.membershiptypename}}</view>
@@ -101,7 +101,7 @@
         <!-- 会员卡转赠订单 -->
         <block wx:if="{{item.taskid == 4 && !item.srctype}}">
             <view class="order-item">
-                <view class="flex-wrp" catchtap="docardOrderdetail" data-guid="{{item.rguid}}">
+                <view class="flex-wrp" catchtap="docardOrderdetail" data-type='{{item.taskid}}' data-guid="{{item.rguid}}">
                     <image src="{{item.picurl ? showImgUrl + item.picurl : cardPicUrl}}" lazy-load class="order-pic"></image>
                     <view class="order-info">
                         <view class="name">{{item.membershiptypename}}</view>
@@ -197,7 +197,7 @@
                     <block wx:if="{{item.pstatus == 4 || item.pstatus == 0}}">
                         <button bindtap="delGroupOrderItem" data-id="{{item.id}}">删除</button>
                         <button bindtap="againBuyGroup" data-pid="{{item.projectid}}" data-nodeid="{{item.pshopno}}">再次购买</button>
-                        <button wx:if="{{item.is_assess == 0}}" bindtap="assessGroup" data-pid="{{item.projectid}}" data-nodeid="{{item.pshopno}}" data-id="{{item.id}}">评价</button>
+                        <button wx:if="{{item.is_assess == 0 && item.pstatus == 4}}" bindtap="assessGroup" data-pid="{{item.projectid}}" data-nodeid="{{item.pshopno}}" data-id="{{item.id}}">评价</button>
                     </block>
                 </view>
             </view>

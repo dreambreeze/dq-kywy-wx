@@ -215,3 +215,45 @@
   background: url(https://iservice.daqisoft.cn/Public/Home/images/arrowright1.png) no-repeat;
   background-size: contain;
 }
+
+/*选择支付方式 start */
+
+.select-payway {
+    display: flex;
+    justify-content: space-between;
+    height: 90rpx;
+    line-height: 90rpx;
+    padding: 0 30rpx;
+    font-size: 28rpx;
+    color: #333;
+}
+
+.select-payway .ssrt {
+    padding: 0 10rpx 0 32rpx;
+    line-height: 90rpx;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.ssrt .typeIcon {
+    text-align: center;
+    font-size: 40rpx;
+    line-height: 90rpx;
+    color: #07af12;
+}
+
+.ssrt .rt_type {
+    text-align: center;
+    font-size: 30rpx;
+    padding: 0 10rpx;
+}
+
+.ssrt .sw_rt {
+    text-align: center;
+    line-height: 90rpx;
+    font-size: 26rpx;
+}
+
+/*选择支付方式end  */

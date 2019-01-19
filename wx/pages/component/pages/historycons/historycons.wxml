@@ -27,8 +27,22 @@
                 <text>￥{{need}}</text>
             </view>
         </view>
+        <!--选择支付方式  -->
+        <view class='select-payway'>
+            <view class='ssway'>支付方式</view>
+            <view class='ssrt' bindtap='showPayWay'>
+                <block wx:if="{{payWayList[pyselected].PicUrl}}">
+                    <image src='{{showImgUrl+payWayList[pyselected].PicUrl}}' class="pwl-img"></image>
+                </block>
+                <block wx:elif="{{payWayList[pyselected].pic}}">
+                    <view class='iconfont {{payWayList[pyselected].pic}} pwl-typeIcon'></view>
+                </block>
+                <text class='rt_type'>{{payWayList[pyselected].MembershipTypeName}}</text>
+                <text class='iconfont icon-right sw_rt'></text>
+            </view>
+        </view>
         <!-- 选择卡 -->
-        <view class="switching" bindtap="switching" wx:if="{{checkoutCard}}">
+        <!-- <view class="switching" bindtap="switching" wx:if="{{checkoutCard}}">
             <image src="{{checkoutCard.PicUrl == '' ? cardPicUrl : checkoutCard.PicUrl}}"></image>
             <view class="current-cardtype">{{checkoutCard.MembershipTypeName}}</view>
             <text>余额：{{checkoutCard.Balance}}</text>
@@ -36,9 +50,9 @@
                 <text style="margin-left:15rpx;">授信额：{{checkoutCard.AuthMoney}}</text>
             </block>
             <view class="right-scissors"></view>
-        </view>
-
-        <view wx:if="{{checkoutCard}}" class="btn" bindtap="nowPay">确认付款</view>
+        </view> -->
+        <!-- 确认付款 -->
+        <view class="btn" bindtap="nowPay">确认付款</view>
     </view>
 </view>
 
@@ -50,7 +64,6 @@
         <view class="balance">余额：{{selectCard.Balance}}</view>
         <view class="carry" bindtap="carry">确定</view>
     </view>
-
     <picker-view indicator-style="height: 134px;" style="width: 100%; height: 596rpx;" class="picker-view" bindchange="bindChange">
         <picker-view-column>
             <image wx:for="{{cardType}}" src="{{!item.PicUrl ? cardPicUrl : item.PicUrl}}" class="pay-cardimg"></image>
