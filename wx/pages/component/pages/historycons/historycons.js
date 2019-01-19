@@ -48,8 +48,8 @@ Page({
         // ShopNo = optionArr[0].split('=')[1];
         // BusinessNo = optionArr[1].split('=')[1];
 
-        ShopNo = 'TLM02';
-        BusinessNo = '201804270010';
+        ShopNo = 'DQT02';
+        BusinessNo = '201812050001';
 
         // wx.showModal({
         //   title: '参数',

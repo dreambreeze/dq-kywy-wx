@@ -281,6 +281,9 @@
     color: #343434;
     text-align: left;
     margin: 10rpx 0 0 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .group-discount-list text:nth-of-type(2) {

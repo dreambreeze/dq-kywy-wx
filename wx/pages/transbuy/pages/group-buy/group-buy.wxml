@@ -50,8 +50,8 @@
                                 <view class='project-length'>{{item.project_time}}分钟</view>
                             </view>
                             <view class='flex-wrap'>
-                                <view class='discount-price'>￥{{item.discount_price}}</view>
-                                <view class='shop-price'>￥{{item.shop_price}}</view>
+                                <view class='discount-price'>￥{{item.shop_price}}</view>
+                                <view class='shop-price'>￥{{item.discount_price}}</view>
                             </view>
                         </view>
                     </navigator>

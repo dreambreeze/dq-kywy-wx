@@ -85,16 +85,16 @@
 }
 
 .btn{
-  margin: 100rpx auto 228rpx;
+  margin: 40rpx auto 0;
   width: 220rpx;
   height: 82rpx;
   line-height: 82rpx;
   text-align: center;
-  background-color: #ffd161;
+  background-color: #2b81d6;
   font-size: 30rpx;
   font-weight: 500;
   border-radius: 15rpx;
-  color: #2b2b2b;
+  color: #fff;
 }
 
 .mask{
@@ -134,7 +134,7 @@
 .balance{
   flex: 3;
   font-size: 24rpx;
-  color: #d3bb98;
+  color: #2d81b6;
 }
 
 .carry{
@@ -177,7 +177,7 @@
   padding: 20rpx 0;
   border-top: 1rpx solid #d4d1d3;
   border-bottom: 1rpx solid #d4d1d3;
-  margin-top: 100rpx;
+  margin-top: 20rpx;
   position: relative;
   line-height:1;
 }
@@ -200,7 +200,7 @@
 
 .switching text{
   display: inline-block;
-  color: #d3bb98;
+  color: #2b81d6;
   font-size: 24rpx;
   font-weight: normal;
 }

@@ -55,14 +55,13 @@
     color: #656565;
     border-radius: 10rpx;
     font-size: 22rpx;
+    max-width:441rpx;
 }
 
 .address{
     flex:1;
-    display: flex;
+    display: flex; 
 }
-
-
 
 .address text:nth-of-type(1) {
     flex: 1;
@@ -70,6 +69,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    max-width: 198rpx;
 }
 
 
@@ -124,6 +124,9 @@
 .project-name{
     font-size:22rpx;
     color:#333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .project-length{
