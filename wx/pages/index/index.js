@@ -39,6 +39,7 @@ Page({
         autoplay: true,
         interval: 2500,
         duration: 500,
+        showoa: false,
         selected: 1,
         bannerList: {},
         banner: [{
@@ -101,6 +102,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+    
+        console.log(options)
+
         var locationData = wx.getStorageSync('currentReserveStore');
         if (locationData && undefined != locationData[0].nodeid) {
             this.setData({
@@ -112,6 +116,9 @@ Page({
         this.getBannerList();
         this.getProject();
         this.getGroupList();
+
+        
+
 
         //查看是否呼叫服务
         maskDisplay = options.maskDisplay
@@ -181,7 +188,7 @@ Page({
                         couponmaskDisplay: 'hidden',
                     })
                 })
-                common.getUInfo('names,phone', app.globalData.authorizerId, openid).then(function(data) {
+                common.getUInfo('names,phone,unionId', app.globalData.authorizerId, openid).then(function(data) {
                     wx.hideLoading();
                     wx.setStorageSync("phoneinfo", data.info)
                 }).catch(function(data) {
@@ -200,7 +207,7 @@ Page({
                 });
             });
         } else {
-            common.getUInfo('names,phone', app.globalData.authorizerId, openid).then(function(data) {
+          common.getUInfo('names,phone,unionId', app.globalData.authorizerId, openid).then(function(data) {
                 wx.hideLoading();
 
                 wx.setStorageSync("phoneinfo", data.info)
@@ -297,6 +304,14 @@ Page({
             }
         });
 
+      console.log(sceneStr)
+      let showoast = wx.getStorageSync('showoa') == 1 ? 1 : 2
+      var unionid = wx.getStorageSync('phoneinfo').unionid ? wx.getStorageSync('phoneinfo').unionid : ''
+      if (showoast == 2 && unionid == '' ) {
+        this.setData({
+          showoa: true
+        })
+      }
 
         //检查是否有需要退单的拼团
         common.groupRefound(app.globalData.authorizerId);
@@ -394,7 +409,7 @@ Page({
     //获取团购优惠
     getProject() {
         let _this = this;
-        common.getProject(app.globalData.authorizerId, '', '', '', '', '').then(function(data) {
+        common.getProject(app.globalData.authorizerId, '', '', '', '1').then(function(data) {
             let projectArr = [];
             for (let i = 0; i < data.info.length; i++) {
                 for (let j = 0; j < data.info[i].project.length; j++) {
@@ -992,9 +1007,9 @@ Page({
     /**
      * 监听页面显示
      */
-    onShow: function() {
+  onShow: function () {
+     
         let _this = this;
-
         var test = wx.getStorageSync('test');
         if (test) {
             wx.navigateTo({
@@ -1247,6 +1262,33 @@ Page({
                 couponmaskDisplay: 'hidden',
             });
         });
+    },
+
+  //公众号关注组件 
+  bindload(e) {
+    var that = this
+    
+    if (wx.getStorageSync('showoa')==1){
+      that.setData({
+        showoa: false
+      })
     }
+
+  },
+  binderror(e) {
+    console.log(e)
+    if (e.detail.status != 0) {
+      this.setData({
+        showoa: false
+      })
+    }
+  },
+
+  close(e) {
+    wx.setStorageSync('showoa', 1);
+    this.setData({
+      showoa: false
+    })
+  }
 
 })

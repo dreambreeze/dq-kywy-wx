@@ -415,9 +415,6 @@ Page({
 
         }
 
-        // var grproject = that.data.storeProject[0].project[0]
-
-
         if (buytype == 1 && grproject.project[0].issingle == 0) {
             wx.showModal({
                 title: '提示',

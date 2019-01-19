@@ -511,7 +511,8 @@ Page({
         for (var id in cart.list) {
             if (goods[id].selected) {
                 var taskjsonchild = new Object
-                taskjsonchild.picurl = goods[id].picurl[0] ? goods[id].picurl[0] : ""
+                
+                taskjsonchild.picurl = goods[id].picurl ? goods[id].picurl[0] : ""
                 taskjsonchild.ServiceItemNo = id
                 taskjsonchild.ServiceItemName = goods[id].serviceitemname
                 sname += taskjsonchild.ServiceItemName + ","

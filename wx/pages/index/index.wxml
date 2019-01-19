@@ -1,6 +1,12 @@
 <import src="../common/engin-nav.wxml" />
 <!-- html字符串 转文本  -->
 <import src="../../wxParse/wxParse.wxml" />
+
+<view  wx:if="{{showoa}}"   >
+  <view class='close' bindtap='close'>×</view>
+  <official-account bindload='bindload' binderror="binderror"></official-account>
+</view>
+  
 <view class="container" style="min-height:{{minHeight}}">
     <!--banner轮播图 -->
     <view class='swiper'>
