@@ -491,8 +491,6 @@ Page({
         var m = five_date.getMinutes() < 10 ? "0" + five_date.getMinutes() : five_date.getMinutes();
 
         var preTime = h + ':' + m;
-        // const timstamp = Date.parse(new Date()) / 1000;
-        // var orderNO = timstamp + '' + Math.ceil(Math.random() * (9999 - 1000) + 1000)//随机数1000-9999 保持4位数
         this.setData({
             MutexSign: orderNO
         })
@@ -552,9 +550,6 @@ Page({
             taskjson.PayType = 0
             //this.wechatPay(e)
             taskjson.SignNo = signno //微信支付商户单号
-
-
-
         }
         taskjson.BShopNo = shopno //业务门店标识
         taskjson.BShopName = that.data.store['store_name'] //业务门店名称

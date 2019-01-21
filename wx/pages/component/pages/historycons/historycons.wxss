@@ -1,219 +1,217 @@
 .content {
-  color: #f2eded;
-  padding: 44rpx 28rpx;
+    color: #f2eded;
+    padding: 44rpx 28rpx;
 }
 
 .bill-box {
-  background-color: #efeff3;
-  padding: 46rpx 40rpx;
-  box-shadow: 0 2rpx 20rpx rgba(0, 0, 0, 0.2);
+    background-color: #efeff3;
+    padding: 46rpx 40rpx;
+    box-shadow: 0 2rpx 20rpx rgba(0, 0, 0, 0.2);
 }
 
 .bill-title {
-  font-size: 30rpx;
-  color: #2b2b2b;
-  text-align: center;
-  font-weight: 500;
-  margin-bottom: 40rpx;
+    font-size: 30rpx;
+    color: #2b2b2b;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 40rpx;
 }
 
-.bill-stitle{
-  border-bottom: 1rpx solid #d4d1d3;
-  padding: 14rpx 0;
+.bill-stitle {
+    border-bottom: 1rpx solid #d4d1d3;
+    padding: 14rpx 0;
 }
 
-.room-no
-,.con-bills{
-  font-size: 22rpx;
-  color: #2b2b2b;
-  font-weight: 400;
-  line-height: 1;
+.room-no, .con-bills {
+    font-size: 22rpx;
+    color: #2b2b2b;
+    font-weight: 400;
+    line-height: 1;
 }
 
-.room-no{
-  width: 30%;
+.room-no {
+    width: 30%;
 }
 
-.con-bills{
-  width: 70%;
-  text-align: right;
+.con-bills {
+    width: 70%;
+    text-align: right;
 }
 
-.column-name view{
-  line-height: 1;
-  padding: 26rpx 0 35rpx;
-  font-size: 24rpx;
-  color: #646464;
+.column-name view {
+    line-height: 1;
+    padding: 26rpx 0 35rpx;
+    font-size: 24rpx;
+    color: #646464;
 }
 
-.bill-con view{
-  line-height: 1;
-  padding-bottom: 35rpx;
-  font-size: 24rpx;
-  color: #7a7a7b;
+.bill-con view {
+    line-height: 1;
+    padding-bottom: 35rpx;
+    font-size: 24rpx;
+    color: #7a7a7b;
 }
 
-.pname{
-  width: 30%;
+.pname {
+    width: 30%;
 }
 
-.work-no
-,.number
-,.amount
-,.need{
-  flex: 4;
+.work-no, .number, .amount, .need {
+    flex: 4;
 }
 
-.tosum-up{
-  border-top: 1rpx solid #d4d1d3;
-  color: #2b2b2b;
-  text-align: right;
+.tosum-up {
+    padding: 15rpx 0 0 0;
+    border-top: 1rpx solid #d4d1d3;
+    color: #2b2b2b;
+    text-align: right;
+    font-size: 26rpx;
 }
 
-.offer{
-  margin-top: 35rpx;
-  font-size: 26rpx;
+.tosum-up .flex-warp{
+    display: flex;
+    padding:10px 0 0 0;
 }
 
-.need-topay{
-  margin-top: 35rpx;
-  font-size: 30rpx;
+.tosum-up .flex-warp > text{
+    display: block;
+    flex:1;
 }
 
-.need-topay text{
-  color: #e80000;
+.tosum-up .flex-warp > text:first-child{
+    text-align: left;
 }
 
-.btn{
-  margin: 40rpx auto 0;
-  width: 220rpx;
-  height: 82rpx;
-  line-height: 82rpx;
-  text-align: center;
-  background-color: #2b81d6;
-  font-size: 30rpx;
-  font-weight: 500;
-  border-radius: 15rpx;
-  color: #fff;
+.tosum-up .flex-warp > text:last-child{
+    text-align: right;
 }
 
-.mask{
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 99;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.4);
+.tosum-up .red-font {
+    color: #e80000;
 }
 
-.select-card{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 999;
-  width: 100%;
-  height: 692rpx;
-  background-color: #fff;
+.btn {
+    margin: 40rpx auto 0;
+    width: 220rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    text-align: center;
+    background-color: #2b81d6;
+    font-size: 30rpx;
+    font-weight: 500;
+    border-radius: 35rpx;
+    color: #fff;
 }
 
-.select-title{
-  height: 96rpx;
-  line-height: 96rpx;
-  border-bottom: 1rpx solid #eee;
-  text-align: center;
+.mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
-.recharge{
-  flex: 2;
-  font-size: 38rpx;
-  color: #2b2b2b;
-  font-weight: 400
+.select-card {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 692rpx;
+    background-color: #fff;
 }
 
-.balance{
-  flex: 3;
-  font-size: 24rpx;
-  color: #2d81b6;
+.select-title {
+    height: 96rpx;
+    line-height: 96rpx;
+    border-bottom: 1rpx solid #eee;
+    text-align: center;
 }
 
-.carry{
-  flex: 2;
-  font-size: 40rpx;
-  color: #2b2b2b;
-  font-weight: 500
+.balance {
+    flex: 3;
+    font-size: 24rpx;
+    color: #2d81b6;
 }
 
-.picker-view{
-  position: relative;
+.carry {
+    flex: 2;
+    font-size: 40rpx;
+    color: #2b2b2b;
+    font-weight: 500;
 }
 
-.card-type
-,.card-no{
-  position: absolute;
-  /* font-size: 28rpx; */
-  color: #000;
+.picker-view {
+    position: relative;
 }
 
-.card-type{
-  top: 30rpx;
-  left: 20rpx;
+.card-type, .card-no {
+    position: absolute;
+    /* font-size: 28rpx; */
+    color: #000;
 }
 
-.card-no{
-  top: 90rpx;
-  left: 20rpx;
+.card-type {
+    top: 30rpx;
+    left: 20rpx;
 }
 
-.pay-cardimg{
-  width: 450rpx;
-  height: 124px !important;
-  display: block;
-  margin:0 auto;
-  padding: 5px 0;
+.card-no {
+    top: 90rpx;
+    left: 20rpx;
 }
 
-.switching{
-  padding: 20rpx 0;
-  border-top: 1rpx solid #d4d1d3;
-  border-bottom: 1rpx solid #d4d1d3;
-  margin-top: 20rpx;
-  position: relative;
-  line-height:1;
+.pay-cardimg {
+    width: 450rpx;
+    height: 124px !important;
+    display: block;
+    margin: 0 auto;
+    padding: 5px 0;
 }
 
-.switching image{
-  width: 62rpx;
-  height: 38rpx;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 26rpx;
+.switching {
+    padding: 20rpx 0;
+    border-top: 1rpx solid #d4d1d3;
+    border-bottom: 1rpx solid #d4d1d3;
+    margin-top: 20rpx;
+    position: relative;
+    line-height: 1;
 }
 
-.current-cardtype{
-  display: inline-block;
-  color: #2b2b2b;
-  font-size: 26rpx;
-  vertical-align: middle;
-  margin-right: 15rpx;
+.switching image {
+    width: 62rpx;
+    height: 38rpx;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 26rpx;
 }
 
-.switching text{
-  display: inline-block;
-  color: #2b81d6;
-  font-size: 24rpx;
-  font-weight: normal;
+.current-cardtype {
+    display: inline-block;
+    color: #2b2b2b;
+    font-size: 26rpx;
+    vertical-align: middle;
+    margin-right: 15rpx;
 }
 
-.right-scissors{
-  position: absolute;
-  right: 26rpx;
-  top: 32rpx;
-  color: #2b2b2b;
-  width: 20rpx;
-  height: 28rpx;
-  background: url(https://iservice.daqisoft.cn/Public/Home/images/arrowright1.png) no-repeat;
-  background-size: contain;
+.switching text {
+    display: inline-block;
+    color: #2b81d6;
+    font-size: 24rpx;
+    font-weight: normal;
+}
+
+.right-scissors {
+    position: absolute;
+    right: 26rpx;
+    top: 32rpx;
+    color: #2b2b2b;
+    width: 20rpx;
+    height: 28rpx;
+    background: url(https://iservice.daqisoft.cn/Public/Home/images/arrowright1.png) no-repeat;
+    background-size: contain;
 }
 
 /*选择支付方式 start */
@@ -221,16 +219,18 @@
 .select-payway {
     display: flex;
     justify-content: space-between;
-    height: 90rpx;
-    line-height: 90rpx;
-    padding: 0 30rpx;
-    font-size: 28rpx;
+    line-height: 60rpx;
+    padding: 10rpx 0;
+    margin: 25rpx 0 0 0;
+    font-size: 26rpx;
     color: #333;
+    border-top: 1px solid #d4d1d3;
+    border-bottom: 1px solid #d4d1d3;
 }
 
 .select-payway .ssrt {
     padding: 0 10rpx 0 32rpx;
-    line-height: 90rpx;
+    line-height: 60rpx;
     text-align: center;
     display: flex;
     flex-direction: row;
@@ -240,20 +240,127 @@
 .ssrt .typeIcon {
     text-align: center;
     font-size: 40rpx;
-    line-height: 90rpx;
+    line-height: 60rpx;
     color: #07af12;
 }
 
 .ssrt .rt_type {
     text-align: center;
-    font-size: 30rpx;
     padding: 0 10rpx;
+}
+
+.ssrt .balance {
+    text-align: center;
+    padding: 0 10rpx;
+    font-size: 26rpx;
 }
 
 .ssrt .sw_rt {
     text-align: center;
-    line-height: 90rpx;
-    font-size: 26rpx;
+    line-height: 60rpx;
 }
 
 /*选择支付方式end  */
+
+/*选择支付方式 ing */
+
+.payway, .payway .mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.payway .list {
+    position: fixed;
+    left: 0;
+    bottom: 0rpx;
+    width: 100%;
+    background: #fff;
+    padding: 0rpx 30rpx 30rpx;
+    z-index: 99;
+}
+
+.pw-list-box{
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.list .head {
+    width: 100%;
+    height: 90rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+
+
+.h_ltIcon {
+    position: absolute;
+    left: 30rpx;
+    size: 18rpx;
+    color: #333;
+}
+
+.pw_list {
+    height: 95rpx;
+    line-height: 95rpx;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1rpx solid rgba(0, 0, 0, 0.1);
+}
+
+.pwl-lt {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.pwl-lt .recharge{
+    font-size: 24rpx;
+    font-weight: 400;
+    margin: 0 10rpx;
+    background: #2b81d6;
+    color:#fff;
+    line-height: 50rpx;
+    padding: 0 25rpx;
+    text-align: center;
+    border-radius: 35rpx;
+    border:10rpx solid transparent;
+    box-sizing: border-box;
+    background-clip: padding-box;
+}
+
+.pwl-typeIcon {
+    font-size: 60rpx;
+    color: #07af12;
+}
+
+.pwl-img {
+    width: 60rpx;
+    height: 35rpx;
+}
+
+.pwl-name {
+    font-size: 26rpx;
+    color: #333;
+    padding-left: 30rpx;
+}
+
+.balance {
+    flex: 1;
+    text-align: right;
+    font-size: 28rpx;
+    color: #333;
+    padding: 0 20rpx;
+}
+
+.pwl-rt {
+    size: 20rpx;
+    color: #3b81d6;
+}

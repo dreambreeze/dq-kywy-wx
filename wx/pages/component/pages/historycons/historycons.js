@@ -27,14 +27,18 @@ Page({
         //所有卡类型
         cardType: cardType,
         selectCardDisplay: 'display:none;',
-        //卡图片
+        selectCard: selectCard,
+        //付款方式
         payWayList: [],
+        pyselected: 0,
+        BillingInfo: {},
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        var store = wx.getStorageSync("store")
         //记录打开页面时间
         openPageTime = new Date().getTime();
         var _this = this;
@@ -91,14 +95,6 @@ Page({
                 return false;
             });
         }
-
-        this.loaddata('/index.php/Api/AutoBase/getMMVipCard', {
-            "authorizerId": app.globalData.authorizerId,
-            "type": "2",
-            "openid": wx.getStorageSync("openid"),
-            "isstoresort": 0,
-            "shopno": ShopNo
-        }, 1)
 
         clearInterval(openidTime);
         openidTime = setInterval(function() {
@@ -169,11 +165,30 @@ Page({
                             });
                             return false;
                         });
+                        //初始付款方式
+                        var payWayList = [{
+                            AutoID: -1,
+                            MembershipTypeName: '微信支付',
+                            pic: 'icon-aui-icon-weichat'
+                        }]
 
+                        for (let i in cardType) {
+                            payWayList.push(cardType[i])
+                            //当拥有当前门店会员卡时默认支付方式为当前门店第一张卡
+                            if (_this.data.pyselected == 0 &&
+                                cardType[i].ShopNo == ShopNo) {
+                                _this.setData({
+                                    pyselected: (parseInt(i) + 1)
+                                })
+                                //更换选中会员卡
+                                _this.selectPayWay((parseInt(i) + 1), 2)
+                            }
+                        }
                         _this.setData({
-                            cardType: [],
-                            checkoutCard: null,
-                            selectCard: []
+                            cardType: cardType,
+                            checkoutCard: checkoutCard,
+                            selectCard: selectCard,
+                            payWayList: payWayList,
                         });
                     });
                 }).catch(function(data) {
@@ -191,140 +206,62 @@ Page({
                 });
             }
         }, 800);
-
-    },
-    /* 加载数据 */
-    loaddata: function (url, data, operate) {
-        wx.showLoading({
-            title: '加载中...',
-            mask: true
-        })
-        var that = this
-        new Promise(function (resolve, reject) {
-            wx.request({
-                url: common.config.host + url,
-                data: data,
-                method: 'POST',
-                header: {
-                    'content-type': 'application/json'
-                },
-                success: function (res) {
-                    //resolve(res, operate)
-                    that.dealdata(res, operate)
-                },
-                fail: function (res) {
-                    wx.hideLoading();
-                    if (res.errMsg == 'request:fail timeout') {
-                        wx.showModal({
-                            title: '提示',
-                            content: '请求超时',
-                            showCancel: false
-                        });
-                    } else {
-                        wx.showModal({
-                            title: '提示',
-                            content: '网络连接失败，请检查您的网络',
-                            showCancel: false
-                        });
-                    }
-                }
-            });
-        });
     },
 
-    /* 处理加载过来的数据
-      res   成功的数据   operate   加载  1-加载会员卡信息   2-加载会员卡项目优惠信息
-    */
-    dealdata: function (res, operate) {
-        switch (operate) {
-            case 1:
-                if (res.data.status == 1) {
-                    //初始付款方式
-                    var payWayList = [{
-                        AutoID: -1,
-                        MembershipTypeName: '微信支付',
-                        pic: 'icon-aui-icon-weichat'
-                    }]
-                    var store = wx.getStorageSync("store")
-                    var shopno = store['request_id'].split("#")[0]
-                    var cart = this.data.cart
-                    var shopgoods = this.data.goods
-                    let onlycashFlag = true;
-
-
-                    for (var i in res.data.info) {
-                        payWayList.push(res.data.info[i])
-                    }
-
-                    this.setData({
-                        payWayList: payWayList
-                    })
-
-                    //选中默认结算商品
-                    this.passiveSelectAll()
-
-                    //待付款商品列表的商品只包含微信支付的商品时不更改默认支付方式
-                    for (var id in cart.list) {
-                        if (shopgoods[id].selected && shopgoods[id].onlycash != 1) {
-                            onlycashFlag = false
-                            break
-                        }
-                    }
-                    if (!onlycashFlag) {
-                        for (let i in res.data.info) {
-                            payWayList.push(res.data.info[i])
-                            //当拥有当前门店会员卡时默认支付方式为当前门店第一张卡
-                            if (this.data.pyselected == 0 &&
-                                res.data.info[i].ShopNo == shopno) {
-                                this.setData({
-                                    pyselected: (parseInt(i) + 1)
-                                })
-                                //更换选中会员卡
-                                this.selectPayWay((parseInt(i) + 1), 2)
-                            }
-                        }
-                    }
-                } else {
-                    wx.showToast({
-                        icon: "none",
-                        title: '未查询到适用本店的会员卡！',
-                    })
-                }
-                break
-            case 2:
-                // 被动全选商品
-                this.passiveSelectAll()
-
-                var cart = this.data.cart
-                var goods = res.data.iteminfo
-                var shopgoods = this.data.goods
-
-                var count = 0
-                var total = 0
-
-                for (var id in cart.list) {
-                    var cartinfo = new Object;
-                    // count += cart.list[id];  计算请求会员折扣后的购物车数据
-                    if (shopgoods[id].selected && shopgoods[id].onlycash != 1) {
-                        total += (goods[id].BasePrice * cart.list[id]);
-                        goods[id].BasePrice = parseFloat(goods[id].BasePrice)
-                    }
-                }
-                cart.iteminfo = goods
-
-                total = parseFloat((total).toFixed(2))
-
-                cart.total = total;
-
-                this.setData({
-                    cart: cart,
-                })
-                break
-            case 3: //提交订单
-                this.dealAfterOrder(res)
-                break
+    /* ①第一步  选择切换支付方式 e.detail.currentItemId=0 微信支付，否则会员卡支付  */
+    selectPayWay: function (e, channel) {
+        var paywayindex;
+        if (channel == 2) {
+            paywayindex = e
+        } else {
+            paywayindex = e.currentTarget.dataset.autoid;
         }
-        wx.hideLoading()
+        var that = this
+        that.setData({
+            pyselected: paywayindex,
+            selectCard: that.data.payWayList[paywayindex]
+        })
+        //若选到了会员 那么请求服务器会员折扣
+        if (paywayindex > 0) {
+            var card = that.data.payWayList[paywayindex]
+            //拼接商品 编号
+            var ItemsNo = ""
+            var BillingInfo = that.data.BillingInfo
+            for (var k in BillingInfo) {
+                if (BillingInfo[k].onlycash == 0)
+                    ItemsNo += k + ","
+            }
+            //若有 会员卡买单的东西
+            if (ItemsNo != '') {
+                that.hidePayWay()
+            } else { //只有微信支付的商品
+                //that.passiveSelectAll()
+                that.hidePayWay()
+            }
+        } else {
+            //that.passiveSelectAll()
+            //计算账单
+            that.countBill()
+            //隐藏选择结果
+            that.hidePayWay()
+        }
+    },
+    /**
+     * 计算账单
+     */
+    countBill(){
+
+    },
+    /**
+     * 会员卡图片错误时绑定默认图片
+     */
+    errImg(){
+        var _errImg = e.target.dataset.errImg;
+        var _objImg = "'" + _errImg + "'";
+        var _errObj = {};
+        _errObj[_errImg] = "../../img/01.png";
+        console.log(e.detail.errMsg + "----" + _errObj[_errImg] + "----" + _objImg);
+        this.setData(_errObj);//注意这里的赋值方式...
     },
     /**
      * 获取当前用户所有卡类型
@@ -401,7 +338,19 @@ Page({
         });
         return p;
     },
-
+    /**
+     * 选择结账方式弹出层控制
+     */
+    showPayWay: function () {
+        this.setData({
+            showPayWay: true
+        })
+    },
+    hidePayWay: function () {
+        this.setData({
+            showPayWay: false
+        })
+    },
     /**
      * 切换选卡事件
      */
