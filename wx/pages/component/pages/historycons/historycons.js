@@ -22,6 +22,8 @@ Page({
     data: {
         //图片地址前缀
         showImgUrl: common.config.showImgUrl,
+        //2018-12版本默认图片地址前缀,
+        newDefaultImg: common.config.newDefaultImg,
         //无会员卡图片的默认会员卡图
         cardPicUrl: common.config.cardPicUrl,
         //所有卡类型
@@ -32,6 +34,10 @@ Page({
         payWayList: [],
         pyselected: 0,
         BillingInfo: {},
+        isShowDiscount: false,
+        //优惠券列表
+        discountlist:[],
+        selectedCoupons:{},
     },
 
     /**
@@ -56,6 +62,32 @@ Page({
 
         ShopNo = 'DQT02';
         BusinessNo = '201812050001';
+
+        _this.setData({
+            discountList:[
+                {
+                    discountNo: 20181212001,
+                    discountNum:50.00,
+                    discountType:1,
+                    effectiveTime:"2019-10-01",
+                    selected:true
+                },
+                {
+                    discountNo: 20181212002,
+                    discountNum: '益健足浴',
+                    discountType: 2,
+                    effectiveTime: "2019-10-01",
+                    selected: false
+                },
+                {
+                    discountNo: 20181212003,
+                    discountNum: 50.00,
+                    discountType: 1,
+                    effectiveTime: "2019-10-01",
+                    selected: false
+                },
+            ]    
+        })
 
         if (!ShopNo || !BusinessNo) {
             wx.showModal({
@@ -175,13 +207,11 @@ Page({
                         for (let i in cardType) {
                             payWayList.push(cardType[i])
                             //当拥有当前门店会员卡时默认支付方式为当前门店第一张卡
-                            if (_this.data.pyselected == 0 &&
-                                cardType[i].ShopNo == ShopNo) {
+                            if (_this.data.pyselected == 0 && cardType[i].ShopNo == ShopNo) {
                                 _this.setData({
-                                    pyselected: (parseInt(i) + 1)
+                                    pyselected: (parseInt(i) + 1),
+                                    selectCard: cardType[i]
                                 })
-                                //更换选中会员卡
-                                _this.selectPayWay((parseInt(i) + 1), 2)
                             }
                         }
                         _this.setData({
@@ -209,7 +239,7 @@ Page({
     },
 
     /* ①第一步  选择切换支付方式 e.detail.currentItemId=0 微信支付，否则会员卡支付  */
-    selectPayWay: function (e, channel) {
+    selectPayWay: function(e, channel) {
         var paywayindex;
         if (channel == 2) {
             paywayindex = e
@@ -240,28 +270,44 @@ Page({
             }
         } else {
             //that.passiveSelectAll()
-            //计算账单
-            that.countBill()
             //隐藏选择结果
             that.hidePayWay()
         }
     },
     /**
-     * 计算账单
+     * 选择优惠券
      */
-    countBill(){
+    selectDiscount(e){
+        var discountNo = e.target.dataset.discountNo
+        var discountList = this.data.discountList
+    },
 
+    /**
+     * 显示优惠券弹窗
+     */
+    showDiscount() {
+        this.setData({
+            isShowDiscount: true
+        })
+    },
+    /**
+     * 关闭优惠券弹窗
+     */
+    hideDiscount() {
+        this.setData({
+            isShowDiscount: false
+        })
     },
     /**
      * 会员卡图片错误时绑定默认图片
      */
-    errImg(){
+    errImg() {
         var _errImg = e.target.dataset.errImg;
         var _objImg = "'" + _errImg + "'";
         var _errObj = {};
         _errObj[_errImg] = "../../img/01.png";
         console.log(e.detail.errMsg + "----" + _errObj[_errImg] + "----" + _objImg);
-        this.setData(_errObj);//注意这里的赋值方式...
+        this.setData(_errObj); //注意这里的赋值方式...
     },
     /**
      * 获取当前用户所有卡类型
@@ -341,12 +387,12 @@ Page({
     /**
      * 选择结账方式弹出层控制
      */
-    showPayWay: function () {
+    showPayWay: function() {
         this.setData({
             showPayWay: true
         })
     },
-    hidePayWay: function () {
+    hidePayWay: function() {
         this.setData({
             showPayWay: false
         })
@@ -487,7 +533,14 @@ Page({
             url: e.currentTarget.dataset.url,
         });
     },
-
+    /**
+     * 点击跳转至办卡
+     */
+    toApplyCard(){
+        wx.navigateTo({
+            url: "/pages/component/pages/docard/docard",
+        });
+    },
     /**
      * 确定付款
      */

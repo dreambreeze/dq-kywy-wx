@@ -12,31 +12,37 @@
             <view class="amount">金额</view>
             <view class="need">需付</view>
         </view>
-        <block wx:for="{{BillingInfo}}">
-            <view class="bill-con flex-wrp">
-                <view class="pname text-ellipsis">{{item.ServiceItemName}}</view>
-                <view class="work-no text-ellipsis">{{!item.JSStaffWorkNo ? '' : item.JSStaffWorkNo }}</view>
-                <view class="number text-ellipsis">{{item.ServiceNum}}</view>
-                <view class="amount text-ellipsis">{{item.SinglePrice}}</view>
-                <view class="need text-ellipsis">{{item.PaySinglePrice}}</view>
-            </view>
-        </block>
+        <view class="bill-con flex-wrp" wx:for="{{BillingInfo}}" wx:key='index'>
+            <view class="pname text-ellipsis">{{item.ServiceItemName}}</view>
+            <view class="work-no text-ellipsis">{{!item.JSStaffWorkNo ? '' : item.JSStaffWorkNo }}</view>
+            <view class="number text-ellipsis">{{item.ServiceNum}}</view>
+            <view class="amount text-ellipsis">{{item.SinglePrice}}</view>
+            <view class="need text-ellipsis">{{item.PaySinglePrice}}</view>
+        </view>
+        <!-- 支付统计 -->
         <view class="tosum-up">
             <view class="flex-warp">
-                <text>微信支付：￥{{offer_amount}}</text>
-                <text>卡券支付：￥{{need}}</text>
+                <text>合计：</text>
+                <text>￥{{need}}</text>
+            </view>
+            <!-- 优惠券选择结果 -->
+            <view class='discount-result' bindtap='showDiscount'>
+                <view>优惠券
+                    <text>已选1张</text> </view>
+                <view class='red-font'>已优惠50.0元</view>
+                <text class='iconfont icon-right sw_rt'></text>
             </view>
             <view class="flex-warp">
-                <text>优惠：￥{{offer_amount}}</text>
-                <text>需付： <text class='red-font'>￥{{need}}</text></text>
+                <text>微信支付：￥{{offer_amount}}</text>
+                <text>储值卡支付：￥{{need}}</text>
             </view>
         </view>
-        <!--选择支付方式  -->
+        <!-- 支付方式选择结果  -->
         <view class='select-payway'>
             <view class='ssway'>支付方式</view>
             <view class='ssrt' bindtap='showPayWay'>
                 <block wx:if="{{payWayList[pyselected].PicUrl}}">
-                    <image src='{{showImgUrl+payWayList[pyselected].PicUrl}}' class="pwl-img"></image>
+                    <image src='{{payWayList[pyselected].PicUrl?showImgUrl+payWayList[pyselected].PicUrl:cardPicUrl}}' class="pwl-img"></image>
                 </block>
                 <block wx:elif="{{payWayList[pyselected].pic}}">
                     <view class='iconfont {{payWayList[pyselected].pic}} pwl-typeIcon'></view>
@@ -46,27 +52,49 @@
                 <text class='iconfont icon-right sw_rt'></text>
             </view>
         </view>
-        <view class="btn" bindtap="nowPay">确认付款</view>
+        <swiper class='recommend-swiper' autoplay="true" circular="true">
+            <swiper-item>办卡充值，各种优惠享不停!</swiper-item>
+            <swiper-item>办卡充值，各种优惠享不停!</swiper-item>
+        </swiper>
+        <view class='btn-box'>
+            <view class="btn" bindtap="toApplyCard">立即办卡</view>
+            <view class="btn" bindtap="nowPay">确认付款</view>
+        </view>
     </view>
 </view>
-
-<!-- 选择卡 -->
-<!-- <view class="mask" style="{{selectCardDisplay}}" bindtap="closeSelectCard"></view>
-<view class="select-card" style="{{selectCardDisplay}}">
-    <view class="select-title flex-wrp">
-        <view class="recharge" data-url="/pages/component/pages/recharge-amount/recharge-amount?cardno={{selectCard.CardNo}}&shopno={{selectCard.ShopNo}}&jumpback=1" bindtap="jumpurl">充值</view>
-        <view class="balance">余额：{{selectCard.Balance}}</view>
-        <view class="carry" bindtap="carry">确定</view>
+<!-- 选择优惠券 -->
+<view class='discount-window' wx:if='{{isShowDiscount}}'>
+    <view class='mask' bindtap='hideDiscount'></view>
+    <view class='window-container'>
+        <view class='title'>
+            <text>选择优惠券</text>
+            <image src='{{newDefaultImg+"window_close@2x.png"}}' lazy-load class='close-btn' bindtap='hideDiscount'></image>
+        </view>
+        <view class='discount-tab'>
+            <view class='tab-item'>
+                <text class='current'>可用优惠券(2)</text>
+            </view>
+            <view class='tab-item'>
+                <text>不可用优惠券(4)</text>
+            </view>
+        </view>
+        <view class='discount-result'>您已选中优惠券1张，共可抵用
+            <text class='red-font'>￥50.00</text>
+        </view>
+        <view class='discount-list-box'>
+            <view class='discount-list'>
+                <view wx:for='{{discountList}}' wx:key='index' class='discount-item {{item.selected?"selected":""}}' bindtap='selectDiscount' data-discountNo='{{item.discountNo}}'>
+                    <view class='discount-num'>{{item.discountType == 1?'￥'+item.discountNum : item.discountNum}}</view>
+                    <view class='discount-detail'>
+                        <view class='discount-type'>{{item.discountType == 1?'代金券': '项目券'}}</view>
+                        <view>有效期至:{{item.effectiveTime}}</view>
+                    </view>
+                    <view class='check-icon'></view>
+                </view>
+            </view>
+        </view>
     </view>
-    <picker-view indicator-style="height: 134px;" style="width: 100%; height: 596rpx;" class="picker-view" bindchange="bindChange">
-        <picker-view-column>
-            <image wx:for="{{cardType}}" src="{{!item.PicUrl ? cardPicUrl :     showImgUrl+item.PicUrl}}" class="pay-cardimg"></image>
-        </picker-view-column>
-        <view class="card-type">{{selectCard.MembershipTypeName}}</view>
-        <view class="card-no">{{selectCard.CardNo}}</view>
-    </picker-view>
-</view> -->
-
+</view>
 <!-- 选择支付方式界面-->
 <view class="payway" hidden="{{!showPayWay}}">
     <view class="mask" bindtap="hidePayWay"></view>
@@ -77,19 +105,18 @@
             <view class="desc">请选择付款方式</view>
         </view>
         <view class='pw-list-box'>
-            <view class='pw_list'  wx:for="{{payWayList}}" wx:key="{{item.AutoID}}" bindtap="selectPayWay" data-autoId='{{index}}'>
+            <view class='pw_list' wx:for="{{payWayList}}" wx:key="{{item.AutoID}}" bindtap="selectPayWay" data-autoId='{{index}}'>
                 <view class="pwl-lt">
-                    <block wx:if="{{item.PicUrl}}">
-                        <image src='{{showImgUrl+item.PicUrl}}' binderror="errImg" bindload="loadImg" data-err-img="{{cardPicUrl}}" class="pwl-img"></image>
-                    </block>
-                    <block wx:elif="{{item.pic}}">
+                    <block wx:if="{{item.pic}}">
                         <view class='iconfont {{item.pic}} pwl-typeIcon'></view>
+                    </block>
+                    <block wx:elif="{{!item.pic}}">
+                        <image src='{{item.PicUrl?showImgUrl+item.PicUrl:cardPicUrl}}' class="pwl-img"></image>
                     </block>
                     <text class='pwl-name'>{{item.MembershipTypeName}}</text>
                     <view wx:if="{{!item.pic}}" class="recharge" data-url="/pages/component/pages/recharge-amount/recharge-amount?cardno={{item.CardNo}}&shopno={{item.ShopNo}}&jumpback=1" bindtap="jumpurl">充值</view>
                     <text class='balance' wx:if='{{item.CardNum*1.00 + item.SendNum*1.00>0}}'>余额:{{item.CardNum*1.00 + item.SendNum*1.00}}</text>
                 </view>
-
                 <view class="pwl-rt">
                     <view class="pwl-select">
                         <radio value="{{item.CardNo}}" checked="{{index==pyselected}}" />
