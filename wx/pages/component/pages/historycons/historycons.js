@@ -36,7 +36,7 @@ Page({
         BillingInfo: {},
         isShowDiscount: false,
         //优惠券列表
-        discountlist:[],
+        discountList:[],
         selectedCoupons:{},
     },
 
@@ -278,8 +278,16 @@ Page({
      * 选择优惠券
      */
     selectDiscount(e){
-        var discountNo = e.target.dataset.discountNo
+        var discountNo = e.currentTarget.dataset.discountno
         var discountList = this.data.discountList
+        for(let discount of discountList){
+            if (discount.discountNo == discountNo){
+                discount.selected = !discount.selected
+                this.setData({
+                    discountList: discountList
+                })
+            }
+        }
     },
 
     /**

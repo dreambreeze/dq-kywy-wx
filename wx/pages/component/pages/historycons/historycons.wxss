@@ -529,6 +529,19 @@
     background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/check.png') no-repeat center;
     background-size: 36rpx;
 }
+
+.sure-discount{
+    margin:20rpx auto 0;
+    width:400rpx;
+    line-height: 60rpx;
+    height: 60rpx;
+    border-radius: 30rpx;
+    padding:0 35rpx;
+    background: #e80000;
+    color:#fff;
+    font-size: 30rpx;
+}
+
 /* 办卡广告词 */
 
 .recommend-swiper{

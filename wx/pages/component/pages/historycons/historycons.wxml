@@ -83,7 +83,7 @@
         </view>
         <view class='discount-list-box'>
             <view class='discount-list'>
-                <view wx:for='{{discountList}}' wx:key='index' class='discount-item {{item.selected?"selected":""}}' bindtap='selectDiscount' data-discountNo='{{item.discountNo}}'>
+                <view wx:for='{{discountList}}' wx:key='index' class='discount-item {{item.selected?"selected":""}}' bindtap='selectDiscount' data-discountno='{{item.discountNo}}'>
                     <view class='discount-num'>{{item.discountType == 1?'￥'+item.discountNum : item.discountNum}}</view>
                     <view class='discount-detail'>
                         <view class='discount-type'>{{item.discountType == 1?'代金券': '项目券'}}</view>
@@ -93,6 +93,7 @@
                 </view>
             </view>
         </view>
+        <button class='sure-discount' bindtap='hideDiscount'>确定</button>
     </view>
 </view>
 <!-- 选择支付方式界面-->
