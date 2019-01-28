@@ -16,8 +16,8 @@
             <view class="pname text-ellipsis">{{item.ServiceItemName}}</view>
             <view class="work-no text-ellipsis">{{!item.JSStaffWorkNo ? '' : item.JSStaffWorkNo }}</view>
             <view class="number text-ellipsis">{{item.ServiceNum}}</view>
-            <view class="amount text-ellipsis">{{item.SinglePrice}}</view>
-            <view class="need text-ellipsis">{{item.PaySinglePrice}}</view>
+            <view class="amount text-ellipsis">{{item.SinglePrice=='.00'?'0.00':item.SinglePrice}}</view>
+            <view class="need text-ellipsis">{{item.PaySinglePrice=='.00'?'0.00':item.PaySinglePrice}}</view>
         </view>
         <!-- 支付统计 -->
         <view class="tosum-up">
@@ -28,31 +28,31 @@
             <!-- 优惠券选择结果 -->
             <view class='discount-result' bindtap='showDiscount'>
                 <view>优惠券
-                    <text>已选1张</text> </view>
-                <view class='red-font'>已优惠50.0元</view>
+                    <text>已选{{selectCouponsNum}}张</text> </view>
+                <view class='red-font'>已优惠{{offerAmount}}元</view>
                 <text class='iconfont icon-right sw_rt'></text>
             </view>
             <view class="flex-warp">
-                <text>微信支付：￥{{offer_amount}}</text>
-                <text>储值卡支付：￥{{need}}</text>
+                <text>微信支付：￥{{weChatNeedAmount}}</text>
+                <text>储值卡支付：￥{{cardNeedAmount}}</text>
             </view>
         </view>
         <!-- 支付方式选择结果  -->
         <view class='select-payway'>
             <view class='ssway'>支付方式</view>
             <view class='ssrt' bindtap='showPayWay'>
-                <block wx:if="{{payWayList[pyselected].PicUrl}}">
-                    <image src='{{payWayList[pyselected].PicUrl?showImgUrl+payWayList[pyselected].PicUrl:cardPicUrl}}' class="pwl-img"></image>
-                </block>
-                <block wx:elif="{{payWayList[pyselected].pic}}">
+                <block wx:if="{{payWayList[pyselected].pic}}">
                     <view class='iconfont {{payWayList[pyselected].pic}} pwl-typeIcon'></view>
                 </block>
+                <block wx:elif="{{!payWayList[pyselected].pic}}">
+                    <image src='{{payWayList[pyselected].PicUrl?showImgUrl+payWayList[pyselected].PicUrl:cardPicUrl}}' class="pwl-img"></image>
+                </block>
                 <text class='rt_type'>{{payWayList[pyselected].MembershipTypeName}}</text>
-                <text class='balance' wx:if="{{selectCard.Balance}}">余额：{{selectCard.Balance}}</text>
+                <text class='balance' wx:if="{{checkoutCard.Balance}}">余额：{{checkoutCard.Balance}}</text>
                 <text class='iconfont icon-right sw_rt'></text>
             </view>
         </view>
-        <swiper class='recommend-swiper' autoplay="true" circular="true">
+        <swiper class='recommend-swiper' bindtap="toApplyCard" autoplay="true" circular="true">
             <swiper-item>办卡充值，各种优惠享不停!</swiper-item>
             <swiper-item>办卡充值，各种优惠享不停!</swiper-item>
         </swiper>
@@ -63,7 +63,7 @@
     </view>
 </view>
 <!-- 选择优惠券 -->
-<view class='discount-window' wx:if='{{isShowDiscount}}'>
+<view class='discount-window' hidden='{{!isShowDiscount}}'>
     <view class='mask' bindtap='hideDiscount'></view>
     <view class='window-container'>
         <view class='title'>
@@ -78,16 +78,16 @@
                 <text>不可用优惠券(4)</text>
             </view>
         </view>
-        <view class='discount-result'>您已选中优惠券1张，共可抵用
-            <text class='red-font'>￥50.00</text>
+        <view class='discount-result'>您已选中优惠券{{selectCouponsNum}}张，共可抵用
+            <text class='red-font'>{{offerAmount}}</text>
         </view>
         <view class='discount-list-box'>
             <view class='discount-list'>
-                <view wx:for='{{discountList}}' wx:key='index' class='discount-item {{item.selected?"selected":""}}' bindtap='selectDiscount' data-discountno='{{item.discountNo}}'>
-                    <view class='discount-num'>{{item.discountType == 1?'￥'+item.discountNum : item.discountNum}}</view>
+                <view wx:for='{{discountList}}' wx:key='index' class='discount-item {{item.selected == 1 ?"selected":""}}' bindtap='selectDiscount' data-discountno='{{item.id}}'>
+                    <view class='discount-num'>{{item.cpstype == 'coupons'?'￥'+item.amount : item.project}}</view>
                     <view class='discount-detail'>
-                        <view class='discount-type'>{{item.discountType == 1?'代金券': '项目券'}}</view>
-                        <view>有效期至:{{item.effectiveTime}}</view>
+                        <view class='discount-type'>{{item.cpstype == 'coupons'?'代金券': '项目券'}}</view>
+                        <view>领取日期:{{item.create_time}}</view>
                     </view>
                     <view class='check-icon'></view>
                 </view>
@@ -97,7 +97,7 @@
     </view>
 </view>
 <!-- 选择支付方式界面-->
-<view class="payway" hidden="{{!showPayWay}}">
+<view class="payway" hidden="{{!isShowPayWay}}">
     <view class="mask" bindtap="hidePayWay"></view>
     <view class="list">
         <view class="head">

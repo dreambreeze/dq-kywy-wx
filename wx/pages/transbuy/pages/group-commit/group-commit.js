@@ -178,6 +178,28 @@ Page({
     var total_fee = buytype == 1 ? project.singleprice : project.groupprice
     let is_creator = buytype == 3 ? 0 : 1//buytype 1-单独购买  2-开团 3-参团
     let groupno = that.data.groupno
+    var phoneinfo = that.data.phoneinfo
+    if (phoneinfo['phone']==''){
+      wx.showModal({
+        title: '提示',
+        content: '未获取到手机号',
+        showCancel: false
+      });
+      that.setData({ paystatus: true })
+      wx.hideLoading();
+      return false;
+    }
+
+    if (buytype == 3 && groupno==''){
+      wx.showModal({
+        title: '提示',
+        content: '拼团号不存在，请开新团',
+        showCancel: false
+      });
+      that.setData({ paystatus: true })
+      wx.hideLoading();
+      return false;
+    }
 
     var date = new Date()
     let timstamp = Date.parse(date) / 1000
@@ -236,11 +258,10 @@ Page({
               success: function (subres) {
                 //拼团订单补充参数
                 var groupno = that.data.groupno
-                var phoneinfo = that.data.phoneinfo
+               
                 let project = that.data.project
                 let num = that.data.num
                 if (groupno) {//参团
-
                   var nownum = num
                 } else {
                   var nownum = project.nums

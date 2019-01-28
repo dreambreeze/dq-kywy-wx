@@ -4,10 +4,6 @@ var common = require('../../../../common.js');
 var cardType;
 //当前要结账的卡
 var checkoutCard;
-//切换选择的卡
-var selectCard;
-//选择的卡下标
-var selectCardIndex = 0;
 //需付金额
 var need = 0;
 //账单门店标识，账单号
@@ -15,7 +11,6 @@ var ShopNo, BusinessNo;
 //记录打开页面时间
 let openPageTime = 0;
 Page({
-
     /**
      * 页面的初始数据
      */
@@ -28,16 +23,25 @@ Page({
         cardPicUrl: common.config.cardPicUrl,
         //所有卡类型
         cardType: cardType,
-        selectCardDisplay: 'display:none;',
-        selectCard: selectCard,
+        isShowPayWay: false,
+        checkoutCard: checkoutCard,
         //付款方式
         payWayList: [],
         pyselected: 0,
         BillingInfo: {},
         isShowDiscount: false,
         //优惠券列表
-        discountList:[],
-        selectedCoupons:{},
+        discountList: [],
+        //合计需付
+        need: 0,
+        //优惠金额
+        offerAmount: 0,
+        //卡券支付
+        cardNeedAmount: 0,
+        //微信支付
+        weChatNeedAmount: 0,
+        //当前使用的优惠券数量
+        selectCouponsNum: 0
     },
 
     /**
@@ -60,34 +64,8 @@ Page({
         // ShopNo = optionArr[0].split('=')[1];
         // BusinessNo = optionArr[1].split('=')[1];
 
-        ShopNo = 'DQT02';
-        BusinessNo = '201812050001';
-
-        _this.setData({
-            discountList:[
-                {
-                    discountNo: 20181212001,
-                    discountNum:50.00,
-                    discountType:1,
-                    effectiveTime:"2019-10-01",
-                    selected:true
-                },
-                {
-                    discountNo: 20181212002,
-                    discountNum: '益健足浴',
-                    discountType: 2,
-                    effectiveTime: "2019-10-01",
-                    selected: false
-                },
-                {
-                    discountNo: 20181212003,
-                    discountNum: 50.00,
-                    discountType: 1,
-                    effectiveTime: "2019-10-01",
-                    selected: false
-                },
-            ]    
-        })
+        ShopNo = 'DQT03';
+        BusinessNo = '201901260001';
 
         if (!ShopNo || !BusinessNo) {
             wx.showModal({
@@ -110,10 +88,8 @@ Page({
 
         //获取用户openid
         var openid = wx.getStorageSync('openid');
-
         if (!openid) {
             openidState = false;
-
             common.getLogin(app.globalData.authorizerId).then(function(data) {
                 openidState = true;
                 openid = data;
@@ -168,21 +144,47 @@ Page({
                             cardType[i]['AuthMoney'] = parseFloat(cardType[i].AuthMoney);
                         }
 
-                        checkoutCard = cardType[0];
-                        selectCard = cardType[0];
+                        //初始付款方式
+                        let payWayList = [{
+                            AutoID: -1,
+                            MembershipTypeName: '微信支付',
+                            pic: 'icon-aui-icon-weichat'
+                        }]
 
+                        for (let i in cardType) {
+                            payWayList.push(cardType[i])
+                            //当拥有当前门店会员卡时默认支付方式为当前门店第一张卡
+                            if (_this.data.pyselected == 0 && cardType[i].ShopNo == ShopNo) {
+                                checkoutCard = cardType[i]
+                                _this.setData({
+                                    pyselected: (parseInt(i) + 1),
+                                })
+                            }else{
+                                checkoutCard = payWayList[0]
+                            }
+                        }
+                        _this.setData({
+                            cardType: cardType,
+                            checkoutCard: checkoutCard,
+                            payWayList: payWayList,
+                        });
+						let checkoutParam = checkoutCard.AutoID == -1 ? [] : checkoutCard
                         //查询账单信息
-                        _this.getBillingInfo(checkoutCard, ShopNo, BusinessNo).then(function(data) {
+                        _this.getBillingInfo(checkoutParam, ShopNo, BusinessNo).then(function(data) {
                             wx.hideLoading();
+                            let BillInfo = data.info
+                            let offerAmout = checkoutCard.AutoID == -1 ? _this.getInitOfferAmount(data.allcan) : data.offer_amount
                             need = data.need;
+							_this.calculatePrice(need,offerAmout,checkoutCard,data.info)
                             _this.setData({
-                                BillingInfo: data.info,
+                                BillingInfo: BillInfo,
                                 BusinessNo: BusinessNo,
                                 need: need,
                                 bsname: data.bsname,
-                                offer_amount: data.offer_amount
+                                discountList: data.allcan,
+                                offerAmount: offerAmout,
                             });
-
+                            _this.getSelectCouponsNum(data.allcan)
                         }).catch(function(data) {
                             wx.hideLoading();
                             wx.showModal({
@@ -196,29 +198,6 @@ Page({
                                 }
                             });
                             return false;
-                        });
-                        //初始付款方式
-                        var payWayList = [{
-                            AutoID: -1,
-                            MembershipTypeName: '微信支付',
-                            pic: 'icon-aui-icon-weichat'
-                        }]
-
-                        for (let i in cardType) {
-                            payWayList.push(cardType[i])
-                            //当拥有当前门店会员卡时默认支付方式为当前门店第一张卡
-                            if (_this.data.pyselected == 0 && cardType[i].ShopNo == ShopNo) {
-                                _this.setData({
-                                    pyselected: (parseInt(i) + 1),
-                                    selectCard: cardType[i]
-                                })
-                            }
-                        }
-                        _this.setData({
-                            cardType: cardType,
-                            checkoutCard: checkoutCard,
-                            selectCard: selectCard,
-                            payWayList: payWayList,
                         });
                     });
                 }).catch(function(data) {
@@ -239,57 +218,151 @@ Page({
     },
 
     /* ①第一步  选择切换支付方式 e.detail.currentItemId=0 微信支付，否则会员卡支付  */
-    selectPayWay: function(e, channel) {
-        var paywayindex;
-        if (channel == 2) {
-            paywayindex = e
-        } else {
-            paywayindex = e.currentTarget.dataset.autoid;
-        }
-        var that = this
-        that.setData({
+    selectPayWay(e) {
+        var paywayindex = e.currentTarget.dataset.autoid;
+        let checkoutCard = this.data.payWayList[paywayindex]
+        this.setData({
             pyselected: paywayindex,
-            selectCard: that.data.payWayList[paywayindex]
+            checkoutCard: checkoutCard
         })
-        //若选到了会员 那么请求服务器会员折扣
-        if (paywayindex > 0) {
-            var card = that.data.payWayList[paywayindex]
-            //拼接商品 编号
-            var ItemsNo = ""
-            var BillingInfo = that.data.BillingInfo
-            for (var k in BillingInfo) {
-                if (BillingInfo[k].onlycash == 0)
-                    ItemsNo += k + ","
-            }
-            //若有 会员卡买单的东西
-            if (ItemsNo != '') {
-                that.hidePayWay()
-            } else { //只有微信支付的商品
-                //that.passiveSelectAll()
-                that.hidePayWay()
-            }
-        } else {
-            //that.passiveSelectAll()
-            //隐藏选择结果
-            that.hidePayWay()
-        }
+        let checkoutParam = checkoutCard.AutoID == -1 ? [] : checkoutCard
+        //查询账单信息
+        this.getBillingInfo(checkoutParam, ShopNo, BusinessNo).then((data) => {
+            wx.hideLoading();
+            need = data.need;
+            let BillInfo = data.info
+            let offerAmout = checkoutCard.AutoID == -1 ? this.getInitOfferAmount(data.allcan): data.offer_amount
+            need = data.need;
+			this.calculatePrice(need,offerAmout,checkoutCard,data.info)
+            this.setData({
+                BillingInfo: data.info,
+                BusinessNo: BusinessNo,
+                need: need,
+                bsname: data.bsname,
+                isShowPayWay:false,
+                offerAmount: offerAmout,
+            });
+        }).catch(function(data) {
+            wx.hideLoading();
+            wx.showModal({
+                title: '提示',
+                content: data,
+                showCancel: false,
+                success: function(res) {
+                    if (res.confirm) {
+                        wx.navigateBack();
+                    }
+                }
+            });
+            return false;
+        });
     },
     /**
      * 选择优惠券
      */
-    selectDiscount(e){
-        var discountNo = e.currentTarget.dataset.discountno
-        var discountList = this.data.discountList
-        for(let discount of discountList){
-            if (discount.discountNo == discountNo){
-                discount.selected = !discount.selected
-                this.setData({
-                    discountList: discountList
-                })
+    selectDiscount(e) {
+        let discountNo = e.currentTarget.dataset.discountno
+        let discountList = this.data.discountList
+        let offerAmout = this.data.offerAmount
+        let need = this.data.need
+        let selectCouponsNum = this.data.selectCouponsNum
+        let checkoutCard = this.data.checkoutCard
+        let BillingInfo  = this.data.BillingInfo
+        let changeAmount = 0
+        for (let discount of discountList) {
+            if (discount.id == discountNo) {//当前优惠券
+                discount.selected = discount.selected == 0 ? 1 : 0
+                //判断获取优惠金额变动值
+				if (discount.cpstype == 'coupons') {//现金券
+					changeAmount = parseFloat(discount.amount)
+				} else {//项目券
+					if(checkoutCard.AutoId == -1){
+						changeAmount = parseFloat(discount.project_price)
+					}else{
+						for(let bill of BillingInfo) {
+							if(discount.project ==  bill.ServiceItemName){
+								changeAmount = parseFloat(bill.PaySinglePrice)
+								break
+							}
+						}
+					}
+				}
+                if (discount.selected == 1){//确认使用当前优惠券
+                    selectCouponsNum++
+					offerAmout = offerAmout + changeAmount
+                }else{//取消使用
+					selectCouponsNum--
+					offerAmout = offerAmout - changeAmount
+                }
+                break
             }
         }
+        this.calculatePrice(need,offerAmout,checkoutCard,BillingInfo)
+        this.setData({
+            discountList: discountList
+        })
     },
+	/**
+     * 计算价格
+     * need:合计需付
+     * offerAmout:优惠金额
+     * checkoutCard:当前付款方式
+     * BillingInfo:账单列表
+	 */
+	calculatePrice(need,offerAmout,checkoutCard,BillingInfo){
+		let cardNeedAmount = 0
+		let weChatNeedAmount = 0
+	    let onlyCashAmount = 0
+        for(let bill of BillingInfo){
+            if(bill.OnlyCash == 1){//限现金支付
+				onlyCashAmount += parseFloat(bill.PaySinglePrice)  *  parseFloat(bill.ServiceNum)
+            }
+        }
 
+        if(checkoutCard.AutoId == -1){//微信支付
+			weChatNeedAmount = (need - offerAmout) < onlyCashAmount ? onlyCashAmount : (need - offerAmout)
+        }else{//卡券支付
+			cardNeedAmount = parseFloat(need) - parseFloat(offerAmout) - parseFloat(onlyCashAmount)
+			cardNeedAmount = cardNeedAmount < 0 ? 0 : cardNeedAmount
+			weChatNeedAmount = onlyCashAmount
+        }
+        this.setData({
+			cardNeedAmount:cardNeedAmount,
+			weChatNeedAmount:weChatNeedAmount
+        })
+    },
+	/**
+     * 获取选择优惠券张数
+     */
+    getSelectCouponsNum(discountList) {
+        let selectCouponsNum = 0
+        for (let index in discountList) {
+            let item = discountList[index]
+            if (item.selected == 1) {
+                selectCouponsNum++
+            }
+        }
+        this.setData({
+            selectCouponsNum: selectCouponsNum,
+        })
+    },
+    /**
+     * 微信支付时获取初始化优惠金额
+     */
+    getInitOfferAmount(discountList){
+        let offerAmout = 0
+        for (let index in discountList) {
+            let item = discountList[index]
+            if (item.selected && item.selected == 1) {
+                if (item.cpstype == 'coupons'){
+                    offerAmout += parseFloat(item.amount)
+                }else{
+                    offerAmout += parseFloat(item.project_price)
+                }
+            }
+        }
+        return offerAmout
+    },
     /**
      * 显示优惠券弹窗
      */
@@ -305,17 +378,6 @@ Page({
         this.setData({
             isShowDiscount: false
         })
-    },
-    /**
-     * 会员卡图片错误时绑定默认图片
-     */
-    errImg() {
-        var _errImg = e.target.dataset.errImg;
-        var _objImg = "'" + _errImg + "'";
-        var _errObj = {};
-        _errObj[_errImg] = "../../img/01.png";
-        console.log(e.detail.errMsg + "----" + _errObj[_errImg] + "----" + _objImg);
-        this.setData(_errObj); //注意这里的赋值方式...
     },
     /**
      * 获取当前用户所有卡类型
@@ -397,84 +459,13 @@ Page({
      */
     showPayWay: function() {
         this.setData({
-            showPayWay: true
+            isShowPayWay: true
         })
     },
     hidePayWay: function() {
         this.setData({
-            showPayWay: false
+            isShowPayWay: false
         })
-    },
-    /**
-     * 切换选卡事件
-     */
-    bindChange: function(e) {
-        const val = e.detail.value;
-        selectCardIndex = val[0];
-
-        this.setData({
-            selectCard: cardType[val[0]]
-        });
-    },
-
-    /**
-     * 点击选卡
-     */
-    switching: function() {
-        this.setData({
-            selectCardDisplay: 'display:block;'
-        });
-    },
-
-    /**
-     * 点击关闭选卡
-     */
-    closeSelectCard: function() {
-        this.setData({
-            selectCardDisplay: 'display:none;'
-        });
-    },
-
-    /**
-     * 确定选卡
-     */
-    carry: function() {
-        var _this = this;
-        checkoutCard = cardType[selectCardIndex];
-        wx.showLoading({
-            title: '加载中',
-            mask: true
-        });
-        //查询账单信息
-        _this.getBillingInfo(checkoutCard, ShopNo, BusinessNo).then(function(data) {
-            wx.hideLoading();
-
-            need = data.need;
-
-            _this.setData({
-                BillingInfo: data.info,
-                BusinessNo: BusinessNo,
-                need: need,
-                bsname: data.bsname,
-                selectCardDisplay: 'display:none;',
-                checkoutCard: null,
-                offer_amount: data.offer_amount
-            });
-
-        }).catch(function(data) {
-            wx.hideLoading();
-            wx.showModal({
-                title: '提示',
-                content: data,
-                showCancel: false,
-                success: function(res) {
-                    if (res.confirm) {
-                        wx.navigateBack();
-                    }
-                }
-            });
-            return false;
-        });
     },
 
     /**
@@ -544,16 +535,16 @@ Page({
     /**
      * 点击跳转至办卡
      */
-    toApplyCard(){
+    toApplyCard() {
         wx.navigateTo({
             url: "/pages/component/pages/docard/docard",
         });
     },
+
     /**
      * 确定付款
      */
-
-    nowPay: function() {
+    nowPay() {
         //审核页面打开时间是否大于5分钟
         var currentTima = new Date().getTime();
         if ((openPageTime + 300000) < currentTima) {
@@ -573,7 +564,8 @@ Page({
         wx.showModal({
             title: '提示',
             content: '确定要付款吗？',
-            success: function(res) {
+            success: (res) => {
+                let checkoutCard = this.data.checkoutCard
                 if (res.confirm) {
                     //卡内余额是否足够买单
                     if (checkoutCard.Balance < need) {
@@ -598,7 +590,6 @@ Page({
                             });
                         }
                     }
-
                     wx.showLoading({
                         title: '加载中',
                         mask: true
@@ -730,5 +721,4 @@ Page({
         });
         return p;
     }
-
 })

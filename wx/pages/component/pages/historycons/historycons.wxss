@@ -533,9 +533,9 @@
 .sure-discount{
     margin:20rpx auto 0;
     width:400rpx;
-    line-height: 60rpx;
-    height: 60rpx;
-    border-radius: 30rpx;
+    line-height: 70rpx;
+    height: 70rpx;
+    border-radius: 35rpx;
     padding:0 35rpx;
     background: #e80000;
     color:#fff;

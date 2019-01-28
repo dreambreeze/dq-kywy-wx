@@ -17,7 +17,8 @@ let RoomNo = '';
 //定位的门店地址、距离信息
 var locationStore = [];
 //呼叫服务显隐
-var maskDisplay = 'none'
+var maskDisplay = 'none';
+let showclose = false
 Page({
 
     /**
@@ -304,14 +305,8 @@ Page({
             }
         });
 
-      console.log(sceneStr)
-      let showoast = wx.getStorageSync('showoa') == 1 ? 1 : 2
-      var unionid = wx.getStorageSync('phoneinfo').unionid ? wx.getStorageSync('phoneinfo').unionid : ''
-      if (showoast == 2 && unionid == '' ) {
-        this.setData({
-          showoa: true
-        })
-      }
+     
+     
 
         //检查是否有需要退单的拼团
         common.groupRefound(app.globalData.authorizerId);
@@ -1010,6 +1005,16 @@ Page({
   onShow: function () {
      
         let _this = this;
+
+        let showoast = wx.getStorageSync('showoa') == 1 ? 1 : 2
+        var unionid = wx.getStorageSync('phoneinfo').unionid ? wx.getStorageSync('phoneinfo').unionid : ''
+        if (showoast == 2 && unionid == '') {
+          this.setData({
+            showoa: true,
+            showcloase:true
+          })
+        }
+
         var test = wx.getStorageSync('test');
         if (test) {
             wx.navigateTo({
@@ -1267,7 +1272,9 @@ Page({
   //公众号关注组件 
   bindload(e) {
     var that = this
-    
+    that.setData({
+      showclose: true
+    })
     if (wx.getStorageSync('showoa')==1){
       that.setData({
         showoa: false

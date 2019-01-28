@@ -44,7 +44,7 @@
       <view>
         <text>实付金额：</text>￥{{orderData.project_price}}</view>
       <view>
-        <text>订 单 号：</text>{{orderData.order_num}}</view>
+        <text>订 单 号：</text>{{orderData.order_number}}</view>
       <view>
         <text>下单时间：</text>{{orderData.create_time}}</view>
       <block wx:if="{{orderData.petime}}">

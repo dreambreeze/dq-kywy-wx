@@ -338,7 +338,8 @@ Page({
                                         cardUrls: res.data,
                                         bannerList: bannerList,
                                         selected: bannerList[0].AutoID,
-                                        currentCard: bannerList[0]
+                                        currentCard: bannerList[0],
+                                        balance: bannerList ? (parseFloat(bannerList[0].CardNum) + parseFloat(bannerList[0].SendNum)).toFixed(0) : 0
                                     });
                                 }
                             } else {
@@ -405,7 +406,8 @@ Page({
                                     cardUrls: res.data,
                                     bannerList: bannerList,
                                     selected: bannerList[0].AutoID,
-                                    currentCard: bannerList[0]
+                                    currentCard: bannerList[0],
+                                    balance: bannerList ? (parseFloat(bannerList[0].CardNum) + parseFloat(bannerList[0].SendNum)).toFixed(0) : 0
                                 });
                             }
                         } else {

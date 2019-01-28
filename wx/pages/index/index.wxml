@@ -3,7 +3,8 @@
 <import src="../../wxParse/wxParse.wxml" />
 
 <view  wx:if="{{showoa}}"   >
-  <view class='close' bindtap='close'>×</view>
+<!-- 扫码进来展示 -->
+  <view class='close'  wx:if="{{showclose}}" bindtap='close'>×</view>
   <official-account bindload='bindload' binderror="binderror"></official-account>
 </view>
   
