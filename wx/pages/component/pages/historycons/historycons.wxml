@@ -14,10 +14,10 @@
         </view>
         <view class="bill-con flex-wrp" wx:for="{{BillingInfo}}" wx:key='index'>
             <view class="pname text-ellipsis">{{item.ServiceItemName}}</view>
-            <view class="work-no text-ellipsis">{{!item.JSStaffWorkNo ? '' : item.JSStaffWorkNo }}</view>
+            <view class="work-no text-ellipsis">{{!item.JSStaffWorkNo ?'' : item.JSStaffWorkNo }}</view>
             <view class="number text-ellipsis">{{item.ServiceNum}}</view>
             <view class="amount text-ellipsis">{{item.SinglePrice=='.00'?'0.00':item.SinglePrice}}</view>
-            <view class="need text-ellipsis">{{item.PaySinglePrice=='.00'?'0.00':item.PaySinglePrice}}</view>
+            <view class="need text-ellipsis">{{item.billPrice}}</view>
         </view>
         <!-- 支付统计 -->
         <view class="tosum-up">
@@ -53,8 +53,8 @@
             </view>
         </view>
         <swiper class='recommend-swiper' bindtap="toApplyCard" autoplay="true" circular="true">
-            <swiper-item>办卡充值，各种优惠享不停!</swiper-item>
-            <swiper-item>办卡充值，各种优惠享不停!</swiper-item>
+            <swiper-item>办卡充值，各种折扣优惠享不停!</swiper-item>
+            <swiper-item>办卡充值，各种折扣优惠享不停!</swiper-item>
         </swiper>
         <view class='btn-box'>
             <view class="btn" bindtap="toApplyCard">立即办卡</view>
@@ -72,24 +72,36 @@
         </view>
         <view class='discount-tab'>
             <view class='tab-item'>
-                <text class='current'>可用优惠券(2)</text>
+                <text class='{{!isShowDisableDiscount?"current":"" }}' bindtap='tabDiscount'>可用优惠券(2)</text>
             </view>
             <view class='tab-item'>
-                <text>不可用优惠券(4)</text>
+                <text class='{{isShowDisableDiscount?"current":"" }}' bindtap='tabDiscount'>不可用优惠券(4)</text>
             </view>
         </view>
-        <view class='discount-result'>您已选中优惠券{{selectCouponsNum}}张，共可抵用
+        <view class='discount-result'>您已选中优惠券
+            <text class='red-font'>{{selectCouponsNum}}</text>张，共可抵用
             <text class='red-font'>{{offerAmount}}</text>
         </view>
-        <view class='discount-list-box'>
+        <view class='discount-list-box' wx:if='{{!isShowDisableDiscount}}'>
             <view class='discount-list'>
-                <view wx:for='{{discountList}}' wx:key='index' class='discount-item {{item.selected == 1 ?"selected":""}}' bindtap='selectDiscount' data-discountno='{{item.id}}'>
-                    <view class='discount-num'>{{item.cpstype == 'coupons'?'￥'+item.amount : item.project}}</view>
+                <view wx:for='{{discountList}}' wx:key='index' class='discount-item {{item.selected==1 ? "selected": ""}}' bindtap='selectDiscount' data-discountno='{{item.id}}'>
+                    <view class='discount-num'>{{item.cpstype =='coupons'?'￥'+item.amount : item.project}}</view>
                     <view class='discount-detail'>
-                        <view class='discount-type'>{{item.cpstype == 'coupons'?'代金券': '项目券'}}</view>
+                        <view class='discount-type'>{{item.cpstype =='coupons'?'代金券':'项目券'}}</view>
                         <view>领取日期:{{item.create_time}}</view>
                     </view>
                     <view class='check-icon'></view>
+                </view>
+            </view>
+        </view>
+        <view class='discount-list-box' wx:if='{{isShowDisableDiscount}}'>
+            <view class='discount-list'>
+                <view wx:for='{{disabledDiscountList}}' wx:key='index' class='discount-item disabled'>
+                    <view class='discount-num'>{{item.cpstype =='coupons'?'￥'+item.amount : item.project}}</view>
+                    <view class='discount-detail'>
+                        <view class='discount-type'>{{item.cpstype =='coupons'?'代金券':'项目券'}}</view>
+                        <view>领取日期:{{item.create_time}}</view>
+                    </view>
                 </view>
             </view>
         </view>
@@ -126,4 +138,10 @@
             </view>
         </view>
     </view>
+</view>
+<!-- 账单加载提示 -->
+<view class='bill-loading' wx:if="{{isShowBillLoading}}">
+    <image src='{{ newDefaultImg+"loading.gif" }}' lazy-load></image>
+    <text>拼命结算账单中</text>
+    <text>请稍候3-5s...</text>
 </view>

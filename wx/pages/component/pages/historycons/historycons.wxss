@@ -89,12 +89,12 @@
     color: #e80000;
 }
 
-.btn-box{
-    padding:40rpx 0 0 0;
+.btn-box {
+    padding: 40rpx 0 0 0;
     text-align: center;
     display: flex;
     align-content: center;
-    justify-content:center;
+    justify-content: center;
 }
 
 .btn {
@@ -107,7 +107,7 @@
     font-weight: 500;
     border-radius: 35rpx;
     color: #fff;
-    margin:0 15rpx;
+    margin: 0 15rpx;
 }
 
 .mask {
@@ -398,7 +398,7 @@
 
 .discount-result .sw_rt {
     text-align: center;
-    color:#e80000;
+    color: #e80000;
 }
 
 /* 优惠选择弹窗 */
@@ -411,147 +411,177 @@
     z-index: 100;
     background: #fff;
     color: #2b2b2b;
-    font-size:28rpx;
+    font-size: 28rpx;
     padding: 0 0 40rpx 0;
 }
 
 .discount-window .title {
-    padding:30rpx 10rpx 10rpx;
+    padding: 30rpx 10rpx 10rpx;
     line-height: 40rpx;
     font-weight: bold;
 }
 
-.discount-window .close-btn{
-    width:30rpx;
+.discount-window .close-btn {
+    width: 30rpx;
     height: 30rpx;
     float: right;
-    border:30rpx solid transparent;
+    border: 30rpx solid transparent;
     margin-top: -30rpx;
 }
 
-.discount-tab{
+.discount-tab {
     display: flex;
 }
 
-.tab-item{
-    flex:1;
+.tab-item {
+    flex: 1;
     text-align: center;
 }
 
-.tab-item text{
+.tab-item text {
     display: inline-block;
     position: relative;
     line-height: 60rpx;
     height: 60rpx;
 }
 
-.tab-item .current:after{
+.tab-item .current:after {
     content: '';
-    background:#e80000;
+    background: #e80000;
     height: 4rpx;
     border-radius: 2rpx;
     position: absolute;
     bottom: 0;
-    left:0;
-    right:2rpx;
+    left: 0;
+    right: 2rpx;
 }
 
-.discount-window .discount-result{
-    margin:0;
-    padding:10rpx 0 0 20rpx;
-    border:0;
+.discount-window .discount-result {
+    margin: 0;
+    padding: 10rpx 0 0 20rpx;
+    border: 0;
     background: #fff1da;
     line-height: 80rpx;
 }
 
-.discount-list-box{
-    max-height: 80vh;
+.discount-list-box {
+    max-height: 60vh;
     overflow-y: auto;
     overflow-x: hidden;
 }
 
-.discount-list{
-    padding:20rpx 0 0 0;
+.discount-list {
+    padding: 20rpx 0 0 0;
 }
 
-.discount-item{
-    margin:0 20rpx 20rpx 20rpx;
+.discount-item {
+    margin: 0 20rpx 20rpx 20rpx;
     display: flex;
     height: 100rpx;
-    border-radius:0 10rpx 10rpx 0; 
+    border-radius: 0 10rpx 10rpx 0;
     box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.2);
 }
 
-.discount-num{
-    width:200rpx;
+.discount-num {
+    width: 200rpx;
     height: 100%;
     line-height: 100rpx;
-    color:#fff;
+    color: #fff;
     background: #e80000;
     font-size: 32rpx;
     text-align: center;
     border-radius: 10rpx 0 0 10rpx;
 }
 
-.discount-detail{
-    flex:1;
-    padding:10rpx;
+.disabled .discount-num{
+    background:#999999;
+}
+
+.discount-detail {
+    flex: 1;
+    padding: 10rpx;
     line-height: 40rpx;
 }
 
-.discount-list .check-icon{
-    width:50rpx;
+.discount-list .check-icon {
+    width: 50rpx;
     height: 50rpx;
-    margin:25rpx 20rpx;
+    margin: 25rpx 20rpx;
     background: #fff;
-    border:#b2b2b2 5rpx solid;
+    border: #b2b2b2 5rpx solid;
     border-radius: 50%;
 }
 
-.discount-list .selected .check-icon{
-    width:50rpx;
+.discount-list .selected .check-icon {
+    width: 50rpx;
     height: 50rpx;
-    margin:25rpx 20rpx;
+    margin: 25rpx 20rpx;
     background: #e80000;
-    border:#e80000 5rpx solid;
+    border: #e80000 5rpx solid;
     border-radius: 50%;
     position: relative;
 }
 
-.discount-list .selected .check-icon:after{
+.discount-list .selected .check-icon:after {
     content: '';
     position: absolute;
-    top:0;
-    left:0;
-    width:42rpx;
+    top: 0;
+    left: 0;
+    width: 42rpx;
     height: 42rpx;
     font-size: 30rpx;
     background: url('https://iservice.daqisoft.cn/Public/Home/images/newimages/check.png') no-repeat center;
     background-size: 36rpx;
 }
 
-.sure-discount{
-    margin:20rpx auto 0;
-    width:400rpx;
+.sure-discount {
+    margin: 20rpx auto 0;
+    width: 400rpx;
     line-height: 70rpx;
     height: 70rpx;
     border-radius: 35rpx;
-    padding:0 35rpx;
+    padding: 0 35rpx;
     background: #e80000;
-    color:#fff;
+    color: #fff;
     font-size: 30rpx;
 }
 
 /* 办卡广告词 */
 
-.recommend-swiper{
+.recommend-swiper {
     height: 80rpx;
     line-height: 80rpx;
 }
 
-.recommend-swiper swiper-item{
-    font-size:28rpx;
-    color:#e80000;
-    background:#fff1da; 
+.recommend-swiper swiper-item {
+    font-size: 28rpx;
+    color: #e80000;
+    background: #fff1da;
     text-align: center;
+}
+
+/*账单加载loading*/
+
+.bill-loading {
+    text-align: center;
+    padding: 20rpx;
+    border-radius: 6rpx;
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 28rpx;
+    color:#ddd;
+}
+
+.bill-loading image{
+    display: block;
+    width:64rpx;
+    height: 64rpx;
+    margin:10rpx auto;
+}
+
+.bill-loading text{
+    display: block
 }
