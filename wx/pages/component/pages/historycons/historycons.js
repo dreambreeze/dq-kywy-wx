@@ -6,8 +6,6 @@ var cardType;
 var checkoutCard;
 //需付金额
 var need = 0;
-//账单门店标识，账单号
-var ShopNo,BusinessNo;
 //记录打开页面时间
 let openPageTime = 0;
 Page({
@@ -28,7 +26,7 @@ Page({
 		//付款方式
 		payWayList:[],
 		pyselected:0,
-		BillingInfo:{},
+		billingInfo:{},
 		isShowDiscount:false,
 		isShowBillLoading:false,
 		isShowDisableDiscount:false,
@@ -48,37 +46,56 @@ Page({
 		selectCouponsNum:0,
 		//最大优惠券使用数量
 		maxCouponsNum:0,
+		//门店编号
+		shopNo:'',
+		//账单编号
+		businessNo:'',
+		//房间号
+		roomNo:'',
+		//手牌号
+		handNo:'',
+		//用户微信Id
+		openId:'',
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onLoad:function(options){
-		var store = wx.getStorageSync("store")
+	onLoad(options){
+		let store = wx.getStorageSync("store")
 		//记录打开页面时间
 		openPageTime = new Date().getTime();
-		var _this = this;
+		let _this = this;
 		//是否存在openid状态，true存在，false不存在
-		var openidState = true;
+		let openidState = true;
 		//时间
-		var openidTime = null;
+		let openidTime = null;
 		//二维码参数
-		var option = decodeURIComponent(options.scene);
-
-		var optionArr = option.split('@');
-
-		// ShopNo = optionArr[0].split('=')[1];
-		// BusinessNo = optionArr[1].split('=')[1];
-
-		ShopNo = 'DQT03';
-		BusinessNo = '201901260001';
-
-		if(! ShopNo || ! BusinessNo){
+		let option = decodeURIComponent(options.scene)
+		let optionArr = option.split('@')
+		let businessNo = '201903090005'
+		let shopNo = 'DQH02'
+		let roomNo = ''
+		let handNo = ''
+		app.globalData.authorizerId = 'wx8550b9449468b029'
+		if(optionArr != 'undefined'){
+			shopNo = optionArr[0].split('=')[1]
+			if(optionArr[1].split('=')[0] == 'businessNo'){
+				businessNo = optionArr[1].split('=')[1]
+			}
+			if(optionArr[1].split('=')[0] == 'RoomNo'){
+				roomNo = optionArr[1].split('=')[1]
+			}
+			if(optionArr[1].split('=')[0] == 'handNo'){
+				handNo = optionArr[1].split('=')[1]
+			}
+		}
+		if(! shopNo || ! businessNo){
 			wx.showModal({
 				title:'提示',
 				content:'账单编号不存在，获取账单信息失败',
 				showCancel:false,
-				success:function(res){
+				success:(res) => {
 					if(res.confirm){
 						wx.navigateBack();
 					}
@@ -86,15 +103,16 @@ Page({
 			});
 			return false;
 		}
-
 		//获取用户openid
-		var openid = wx.getStorageSync('openid');
+		let openid = wx.getStorageSync('openid');
+		openid = 'o9Rnr4jTV1jRgp_NsyJGbXcNMuqk'
 		if(! openid){
 			openidState = false;
-			common.getLogin(app.globalData.authorizerId).then(function(data){
+			common.getLogin(app.globalData.authorizerId).then((data) => {
 				openidState = true;
 				openid = data;
-			}).catch(function(data){
+			}).catch((data) => {
+				this.hideBillLoading()
 				openidState = false;
 				wx.showModal({
 					title:'提示',
@@ -106,7 +124,12 @@ Page({
 		}
 
 		this.setData({
-			isShowBillLoading:true
+			isShowBillLoading:true,
+			shopNo:shopNo,
+			businessNo:businessNo,
+			roomNo:roomNo,
+			handNo:handNo,
+			openid:openid,
 		})
 
 		clearInterval(openidTime);
@@ -114,14 +137,14 @@ Page({
 			if(openidState){
 				clearInterval(openidTime);
 				//锁单
-				_this.lockOrder(ShopNo,BusinessNo).then((data) => {
-					if(data.status == 0){//账单状态处于不可结账状态
+				this.lockOrder().then((data) => {
+					if(data.status == 0){ //账单状态处于不可结账状态
 						this.hideBillLoading()
 						wx.showModal({
 							title:'提示',
 							content:data.info,
 							showCancel:false,
-							success:function(res){
+							success:(res) => {
 								if(res.confirm){
 									wx.navigateBack();
 								}
@@ -130,23 +153,22 @@ Page({
 					}else if(data.status == 1){ //锁单请求发起成功，等待锁单成功
 						//2秒后再次请锁单状态
 						setTimeout(() => {
-							this.lockOrder(ShopNo,BusinessNo).then((data) => {
+							this.lockOrder().then((data) => {
 								if(data.status == 1){
 									//0.5s请求一次锁单是否成功
 									let lockInterval = setInterval(() => {
-                                        console.log(data)
-										this.lockOrder(ShopNo,BusinessNo).then((data) => {
+										this.lockOrder().then((data) => {
 											if(data.status == 2){
 												clearInterval(lockInterval)
 												this.loadInitData()
 											}
-										}).catch(function(data){
+										}).catch((data) => {
 											this.hideBillLoading()
 											wx.showModal({
 												title:'提示',
 												content:data,
 												showCancel:false,
-												success:function(res){
+												success:(res) => {
 													if(res.confirm){
 														wx.navigateBack();
 													}
@@ -157,13 +179,13 @@ Page({
 								}else if(data.status == 2){
 									this.loadInitData()
 								}
-							}).catch(function(data){
+							}).catch((data) => {
 								this.hideBillLoading()
 								wx.showModal({
 									title:'提示',
 									content:data,
 									showCancel:false,
-									success:function(res){
+									success:(res) => {
 										if(res.confirm){
 											wx.navigateBack();
 										}
@@ -174,13 +196,13 @@ Page({
 					}else if(data.status == 2){
 						this.loadInitData()
 					}
-				}).catch(function(data){
+				}).catch((data) => {
 					this.hideBillLoading()
 					wx.showModal({
 						title:'提示',
 						content:data,
 						showCancel:false,
-						success:function(res){
+						success:(res) => {
 							if(res.confirm){
 								wx.navigateBack();
 							}
@@ -203,13 +225,12 @@ Page({
 	 */
 	loadInitData(){
 		this.hideBillLoading()
-		let _this = this
 		//获取用户会员卡
-		_this.getOpenCardType().then((data) => {
+		this.getOpenCardType().then((data) => {
 			//过滤无效会员卡
 			if(data.info.length > 1){
 				cardType = [];
-				for(var i = 0; i < data.info.length; i ++){
+				for(let i = 0; i < data.info.length; i ++){
 					if(data.info[i].CardState == 0){
 						cardType.push(data.info[i]);
 					}
@@ -217,13 +238,12 @@ Page({
 			}else{
 				cardType = data.info;
 			}
-
 			if(cardType.length == 0){
 				wx.showModal({
 					title:'提示',
 					content:'会员卡非正常状态，无法结账',
 					showCancel:false,
-					success:function(res){
+					success:(res) => {
 						if(res.confirm){
 							wx.navigateBack();
 						}
@@ -247,24 +267,23 @@ Page({
 
 			for(let i in cardType){
 				payWayList.push(cardType[i])
-				//当拥有当前门店会员卡时默认支付方式为当前门店第一张卡
-				if(_this.data.pyselected == 0 && cardType[i].ShopNo == ShopNo){
+				//当拥有当前门店会员卡时默认支付方式为当前门店第一张卡 否则 微信支付
+				if(this.data.pyselected == 0 && cardType[i].shopNo == this.data.shopNo){
 					checkoutCard = cardType[i]
-					_this.setData({
+					this.setData({
 						pyselected:(parseInt(i) + 1),
 					})
 				}else{
 					checkoutCard = payWayList[0]
 				}
 			}
-			_this.setData({
+			this.setData({
 				cardType:cardType,
 				checkoutCard:checkoutCard,
 				payWayList:payWayList,
 			});
-			let checkoutParam = checkoutCard.AutoID == - 1?[]:checkoutCard
 			//查询账单信息
-			this.loadBillInfo(checkoutParam,ShopNo,BusinessNo)
+			this.loadBillInfo()
 		});
 	},
 
@@ -279,9 +298,11 @@ Page({
 			pyselected:paywayindex,
 			checkoutCard:checkoutCard
 		})
-		let checkoutParam = checkoutCard.AutoID == - 1?[]:checkoutCard
+		wx.showLoading({
+			title:'加载中',
+		})
 		//查询账单信息
-		this.loadBillInfo(checkoutParam,ShopNo,BusinessNo).then(() => {
+		this.loadBillInfo().then(() => {
 			this.setData({
 				isShowPayWay:false,
 			})
@@ -293,13 +314,7 @@ Page({
 	 */
 	selectDiscount(e){
 		let discountNo = e.currentTarget.dataset.discountno
-		let discountList = this.data.discountList
-		let need = this.data.need
-		let selectCouponsNum = this.data.selectCouponsNum
-		let checkoutCard = this.data.checkoutCard
-		let BillingInfo = this.data.BillingInfo
-		let maxCouponsNum = this.data.maxCouponsNum
-
+		let {discountList,selectCouponsNum,billingInfo,maxCouponsNum} = this.data
 		for(let discount of discountList){
 			if(discount.id == discountNo){ //当前优惠券
 				if(discount.selected != 1){ //确认使用当前优惠券
@@ -320,13 +335,13 @@ Page({
 				break
 			}
 		}
-		let offerAmount = this.getInitOfferAmount(discountList,BillingInfo)
+		let offerAmount = this.getInitOfferAmount(discountList,billingInfo)
 		this.setData({
 			discountList:discountList,
 			selectCouponsNum:selectCouponsNum,
 			offerAmount:offerAmount,
 		})
-		this.calculatePrice(need,offerAmount,checkoutCard,BillingInfo)
+		this.calculatePrice()
 	},
 
 	/**
@@ -334,13 +349,14 @@ Page({
 	 * need:合计需付
 	 * offerAmount:优惠金额
 	 * checkoutCard:当前付款方式
-	 * BillingInfo:账单列表
+	 * billingInfo:账单列表
 	 */
-	calculatePrice(need,offerAmount,checkoutCard,BillingInfo){
+	calculatePrice(){
+		let {need,offerAmount,checkoutCard,billingInfo} = this.data
 		let cardNeedAmount = 0
 		let weChatNeedAmount = 0
 		let onlyCashAmount = 0
-		for(let bill of BillingInfo){
+		for(let bill of billingInfo){
 			if(bill.OnlyCash == 1){ //限现金支付
 				onlyCashAmount += parseFloat(bill.PaySinglePrice) * parseFloat(bill.ServiceNum)
 			}
@@ -360,9 +376,10 @@ Page({
 	/**
 	 * 获取初始化选择优惠券张数
 	 */
-	getSelectCouponsNum(discountList){
+	getSelectCouponsNum(){
 		let selectCouponsNum = 0
 		let maxCouponsNum = 0
+		let discountList = this.data.discountList
 		for(let index in discountList){
 			let item = discountList[index]
 			if(item.selected == 1){
@@ -377,7 +394,7 @@ Page({
 	/**
 	 * 获取初始化优惠金额
 	 */
-	getInitOfferAmount(discountList,BillingInfo){
+	getInitOfferAmount(discountList,billingInfo){
 		let offerAmount = 0
 		for(let index in discountList){
 			let item = discountList[index]
@@ -385,7 +402,7 @@ Page({
 				if(item.cpstype == 'coupons'){ //现金券
 					offerAmount += parseFloat(item.amount)
 				}else{ //项目券
-					for(let bill of BillingInfo){
+					for(let bill of billingInfo){
 						if(item.project == bill.ServiceItemName){
 							offerAmount += parseFloat(bill.PaySinglePrice)
 							break
@@ -415,23 +432,20 @@ Page({
 	/**
 	 * 获取当前用户所有卡类型
 	 */
-	getOpenCardType:function(){
-		var p = new Promise(function(resolve,reject){
-			var openid = wx.getStorageSync('openid'),
-					_this = this;
-
+	getOpenCardType(){
+		let p = new Promise((resolve,reject) => {
 			wx.request({
 				url:common.config.host + '/index.php/Api/Base/getVipCard',
 				data:{
 					'authorizerId':app.globalData.authorizerId,
-					'openid':openid,
+					'openid':this.data.openid,
 					'type':2
 				},
 				method:'POST',
 				header:{
 					'content-type':'application/json'
 				},
-				success:function(res){
+				success:(res) => {
 					wx.hideLoading();
 					if(res.statusCode == 200){
 						if(res.data.status == 1){
@@ -439,7 +453,7 @@ Page({
 								wx.showModal({
 									title:'提示',
 									content:'您还没有会员卡，现在去办卡',
-									success:function(e){
+									success:(e) => {
 										if(e.confirm){
 											wx.redirectTo({
 												url:'../docard/docard?id=3',
@@ -466,7 +480,7 @@ Page({
 						});
 					}
 				},
-				fail:function(res){
+				fail:(res) => {
 					wx.hideLoading();
 					if(res.errMsg == 'request:fail timeout'){
 						wx.showModal({
@@ -489,12 +503,12 @@ Page({
 	/**
 	 * 选择结账方式弹出层控制
 	 */
-	showPayWay:function(){
+	showPayWay(){
 		this.setData({
 			isShowPayWay:true
 		})
 	},
-	hidePayWay:function(){
+	hidePayWay(){
 		this.setData({
 			isShowPayWay:false
 		})
@@ -502,38 +516,37 @@ Page({
 	/**
 	 * 加载处理账单数据
 	 */
-	loadBillInfo(checkoutParam,ShopNo,BusinessNo){
-		var p = new Promise((resolve,reject) => {
+	loadBillInfo(){
+		let p = new Promise((resolve,reject) => {
 			//查询账单信息
-			this.getBillingInfo(checkoutParam,ShopNo,BusinessNo).then((data) => {
-				wx.hideLoading();
-				let BillInfo = data.info
-				let offerAmount = this.getInitOfferAmount(data.allcan,BillInfo)
-				need = data.need;
-				this.calculatePrice(need,offerAmount,checkoutCard,BillInfo)
+			this.getBillingInfo().then((data) => {
+				let {allcan,bsname,cannotuse,need} = data
+				let info = data.info?data.info:''
+				let offerAmount = this.getInitOfferAmount(allcan,info)
 				//计算该账单 每种商品 的 价格
-				for(let bill of BillInfo){
-					let billPrice = (bill.PaySinglePrice * bill.ServiceNum).toFixed(2)
-					bill.billPrice = billPrice
+				if(info){
+					for(let bill of info){
+						let billPrice = (bill.PaySinglePrice * bill.ServiceNum).toFixed(2)
+						bill.billPrice = billPrice
+					}
 				}
 				this.setData({
-					BillingInfo:BillInfo,
-					BusinessNo:BusinessNo,
+					billingInfo:info,
 					need:need,
-					bsname:data.bsname,
-					discountList:data.allcan,
+					bsname:bsname,
+					discountList:allcan,
 					offerAmount:offerAmount,
-					disabledDiscountList:data.cannotuse
+					disabledDiscountList:cannotuse
 				});
-				this.getSelectCouponsNum(data.allcan)
-				resolve(data.info)
-			}).catch(function(data){
-				wx.hideLoading();
+				this.calculatePrice()
+				this.getSelectCouponsNum()
+				resolve(info)
+			}).catch((data) => {
 				wx.showModal({
 					title:'提示',
 					content:data,
 					showCancel:false,
-					success:function(res){
+					success:(res) => {
 						if(res.confirm){
 							wx.navigateBack();
 						}
@@ -547,23 +560,25 @@ Page({
 	/**
 	 * 获取账单信息接口调用
 	 */
-	getBillingInfo:function(checkoutCard,shopNo,businessNo){
-		var p = new Promise(function(resolve,reject){
-			var openid = wx.getStorageSync('openid');
+	getBillingInfo(){
+		let {openid,checkoutCard,shopNo,businessNo,roomNo,handNo} = this.data
+		let p = new Promise((resolve,reject) => {
 			wx.request({
-				url:common.config.host + '/index.php/Api/Base/getBillingInfo',
+				url:common.config.host + '/index.php/Api/OnLineTasks/getBillingInfo',
 				data:{
 					'authorizerId':app.globalData.authorizerId,
 					'openid':openid,
 					'checkoutCard':checkoutCard,
 					'shopNo':shopNo,
-					'businessNo':businessNo
+					'businessNo':businessNo,
+					'roomNo':roomNo,
+					'handNo':handNo,
 				},
 				method:'POST',
 				header:{
 					'content-type':'application/json'
 				},
-				success:function(res){
+				success:(res) => {
 					wx.hideLoading();
 					if(res.statusCode == 200){
 						if(res.data.status == 1){
@@ -579,7 +594,7 @@ Page({
 						reject('请求失败，服务器错误');
 					}
 				},
-				fail:function(res){
+				fail:(res) => {
 					wx.hideLoading();
 					if(res.errMsg == 'request:fail timeout'){
 						wx.showModal({
@@ -603,7 +618,7 @@ Page({
 	/**
 	 * 点击跳转至充值页面
 	 */
-	jumpurl:function(e){
+	jumpurl(e){
 		wx.navigateTo({
 			url:e.currentTarget.dataset.url,
 		});
@@ -629,13 +644,13 @@ Page({
 	 */
 	nowPay(){
 		//审核页面打开时间是否大于5分钟
-		var currentTima = new Date().getTime();
+		let currentTima = new Date().getTime();
 		if((openPageTime + 300000) < currentTima){
 			wx.showModal({
 				title:'提示',
 				content:'当前页面超过5分钟未操作，请重新进入',
 				showCancel:false,
-				success:function(res){
+				success:(res) => {
 					if(res.confirm){
 						wx.navigateBack();
 					}
@@ -657,10 +672,10 @@ Page({
 							wx.showModal({
 								title:'提示',
 								content:'会员卡内余额不足，请充值',
-								success:function(res){
+								success:(res) => {
 									if(res.confirm){
 										wx.navigateTo({
-											url:'/pages/component/pages/recharge-amount/recharge-amount?cardno=' + checkoutCard.CardNo + '&shopno=' + checkoutCard.ShopNo + '&jumpback=1',
+											url:'/pages/component/pages/recharge-amount/recharge-amount?cardno=' + checkoutCard.CardNo + '&shopNo=' + checkoutCard.shopNo + '&jumpback=1',
 										});
 									}
 								}
@@ -680,9 +695,9 @@ Page({
 					});
 
 					//获取手机设备信息
-					var systemInfo = '';
+					let systemInfo = '';
 					try{
-						var res = wx.getSystemInfoSync();
+						let res = wx.getSystemInfoSync();
 						systemInfo = res.model;
 					}catch(e){
 						systemInfo = '未知（获取失败）';
@@ -691,12 +706,10 @@ Page({
 					checkoutCard['systemInfo'] = systemInfo;
 
 					//结账请求
-					var openid = wx.getStorageSync('openid');
-
-					if(weChatNeedAmount > 0){//存在微信支付
-						this.weChatCheckout(openid,ShopNo,BusinessNo)
+					if(this.data.weChatNeedAmount > 0){ //存在微信支付
+						this.weChatCheckout()
 					}else{
-						this.memberCheckout(openid,ShopNo,BusinessNo)
+						this.memberCheckout()
 					}
 				}
 			}
@@ -706,17 +719,16 @@ Page({
 	/**
 	 * 含微信支付的账单支付
 	 */
-	weChatCheckout(openid,ShopNo,BusinessNo){
-		let cardNeedAmount = this.data.cardNeedAmount
-		let weChatNeedAmount = this.data.weChatNeedAmount
+	weChatCheckout(){
 		let selectedCoupons = this.getSelectDiscount()
+		let {cardNeedAmount,weChatNeedAmount,openid,shopNo,businessNo,checkoutCard} = this.data
 		wx.request({
 			url:common.config.host + '/index.php/Api/Requestdata/weChatCheckout',
 			data:{
 				'authorizerId':app.globalData.authorizerId,
 				'openid':openid,
-				'shopNo':ShopNo,
-				'businessNo':BusinessNo,
+				'shopNo':shopNo,
+				'businessNo':businessNo,
 				'checkoutCard':checkoutCard,
 				'selectedCoupons':selectedCoupons,
 				'cardPayAmount':cardNeedAmount,
@@ -726,7 +738,7 @@ Page({
 			header:{
 				'content-type':'application/json'
 			},
-			success:(data)=>{
+			success:(data) => {
 				let info = data.info
 				wx.hideLoading();
 				wx.requestPayment({
@@ -741,7 +753,7 @@ Page({
 							common.savePrepayId(app.globalData.authorizerId,openid,info.package);
 
 							if(cardNeedAmount > 0){
-								this.memberCheckout(openid,ShopNo,BusinessNo)
+								this.memberCheckout(openid,shopNo,businessNo)
 							}else{
 								this.paySuccess()
 							}
@@ -763,7 +775,7 @@ Page({
 					}
 				});
 			},
-			fail:function(res){
+			fail:(res) => {
 				wx.hideLoading();
 				if(res.errMsg == 'request:fail timeout'){
 					wx.showModal({
@@ -786,16 +798,16 @@ Page({
 	/**
 	 * 会员卡支付
 	 */
-	memberCheckout(openid,ShopNo,BusinessNo){
-		let cardNeedAmount = this.data.cardNeedAmount
+	memberCheckout(){
+		let {cardNeedAmount,openid,shopNo,businessNo,checkoutCard} = this.data
 		let selectedCoupons = this.getSelectDiscount()
 		wx.request({
 			url:common.config.host + '/index.php/Api/Requestdata/memberCheckout',
 			data:{
 				'authorizerId':app.globalData.authorizerId,
 				'openid':openid,
-				'shopNo':ShopNo,
-				'businessNo':BusinessNo,
+				'shopNo':shopNo,
+				'businessNo':businessNo,
 				'checkoutCard':checkoutCard,
 				'selectedCoupons':selectedCoupons,
 				'payAmount':cardNeedAmount,
@@ -804,7 +816,7 @@ Page({
 			header:{
 				'content-type':'application/json'
 			},
-			success:function(res){
+			success:(res) => {
 				wx.hideLoading();
 				if(res.statusCode == 200){
 					if(res.data.status == 1){
@@ -824,7 +836,7 @@ Page({
 					});
 				}
 			},
-			fail:function(res){
+			fail:(res) => {
 				wx.hideLoading();
 				if(res.errMsg == 'request:fail timeout'){
 					wx.showModal({
@@ -851,7 +863,7 @@ Page({
 			icon:'success',
 			mask:true,
 			duration:2000,
-			success:function(res){
+			success:(res) => {
 				wx.navigateTo({
 					url:'/pages/ucentermodel/pages/orders/orders',
 				});
@@ -874,21 +886,24 @@ Page({
 	/**
 	 * 锁单请求
 	 */
-	lockOrder:function(shopNo,businessNo){
-		var p = new Promise(function(resolve,reject){
+	lockOrder(){
+		let {shopNo,businessNo,roomNo,handNo} = this.data
+		let p = new Promise((resolve,reject) => {
 			//锁单请求
 			wx.request({
 				url:common.config.host + '/index.php/Api/Requestdata/lockOrder',
 				data:{
-					'authorizerId':app.globalData.authorizerId,
-					'shopNo':shopNo,
-					'businessNo':businessNo
+					authorizerId:app.globalData.authorizerId,
+					shopNo:shopNo,
+					businessNo:businessNo,
+					roomNo:roomNo,
+					handNo:handNo,
 				},
 				method:'POST',
 				header:{
 					'content-type':'application/json'
 				},
-				success:function(res){
+				success:(res) => {
 					wx.hideLoading();
 					if(res.statusCode == 200){
 						if(res.data.status == 1 || res.data.status == 2){
@@ -900,7 +915,7 @@ Page({
 						reject('请求失败，服务器错误');
 					}
 				},
-				fail:function(res){
+				fail:(res) => {
 					wx.hideLoading();
 					if(res.errMsg == 'request:fail timeout'){
 						wx.showModal({

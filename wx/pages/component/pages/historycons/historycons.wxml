@@ -2,8 +2,8 @@
     <view class="bill-box">
         <view class="bill-title">{{bsname}}</view>
         <view class="bill-stitle flex-wrp">
-            <view class="room-no">房间号：{{BillingInfo[0].RoomName}}</view>
-            <view class="con-bills">消费账单：{{BusinessNo}}</view>
+            <view class="room-no">房间号：{{billingInfo[0].RoomName}}</view>
+            <view class="con-bills">消费账单：{{businessNo}}</view>
         </view>
         <view class="column-name flex-wrp">
             <view class="pname">项目名称</view>
@@ -12,7 +12,7 @@
             <view class="amount">金额</view>
             <view class="need">需付</view>
         </view>
-        <view class="bill-con flex-wrp" wx:for="{{BillingInfo}}" wx:key='index'>
+        <view class="bill-con flex-wrp" wx:for="{{billingInfo}}" wx:key='index'>
             <view class="pname text-ellipsis">{{item.ServiceItemName}}</view>
             <view class="work-no text-ellipsis">{{!item.JSStaffWorkNo ?'' : item.JSStaffWorkNo }}</view>
             <view class="number text-ellipsis">{{item.ServiceNum}}</view>
@@ -48,7 +48,7 @@
                     <image src='{{payWayList[pyselected].PicUrl?showImgUrl+payWayList[pyselected].PicUrl:cardPicUrl}}' class="pwl-img"></image>
                 </block>
                 <text class='rt_type'>{{payWayList[pyselected].MembershipTypeName}}</text>
-                <text class='balance' wx:if="{{checkoutCard.Balance}}">余额：{{checkoutCard.Balance}}</text>
+                <text class='balance' wx:if="{{checkoutCard.AutoID!='-1'}}">余额：{{checkoutCard.Balance}}</text>
                 <text class='iconfont icon-right sw_rt'></text>
             </view>
         </view>
@@ -72,10 +72,10 @@
         </view>
         <view class='discount-tab'>
             <view class='tab-item'>
-                <text class='{{!isShowDisableDiscount?"current":"" }}' bindtap='tabDiscount'>可用优惠券(2)</text>
+                <text class='{{!isShowDisableDiscount?"current":"" }}' bindtap='tabDiscount'>可用优惠券({{discountList.length}})</text>
             </view>
             <view class='tab-item'>
-                <text class='{{isShowDisableDiscount?"current":"" }}' bindtap='tabDiscount'>不可用优惠券(4)</text>
+                <text class='{{isShowDisableDiscount?"current":"" }}' bindtap='tabDiscount'>不可用优惠券({{disabledDiscountList.length}})</text>
             </view>
         </view>
         <view class='discount-result'>您已选中优惠券
@@ -128,7 +128,7 @@
                     </block>
                     <text class='pwl-name'>{{item.MembershipTypeName}}</text>
                     <view wx:if="{{!item.pic}}" class="recharge" data-url="/pages/component/pages/recharge-amount/recharge-amount?cardno={{item.CardNo}}&shopno={{item.ShopNo}}&jumpback=1" bindtap="jumpurl">充值</view>
-                    <text class='balance' wx:if='{{item.CardNum*1.00 + item.SendNum*1.00>0}}'>余额:{{item.CardNum*1.00 + item.SendNum*1.00}}</text>
+                    <text class='balance' wx:if='{{item.CardNum&&item.SendNum}}'>余额:{{item.CardNum*1.00 + item.SendNum*1.00}}-{{item.ShopName}}</text>
                 </view>
                 <view class="pwl-rt">
                     <view class="pwl-select">

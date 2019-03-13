@@ -7,6 +7,7 @@ App({
         //获取系统（当前小程序）唯一IDwxf0015533c671835e
         let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
         _this.globalData.authorizerId = extConfig.authorizer_appid;
+        // _this.globalData.authorizerId = 'wx8550b9449468b029';
         //获取本地storage保存的openid
         var openid = wx.getStorageSync('openid');
         //检查是否在登录态

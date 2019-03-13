@@ -38,23 +38,23 @@ var config = {
         "id": 11
     }, {
         "fun_name": "会员中心",
-            "fun_img": "https://iservice.daqisoft.cn/Public/Home/images/newimages/footer_tab_vip_checked@2x.png",
+        "fun_img": "https://iservice.daqisoft.cn/Public/Home/images/newimages/footer_tab_vip_checked@2x.png",
         "applet_address": "../vip-center/vip-center",
-            "notcheck_img": "https://iservice.daqisoft.cn/Public/Home/images/newimages/footer_tab_vip@2x.png",
+        "notcheck_img": "https://iservice.daqisoft.cn/Public/Home/images/newimages/footer_tab_vip@2x.png",
         "isTo": true,
         "id": 15
     }, {
         "fun_name": "优惠活动",
-            "fun_img": "https://iservice.daqisoft.cn/Public/Home/images/newimages/footer_tab_promotions_checked@2x.png",
+        "fun_img": "https://iservice.daqisoft.cn/Public/Home/images/newimages/footer_tab_promotions_checked@2x.png",
         "applet_address": "../promotions/promotions",
-            "notcheck_img": "https://iservice.daqisoft.cn/Public/Home/images/newimages/footer_tab_promotions@2x.png",
+        "notcheck_img": "https://iservice.daqisoft.cn/Public/Home/images/newimages/footer_tab_promotions@2x.png",
         "isTo": true,
         "id": 16
     }, {
         "fun_name": "我的",
-            "fun_img": "https://iservice.daqisoft.cn/Public/Home/images/newimages/footer_tab_mine_checked@2x.png",
+        "fun_img": "https://iservice.daqisoft.cn/Public/Home/images/newimages/footer_tab_mine_checked@2x.png",
         "applet_address": "../ucenter/ucenter",
-            "notcheck_img": "https://iservice.daqisoft.cn/Public/Home/images/newimages/footer_tab_mine@2x.png",
+        "notcheck_img": "https://iservice.daqisoft.cn/Public/Home/images/newimages/footer_tab_mine@2x.png",
         "isTo": true,
         "id": 17
     }]
@@ -982,7 +982,7 @@ function getEBuyDetail(authorizerId, openid, id) {
  * 删除拼团订单
  */
 function delGroupItem(authorizerId, id) {
-    let p = new Promise(function (resolve, reject) {
+    let p = new Promise(function(resolve, reject) {
         wx.request({
             url: host + '/index.php/Api/AutoMina/delGroupOrder',
             data: {
@@ -993,7 +993,7 @@ function delGroupItem(authorizerId, id) {
             header: {
                 'content-type': 'application/json'
             },
-            success: function (res) {
+            success: function(res) {
                 //返回成功
                 if (res.statusCode == 200) {
                     if (res.data.status == 1) {
@@ -1005,7 +1005,7 @@ function delGroupItem(authorizerId, id) {
                     reject('请求失败');
                 }
             },
-            fail: function (res) {
+            fail: function(res) {
                 if (res.errMsg == 'request:fail timeout') {
                     reject('请求超时');
                 } else {
@@ -1716,7 +1716,7 @@ function isVip(authorizerId, phone) {
 
 //检测是否有需要退款的订单，有则退款
 function groupRefound(authorizerId) {
-    let p = new Promise(function (resolve, reject) {
+    let p = new Promise(function(resolve, reject) {
         wx.request({
             url: host + '/index.php/Api/Base/grouprefound',
             data: {
@@ -1726,7 +1726,7 @@ function groupRefound(authorizerId) {
             header: {
                 'content-type': 'application/json'
             },
-            success: function (res) {
+            success: function(res) {
                 //返回成功
                 if (res.statusCode == 200) {
 
@@ -1736,7 +1736,7 @@ function groupRefound(authorizerId) {
                     reject('请求失败');
                 }
             },
-            fail: function (res) {
+            fail: function(res) {
                 if (res.errMsg == 'request:fail timeout') {
                     reject('请求超时');
                 } else {
@@ -1747,6 +1747,80 @@ function groupRefound(authorizerId) {
     });
     return p;
 }
+
+/**
+ *  除法-js精度丢失的计算方法
+ */
+var division = function(arg1, arg2) {
+    var t1 = 0,
+        t2 = 0,
+        r1, r2;
+    try {
+        t1 = arg1.toString().split(".")[1].length
+    } catch (e) {}
+    try {
+        t2 = arg2.toString().split(".")[1].length
+    } catch (e) {}
+    r1 = Math.Number(arg1.toString().replace(".", ""))
+    r2 = Math.Number(arg2.toString().replace(".", ""))
+    return multiplication((r1 / r2), pow(10, t2 - t1));
+}
+
+/**
+ *  乘法-js精度丢失的计算方法
+ */
+var multiplication = function(arg1, arg2) {
+    var m = 0,
+        s1 = arg1.toString(),
+        s2 = arg2.toString();
+    try {
+        m += s1.split(".")[1].length
+    } catch (e) {}
+    try {
+        m += s2.split(".")[1].length
+    } catch (e) {}
+    return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m)
+}
+
+/**
+ *  加法-js精度丢失的计算方法
+ */
+var addition = function(arg1, arg2) {
+    var r1, r2, m;
+    try {
+        r1 = arg1.toString().split(".")[1].length
+    } catch (e) {
+        r1 = 0
+    }
+    try {
+        r2 = arg2.toString().split(".")[1].length
+    } catch (e) {
+        r2 = 0
+    }
+    m = Math.pow(10, Math.max(r1, r2))
+    return (arg1 * m + arg2 * m) / m
+}
+
+/**
+ *  减法-js精度丢失的计算方法
+ */
+var subtraction = function(arg1, arg2) {
+    var r1, r2, m, n;
+    try {
+        r1 = arg1.toString().split(".")[1].length
+    } catch (e) {
+        r1 = 0
+    }
+    try {
+        r2 = arg2.toString().split(".")[1].length
+    } catch (e) {
+        r2 = 0
+    }
+    m = Math.pow(10, Math.max(r1, r2));
+    n = (r1 >= r2) ? r1 : r2;
+    return ((arg1 * m - arg2 * m) / m).toFixed(n);
+}
+
 
 module.exports.config = config;
 module.exports.jishuzhichi = jishuzhichi;
@@ -1797,3 +1871,7 @@ module.exports.isVip = isVip;
 module.exports.location = location;
 module.exports.groupRefound = groupRefound;
 module.exports.delGroupItem = delGroupItem;
+module.exports.division = division;
+module.exports.multiplication = multiplication;
+module.exports.addition = addition;
+module.exports.subtraction = subtraction;
