@@ -6,14 +6,20 @@
 
 .card-banner {
     text-align: center;
-    padding: 15rpx 0;
+    padding: 15rpx 0 0;
     background: url('https://note.youdao.com/yws/api/personal/file/WEB18806b97d9c5123256ee2a5a73ec6222?method=download&shareKey=2c42d11923842efcd03777d8be00138f') no-repeat;
-    background-size: 100%;
+    background-size: 100% 100%;
 }
 
 .card-banner image {
-    width: 550rpx;
-    height: 290rpx;
+    width: 423rpx;
+    height: 220rpx;
+}
+
+.card-banner .banner-store-name{
+    font-size:24rpx;
+    text-align: center;
+    line-height: 50rpx;
 }
 
 .card-info {

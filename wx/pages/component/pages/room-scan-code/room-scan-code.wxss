@@ -1,0 +1,458 @@
+/*html内容转义插件样式*/
+@import "/wxParse/wxParse.wxss";
+
+.content {
+    padding: 20rpx;
+}
+
+.bill-box {
+    background-color: #FFFFFF;
+    padding:0 20rpx;
+    box-shadow: 0 2rpx 20rpx rgba(0, 0, 0, 0.2);
+    border-radius:10rpx;
+}
+
+.bill-title {
+    font-size: 30rpx;
+    color: #2b2b2b;
+    text-align: center;
+    line-height:98rpx;
+    height:98rpx;
+    font-weight:bold;
+    border-bottom:1px solid #e7e7e7;
+}
+
+.bill-stitle {
+    padding: 30rpx 0;
+}
+
+.room-no, .con-bills {
+    font-size: 26rpx;
+    color: #2b2b2b;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.room-no {
+    width: 30%;
+}
+
+.con-bills {
+    width: 70%;
+    text-align: right;
+}
+
+.column-name{
+    line-height: 1;
+    padding: 12rpx 0;
+    font-size: 26rpx;
+    background:#3b81d6;
+    color:#FFFFFF;
+    border-radius:4rpx;
+    text-align:center;
+}
+
+.bill-con view {
+    line-height: 60rpx;
+    font-size: 24rpx;
+    color: #555555;
+    text-align:center;
+}
+
+.pname {
+    width: 30%;
+}
+
+.work-no, .number, .amount, .need {
+    flex: 1;
+}
+
+
+/*账单加载loading*/
+
+.bill-loading {
+    text-align: center;
+    padding: 20rpx;
+    border-radius: 6rpx;
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 28rpx;
+    color:#ddd;
+}
+
+.bill-loading image{
+    display: block;
+    width:64rpx;
+    height: 64rpx;
+    margin:10rpx auto;
+}
+
+.bill-loading text{
+    display: block
+}
+
+/*服务功能模块*/
+.function-list {
+    display: flex;
+    background: #fff;
+    padding: 30rpx;
+    border-top: 1rpx #f5f1f1 solid;
+    font-size: 24rpx;
+    justify-content: space-around;
+}
+
+.function-list .item {
+    flex: 1;
+    text-align: center;
+}
+
+.function-list .item image {
+    width: 80rpx;
+    height: 80rpx;
+    margin: 0 0 15rpx 0;
+    border-radius: 50%;
+}
+/*顶部通知模块*/
+.message-box {
+    margin: 14rpx 0;
+    padding: 10rpx 30rpx 10rpx 106rpx;
+    overflow: hidden;
+    background: #fff;
+}
+
+.message-box image {
+    width: 60rpx;
+    height: 60rpx;
+    position: absolute;
+    margin-left: -76rpx;
+}
+
+.message-list {
+    font-size: 18rpx;
+    height: 60rpx;
+}
+
+.message-list .item {
+    height: 25rpx;
+    line-height: 25rpx;
+    margin-bottom: 10rpx;
+    display: flex;
+    align-items: center;
+}
+
+.message-list .red-tag {
+    color: #e54837;
+    border: #e54837 1rpx solid;
+}
+
+.message-list .green-tag {
+    color: #53a64e;
+    border: #53a64e 1rpx solid;
+}
+
+.message-list .tag {
+    display: inline-block;
+    padding: 0 4rpx;
+    border-radius: 4rpx;
+    margin: 0 10rpx 0 0;
+    vertical-align: top;
+    line-height: 35rpx;
+    font-size: 24rpx;
+    height: 35rpx;
+}
+
+.message-list .summary {
+    display: inline-block;
+    width: 540rpx;
+    height: 35rpx;
+    line-height: 35rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 24rpx;
+    white-space: nowrap;
+    position: relative;
+}
+
+/*资讯弹窗*/
+.close-btn {
+    position: absolute;
+    width: 60rpx;
+    height: 60rpx;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -140rpx;
+}
+
+.notice-box {
+    width: 600rpx;
+    min-height: 100rpx;
+    max-height: 900rpx;
+    overflow-y: auto;
+    position: fixed;
+    transform: translateY(-50%);
+    top: 40%;
+    left: 50%;
+    margin-left: -300rpx;
+    background: #fff;
+    z-index: 20;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding:20rpx;
+}
+
+.close-qrcode {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 60rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    text-align: center;
+    font-size: 44rpx;
+    color: #aaa9a9;
+}
+
+.qrcode-title {
+    position: relative;
+    text-align: center;
+    color: #999;
+    padding: 40rpx 0 26rpx;
+    font-size: 26rpx;
+}
+
+/* 呼叫服务 */
+.mask {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.call-service {
+    width: 100%;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    z-index: 3;
+    display: flex;
+}
+
+.donald-duck {
+    padding: 0 0 0 20rpx;
+    width: 226rpx;
+    height: 459rpx;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-duration: 0.3s;
+    -webkit-animation-duration: 0.3s;
+    transform: translateX(-262rpx);
+    -webkit-transform: translateX(-262rpx);
+}
+
+.donaldshowIn {
+    animation-name: donaldshowIn;
+    -webkit-animation-name: donaldshowIn;
+}
+
+@keyframes donaldshowIn {
+    0% {
+        transform: translateX(-262rpx);
+        -webkit-transform: translateX(-262rpx);
+    }
+
+    100% {
+        transform: translateX(0rpx);
+        -webkit-transform: translateX(0rpx);
+    }
+}
+
+@-webkit-keyframes donaldshowIn {
+    0% {
+        transform: translateX(-262rpx);
+        -webkit-transform: translateX(-262rpx);
+    }
+
+    100% {
+        transform: translateX(0rpx);
+        -webkit-transform: translateX(0rpx);
+    }
+}
+
+.donaldshowOut {
+    animation-name: donaldshowOut;
+    -webkit-animation-name: donaldshowOut;
+}
+
+@keyframes donaldshowOut {
+    0% {
+        transform: translateX(0rpx);
+        -webkit-transform: translateX(0rpx);
+    }
+
+    100% {
+        transform: translateX(-262rpx);
+        -webkit-transform: translateX(-262rpx);
+    }
+}
+
+@-webkit-keyframes donaldshowOut {
+    0% {
+        transform: translateX(0rpx);
+        -webkit-transform: translateX(0rpx);
+    }
+
+    100% {
+        transform: translateX(-262rpx);
+        -webkit-transform: translateX(-262rpx);
+    }
+}
+
+.donald-duck image {
+    width: 100%;
+    height: 100%;
+}
+
+.donald-duck-con {
+    width: 488rpx;
+    max-height: 765rpx;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-duration: 0.3s;
+    -webkit-animation-duration: 0.3s;
+    transform: translateX(488rpx);
+    -webkit-transform: translateX(488rpx);
+}
+
+.donaldconshowIn {
+    animation-name: donaldconshowIn;
+    -webkit-animation-name: donaldconshowIn;
+}
+
+@keyframes donaldconshowIn {
+    0% {
+        transform: translateX(488rpx);
+        -webkit-transform: translateX(488rpx);
+    }
+
+    100% {
+        transform: translateX(0rpx);
+        -webkit-transform: translateX(0rpx);
+    }
+}
+
+@-webkit-keyframes donaldconshowIn {
+    0% {
+        transform: translateX(488rpx);
+        -webkit-transform: translateX(488rpx);
+    }
+
+    100% {
+        transform: translateX(0rpx);
+        -webkit-transform: translateX(0rpx);
+    }
+}
+
+.donaldconshowOut {
+    animation-name: donaldconshowOut;
+    -webkit-animation-name: donaldconshowOut;
+}
+
+@keyframes donaldconshowOut {
+    0% {
+        transform: translateX(0rpx);
+        -webkit-transform: translateX(0rpx);
+    }
+
+    100% {
+        transform: translateX(488rpx);
+        -webkit-transform: translateX(488rpx);
+    }
+}
+
+@-webkit-keyframes donaldconshowOut {
+    0% {
+        transform: translateX(0rpx);
+        -webkit-transform: translateX(0rpx);
+    }
+
+    100% {
+        transform: translateX(488rpx);
+        -webkit-transform: translateX(488rpx);
+    }
+}
+
+.donald_duck_title {
+    width: 319rpx;
+    height: 40rpx;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.service-box {
+    margin: 60rpx 0 0 0;
+}
+
+.service-box scroll-view {
+    max-height: 646rpx;
+}
+
+.service-list {
+    width: 100%;
+}
+
+.service-list view {
+    font-size: 30rpx;
+    color: #ffd08d;
+    height: 115rpx;
+    line-height: 115rpx;
+    text-align: left;
+}
+
+.service-list image {
+    width: 70rpx;
+    height: 70rpx;
+    margin: 22rpx 25rpx 0 0;
+}
+
+.close-btn {
+    position: absolute;
+    width: 60rpx;
+    height: 60rpx;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -140rpx;
+}
+
+/*底部按钮合计*/
+.footer {
+    height:245rpx;
+    text-align:center;
+}
+
+.total-price{
+    font-size:26rpx;
+    color:#333333;
+    text-align:center;
+    line-height:84rpx;
+}
+
+.bill-please-btn{
+    line-height:70rpx;
+    font-size:36rpx;
+    color:#FFFFFF;
+    border-radius:35rpx;
+    width:470rpx;
+    background:linear-gradient(to right bottom, #fb6b6b, #fb4444);
+}
+
+.bill-scroll{
+    height:392rpx;
+}

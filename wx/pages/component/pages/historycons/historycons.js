@@ -62,10 +62,8 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad(options){
-		let store = wx.getStorageSync("store")
 		//记录打开页面时间
 		openPageTime = new Date().getTime();
-		let _this = this;
 		//是否存在openid状态，true存在，false不存在
 		let openidState = true;
 		//时间
@@ -77,16 +75,15 @@ Page({
 		let shopNo = 'DQH02'
 		let roomNo = ''
 		let handNo = ''
-		app.globalData.authorizerId = 'wx8550b9449468b029'
-		if(optionArr != 'undefined'){
+		if('undefined' !== optionArr[0]){
 			shopNo = optionArr[0].split('=')[1]
-			if(optionArr[1].split('=')[0] == 'businessNo'){
+			if('businessNo' == optionArr[1].split('=')[0]){
 				businessNo = optionArr[1].split('=')[1]
 			}
-			if(optionArr[1].split('=')[0] == 'RoomNo'){
+			if('RoomNo' == optionArr[1].split('=')[0]){
 				roomNo = optionArr[1].split('=')[1]
 			}
-			if(optionArr[1].split('=')[0] == 'handNo'){
+			if('handNo' == optionArr[1].split('=')[0]){
 				handNo = optionArr[1].split('=')[1]
 			}
 		}
@@ -105,7 +102,6 @@ Page({
 		}
 		//获取用户openid
 		let openid = wx.getStorageSync('openid');
-		openid = 'o9Rnr4jTV1jRgp_NsyJGbXcNMuqk'
 		if(! openid){
 			openidState = false;
 			common.getLogin(app.globalData.authorizerId).then((data) => {
@@ -138,7 +134,7 @@ Page({
 				clearInterval(openidTime);
 				//锁单
 				this.lockOrder().then((data) => {
-					if(data.status == 0){ //账单状态处于不可结账状态
+					if(0 == data.status){ //账单状态处于不可结账状态
 						this.hideBillLoading()
 						wx.showModal({
 							title:'提示',
@@ -150,15 +146,15 @@ Page({
 								}
 							}
 						})
-					}else if(data.status == 1){ //锁单请求发起成功，等待锁单成功
+					}else if(1 == data.status){ //锁单请求发起成功，等待锁单成功
 						//2秒后再次请锁单状态
 						setTimeout(() => {
 							this.lockOrder().then((data) => {
-								if(data.status == 1){
+								if(1 == data.status){
 									//0.5s请求一次锁单是否成功
 									let lockInterval = setInterval(() => {
 										this.lockOrder().then((data) => {
-											if(data.status == 2){
+											if(2 == data.status){
 												clearInterval(lockInterval)
 												this.loadInitData()
 											}
@@ -176,7 +172,7 @@ Page({
 											});
 										});
 									},500)
-								}else if(data.status == 2){
+								}else if(2 == data.status){
 									this.loadInitData()
 								}
 							}).catch((data) => {
@@ -193,7 +189,7 @@ Page({
 								});
 							});
 						},2000)
-					}else if(data.status == 2){
+					}else if(2 == data.status){
 						this.loadInitData()
 					}
 				}).catch((data) => {
@@ -228,17 +224,17 @@ Page({
 		//获取用户会员卡
 		this.getOpenCardType().then((data) => {
 			//过滤无效会员卡
-			if(data.info.length > 1){
+			if(1 < data.info.length){
 				cardType = [];
 				for(let i = 0; i < data.info.length; i ++){
-					if(data.info[i].CardState == 0){
+					if(0 == data.info[i].CardState){
 						cardType.push(data.info[i]);
 					}
 				}
 			}else{
 				cardType = data.info;
 			}
-			if(cardType.length == 0){
+			if(0 == cardType.length){
 				wx.showModal({
 					title:'提示',
 					content:'会员卡非正常状态，无法结账',
@@ -268,7 +264,7 @@ Page({
 			for(let i in cardType){
 				payWayList.push(cardType[i])
 				//当拥有当前门店会员卡时默认支付方式为当前门店第一张卡 否则 微信支付
-				if(this.data.pyselected == 0 && cardType[i].shopNo == this.data.shopNo){
+				if(0 == this.data.pyselected && cardType[i].shopNo == this.data.shopNo){
 					checkoutCard = cardType[i]
 					this.setData({
 						pyselected:(parseInt(i) + 1),
@@ -317,7 +313,7 @@ Page({
 		let {discountList,selectCouponsNum,billingInfo,maxCouponsNum} = this.data
 		for(let discount of discountList){
 			if(discount.id == discountNo){ //当前优惠券
-				if(discount.selected != 1){ //确认使用当前优惠券
+				if(1 != discount.selected){ //确认使用当前优惠券
 					selectCouponsNum ++
 				}else{ //取消使用
 					selectCouponsNum --
@@ -330,7 +326,7 @@ Page({
 					});
 					selectCouponsNum = maxCouponsNum
 				}else{
-					discount.selected = discount.selected == 0?1:0
+					discount.selected = 0 == discount.selected?1:0
 				}
 				break
 			}
@@ -357,7 +353,7 @@ Page({
 		let weChatNeedAmount = 0
 		let onlyCashAmount = 0
 		for(let bill of billingInfo){
-			if(bill.OnlyCash == 1){ //限现金支付
+			if(1 == bill.OnlyCash){ //限现金支付
 				onlyCashAmount += parseFloat(bill.PaySinglePrice) * parseFloat(bill.ServiceNum)
 			}
 		}
@@ -365,7 +361,7 @@ Page({
 			weChatNeedAmount = (need - offerAmount) < onlyCashAmount?onlyCashAmount:(need - offerAmount)
 		}else{ //卡券支付
 			cardNeedAmount = parseFloat(need) - parseFloat(offerAmount) - parseFloat(onlyCashAmount)
-			cardNeedAmount = cardNeedAmount < 0?0:cardNeedAmount
+			cardNeedAmount = 0 > cardNeedAmount?0:cardNeedAmount
 			weChatNeedAmount = onlyCashAmount
 		}
 		this.setData({
@@ -382,7 +378,7 @@ Page({
 		let discountList = this.data.discountList
 		for(let index in discountList){
 			let item = discountList[index]
-			if(item.selected == 1){
+			if(1 == item.selected){
 				selectCouponsNum ++
 			}
 		}
@@ -398,8 +394,8 @@ Page({
 		let offerAmount = 0
 		for(let index in discountList){
 			let item = discountList[index]
-			if(item.selected && item.selected == 1){
-				if(item.cpstype == 'coupons'){ //现金券
+			if(item.selected && 1 == item.selected){
+				if('coupons' == item.cpstype){ //现金券
 					offerAmount += parseFloat(item.amount)
 				}else{ //项目券
 					for(let bill of billingInfo){
@@ -447,9 +443,9 @@ Page({
 				},
 				success:(res) => {
 					wx.hideLoading();
-					if(res.statusCode == 200){
-						if(res.data.status == 1){
-							if(res.data.info == ''){
+					if(200 == res.statusCode){
+						if(1 == res.data.status){
+							if('' == res.data.info){
 								wx.showModal({
 									title:'提示',
 									content:'您还没有会员卡，现在去办卡',
@@ -482,7 +478,7 @@ Page({
 				},
 				fail:(res) => {
 					wx.hideLoading();
-					if(res.errMsg == 'request:fail timeout'){
+					if('request:fail timeout' == res.errMsg){
 						wx.showModal({
 							title:'提示',
 							content:'请求超时',
@@ -580,9 +576,9 @@ Page({
 				},
 				success:(res) => {
 					wx.hideLoading();
-					if(res.statusCode == 200){
-						if(res.data.status == 1){
-							if(res.data.info == ''){
+					if(200 == res.statusCode){
+						if(1 == res.data.status){
+							if('' == res.data.info){
 								reject('没有查询到账单信息');
 							}else{
 								resolve(res.data);
@@ -596,7 +592,7 @@ Page({
 				},
 				fail:(res) => {
 					wx.hideLoading();
-					if(res.errMsg == 'request:fail timeout'){
+					if('request:fail timeout' == res.errMsg){
 						wx.showModal({
 							title:'提示',
 							content:'请求超时',
@@ -706,7 +702,7 @@ Page({
 					checkoutCard['systemInfo'] = systemInfo;
 
 					//结账请求
-					if(this.data.weChatNeedAmount > 0){ //存在微信支付
+					if(0 < this.data.weChatNeedAmount){ //存在微信支付
 						this.weChatCheckout()
 					}else{
 						this.memberCheckout()
@@ -748,11 +744,11 @@ Page({
 					signType:info.signType,
 					paySign:info.paySign,
 					success:(res) => {
-						if(res.errMsg == 'requestPayment:ok'){
+						if('requestPayment:ok' == res.errMsg){
 							//保存prepay_id用于发送小程序模版信息
 							common.savePrepayId(app.globalData.authorizerId,openid,info.package);
 
-							if(cardNeedAmount > 0){
+							if(0 < cardNeedAmount){
 								this.memberCheckout(openid,shopNo,businessNo)
 							}else{
 								this.paySuccess()
@@ -760,7 +756,7 @@ Page({
 						}
 					},
 					fail:(res) => {
-						if(res.errMsg == 'requestPayment:fail cancel'){
+						if('requestPayment:fail cancel' == res.errMsg){
 							wx.showToast({
 								title:'支付已取消',
 								mask:true
@@ -777,7 +773,7 @@ Page({
 			},
 			fail:(res) => {
 				wx.hideLoading();
-				if(res.errMsg == 'request:fail timeout'){
+				if('request:fail timeout' == res.errMsg){
 					wx.showModal({
 						title:'提示',
 						content:'请求超时',
@@ -818,8 +814,8 @@ Page({
 			},
 			success:(res) => {
 				wx.hideLoading();
-				if(res.statusCode == 200){
-					if(res.data.status == 1){
+				if(200 == res.statusCode){
+					if(1 == res.data.status){
 						this.paySuccess()
 					}else{
 						wx.showModal({
@@ -838,7 +834,7 @@ Page({
 			},
 			fail:(res) => {
 				wx.hideLoading();
-				if(res.errMsg == 'request:fail timeout'){
+				if('request:fail timeout' == res.errMsg){
 					wx.showModal({
 						title:'提示',
 						content:'请求超时',
@@ -877,7 +873,7 @@ Page({
 		let discountList = this.data.discountList
 		let selectedCoupons = []
 		for(let discount of discountList){
-			if(discount.selected == 1){
+			if(1 == discount.selected){
 				selectedCoupons.push(discount)
 			}
 		}
@@ -905,8 +901,8 @@ Page({
 				},
 				success:(res) => {
 					wx.hideLoading();
-					if(res.statusCode == 200){
-						if(res.data.status == 1 || res.data.status == 2){
+					if(200 == res.statusCode){
+						if(1 == res.data.status || 2 == res.data.status){
 							resolve(res.data);
 						}else{
 							reject(res.data.info);
@@ -917,7 +913,7 @@ Page({
 				},
 				fail:(res) => {
 					wx.hideLoading();
-					if(res.errMsg == 'request:fail timeout'){
+					if('request:fail timeout' == res.errMsg){
 						wx.showModal({
 							title:'提示',
 							content:'请求超时',

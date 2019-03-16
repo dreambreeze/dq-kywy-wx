@@ -31,7 +31,8 @@
         "pages/checkPrivilege/checkPrivilege",
         "pages/lqgiftcard/lqgiftcard",
         "pages/cardReceive/cardReceive",
-        "pages/transrecord/transrecord"
+        "pages/transrecord/transrecord",
+        "pages/room-scan-code/room-scan-code"
       ]
     },
     {

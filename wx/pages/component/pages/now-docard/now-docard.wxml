@@ -3,6 +3,7 @@
     <!-- banner卡图 -->
     <view class="card-banner">
         <image src="{{currentCard.PicUrl?showImgUrl+currentCard.PicUrl:cardPicUrl}}"></image>
+        <view class='banner-store-name'>门店名称:{{currentCard.ShopName}}</view>
     </view>
     <!-- 门店与卡类型 -->
     <view class='card-info' wx:if='{{hasChoseAmout}}'>

@@ -103,7 +103,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-    
+
         console.log(options)
 
         var locationData = wx.getStorageSync('currentReserveStore');
@@ -117,9 +117,6 @@ Page({
         this.getBannerList();
         this.getProject();
         this.getGroupList();
-
-        
-
 
         //查看是否呼叫服务
         maskDisplay = options.maskDisplay
@@ -305,8 +302,8 @@ Page({
             }
         });
 
-     
-     
+
+
 
         //检查是否有需要退单的拼团
         common.groupRefound(app.globalData.authorizerId);
@@ -1003,7 +1000,7 @@ Page({
      * 监听页面显示
      */
   onShow: function () {
-     
+
         let _this = this;
 
         let showoast = wx.getStorageSync('showoa') == 1 ? 1 : 2
@@ -1165,7 +1162,7 @@ Page({
                                                 content: '获取地址失败，无法跳转',
                                                 showCancel: false
                                             });
-                                        }
+3                                        }
                                     } else {
                                         wx.showModal({
                                             title: '提示',
@@ -1269,7 +1266,7 @@ Page({
         });
     },
 
-  //公众号关注组件 
+  //公众号关注组件
   bindload(e) {
     var that = this
     that.setData({

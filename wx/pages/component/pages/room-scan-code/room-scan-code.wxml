@@ -1,0 +1,117 @@
+<!-- html字符串 转文本  -->
+<import src="/wxParse/wxParse.wxml" />
+<!-- 公告列表 -->
+<view class="message-box" wx:if="{{noticeList}}">
+    <image src='/images/index_message@2x.png' lazy-load></image>
+    <swiper class="message-list" vertical="true" display-multiple-items="1" duration="500" interval="3000" circular="true" autoplay="true">
+        <block wx:for="{{noticeList}}" wx:key="">
+            <swiper-item class="item" bindtap="showNotice" data-desc="{{item.desc}}">
+                <text class="tag red-tag">{{item.title}}</text>
+                <text class="summary">{{item.textDesc}}</text>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>
+<!--服务入口列表-->
+<view class="function-list">
+    <block wx:for="{{functionList}}" wx:key="">
+        <view class='item' wx:if="{{item.url}}">
+            <navigator url='{{item.url}}' hover-class="none">
+                <image src='{{item.src}}' lazy-load></image>
+                <view class='nowrap'>{{item.name}}</view>
+            </navigator>
+        </view>
+        <view class='item' wx:else bindtap='{{item.jumpName}}'>
+            <image src='{{item.src}}' lazy-load></image>
+            <view class='nowrap'>{{item.name}}</view>
+        </view>
+    </block>
+</view>
+<!-- 账单主容器 -->
+<view class="content">
+    <!-- 账单容器 -->
+    <view class="bill-box">
+        <view class="bill-title">{{bsname}}</view>
+        <view class="bill-stitle flex-wrp">
+            <view class="room-no">房间号：{{billingInfo[0].RoomName}}</view>
+            <view class="con-bills" wx:if="{{businessNo}}">消费单号：{{businessNo}}</view>
+        </view>
+        <view class="column-name flex-wrp">
+            <view class="pname">项目名称</view>
+            <view class="work-no">工号</view>
+            <view class="number">数量</view>
+            <view class="amount">金额</view>
+            <view class="need">需付</view>
+        </view>
+        <scroll-view scroll-y class="bill-scroll">
+            <view class="bill-con flex-wrp" wx:for="{{billingInfo}}" wx:key='index'>
+                <view class="pname text-ellipsis">{{item.ServiceItemName}}</view>
+                <view class="work-no text-ellipsis">{{!item.StaffWorkNo ?'--' : item.StaffWorkNo }}</view>
+                <view class="number text-ellipsis">{{item.ServiceNum}}</view>
+                <view class="amount text-ellipsis">{{item.SinglePrice=='.00'?'0.00':item.SinglePrice}}</view>
+                <view class="need text-ellipsis">{{item.billPrice}}</view>
+            </view>
+        </scroll-view>
+        <view class="footer">
+            <view class="total-price">合计：{{totalPrice}}</view>
+            <button class="bill-please-btn" bindtap="handlerBillPlease">结账</button>
+        </view>
+    </view>
+</view>
+<!-- 账单加载提示 -->
+<view class='bill-loading' wx:if="{{isShowBillLoading}}">
+    <image src='{{ newDefaultImg+"loading.gif" }}' lazy-load></image>
+    <text>拼命结算账单中</text>
+    <text>请稍候3-5s...</text>
+</view>
+<!-- 资讯详情弹窗 -->
+<view class="mask" wx:if="{{showNotice}}" bindtap='handleNotice'></view>
+<view class="notice-box" wx:if="{{showNotice}}">
+    <view class="close-qrcode" bindtap='handleNotice'>×</view>
+    <view class="wxParse">
+        <template is="wxParse" data="{{wxParseData:noticeMsg.nodes}}" />
+    </view>
+</view>
+<!-- 返回首页按钮 -->
+<navigator class="back-home" url="/pages/index/index" hover-class="none" open-type="reLaunch">
+</navigator>
+<!--呼叫服务-->
+<!-- 呼叫服务mask -->
+<view class="mask" wx:if="{{isShowService}}" bindtap="hideService"></view>
+<!-- 呼叫服务 -->
+<view class="call-service" wx:if="{{isShowService}}">
+    <image class='close-btn' src='/images/window_close@2x.png' bindtap="hideService"></image>
+    <image src="/images/service_title@2x.png" lazy-load class="donald_duck_title"></image>
+    <view class="donald-duck {{donaldshowIn}}" bindtap="hideService">
+        <image src="/images/service_icon@2x.png" lazy-load></image>
+    </view>
+    <view class="donald-duck-con {{donaldconshowIn}}">
+        <view class="service-box">
+            <scroll-view scroll-y>
+                <view class="service-list ">
+                    <view bindtap="serveracceptance" data-voice="呼叫服务员 ">
+                        <image src='/images/servicer@2x.png' lazy-load></image>
+                        呼叫服务员
+                    </view>
+                    <view bindtap="serveracceptance" data-voice="添加茶水 ">
+                        <image src='/images/service_tea@2x.png' lazy-load></image>
+                        添加茶水
+                    </view>
+                    <view bindtap="serveracceptance" data-voice="消费买单 ">
+                        <image src='/images/service_check@2x.png' lazy-load></image>
+                        消费买单
+                    </view>
+                    <view bindtap="serveracceptance" data-voice="呼叫服务 ">
+                        <image src='/images/service_call@2x.png' lazy-load></image>
+                        呼叫服务
+                    </view>
+                    <view bindtap="serveracceptance" data-voice="点小吃 ">
+                        <image src='/images/service_eat@2x.png' lazy-load></image>
+                        点小吃
+                    </view>
+                    <!-- <view wx:for="{{callService}}" bindtap="serveracceptance" data-voice="{{item.voice_name}} " wx:key="callService">{{item.voice_name}}</view> -->
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+</view>
