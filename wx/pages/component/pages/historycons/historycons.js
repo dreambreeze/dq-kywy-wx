@@ -1,5 +1,6 @@
 var app = getApp();
 var common = require('../../../../common.js');
+var util = require("../../../../utils/util.js");
 //所有卡类型
 var cardType;
 //当前要结账的卡
@@ -107,6 +108,9 @@ Page({
 			common.getLogin(app.globalData.authorizerId).then((data) => {
 				openidState = true;
 				openid = data;
+				this.setData({
+					openid:openid
+				})
 			}).catch((data) => {
 				this.hideBillLoading()
 				openidState = false;
@@ -117,6 +121,10 @@ Page({
 				});
 				return false;
 			});
+		}else{
+			this.setData({
+				openid:openid
+			})
 		}
 
 		this.setData({
@@ -125,7 +133,6 @@ Page({
 			businessNo:businessNo,
 			roomNo:roomNo,
 			handNo:handNo,
-			openid:openid,
 		})
 
 		clearInterval(openidTime);
@@ -526,6 +533,21 @@ Page({
 						bill.billPrice = billPrice
 					}
 				}
+
+				for(let coupon of allcan){
+					if(coupon.create_time){
+						let d = new Date(parseInt(coupon.create_time) * 1000)
+						coupon.create_time = util.dateFtt('yyyy-MM-dd hh:mm:ss',d)
+					}
+				}
+
+				for(let coupon of cannotuse){
+					if(coupon.create_time){
+						let d = new Date(parseInt(coupon.create_time) * 1000)
+						coupon.create_time = util.dateFtt('yyyy-MM-dd hh:mm:ss',d)
+					}
+				}
+
 				this.setData({
 					billingInfo:info,
 					need:need,
