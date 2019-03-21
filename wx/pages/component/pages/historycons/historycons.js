@@ -737,17 +737,6 @@ Page({
 						mask:true
 					});
 
-					//获取手机设备信息
-					let systemInfo = '';
-					try{
-						let res = wx.getSystemInfoSync();
-						systemInfo = res.model;
-					}catch(e){
-						systemInfo = '未知（获取失败）';
-					}
-
-					checkoutCard['systemInfo'] = systemInfo;
-
 					//结账请求
 					if(0 < this.data.weChatNeedAmount){ //存在微信支付
 						this.weChatCheckout()
@@ -777,6 +766,7 @@ Page({
 				consumer.DisCount = ''
 				consumer.PaySinglePrice = ''
 				consumer.Nmoney = ''
+				consumer.ConsumeNo = ''
 				consumer.CouponNo = conpons.CouponNo
 				consumer.CouponType = conpons.cpstype
 				consumer.CouponNum = conpons.CouponValue
@@ -793,9 +783,10 @@ Page({
 			consumer.ServiceNum = bill.ServiceNum
 			consumer.Omoney = bill.OMoney
 			consumer.PaySinglePrice = bill.PaySinglePrice
-			consumer.DisCount = parseInt(bill.PaySinglePrice / bill.OPrice).toFixed(2)
+			consumer.DisCount = (bill.PaySinglePrice / bill.OPrice).toFixed(2)
 			consumer.PaySinglePrice = bill.PaySinglePrice
 			consumer.Nmoney = bill.NMoney
+			consumer.ConsumeNo = bill.ConsumeNo
 			consumer.CouponNum = bill.PaySinglePrice
 			consumer.CouponNo = ''
 			consumer.CouponType = ''
