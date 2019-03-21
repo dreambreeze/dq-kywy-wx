@@ -27,9 +27,13 @@ Page({
 		//付款方式
 		payWayList:[],
 		pyselected:0,
+		//账单信息
 		billingInfo:{},
+		//可用优惠券显隐标识
 		isShowDiscount:false,
+		//账单加载图 显隐标识
 		isShowBillLoading:false,
+		//不可用 优惠券显隐标识
 		isShowDisableDiscount:false,
 		//可用优惠券列表
 		discountList:[],
@@ -57,6 +61,8 @@ Page({
 		handNo:'',
 		//用户微信Id
 		openId:'',
+		//手机型号
+		terminal:'',
 	},
 
 	/**
@@ -65,10 +71,6 @@ Page({
 	onLoad(options){
 		//记录打开页面时间
 		openPageTime = new Date().getTime();
-		//是否存在openid状态，true存在，false不存在
-		let openidState = true;
-		//时间
-		let openidTime = null;
 		//二维码参数
 		let option = decodeURIComponent(options.scene)
 		let optionArr = option.split('@')
@@ -104,16 +106,13 @@ Page({
 		//获取用户openid
 		let openid = wx.getStorageSync('openid');
 		if(! openid){
-			openidState = false;
 			common.getLogin(app.globalData.authorizerId).then((data) => {
-				openidState = true;
 				openid = data;
 				this.setData({
 					openid:openid
 				})
 			}).catch((data) => {
 				this.hideBillLoading()
-				openidState = false;
 				wx.showModal({
 					title:'提示',
 					content:'获取账单信息失败',
@@ -127,94 +126,112 @@ Page({
 			})
 		}
 
+		//获取手机设备信息
+		let systemInfo = '';
+		try{
+			let res = wx.getSystemInfoSync();
+			systemInfo = res.model;
+		}catch(e){
+			systemInfo = '未知（获取失败）';
+		}
+
 		this.setData({
 			isShowBillLoading:true,
 			shopNo:shopNo,
 			businessNo:businessNo,
 			roomNo:roomNo,
 			handNo:handNo,
+			terminal:systemInfo
 		})
 
+		this.lockOrderAndGetBillInfo()
+	},
+
+	/**
+	 * 页面初始化时 定时器锁单 成功后获取账单信息
+	 */
+	lockOrderAndGetBillInfo(){
+		//定时器
+		let openidTime = null;
 		clearInterval(openidTime);
 		openidTime = setInterval(() => {
-			if(openidState){
-				clearInterval(openidTime);
-				//锁单
-				this.lockOrder().then((data) => {
-					if(0 == data.status){ //账单状态处于不可结账状态
-						this.hideBillLoading()
-						wx.showModal({
-							title:'提示',
-							content:data.info,
-							showCancel:false,
-							success:(res) => {
-								if(res.confirm){
-									wx.navigateBack();
-								}
-							}
-						})
-					}else if(1 == data.status){ //锁单请求发起成功，等待锁单成功
-						//2秒后再次请锁单状态
-						setTimeout(() => {
-							this.lockOrder().then((data) => {
-								if(1 == data.status){
-									//0.5s请求一次锁单是否成功
-									let lockInterval = setInterval(() => {
-										this.lockOrder().then((data) => {
-											if(2 == data.status){
-												clearInterval(lockInterval)
-												this.loadInitData()
-											}
-										}).catch((data) => {
-											this.hideBillLoading()
-											wx.showModal({
-												title:'提示',
-												content:data,
-												showCancel:false,
-												success:(res) => {
-													if(res.confirm){
-														wx.navigateBack();
-													}
-												}
-											});
-										});
-									},500)
-								}else if(2 == data.status){
-									this.loadInitData()
-								}
-							}).catch((data) => {
-								this.hideBillLoading()
-								wx.showModal({
-									title:'提示',
-									content:data,
-									showCancel:false,
-									success:(res) => {
-										if(res.confirm){
-											wx.navigateBack();
-										}
-									}
-								});
-							});
-						},2000)
-					}else if(2 == data.status){
-						this.loadInitData()
-					}
-				}).catch((data) => {
+			clearInterval(openidTime);
+			//锁单
+			this.lockOrder().then((data) => {
+				if(0 == data.status){ //账单状态处于不可结账状态
 					this.hideBillLoading()
 					wx.showModal({
 						title:'提示',
-						content:data,
+						content:data.info,
 						showCancel:false,
 						success:(res) => {
 							if(res.confirm){
 								wx.navigateBack();
 							}
 						}
-					});
+					})
+				}else if(1 == data.status){ //锁单请求发起成功，等待锁单成功
+					//2秒后再次请锁单状态
+					setTimeout(() => {
+						this.lockOrder().then((data) => {
+							if(1 == data.status){
+								//0.5s请求一次锁单是否成功
+								let lockInterval = setInterval(() => {
+									this.lockOrder().then((data) => {
+										if(2 == data.status){
+											clearInterval(lockInterval)
+											this.loadInitData()
+										}
+									}).catch((data) => {
+										this.hideBillLoading()
+										wx.showModal({
+											title:'提示',
+											content:data,
+											showCancel:false,
+											success:(res) => {
+												if(res.confirm){
+													wx.navigateBack();
+												}
+											}
+										});
+									});
+								},500)
+							}else if(2 == data.status){
+								this.loadInitData()
+							}
+						}).catch((data) => {
+							this.hideBillLoading()
+							wx.showModal({
+								title:'提示',
+								content:data,
+								showCancel:false,
+								success:(res) => {
+									if(res.confirm){
+										wx.navigateBack();
+									}
+								}
+							});
+						});
+					},2000)
+				}else if(2 == data.status){
+					this.loadInitData()
+				}
+			}).catch((data) => {
+				this.hideBillLoading()
+				wx.showModal({
+					title:'提示',
+					content:data,
+					showCancel:false,
+					success:(res) => {
+						if(res.confirm){
+							wx.navigateBack();
+						}
+					}
 				});
-			}
+			});
 		},800);
 	},
+
 	/**
 	 * 关闭账单loading
 	 */
@@ -263,7 +280,7 @@ Page({
 
 			//初始付款方式
 			let payWayList = [{
-				AutoID:- 1,
+				AutoID:'-1',
 				MembershipTypeName:'微信支付',
 				pic:'icon-aui-icon-weichat'
 			}]
@@ -364,11 +381,12 @@ Page({
 				onlyCashAmount += parseFloat(bill.PaySinglePrice) * parseFloat(bill.ServiceNum)
 			}
 		}
-		if(checkoutCard.AutoId == - 1){ //微信支付
-			weChatNeedAmount = (need - offerAmount) < onlyCashAmount?onlyCashAmount:(need - offerAmount)
+		if(checkoutCard.AutoID == '-1'){ //微信支付
+			weChatNeedAmount = need - offerAmount
+			cardNeedAmount = 0
 		}else{ //卡券支付
 			cardNeedAmount = parseFloat(need) - parseFloat(offerAmount) - parseFloat(onlyCashAmount)
-			cardNeedAmount = 0 > cardNeedAmount?0:cardNeedAmount
+			cardNeedAmount = cardNeedAmount < 0?0:cardNeedAmount
 			weChatNeedAmount = onlyCashAmount
 		}
 		this.setData({
@@ -376,6 +394,7 @@ Page({
 			weChatNeedAmount:weChatNeedAmount,
 		})
 	},
+
 	/**
 	 * 获取初始化选择优惠券张数
 	 */
@@ -394,6 +413,7 @@ Page({
 			maxCouponsNum:selectCouponsNum,
 		})
 	},
+
 	/**
 	 * 获取初始化优惠金额
 	 */
@@ -416,6 +436,7 @@ Page({
 		}
 		return offerAmount
 	},
+
 	/**
 	 * 显示优惠券弹窗
 	 */
@@ -424,6 +445,7 @@ Page({
 			isShowDiscount:true
 		})
 	},
+
 	/**
 	 * 关闭优惠券弹窗
 	 */
@@ -432,6 +454,7 @@ Page({
 			isShowDiscount:false
 		})
 	},
+
 	/**
 	 * 获取当前用户所有卡类型
 	 */
@@ -503,6 +526,7 @@ Page({
 		});
 		return p;
 	},
+
 	/**
 	 * 选择结账方式弹出层控制
 	 */
@@ -511,11 +535,13 @@ Page({
 			isShowPayWay:true
 		})
 	},
+
 	hidePayWay(){
 		this.setData({
 			isShowPayWay:false
 		})
 	},
+
 	/**
 	 * 加载处理账单数据
 	 */
@@ -681,11 +707,10 @@ Page({
 			title:'提示',
 			content:'确定要付款吗？',
 			success:(res) => {
-				let checkoutCard = this.data.checkoutCard
-				let cardNeedAmount = this.data.cardNeedAmount
+				let {checkoutCard,cardNeedAmount} = this.data
 				if(res.confirm){
 					//卡内余额是否足够买单
-					if(checkoutCard.Balance < cardNeedAmount){
+					if(checkoutCard.AutoID != '-1' && checkoutCard.Balance < cardNeedAmount){
 						if((checkoutCard.Balance + checkoutCard.AuthMoney) < cardNeedAmount){
 							wx.showModal({
 								title:'提示',
@@ -735,23 +760,89 @@ Page({
 	},
 
 	/**
+	 * 确认结账时 - 获取结账单与优惠券绑定信息
+	 */
+	getConsumerdetails(){
+		let selectedCoupons = this.getSelectDiscount()
+		let {billingInfo} = this.data
+		let consumerdetails = []
+		for(let conpons of selectedCoupons){
+			if(conpons.cpstype == 'coupons'){
+				let consumer = {}
+				consumer.RecNo = ''
+				consumer.ServiceItemNo = ''
+				consumer.ServiceNum = ''
+				consumer.Omoney = ''
+				consumer.PaySinglePrice = ''
+				consumer.DisCount = ''
+				consumer.PaySinglePrice = ''
+				consumer.Nmoney = ''
+				consumer.CouponNo = conpons.CouponNo
+				consumer.CouponType = conpons.cpstype
+				consumer.CouponNum = conpons.CouponValue
+				consumer.CouponName = conpons.cpstype == 'coupons'?'代金券':'项目券'
+				consumer.CouponValue = conpons.CouponValue
+				consumerdetails.push(consumer)
+			}
+		}
+
+		for(let bill of billingInfo){
+			let consumer = {}
+			consumer.RecNo = bill.RecNo
+			consumer.ServiceItemNo = bill.ServiceItemNo
+			consumer.ServiceNum = bill.ServiceNum
+			consumer.Omoney = bill.Omoney
+			consumer.PaySinglePrice = bill.PaySinglePrice
+			consumer.DisCount = parseInt(bill.PaySinglePrice / bill.OPrice).toFixed(2)
+			consumer.PaySinglePrice = bill.PaySinglePrice
+			consumer.Nmoney = bill.NMoney
+			consumer.CouponNum = bill.PaySinglePrice
+			//返回第一张匹配项目券
+			let index = selectedCoupons.findIndex(value => value.ServiceItemNo && value.ServiceItemNo.indexOf(bill.ServiceItemNo) != '-1')
+			if(index != '-1' && selectedCoupons[index].cpstype != 'coupons'){
+				consumer.CouponNo = selectedCoupons[index].CouponNo
+				consumer.CouponType = selectedCoupons[index].cpstype
+				consumer.CouponName = selectedCoupons[index].cpstype == 'coupons'?'代金券':'项目券'
+				consumer.CouponValue = selectedCoupons[index].CouponValue
+				//选中项目券删除
+				selectedCoupons = selectedCoupons.splice(index,1)
+			}
+			consumerdetails.push(consumer)
+		}
+
+		return consumerdetails
+	},
+
+	/**
+	 * 获取结账参数
+	 */
+	getCheckoutParam(){
+		let selectedCoupons = this.getSelectDiscount()
+		let {cardNeedAmount,weChatNeedAmount,openid,shopNo,businessNo,checkoutCard,terminal} = this.data
+		let consumerdetails = this.getConsumerdetails()
+		let params = {
+			authorizerId:app.globalData.authorizerId,
+			openid:openid,
+			shopNo:shopNo,
+			businessNo:businessNo,
+			checkoutCard:checkoutCard,
+			coupon_info:selectedCoupons,
+			cardPayAmount:cardNeedAmount,
+			weChatPayAmount:weChatNeedAmount,
+			terminal,
+			consumerdetails:consumerdetails,
+		}
+		return params
+	},
+
+	/**
 	 * 含微信支付的账单支付
 	 */
 	weChatCheckout(){
-		let selectedCoupons = this.getSelectDiscount()
-		let {cardNeedAmount,weChatNeedAmount,openid,shopNo,businessNo,checkoutCard} = this.data
+		let params = this.getCheckoutParam()
 		wx.request({
-			url:common.config.host + '/index.php/Api/Requestdata/weChatCheckout',
-			data:{
-				'authorizerId':app.globalData.authorizerId,
-				'openid':openid,
-				'shopNo':shopNo,
-				'businessNo':businessNo,
-				'checkoutCard':checkoutCard,
-				'selectedCoupons':selectedCoupons,
-				'cardPayAmount':cardNeedAmount,
-				'weChatPayAmount':weChatNeedAmount,
-			},
+			url:common.config.host + '/index.php/Api/OnLineTasks/onLinePay',
+			data:params,
 			method:'POST',
 			header:{
 				'content-type':'application/json'
@@ -810,26 +901,16 @@ Page({
 				}
 			}
 		});
-
 	},
 
 	/**
 	 * 会员卡支付
 	 */
 	memberCheckout(){
-		let {cardNeedAmount,openid,shopNo,businessNo,checkoutCard} = this.data
-		let selectedCoupons = this.getSelectDiscount()
+		let params = this.getCheckoutParam()
 		wx.request({
-			url:common.config.host + '/index.php/Api/Requestdata/memberCheckout',
-			data:{
-				'authorizerId':app.globalData.authorizerId,
-				'openid':openid,
-				'shopNo':shopNo,
-				'businessNo':businessNo,
-				'checkoutCard':checkoutCard,
-				'selectedCoupons':selectedCoupons,
-				'payAmount':cardNeedAmount,
-			},
+			url:common.config.host + '/index.php/Api/OnLineTasks/memberCheckout',
+			data:params,
 			method:'POST',
 			header:{
 				'content-type':'application/json'
