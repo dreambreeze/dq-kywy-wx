@@ -772,11 +772,11 @@ Page({
 				consumer.RecNo = ''
 				consumer.ServiceItemNo = ''
 				consumer.ServiceNum = ''
-				consumer.Omoney = ''
+				consumer.OMoney = ''
 				consumer.PaySinglePrice = ''
 				consumer.DisCount = ''
 				consumer.PaySinglePrice = ''
-				consumer.Nmoney = ''
+				consumer.NMoney = ''
 				consumer.CouponNo = conpons.CouponNo
 				consumer.CouponType = conpons.cpstype
 				consumer.CouponNum = conpons.CouponValue
@@ -791,11 +791,11 @@ Page({
 			consumer.RecNo = bill.RecNo
 			consumer.ServiceItemNo = bill.ServiceItemNo
 			consumer.ServiceNum = bill.ServiceNum
-			consumer.Omoney = bill.Omoney
+			consumer.OMoney = bill.OMoney
 			consumer.PaySinglePrice = bill.PaySinglePrice
 			consumer.DisCount = parseInt(bill.PaySinglePrice / bill.OPrice).toFixed(2)
 			consumer.PaySinglePrice = bill.PaySinglePrice
-			consumer.Nmoney = bill.NMoney
+			consumer.NMoney = bill.NMoney
 			consumer.CouponNum = bill.PaySinglePrice
 			consumer.CouponNo = ''
 			consumer.CouponType = ''
