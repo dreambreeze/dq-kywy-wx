@@ -74,8 +74,8 @@ Page({
 		//二维码参数
 		let option = decodeURIComponent(options.scene)
 		let optionArr = option.split('@')
-		let businessNo = '201903090005'
-		let shopNo = 'DQH02'
+		let businessNo = '201903130001'
+		let shopNo = 'DQH01'
 		let roomNo = ''
 		let handNo = ''
 		if('undefined' !== optionArr[0]){
@@ -767,6 +767,9 @@ Page({
 				consumer.PaySinglePrice = ''
 				consumer.Nmoney = ''
 				consumer.ConsumeNo = ''
+				consumer.ServiceItemName = ''
+				consumer.StaffWorkNo = ''
+				consumer.ServiceNum = ''
 				consumer.CouponNo = conpons.CouponNo
 				consumer.CouponType = conpons.cpstype
 				consumer.CouponNum = conpons.CouponValue
@@ -788,6 +791,9 @@ Page({
 			consumer.Nmoney = bill.NMoney
 			consumer.ConsumeNo = bill.ConsumeNo
 			consumer.CouponNum = bill.PaySinglePrice
+			consumer.ServiceItemName = bill.ServiceItemName
+			consumer.StaffWorkNo = bill.StaffWorkNo
+			consumer.ServiceNum = bill.ServiceNum
 			consumer.CouponNo = ''
 			consumer.CouponType = ''
 			consumer.CouponName = ''
