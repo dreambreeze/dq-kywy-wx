@@ -770,6 +770,7 @@ Page({
 				consumer.ServiceItemName = ''
 				consumer.StaffWorkNo = ''
 				consumer.ServiceNum = ''
+				consumer.OnlyCash = ''
 				consumer.CouponNo = conpons.CouponNo
 				consumer.CouponType = conpons.cpstype
 				consumer.CouponNum = conpons.CouponValue
@@ -794,6 +795,7 @@ Page({
 			consumer.ServiceItemName = bill.ServiceItemName
 			consumer.StaffWorkNo = bill.StaffWorkNo
 			consumer.ServiceNum = bill.ServiceNum
+			consumer.OnlyCash = bill.OnlyCash
 			consumer.CouponNo = ''
 			consumer.CouponType = ''
 			consumer.CouponName = ''
