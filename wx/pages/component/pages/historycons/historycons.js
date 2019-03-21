@@ -797,6 +797,10 @@ Page({
 			consumer.PaySinglePrice = bill.PaySinglePrice
 			consumer.Nmoney = bill.NMoney
 			consumer.CouponNum = bill.PaySinglePrice
+			consumer.CouponNo = ''
+			consumer.CouponType = ''
+			consumer.CouponName = ''
+			consumer.CouponValue = ''
 			//返回第一张匹配项目券
 			let index = selectedCoupons.findIndex(value => value.ServiceItemNo && value.ServiceItemNo.indexOf(bill.ServiceItemNo) != '-1')
 			if(index != '-1' && selectedCoupons[index].cpstype != 'coupons'){
