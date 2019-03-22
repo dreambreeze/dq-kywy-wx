@@ -851,7 +851,7 @@ Page({
 				'content-type':'application/json'
 			},
 			success:(data) => {
-				let info = data.info
+				let info = data.data.info
 				wx.hideLoading();
 				wx.requestPayment({
 					timeStamp:info.timeStamp,
