@@ -103,16 +103,25 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        console.log('场景值',wx.getLaunchOptionsSync())
+        let launchOptionsSync = wx.getLaunchOptionsSync()
+        let sceneCode = launchOptionsSync.scene
 
-        console.log(options)
+        if(sceneCode == '1011' || sceneCode == '1012' || sceneCode == '1013'){
+			wx.redirectTo({
+				url: '/pages/component/pages/room-scan-code/room-scan-code',
+			});
+        }
 
         var locationData = wx.getStorageSync('currentReserveStore');
+
         if (locationData && undefined != locationData[0].nodeid) {
             this.setData({
                 nodeid: locationData[0].nodeid ? locationData[0].nodeid : ''
             })
             this.getRecommend();
         }
+
         this.getNoticeList();
         this.getBannerList();
         this.getProject();
