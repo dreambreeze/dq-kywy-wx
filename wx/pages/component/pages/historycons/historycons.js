@@ -749,7 +749,7 @@ Page({
 	},
 
 	/**
-	 * 确认结账时 - 获取结账单与优惠券绑定信息
+	 * 获取结账参数中 ---  结账单与优惠券绑定信息
 	 */
 	getConsumerdetails(){
 		let selectedCoupons = this.getSelectDiscount()
@@ -787,7 +787,8 @@ Page({
 			consumer.ServiceNum = bill.ServiceNum
 			consumer.Omoney = bill.OMoney
 			consumer.PaySinglePrice = bill.PaySinglePrice
-			consumer.DisCount = (bill.PaySinglePrice / bill.OPrice).toFixed(2)
+			consumer.DisCount = bill.PaySinglePrice == 0 || bill.PaySinglePrice ==  0 ? 0
+					: (bill.PaySinglePrice / bill.OPrice).toFixed(2)
 			consumer.PaySinglePrice = bill.PaySinglePrice
 			consumer.Nmoney = bill.NMoney
 			consumer.ConsumeNo = bill.ConsumeNo
