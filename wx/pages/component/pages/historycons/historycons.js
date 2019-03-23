@@ -60,7 +60,7 @@ Page({
 		//手牌号
 		handNo:'',
 		//用户微信Id
-		openId:'',
+		openid:'',
 		//手机型号
 		terminal:'',
 	},
@@ -843,6 +843,7 @@ Page({
 	 */
 	weChatCheckout(){
 		let params = this.getCheckoutParam()
+		let {openid} = this.data
 		wx.request({
 			url:common.config.host + '/index.php/Api/OnLineTasks/onLinePay',
 			data:params,
@@ -863,12 +864,7 @@ Page({
 						if('requestPayment:ok' == res.errMsg){
 							//保存prepay_id用于发送小程序模版信息
 							common.savePrepayId(app.globalData.authorizerId,openid,info.package);
-
-							if(0 < cardNeedAmount){
-								this.memberCheckout(openid,shopNo,businessNo)
-							}else{
-								this.paySuccess()
-							}
+							this.paySuccess()
 						}
 					},
 					fail:(res) => {
