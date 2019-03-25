@@ -67,16 +67,16 @@ Page({
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onLoad:function(options){
+	onLoad:function(){
 		//二维码参数
-		let option = decodeURIComponent(options.scene)
-		let optionArr = option.split('@')
+		let ShopNoRoomNo = wx.getStorageSync('ShopNoRoomNo')
+		let ShopNoRoomNoArr = ShopNoRoomNo.split('@')
 		let shopNo = 'DQH02'
 		let roomNo = '333'
-		if('undefined' !== optionArr[0]){
-			shopNo = optionArr[0].split('=')[1]
-			if('RoomNo' == optionArr[1].split('=')[0]){
-				roomNo = optionArr[1].split('=')[1]
+		if('undefined' !== ShopNoRoomNoArr[0]){
+			shopNo = ShopNoRoomNoArr[0].split('=')[1]
+			if('RoomNo' == ShopNoRoomNoArr[1].split('=')[0]){
+				roomNo = ShopNoRoomNoArr[1].split('=')[1]
 			}
 		}
 		if(!shopNo || !roomNo){
@@ -109,8 +109,8 @@ Page({
 		}
 		this.setData({
 			isShowBillLoading:true,
-			shopNo:shopNo,
-			roomNo:roomNo,
+			shopNo:shopNo+'',
+			roomNo:roomNo+'',
 			openid:openid,
 		})
 		this.loadInitData()

@@ -106,18 +106,22 @@ Page({
 		let launchOptionsSync = wx.getLaunchOptionsSync()
 		let sceneCode = launchOptionsSync.scene
 
+		//扫描门店房间二维码记录门店标识与房号
+		let sceneStr = decodeURIComponent(options.scene);
+		if(sceneStr != 'undefined'){
+			let sceneArr = sceneStr.split('@');
+			ShopNo = sceneArr[0].split('=')[1];
+			RoomNo = sceneArr[1].split('=')[1];
+			//门店房号数据存储在本地
+			wx.setStorageSync('ShopNoRoomNo',sceneStr);
+		}
+
 		//当通过 扫房间 小程序码进入小程序 ， 直接跳转至房间扫码首页
 		if((sceneCode == '1011' || sceneCode == '1012' || sceneCode == '1013'
-				|| sceneCode == '1047' || sceneCode == '1048' || sceneCode == '1049' ) && options.scene && !options.unScanRoomCode){
-			let unScanRoomCode = wx.getStorageSync('unScanRoomCode')
-			if(options.unScanRoomCode){
-				wx.setStorageSync('unScanRoomCode',true)
-			}
-			if(!unScanRoomCode){
-				wx.redirectTo({
-					url:'/pages/component/pages/room-scan-code/room-scan-code?scene='+options.scene,
-				});
-			}
+				|| sceneCode == '1047' || sceneCode == '1048' || sceneCode == '1049') && options.scene){
+			wx.redirectTo({
+				url:'/pages/component/pages/room-scan-code/room-scan-code',
+			});
 		}
 
 		var locationData = wx.getStorageSync('currentReserveStore');
@@ -167,18 +171,6 @@ Page({
 		qqmapsdk = new QQMapWX({
 			key:common.config.QQMapWXKey
 		});
-
-		//扫描门店房间二维码记录门店标识与房号
-
-		let sceneStr = decodeURIComponent(options.scene);
-
-		if(sceneStr != 'undefined'){
-			let sceneArr = sceneStr.split('@');
-			ShopNo = sceneArr[0].split('=')[1];
-			RoomNo = sceneArr[1].split('=')[1];
-			//门店房号数据存储在本地
-			wx.setStorageSync('ShopNoRoomNo',sceneStr);
-		}
 
 		//获取本地storage保存的openid
 		var openid = wx.getStorageSync('openid');
@@ -822,7 +814,7 @@ Page({
 		let _this = this;
 		//门店与房间号是否存在
 		let sceneStr = wx.getStorageSync('ShopNoRoomNo');
-		if(!sceneStr){
+		if(! sceneStr){
 			wx.scanCode({
 				onlyFromCamera:true,
 				scanType:[],

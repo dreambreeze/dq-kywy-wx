@@ -72,28 +72,31 @@ Page({
 		//记录打开页面时间
 		openPageTime = new Date().getTime();
 		//二维码参数
-		let option = decodeURIComponent(options.scene)
-		let optionArr = option.split('@')
+		let ShopNoRoomNo = wx.getStorageSync('ShopNoRoomNo')
+		let ShopNoRoomNoArr = ShopNoRoomNo.split('@')
 		let businessNo = '201903130001'
 		let shopNo = 'DQH01'
 		let roomNo = ''
 		let handNo = ''
-		if('undefined' !== optionArr[0]){
-			shopNo = optionArr[0].split('=')[1]
-			if('businessNo' == optionArr[1].split('=')[0]){
-				businessNo = optionArr[1].split('=')[1]
+		if('undefined' !== ShopNoRoomNoArr[0]){
+			shopNo = ShopNoRoomNoArr[0].split('=')[1]
+			businessNo=''
+			roomNo=''
+			handNo=''
+			if('businessNo' == ShopNoRoomNoArr[1].split('=')[0]){
+				businessNo = ShopNoRoomNoArr[1].split('=')[1]
 			}
-			if('RoomNo' == optionArr[1].split('=')[0]){
-				roomNo = optionArr[1].split('=')[1]
+			if('RoomNo' == ShopNoRoomNoArr[1].split('=')[0]){
+				roomNo = ShopNoRoomNoArr[1].split('=')[1]
 			}
-			if('handNo' == optionArr[1].split('=')[0]){
-				handNo = optionArr[1].split('=')[1]
+			if('handNo' == ShopNoRoomNoArr[1].split('=')[0]){
+				handNo = ShopNoRoomNoArr[1].split('=')[1]
 			}
 		}
-		if(! shopNo || ! businessNo){
+		if(!shopNo && !(businessNo || roomNo || handNo) ){
 			wx.showModal({
 				title:'提示',
-				content:'账单编号不存在，获取账单信息失败',
+				content:'账单不存在，获取账单信息失败',
 				showCancel:false,
 				success:(res) => {
 					if(res.confirm){
@@ -549,7 +552,7 @@ Page({
 		let p = new Promise((resolve,reject) => {
 			//查询账单信息
 			this.getBillingInfo().then((data) => {
-				let {allcan,bsname,cannotuse,need} = data
+				let {allcan,bsname,cannotuse,need,businessno} = data
 				let info = data.info?data.info:''
 				let offerAmount = this.getInitOfferAmount(allcan,info)
 				//计算该账单 每种商品 的 价格
@@ -578,6 +581,7 @@ Page({
 					billingInfo:info,
 					need:need,
 					bsname:bsname,
+					businessNo:businessno,
 					discountList:allcan,
 					offerAmount:offerAmount,
 					disabledDiscountList:cannotuse
@@ -847,24 +851,25 @@ Page({
 		let {openid} = this.data
 		wx.request({
 			url:common.config.host + '/index.php/Api/OnLineTasks/onLinePay',
-			data:params,
+			data:JSON.stringify(params),
 			method:'POST',
 			header:{
 				'content-type':'application/json'
 			},
 			success:(data) => {
-				let info = data.data.info
+				let {timeStamp,nonceStr,signType,paySign} = data.data.info
+				let paramPackage = data.data.info.package
 				wx.hideLoading();
 				wx.requestPayment({
-					timeStamp:info.timeStamp,
-					nonceStr:info.nonceStr,
-					package:info.package,
-					signType:info.signType,
-					paySign:info.paySign,
+					timeStamp:timeStamp+'',
+					nonceStr:nonceStr+'',
+					package:paramPackage+'',
+					signType:signType+'',
+					paySign:paySign+'',
 					success:(res) => {
 						if('requestPayment:ok' == res.errMsg){
 							//保存prepay_id用于发送小程序模版信息
-							common.savePrepayId(app.globalData.authorizerId,openid,info.package);
+							common.savePrepayId(app.globalData.authorizerId,openid,paramPackage);
 							this.paySuccess()
 						}
 					},
@@ -910,7 +915,7 @@ Page({
 		let params = this.getCheckoutParam()
 		wx.request({
 			url:common.config.host + '/index.php/Api/OnLineTasks/memberCheckout',
-			data:params,
+			data:JSON.stringify(params),
 			method:'POST',
 			header:{
 				'content-type':'application/json'
