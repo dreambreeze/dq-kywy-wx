@@ -75,12 +75,8 @@ Page({
 		let roomNo = '333'
 		if('undefined' !== optionArr[0]){
 			shopNo = optionArr[0].split('=')[1]
-			console.log('门店码')
-			console.log(shopNo)
 			if('RoomNo' == optionArr[1].split('=')[0]){
 				roomNo = optionArr[1].split('=')[1]
-				console.log('房间码')
-				console.log(roomNo)
 			}
 		}
 		if(!shopNo || !roomNo){
