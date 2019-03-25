@@ -67,9 +67,7 @@ Page({
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onLoad(options){
-		//是否存在openid状态，true存在，false不存在
-		let openidState = true;
+	onLoad:function(options){
 		//二维码参数
 		let option = decodeURIComponent(options.scene)
 		let optionArr = option.split('@')
@@ -77,11 +75,15 @@ Page({
 		let roomNo = '333'
 		if('undefined' !== optionArr[0]){
 			shopNo = optionArr[0].split('=')[1]
+			console.log('门店码')
+			console.log(shopNo)
 			if('RoomNo' == optionArr[1].split('=')[0]){
 				roomNo = optionArr[1].split('=')[1]
+				console.log('房间码')
+				console.log(roomNo)
 			}
 		}
-		if(! shopNo || ! roomNo){
+		if(!shopNo || !roomNo){
 			wx.showModal({
 				title:'提示',
 				content:'房间号不存在，获取账单信息失败',
@@ -96,14 +98,11 @@ Page({
 		}
 		//获取用户openid
 		let openid = wx.getStorageSync('openid');
-		if(! openid || openid == ""){
-			openidState = false;
+		if(!openid || openid == ""){
 			common.getLogin(app.globalData.authorizerId).then((data) => {
-				openidState = true;
 				openid = data;
 			}).catch((data) => {
 				this.hideBillLoading()
-				openidState = false;
 				wx.showModal({
 					title:'提示',
 					content:'获取账单信息失败',
@@ -189,7 +188,6 @@ Page({
 				onlyFromCamera:true,
 				scanType:[],
 				success:(res)=>{
-					console.log(res)
 					if(res.path){
 						try{
 							let path = decodeURIComponent(res.path).split("?")

@@ -33,7 +33,7 @@
     <view class="bill-box">
         <view class="bill-title">{{bsname}}</view>
         <view class="bill-stitle flex-wrp">
-            <view class="room-no">房间号：{{billingInfo[0].RoomName}}</view>
+            <view class="room-no">房间号：{{roomNo}}</view>
             <view class="con-bills" wx:if="{{businessNo}}">消费单号：{{businessNo}}</view>
         </view>
         <view class="column-name flex-wrp">
