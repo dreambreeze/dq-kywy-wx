@@ -107,11 +107,17 @@ Page({
 		let sceneCode = launchOptionsSync.scene
 
 		//当通过 扫房间 小程序码进入小程序 ， 直接跳转至房间扫码首页
-		if(sceneCode == '1011' || sceneCode == '1012' || sceneCode == '1013'
-				|| sceneCode == '1047' || sceneCode == '1048' || sceneCode == '1049' && options.scene){
-			wx.redirectTo({
-				url:'/pages/component/pages/room-scan-code/room-scan-code?scene='+options.scene,
-			});
+		if((sceneCode == '1011' || sceneCode == '1012' || sceneCode == '1013'
+				|| sceneCode == '1047' || sceneCode == '1048' || sceneCode == '1049' ) && options.scene && !options.unScanRoomCode){
+			let unScanRoomCode = wx.getStorageSync('unScanRoomCode')
+			if(options.unScanRoomCode){
+				wx.setStorageSync('unScanRoomCode',true)
+			}
+			if(!unScanRoomCode){
+				wx.redirectTo({
+					url:'/pages/component/pages/room-scan-code/room-scan-code?scene='+options.scene,
+				});
+			}
 		}
 
 		var locationData = wx.getStorageSync('currentReserveStore');
