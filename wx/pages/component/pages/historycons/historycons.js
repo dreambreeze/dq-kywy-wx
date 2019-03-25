@@ -828,6 +828,7 @@ Page({
 		let selectedCoupons = this.getSelectDiscount()
 		let {cardNeedAmount,weChatNeedAmount,openid,shopNo,businessNo,checkoutCard,terminal} = this.data
 		let consumerdetails = this.getConsumerdetails()
+		checkoutCard = checkoutCard.AutoID == '-1' ? '' : checkoutCard
 		let params = {
 			authorizerId:app.globalData.authorizerId,
 			openid:openid,
