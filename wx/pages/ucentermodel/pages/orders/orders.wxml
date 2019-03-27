@@ -71,7 +71,7 @@
         <!-- 会员卡转赠订单 -->
         <block wx:if="{{item.taskid == 4 && item.srctype}}">
             <view class="order-item">
-                <view class="flex-wrp" catchtap="docardOrderdetail" data-type='{{item.taskid}}'   data-guid="{{item.rguid}}">
+                <view class="flex-wrp" catchtap="docardOrderdetail" data-type='{{item.taskid}}' data-guid="{{item.rguid}}">
                     <image src="{{item.picurl ? showImgUrl + item.picurl : cardPicUrl}}" lazy-load class="order-pic"></image>
                     <view class="order-info">
                         <view class="name">{{item.membershiptypename}}</view>
@@ -184,10 +184,10 @@
                 <view class='flex-wrp' catchtap="toGroupOrderDetail" data-id="{{item.projectid}}" data-nodeid="{{item.pshopno}}" data-orderno="{{item.orderno}}">
                     <image src="{{item.gspicurl ? showImgUrl+item.gspicurl : cardPicUrl}}" lazy-load class="order-pic" mode="aspectFill"></image>
                     <view class='order-info'>
-                        <view class='name'>{{item.project?item.project:'拼团订单'}} </view>
+                        <view class='name'>{{item.project?item.project:'拼团订单'}}</view>
                         <view class='type-name'>下单时间：{{item.tasktime}}</view>
-                        <view class='type-name'>拼团订单：￥{{item.payprice}} </view>
-                        <view class='type-name'>适用门店：{{item.canshopna?item.canshopna:'全国通用'}} </view>
+                        <view class='type-name'>拼团订单：￥{{item.payprice}}</view>
+                        <view class='type-name'>适用门店：{{item.canshopna?item.canshopna:'全国通用'}}</view>
                     </view>
                     <view class='order-status'>{{item.presult}}</view>
                 </view>
@@ -208,10 +208,10 @@
                 <view class='flex-wrp' catchtap="toEGroupOrderDetail" data-index="{{index}}" data-id="{{item.id}}">
                     <image src="{{item.picurl ? showImgUrl + item.picurl : cardPicUrl}}" lazy-load class="order-pic" mode="aspectFill"></image>
                     <view class='order-info'>
-                        <view class='name'>{{item.project_name?item.project_name:'团购订单'}} </view>
+                        <view class='name'>{{item.project_name?item.project_name:'团购订单'}}</view>
                         <view class='type-name'>下单时间：{{item.tasktime}}</view>
-                        <view class='type-name'>e团购订单：￥{{item.project_price}} </view>
-                        <view class='type-name'>适用门店：{{item.store_name?item.store_name:'全国通用'}} </view>
+                        <view class='type-name'>e团购订单：￥{{item.project_price}}</view>
+                        <view class='type-name'>适用门店：{{item.store_name?item.store_name:'全国通用'}}</view>
                     </view>
                     <view class='order-status'>{{item.is_use == '0' ? '待消费' : '已消费' }}</view>
                 </view>
@@ -222,6 +222,53 @@
                         <button bindtap="againBuyEGroup" data-pid="{{item.pid}}" data-nodeid="{{item.nodeid}}">再次购买</button>
                         <button wx:if="{{item.is_assess == 0}}" bindtap="assessEGroup" data-pid="{{item.pid}}" data-nodeid="{{item.nodeid}}" data-id="{{item.id}}">评价</button>
                     </block>
+                </view>
+            </view>
+        </block>
+        <!-- 在线结账 -->
+        <block wx:if="{{item.orderType == 10 }}">
+            <view class="order-item">
+                <view class="flex-wrp" catchtap="onlinePayOrderdetail" data-nodeid="{{item.nodeid}}" data-id='{{item.id}}'>
+                    <image src="{{item.picurl ? showImgUrl + item.picurl : cardPicUrl}}"
+                           lazy-load
+                           class="order-pic"
+                           mode="aspectFill">
+                    </image>
+                    <view class="order-info">
+                        <view class='order-left'></view>
+                        <view class="name">在线{{item.cardmoney > 0 ? '会员' : '微信'}}结账</view>
+                        <view class="type-name">结账时间：{{item.tasktime}}</view>
+                        <view class="type-name">结账门店：{{item.shopname}}</view>
+                        <view class="type-name">结账单号：{{item.out_trade_no}}</view>
+                    </view>
+                    <view class="order-right">
+                        <block wx:if="{{item.taskstate == 1}}">
+                            <view class="state-tips">受理中</view>
+                        </block>
+                        <block wx:elif="{{item.taskstate == 2}}">
+                            <view class="schedule">办理成功</view>
+                        </block>
+                        <block wx:elif="{{item.taskstate == 3}}">
+                            <view class="state-error">办理失败</view>
+                        </block>
+                        <block wx:if="{{item.taskstate == 3 && item.mysqldocardinfo.refund_status != ''}}">
+                            <block wx:if="{{item.mysqldocardinfo.refund_status == 'SUCCESS'}}">
+                                <view class="schedule" style="margin-top:10rpx">结账成功</view>
+                            </block>
+                            <block wx:elif="{{item.mysqldocardinfo.refund_status == 'REFUNDCLOSE'}}">
+                                <view class="state-tips" style="margin-top:10rpx">结账关闭</view>
+                            </block>
+                            <block wx:elif="{{item.mysqldocardinfo.refund_status == 'PROCESSING'}}">
+                                <view class="state-tips" style="margin-top:10rpx">结账处理中</view>
+                            </block>
+                            <block wx:elif="{{item.mysqldocardinfo.refund_status == 'CHANGE'}}">
+                                <view class="state-tips" style="margin-top:10rpx">结账异常</view>
+                            </block>
+                        </block>
+                    </view>
+                </view>
+                <view class="order-oper">
+                    <view class="del-order" data-guid="{{item.rguid}}" bindtap="delOrder">删除</view>
                 </view>
             </view>
         </block>

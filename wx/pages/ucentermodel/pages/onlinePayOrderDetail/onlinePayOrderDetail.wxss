@@ -1,0 +1,164 @@
+page{
+  background:#EEEEEE;
+}
+
+/*顶部订单重要信息*/
+.qrcode-content{
+  border-radius:10rpx;
+  box-shadow:0rpx 6rpx 8rpx 4rpx rgba(0, 0, 0, 0.08);
+  margin:30rpx 30rpx;
+  background-color:#FFFFFF;
+}
+
+.con-box{
+  border-radius:10rpx;
+}
+
+.head-info{
+  padding:30rpx 30rpx;
+  /* border-bottom: 1rpx dashed #ccc; */
+}
+
+.head-info image{
+  width:181rpx;
+  height:181rpx;
+  border-radius:10rpx
+}
+
+.infos{
+  flex:1;
+  color:#333333;
+  padding-left:30rpx;
+}
+
+.ptitle{
+  font-size:28rpx;
+  font-weight:500;
+  margin-bottom:20rpx;
+}
+
+.pstore{
+  font-size:24rpx;
+  color:#666666;
+  margin-bottom:4rpx;
+}
+
+
+
+/*账单主容器*/
+.content{
+  padding:20rpx;
+}
+
+.bill-box{
+  background-color:#FFFFFF;
+  padding:0 20rpx;
+  box-shadow:0 2rpx 20rpx rgba(0, 0, 0, 0.2);
+  border-radius:10rpx;
+}
+
+.bill-scroll{
+  max-height:300rpx;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.bill-title{
+  font-size:30rpx;
+  color:#2B2B2B;
+  text-align:center;
+  line-height:98rpx;
+  height:98rpx;
+  font-weight:bold;
+  border-bottom:1px solid #E7E7E7;
+}
+
+.bill-stitle{
+  padding:30rpx 0;
+}
+
+.room-no, .con-bills{
+  font-size:26rpx;
+  color:#2B2B2B;
+  font-weight:400;
+  line-height:1;
+}
+
+.room-no{
+  width:30%;
+}
+
+.con-bills{
+  width:70%;
+  text-align:right;
+}
+
+.column-name{
+  line-height:1;
+  padding:12rpx 0;
+  font-size:26rpx;
+  background:#3B81D6;
+  color:#FFFFFF;
+  border-radius:4rpx;
+  text-align:center;
+}
+
+.bill-con view{
+  line-height:60rpx;
+  font-size:24rpx;
+  color:#555555;
+  text-align:center;
+}
+
+.pname{
+  width:30%;
+}
+
+.work-no, .number, .amount, .need{
+  flex:1;
+}
+
+
+/*优惠券展示结果*/
+.discount-list-box {
+  max-height: 60vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.discount-list {
+  padding: 20rpx 1px 5px 0;
+}
+
+.discount-item {
+  display: flex;
+  height: 100rpx;
+  border-radius: 0 10rpx 10rpx 0;
+  box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.2);
+}
+
+.discount-num {
+  width: 200rpx;
+  height: 100%;
+  line-height: 100rpx;
+  color: #fff;
+  background: #e80000;
+  font-size: 32rpx;
+  text-align: center;
+  border-radius: 10rpx 0 0 10rpx;
+}
+
+.discount-detail {
+  flex: 1;
+  font-size: 30rpx;
+  padding: 10rpx;
+  line-height: 30rpx;
+  box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.2);
+}
+
+/*底部合计*/
+.footer .price{
+  font-size:26rpx;
+  color:#333333;
+  line-height:60rpx;
+  text-align:right;
+}

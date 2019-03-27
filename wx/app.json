@@ -89,7 +89,7 @@
         "pages/paycomplete/paycomplete",
         "pages/commit/commit",
         "pages/note/note"
-       
+
       ]
     },
     {
@@ -116,7 +116,8 @@
         "pages/reserveorderdetail/reserveorderdetail",
         "pages/hislist/hislist",
         "pages/hisdetail/hisdetail",
-        "pages/docardOrderdetail/docardOrderdetail"
+        "pages/docardOrderdetail/docardOrderdetail",
+        "pages/onlinePayOrderDetail/onlinePayOrderDetail"
       ]
     },
     {

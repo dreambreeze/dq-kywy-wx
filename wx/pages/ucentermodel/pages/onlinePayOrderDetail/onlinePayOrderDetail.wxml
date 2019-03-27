@@ -1,0 +1,69 @@
+<view class="qrcode-content">
+    <view class="con-box">
+        <view class="head-info flex-wrp">
+            <image src="{{orderData[0].picurl ? showImgUrl + orderData[0].picurl : cardPicUrl}}" lazy-load mode="aspectFill"></image>
+            <view class="infos">
+                <view class="ptitle">在线{{orderData.cardmoney > 0 ? '会员' : '微信'}}结账订单详情</view>
+                <view class="pstore">门店：{{orderData.storeinfo.store_name}}</view>
+                <block wx:if="{{address}}">
+                    <view class="pstore">地址：{{address}}</view>
+                </block>
+                <view class="pstore">结账时间：{{orderData.amount_info.tasktime}}</view>
+            </view>
+        </view>
+    </view>
+</view>
+<!-- 账单主容器 -->
+<view class="content">
+    <view class="bill-box">
+        <view class="bill-title">{{orderData.storeinfo.store_name}}</view>
+        <view class="bill-stitle flex-wrp">
+            <view class="room-no">房间号：{{orderData.paydetail.RoomNos}}</view>
+            <view class="con-bills" wx:if="{{orderData.out_trade_no}}">消费单号：{{orderData.out_trade_no}}</view>
+        </view>
+        <!--消费列表-->
+        <view class="column-name flex-wrp">
+            <view class="pname">项目名称</view>
+            <view class="work-no">工号</view>
+            <view class="number">数量</view>
+            <view class="amount">金额</view>
+            <view class="need">需付</view>
+        </view>
+        <scroll-view scroll-y class="bill-scroll">
+            <view class="bill-con flex-wrp" wx:for="{{orderData.amount_info.ckinfos}}" wx:key='index'>
+                <view class="pname text-ellipsis">{{item.ServiceItemName}}</view>
+                <view class="work-no text-ellipsis">{{!item.StaffWorkNo ?'--' : item.StaffWorkNo }}</view>
+                <view class="number text-ellipsis">{{item.ServiceNum}}</view>
+                <view class="amount text-ellipsis">{{item.Omoney}}</view>
+                <view class="need text-ellipsis">{{item.NeedMoney}}</view>
+            </view>
+        </scroll-view>
+        <!--使用优惠券列表-->
+        <view class='discount-list-box'>
+            <view class='discount-list'>
+                <view wx:for='{{orderData.coupon_info}}'
+                      wx:key='index'
+                      class='discount-item' >
+                    <view class='discount-num'>{{item.cpstype =='coupons'?'￥'+item.amount : item.project}}</view>
+                    <view class='discount-detail'>
+                        <view class='discount-type'>{{item.cpstype =='coupons'?'代金券':'项目券'}}</view>
+                        <view>领取日期:{{item.create_time}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="footer">
+            <view class="price">合计需付：{{orderData.paydetail.YFJE}}</view>
+            <view class="price">合计实付：{{orderData.opmoney}}</view>
+        </view>
+    </view>
+</view>
+<!--优惠券信息-->
+<block wx:if="{{ad}}">
+    <view class="ad-box">
+        <image src="{{ad.adimg}}" lazy-load bindtap="jumpAd" data-adurl="{{ad.adurl}}" mode="aspectFill"></image>
+    </view>
+</block>
+<!-- 返回首页按钮 -->
+<navigator class="back-home" url="/pages/index/index" hover-class="none" open-type="reLaunch">
+</navigator>
