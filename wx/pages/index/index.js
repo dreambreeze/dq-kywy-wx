@@ -133,9 +133,15 @@ Page({
 			this.getRecommend();
 		}
 
+		//获取资讯
 		this.getNoticeList();
+		//获取功能列表
+		this.getFunction()
+		//获取banner
 		this.getBannerList();
+		//获取团购
 		this.getProject();
+		//获取拼团
 		this.getGroupList();
 
 		//查看是否呼叫服务
@@ -337,27 +343,25 @@ Page({
 		})
 	},
 	//获取菜单列表
-	getfmoduleList(){
-		let _this = this;
+	getFunction(){
 		//加载首页后台分配的功能模块
 		let fid = common.config.navTabBar[0].id;
-		let homeNav = wx.getStorageSync('homeNav');
+		let functionList = wx.getStorageSync('functionList');
 
-		if(homeNav){
-			_this.setData({
-				fmodule:homeNav,
-				info:''
+		if(functionList){
+			this.setData({
+				functionList
 			});
 		}else{
-			common.getFunction(fid,app.globalData.authorizerId,1).then(function(data){
-				wx.setStorageSync('homeNav',data.info);
-				_this.setData({
-					fmodule:data.info,
-					info:''
-				});
+			common.getFunction(fid,app.globalData.authorizerId,0,1).then((data)=>{
+				let functionList = data.info
+				wx.setStorageSync('functionList',functionList);
+				this.setData({
+					functionList
+				})
 			}).catch(function(data){
-				_this.setData({
-					fmodule:false,
+				this.setData({
+					functionList:[],
 					info:data
 				});
 			});

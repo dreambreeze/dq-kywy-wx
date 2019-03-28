@@ -153,14 +153,15 @@ function getBanner(authorizerId) {
  * authorizerId   小程序APPID
  * ischunk        是否拆分为每3个一个数组
  */
-function getFunction(id, authorizerId, ischunk) {
+function getFunction(id, authorizerId, ischunk,isNew) {
     let p = new Promise(function(resolve, reject) {
         wx.request({
             url: host + '/Api/Requestdata/getFunction',
             data: {
                 'authorizerId': authorizerId,
                 'id': id,
-                'ischunk': ischunk
+                'ischunk': ischunk,
+                'isNew': isNew,
             },
             method: 'POST',
             header: {

@@ -19,7 +19,7 @@
         <view class="bill-title">{{orderData.storeinfo.store_name}}</view>
         <view class="bill-stitle flex-wrp">
             <view class="room-no">房间号：{{orderData.paydetail.RoomNos}}</view>
-            <view class="con-bills" wx:if="{{orderData.out_trade_no}}">消费单号：{{orderData.out_trade_no}}</view>
+            <view class="con-bills" wx:if="{{orderData.out_trade_no}}">结账单号：{{orderData.out_trade_no}}</view>
         </view>
         <!--消费列表-->
         <view class="column-name flex-wrp">
@@ -47,7 +47,7 @@
                     <view class='discount-num'>{{item.cpstype =='coupons'?'￥'+item.amount : item.project}}</view>
                     <view class='discount-detail'>
                         <view class='discount-type'>{{item.cpstype =='coupons'?'代金券':'项目券'}}</view>
-                        <view>领取日期:{{item.create_time}}</view>
+                        <view>使用日期: {{orderData.amount_info.tasktime}}</view>
                     </view>
                 </view>
             </view>

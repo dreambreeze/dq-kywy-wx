@@ -149,10 +149,13 @@ page{
 
 .discount-detail {
   flex: 1;
-  font-size: 30rpx;
   padding: 10rpx;
-  line-height: 30rpx;
   box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.2);
+}
+
+.discount-detail view{
+  font-size: 30rpx;
+  line-height:40rpx;
 }
 
 /*底部合计*/

@@ -2,6 +2,7 @@ var app = getApp();
 var common = require('../../../../common.js');
 // 引入腾讯地图SDK核心类
 const QQMapWX = require('../../../../pages/common/lib/qqmap-wx-jssdk.min.js');
+var util = require("../../../../utils/util.js");
 var qqmapsdk;
 Page({
 	/**
@@ -100,6 +101,8 @@ Page({
 					item.NeedMoney = (item.Omoney*item.DisCount).toFixed(2)
 				}
 				orderData.amount_info.ckinfos = ckinfos
+
+				orderData.amount_info.tasktime = util.dateFtt('yyyy-MM-dd hh:mm:ss',new Date(orderData.amount_info.tasktime))
 
 				this.setData({
 					orderData,
