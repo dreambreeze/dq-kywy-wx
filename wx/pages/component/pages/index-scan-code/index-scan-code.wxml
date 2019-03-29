@@ -7,3 +7,41 @@
         <text>{{item.name}}</text>
     </view>
 </view>
+<!-- 呼叫服务mask -->
+<view class="mask" style="display:{{maskDisplay}}" bindtap="hideService"></view>
+<!-- 呼叫服务 -->
+<view class="call-service" style="display:{{maskDisplay}}">
+    <image class='close-btn' src='/images/window_close@2x.png' bindtap="hideService"></image>
+    <image src="/images/service_title@2x.png" lazy-load class="donald_duck_title"></image>
+    <view class="donald-duck {{donaldshowIn}}" bindtap="hideService">
+        <image src="/images/service_icon@2x.png" lazy-load></image>
+    </view>
+    <view class="donald-duck-con {{donaldconshowIn}}">
+        <view class="service-box">
+            <scroll-view scroll-y>
+                <view class="service-list ">
+                    <view bindtap="serveracceptance" data-voice="呼叫服务员 ">
+                        <image src='/images/servicer@2x.png' lazy-load></image>
+                        呼叫服务员
+                    </view>
+                    <view bindtap="serveracceptance" data-voice="添加茶水 ">
+                        <image src='/images/service_tea@2x.png' lazy-load></image>
+                        添加茶水
+                    </view>
+                    <view bindtap="serveracceptance" data-voice="消费买单 ">
+                        <image src='/images/service_check@2x.png' lazy-load></image>
+                        消费买单
+                    </view>
+                    <view bindtap="serveracceptance" data-voice="呼叫服务 ">
+                        <image src='/images/service_call@2x.png' lazy-load></image>
+                        呼叫服务
+                    </view>
+                    <view bindtap="serveracceptance" data-voice="点小吃 ">
+                        <image src='/images/service_eat@2x.png' lazy-load></image>
+                        点小吃
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+</view>

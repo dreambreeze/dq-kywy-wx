@@ -41,3 +41,215 @@
   right:-36rpx;
   top:11rpx;
 }
+
+/* 呼叫服务 */
+.mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.call-service {
+  width: 100%;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  z-index: 3;
+  display: flex;
+}
+
+.donald-duck {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 0 0 0 20rpx;
+  width: 226rpx;
+  height: 459rpx;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-duration: 0.3s;
+  -webkit-animation-duration: 0.3s;
+  transform: translateX(-262rpx);
+  -webkit-transform: translateX(-262rpx);
+}
+
+.donaldshowIn {
+  animation-name: donaldshowIn;
+  -webkit-animation-name: donaldshowIn;
+}
+
+@keyframes donaldshowIn {
+  0% {
+    transform: translateX(-262rpx);
+    -webkit-transform: translateX(-262rpx);
+  }
+
+  100% {
+    transform: translateX(0rpx);
+    -webkit-transform: translateX(0rpx);
+  }
+}
+
+@-webkit-keyframes donaldshowIn {
+  0% {
+    transform: translateX(-262rpx);
+    -webkit-transform: translateX(-262rpx);
+  }
+
+  100% {
+    transform: translateX(0rpx);
+    -webkit-transform: translateX(0rpx);
+  }
+}
+
+.donaldshowOut {
+  animation-name: donaldshowOut;
+  -webkit-animation-name: donaldshowOut;
+}
+
+@keyframes donaldshowOut {
+  0% {
+    transform: translateX(0rpx);
+    -webkit-transform: translateX(0rpx);
+  }
+
+  100% {
+    transform: translateX(-262rpx);
+    -webkit-transform: translateX(-262rpx);
+  }
+}
+
+@-webkit-keyframes donaldshowOut {
+  0% {
+    transform: translateX(0rpx);
+    -webkit-transform: translateX(0rpx);
+  }
+
+  100% {
+    transform: translateX(-262rpx);
+    -webkit-transform: translateX(-262rpx);
+  }
+}
+
+.donald-duck image {
+  width: 100%;
+  height: 100%;
+}
+
+.donald-duck-con {
+  float: right;
+  width: 488rpx;
+  max-height: 765rpx;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-duration: 0.3s;
+  -webkit-animation-duration: 0.3s;
+  transform: translateX(488rpx);
+  -webkit-transform: translateX(488rpx);
+}
+
+.donaldconshowIn {
+  animation-name: donaldconshowIn;
+  -webkit-animation-name: donaldconshowIn;
+}
+
+@keyframes donaldconshowIn {
+  0% {
+    transform: translateX(488rpx);
+    -webkit-transform: translateX(488rpx);
+  }
+
+  100% {
+    transform: translateX(0rpx);
+    -webkit-transform: translateX(0rpx);
+  }
+}
+
+@-webkit-keyframes donaldconshowIn {
+  0% {
+    transform: translateX(488rpx);
+    -webkit-transform: translateX(488rpx);
+  }
+
+  100% {
+    transform: translateX(0rpx);
+    -webkit-transform: translateX(0rpx);
+  }
+}
+
+.donaldconshowOut {
+  animation-name: donaldconshowOut;
+  -webkit-animation-name: donaldconshowOut;
+}
+
+@keyframes donaldconshowOut {
+  0% {
+    transform: translateX(0rpx);
+    -webkit-transform: translateX(0rpx);
+  }
+
+  100% {
+    transform: translateX(488rpx);
+    -webkit-transform: translateX(488rpx);
+  }
+}
+
+@-webkit-keyframes donaldconshowOut {
+  0% {
+    transform: translateX(0rpx);
+    -webkit-transform: translateX(0rpx);
+  }
+
+  100% {
+    transform: translateX(488rpx);
+    -webkit-transform: translateX(488rpx);
+  }
+}
+
+.donald_duck_title {
+  width: 319rpx;
+  height: 40rpx;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.service-box {
+  margin: 60rpx 0 0 0;
+}
+
+.service-box scroll-view {
+  max-height: 646rpx;
+}
+
+.service-list {
+  width: 100%;
+}
+
+.service-list view {
+  font-size: 30rpx;
+  color: #ffd08d;
+  height: 115rpx;
+  line-height: 115rpx;
+  text-align: left;
+}
+
+.service-list image {
+  width: 70rpx;
+  height: 70rpx;
+  margin: 22rpx 25rpx 0 0;
+}
+
+.close-btn {
+  position: absolute;
+  width: 60rpx;
+  height: 60rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -140rpx;
+}
