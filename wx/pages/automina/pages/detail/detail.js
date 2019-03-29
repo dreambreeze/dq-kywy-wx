@@ -125,19 +125,12 @@ Page({
                                 showCancel: false,
                                 success: function(res) {
                                     if (res.confirm) {
-                                        wx.redirectTo({
-                                            url: '../../../../pages/index/index',
-                                        })
+										wx.navigateBack();
                                     }
-                                    wx.removeStorageSync("ShopNoRoomNo")
                                     wx.hideLoading()
                                 }
 
                             });
-                            // wx.showToast({
-                            //   icon: "none",
-                            //   title: res.data.info,
-                            // })
                         }
 
                     },
@@ -354,7 +347,7 @@ Page({
         this.reduceCart(e.target.dataset.id);
     },
 
-    // 内部函数 购物车操作 获取原始信息 
+    // 内部函数 购物车操作 获取原始信息
     addCart: function(id) {
         var num = this.data.cart.list[id] || 0;
         this.data.cart.list[id] = num + 1;

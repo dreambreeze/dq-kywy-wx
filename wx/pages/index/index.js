@@ -48,33 +48,32 @@ Page({
 			staffworkno:1
 		}],
 		imgurl:common.config.showImgUrl,
-
 		// 服务列表
-		functionList:[{
-			jumpName:'scancode',
-			src:'../../images/index_features_01@2x.png',
-			name:"扫码下单",
-		},{
-			jumpName:'showService',
-			src:'../../images/index_features_02@2x.png',
-			name:"呼叫服务",
-		},{
-			jumpName:'',
-			src:'../../images/index_features_03@2x.png',
-			name:"预约理疗师",
-			url:'../technician/pages/techindex/techindex'
-		},{
-			jumpName:'',
-			src:'../../images/index_features_04@2x.png',
-			name:"房间预约",
-			url:'../reserve/pages/reserve-room/reserve-room'
-		},{
-			jumpName:'',
-			src:'../../images/index_features_05@2x.png',
-			name:"店面评价",
-			url:'../reserve/pages/store-assess/store-assess'
-		}],
-
+		functionList:[
+			{
+				jumpName:'handleScanCode',
+				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/scan-code.png',
+				name:"扫一扫",
+			},
+			{
+				jumpName:'',
+				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/index_features_03@2x.png',
+				name:"预约理疗师",
+				url:'/pages/technician/pages/techindex/techindex'
+			},
+			{
+				jumpName:'',
+				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/index_features_04@2x.png',
+				name:"房间预约",
+				url:'/pages/reserve/pages/reserve-room/reserve-room'
+			},
+			{
+				jumpName:'',
+				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/index_features_05@2x.png',
+				name:"店面评价",
+				url:'/pages/reserve/pages/store-assess/store-assess'
+			}
+		],
 		//资讯列表
 		noticeList:[],
 		showNotice:false,
@@ -322,12 +321,11 @@ Page({
 				url:'/pages/component/pages/checkPrivilege/checkPrivilege?message=小程序使用权限已过期&notJump=1',
 			});
 		});
-
-		//检查是否已发券
-		// common.sendCoupons(app.globalData.authorizerId,openid).catch(){
-		// }
 	},
-	//获取banner列表
+
+	/**
+	 * 获取banner列表
+	 */
 	getBannerList(){
 		let _this = this;
 		common.getBanner(app.globalData.authorizerId,1).then(function(data){
@@ -342,31 +340,26 @@ Page({
 
 		})
 	},
-	//获取菜单列表
+
+	/**
+	 * 获取菜单列表
+	 */
 	getFunction(){
 		//加载首页后台分配的功能模块
 		let fid = common.config.navTabBar[0].id;
-		let functionList = wx.getStorageSync('functionList');
-
-		if(functionList){
+		common.getFunction(fid,app.globalData.authorizerId,0,1).then((data) => {
+			/*let functionList = data.info
 			this.setData({
 				functionList
+			})*/
+		}).catch(function(data){
+			this.setData({
+				functionList:[],
+				info:data
 			});
-		}else{
-			common.getFunction(fid,app.globalData.authorizerId,0,1).then((data)=>{
-				let functionList = data.info
-				wx.setStorageSync('functionList',functionList);
-				this.setData({
-					functionList
-				})
-			}).catch(function(data){
-				this.setData({
-					functionList:[],
-					info:data
-				});
-			});
-		}
+		});
 	},
+
 	/**
 	 * 去除空格
 	 */
@@ -378,7 +371,10 @@ Page({
 		}
 		return result;
 	},
-	//获得资讯
+
+	/**
+	 * 获得资讯
+	 */
 	getNoticeList(){
 		let _this = this;
 		common.getNotice(app.globalData.authorizerId,1).then(function(data){
@@ -392,6 +388,7 @@ Page({
 		}).catch(function(data){
 		});
 	},
+
 	showNotice(e){
 		var noticeMsg = e.currentTarget.dataset.desc
 		this.setData({
@@ -400,12 +397,16 @@ Page({
 		})
 		WxParse.wxParse('noticeMsg','html',noticeMsg,this);
 	},
+
 	handleNotice(){
 		this.setData({
 			showNotice:false
 		})
 	},
-	//获取团购优惠
+
+	/**
+	 * 获取团购优惠
+	 */
 	getProject(){
 		let _this = this;
 		common.getProject(app.globalData.authorizerId,'','','','1').then(function(data){
@@ -420,7 +421,10 @@ Page({
 			})
 		})
 	},
-	//拼团列表
+
+	/**
+	 * 拼团列表
+	 */
 	getGroupList(){
 		let _this = this;
 		common.getGroupShopping(app.globalData.authorizerId,'','','','','','').then(function(data){
@@ -429,6 +433,7 @@ Page({
 			})
 		})
 	},
+
 	/**
 	 * 跳转至详情页
 	 */
@@ -439,7 +444,10 @@ Page({
 			url:'./transbuy/pages/group-detail/group-detail?pid=' + pid + '&nodeid=' + nodeid,
 		})
 	},
-	//获取推荐
+
+	/**
+	 * 获取推荐
+	 */
 	getRecommend(){
 		let _this = this;
 		common.getRecommend(app.globalData.authorizerId,_this.data.nodeid).then(function(data){
@@ -449,6 +457,7 @@ Page({
 		}).catch(function(data){
 		});
 	},
+
 	/**
 	 * 监听页面分享  单聊不可获取shareTickets   群聊可以
 	 */
@@ -519,6 +528,7 @@ Page({
 
 		return shareObj
 	},
+
 	/**
 	 * 点击显示呼叫服务
 	 */
@@ -578,6 +588,7 @@ Page({
 			});
 		}
 	},
+
 	/**
 	 * 点击隐藏呼叫服务
 	 */
@@ -588,6 +599,7 @@ Page({
 			donaldconshowIn:'donaldconshowOut'
 		});
 	},
+
 	/**
 	 * 联系门店客服
 	 */
@@ -597,6 +609,7 @@ Page({
 			phoneNumber:phone,
 		})
 	},
+
 	/**
 	 * 地理位置
 	 */
@@ -785,6 +798,7 @@ Page({
 		});
 		return p;
 	},
+
 	/**
 	 * 点击底部导航
 	 */
@@ -805,61 +819,54 @@ Page({
 			url:url,
 		});
 	},
+
 	/**
 	 * 技术支持跳转
 	 */
 	jishuzhichi:function(){
 		common.jishuzhichi();
 	},
+
 	/**
-	 * 扫码下单
+	 * 扫一扫
 	 */
-	scancode:function(){
-		let _this = this;
-		//门店与房间号是否存在
-		let sceneStr = wx.getStorageSync('ShopNoRoomNo');
-		if(! sceneStr){
-			wx.scanCode({
-				onlyFromCamera:true,
-				scanType:[],
-				success:function(res){
-					if(res.path){
-						try{
-							var path = decodeURIComponent(res.path).split("?")
-							var newpath = path[0]
-							var ShopNoRoomNo = path[1].substr(6,path[1].length - 1)
-							wx.setStorageSync("ShopNoRoomNo",ShopNoRoomNo)
-							wx.navigateTo({
-								url:'/pages/automina/pages/detail/detail',
-							})
-						}catch(e){
-							wx.showModal({
-								title:'提示',
-								content:'获取地址失败，无法跳转',
-								showCancel:false
-							});
-						}
-					}else{
+	handleScanCode(){
+		wx.scanCode({
+			onlyFromCamera:true,
+			scanType:[],
+			success(res){
+				if(res.path){
+					try{
+						var path = decodeURIComponent(res.path).split("?")
+						var newpath = path[0]
+						var ShopNoRoomNo = path[1].substr(6,path[1].length - 1)
+						wx.setStorageSync("ShopNoRoomNo",ShopNoRoomNo)
+						wx.navigateTo({
+							url:'/pages/component/pages/index-scan-code/index-scan-code',
+						})
+					}catch(e){
 						wx.showModal({
 							title:'提示',
 							content:'获取地址失败，无法跳转',
 							showCancel:false
 						});
 					}
-				},
-				fail:function(res){
-					wx.navigateBack({
-						delta:1
-					})
-				},
-				complete:function(res){
-				},
-			})
-		}else{
-			wx.navigateTo({
-				url:'/pages/automina/pages/detail/detail',
-			})
-		}
+				}else{
+					wx.showModal({
+						title:'提示',
+						content:'获取地址失败，无法跳转',
+						showCancel:false
+					});
+				}
+			},
+			fail(res){
+				wx.navigateBack({
+					delta:1
+				})
+			},
+			complete(res){
+			},
+		})
 	},
 	/**
 	 * 受理呼叫服务
@@ -1041,8 +1048,7 @@ Page({
 				locationStore:locationStore
 			});
 		}else{
-			_this.getStores().then(
-					function(data){
+			_this.getStores().then(function(data){
 						//获取定位
 						new Promise(function(resolve,reject){
 							locationStore = [];
@@ -1093,20 +1099,21 @@ Page({
 							let timer = null;
 							clearTimeout(timer);
 
-							timer = setTimeout(function(){
-								locationStore.sort(function(obj1,obj2){
-									var val1 = obj1.juli
-									var val2 = obj2.juli
+							timer = setTimeout(()=>{
+								if(locationStore){
+									locationStore.sort(function(obj1,obj2){
+										var val1 = obj1.juli
+										var val2 = obj2.juli
 
-									if(val1 < val2){
-										return - 1;
-									}else if(val1 > val2){
-										return 1;
-									}else{
-										return 0;
-									}
-								});
-
+										if(val1 < val2){
+											return - 1;
+										}else if(val1 > val2){
+											return 1;
+										}else{
+											return 0;
+										}
+									})
+								}
 								//赠加缓存时间
 								for(let i = 0; i < locationStore.length; i ++){
 									locationStore[i]['cache'] = new Date().getTime();

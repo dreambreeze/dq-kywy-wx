@@ -1,0 +1,9 @@
+<!-- 首页-扫一扫  -->
+<view class="function-list">
+    <view wx:for="{{functionList}}"
+          wx:key="index"
+          bindtap="{{item.jumpName}}"
+          class="function-item">
+        <text>{{item.name}}</text>
+    </view>
+</view>

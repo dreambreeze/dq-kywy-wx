@@ -32,7 +32,8 @@
         "pages/lqgiftcard/lqgiftcard",
         "pages/cardReceive/cardReceive",
         "pages/transrecord/transrecord",
-        "pages/room-scan-code/room-scan-code"
+        "pages/room-scan-code/room-scan-code",
+        "pages/index-scan-code/index-scan-code"
       ]
     },
     {
@@ -89,7 +90,6 @@
         "pages/paycomplete/paycomplete",
         "pages/commit/commit",
         "pages/note/note"
-
       ]
     },
     {

@@ -29,29 +29,29 @@ Page({
 		functionList:[
 			{
 				jumpName:'handleScanCode',
-				src:'/images/index_features_01@2x.png',
-				name:"扫码下单",
+				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/self-order.png',
+				name:"自助点单",
 			},
 			{
-				jumpName:'showService',
-				src:'/images/index_features_02@2x.png',
+				jumpName:'handleCallService',
+				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/index_features_02@2x.png',
 				name:"呼叫服务",
 			},
 			{
 				jumpName:'',
-				src:'/images/index_features_03@2x.png',
+				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/index_features_03@2x.png',
 				name:"预约理疗师",
 				url:'/pages/technician/pages/techindex/techindex'
 			},
 			{
 				jumpName:'',
-				src:'/images/index_features_04@2x.png',
+				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/index_features_04@2x.png',
 				name:"房间预约",
 				url:'/pages/reserve/pages/reserve-room/reserve-room'
 			},
 			{
 				jumpName:'',
-				src:'/images/index_features_05@2x.png',
+				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/index_features_05@2x.png',
 				name:"店面评价",
 				url:'/pages/reserve/pages/store-assess/store-assess'
 			}
@@ -113,7 +113,24 @@ Page({
 			roomNo:roomNo+'',
 			openid:openid,
 		})
+		this.getFunction()
 		this.loadInitData()
+	},
+	//获取菜单列表
+	getFunction(){
+		//加载首页后台分配的功能模块
+		let fid = common.config.navTabBar[0].id;
+		common.getFunction(fid,app.globalData.authorizerId,0,1).then((data)=>{
+			/*let functionList = data.info
+			this.setData({
+				functionList
+			})*/
+		}).catch(function(data){
+			this.setData({
+				functionList:[],
+				info:data
+			});
+		});
 	},
 	/**
 	 * 关闭账单loading
@@ -173,58 +190,18 @@ Page({
 	},
 
 	/**
-	 * 扫码下单
+	 * 自助点单
 	 */
 	handleScanCode(){
-		let _this = this;
-		//门店与房间号是否存在
-		let sceneStr = wx.getStorageSync('ShopNoRoomNo');
-		if(! sceneStr){
-			wx.scanCode({
-				onlyFromCamera:true,
-				scanType:[],
-				success:(res)=>{
-					if(res.path){
-						try{
-							let path = decodeURIComponent(res.path).split("?")
-							let newpath = path[0]
-							let ShopNoRoomNo = path[1].substr(6,path[1].length - 1)
-							wx.setStorageSync("ShopNoRoomNo",ShopNoRoomNo)
-							wx.navigateTo({
-								url:'/pages/automina/pages/detail/detail',
-							})
-						}catch(e){
-							wx.showModal({
-								title:'提示',
-								content:'获取地址失败，无法跳转',
-								showCancel:false
-							});
-						}
-					}else{
-						wx.showModal({
-							title:'提示',
-							content:'获取地址失败，无法跳转',
-							showCancel:false
-						});
-					}
-				},
-				fail:(res)=>{
-					wx.navigateBack({
-						delta:1
-					})
-				},
-			})
-		}else{
-			wx.navigateTo({
-				url:'/pages/automina/pages/detail/detail',
-			})
-		}
+		wx.navigateTo({
+			url:'/pages/automina/pages/detail/detail',
+		})
 	},
 
 	/**
 	 * 点击显示呼叫服务
 	 */
-	showService(){
+	handleCallService(){
 		let ShopNoRoomNo = wx.getStorageSync('ShopNoRoomNo');
 		if(! ShopNoRoomNo){
 			wx.showModal({
