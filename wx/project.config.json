@@ -30,203 +30,25 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 1,
 			"list": [
 				{
-					"id": 0,
-					"name": "自助点单",
-					"pathName": "pages/automina/pages/detail/detail",
-					"query": "shopno=DQT01&roomno=101",
-					"scene": "1011"
-				},
-				{
-					"id": -1,
-					"name": "分享有礼",
-					"pathName": "pages/promotions/promotions",
-					"query": "",
-					"scene": "1007"
-				},
-				{
-					"id": 12,
-					"name": "项目详情",
-					"pathName": "pages/reserve/pages/project-detail/project-detail",
-					"query": "id=12&index=0",
-					"scene": "1001"
-				},
-				{
-					"id": -1,
-					"name": "约技师",
-					"pathName": "pages/technician/pages/techindex/techindex",
-					"query": "shopno=DQT01&roomno=101",
-					"scene": "1011"
-				},
-				{
-					"id": -1,
-					"name": "自助点单结算",
-					"pathName": "pages/automina/pages/commit/commit",
-					"query": "shopno=DQT01&roomno=101",
-					"scene": "1011"
-				},
-				{
-					"id": -1,
-					"name": "自助点单备注",
-					"pathName": "pages/automina/pages/note/note",
+					"id": 13,
+					"name": "房间扫码主页",
+					"pathName": "pages/component/pages/room-scan-code/room-scan-code",
 					"query": ""
 				},
 				{
-					"id": 7,
-					"name": "拼团详情",
-					"pathName": "pages/transbuy/pages/group-detail/group-detail",
-					"query": "nodeid=DQT02#china&pid=3",
-					"scene": "1011"
-				},
-				{
-					"id": 18,
-					"name": "拼团提交",
-					"pathName": "pages/transbuy/pages/group-commit/group-commit",
-					"query": "nodeid=DQH01#china&buytype=2&groupno=20180809224750&pid=5&num=1",
-					"scene": "1011"
-				},
-				{
-					"id": 19,
-					"name": "拼图成功",
-					"pathName": "pages/transbuy/pages/group-full/group-full",
-					"query": "groupno=20180809224745&orderno=201808091538287595&nodeid=DQH01#china&pid=5",
-					"scene": "1011"
-				},
-				{
-					"id": 20,
-					"name": "拼团订单详情",
-					"pathName": "pages/transbuy/pages/group-orderdetail/group-orderdetail",
-					"query": "orderno=201808031015171287&pid=2",
-					"scene": "1011"
-				},
-				{
-					"id": -1,
-					"name": "拼团订单",
-					"pathName": "pages/transbuy/pages/group-order/group-order",
-					"query": "groupno=20180803336510&orderno=201807262015212072",
-					"scene": "1011"
-				},
-				{
-					"id": -1,
-					"name": "会员中心",
-					"pathName": "pages/vip-center/vip-center",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "优惠活动",
-					"pathName": "pages/promotions/promotions",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "历史消费详情",
-					"pathName": "pages/ucentermodel/pages/hisdetail/hisdetail",
-					"query": "",
-					"scene": "1011"
-				},
-				{
-					"id": 26,
-					"name": "wode",
-					"pathName": "pages/ucenter/ucenter",
-					"query": "",
-					"scene": "1011"
-				},
-				{
-					"id": -1,
-					"name": "项目介绍",
-					"pathName": "pages/reserve/pages/reserve-project/reserve-project",
-					"query": "ShopNo='DQH02#china'"
-				},
-				{
-					"id": -1,
-					"name": "e团购",
-					"pathName": "pages/transbuy/pages/group-buy/group-buy",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "e团购购物车",
-					"pathName": "pages/transbuy/pages/buy-car/buy-car",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "优惠券",
-					"pathName": "pages/component/pages/coupons-pack/coupons-pack",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "下单备注",
-					"pathName": "pages/automina/pages/note/note",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "支付成功",
-					"pathName": "pages/automina/pages/paycomplete/paycomplete",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "预约成功",
-					"pathName": "pages/technician/pages/techpaycomplete/techpaycomplete",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "项目详情",
-					"pathName": "pages/automina/pages/gooddetail/gooddetail",
-					"query": "id=12&index=0",
-					"scene": "1001"
-				},
-				{
-					"id": -1,
-					"name": "项目详情",
-					"pathName": "pages/transbuy/pages/group-paycomplete/group-paycomplete",
-					"query": "id=12&index=0",
-					"scene": "1001"
-				},
-				{
-					"id": -1,
-					"name": "拼团邀请",
-					"pathName": "pages/transbuy/pages/group-paycomplete/group-paycomplete",
-					"query": "id=12&index=0",
-					"scene": "1001"
-				},
-				{
-					"id": -1,
-					"name": "充值订单详情",
-					"pathName": "pages/ucentermodel/pages/docardOrderdetail/docardOrderdetail",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "充值订单详情",
-					"pathName": "pages/automina/pages/order/order",
-					"query": ""
-				},
-				{
-					"id": 31,
+					"id": 1,
 					"name": "我的订单",
 					"pathName": "pages/ucentermodel/pages/orders/orders",
 					"query": "openid=omd4W0cMbxQnUkZITcq5ggoWXJtI"
 				},
 				{
 					"id": -1,
-					"name": "确认下单",
-					"pathName": "pages/technician/pages/techorder/techorder",
-					"query": "shopno=DQT01&roomno=101",
-					"scene": "1011"
-				},
-				{
-					"id": 34,
-					"name": "结账订单详情",
-					"pathName": "pages/component/pages/historycons/historycons",
-					"query": "openid=omd4W0cMbxQnUkZITcq5ggoWXJtI"
+					"name": "在线结账订单",
+					"pathName": "pages/ucentermodel/pages/onlinePayOrderDetail/onlinePayOrderDetail",
+					"query": "id=24&nodeid=DQT01"
 				}
 			]
 		}

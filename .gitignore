@@ -1,1 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
+/.idea/
+.svn/
+wx/ext_bak.json
+wx/images/group_discout_01@2x.png
+wx/images/group_discout_02@2x.png
+wx/images/group_discout_03@2x.png
