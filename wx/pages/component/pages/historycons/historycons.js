@@ -598,7 +598,12 @@ Page({
 					showCancel:false,
 					success:(res) => {
 						if(res.confirm){
-							wx.navigateBack();
+							let paywayindex = 0;
+							let checkoutCard = this.data.payWayList[0]
+							this.setData({
+								pyselected:paywayindex,
+								checkoutCard:checkoutCard
+							})
 						}
 					}
 				})
