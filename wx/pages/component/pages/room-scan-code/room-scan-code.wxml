@@ -44,14 +44,14 @@
             <view class="need">需付</view>
         </view>
         <scroll-view scroll-y class="bill-scroll">
-            <view class="bill-con flex-wrp" wx:for="{{billingInfo}}" wx:key='index'>
+            <view class="bill-con flex-wrp" wx:if="{{billingInfo}}" wx:for="{{billingInfo}}" wx:key='index'>
                 <view class="pname text-ellipsis">{{item.ServiceItemName}}</view>
                 <view class="work-no text-ellipsis">{{!item.StaffWorkNo ?'--' : item.StaffWorkNo }}</view>
                 <view class="number text-ellipsis">{{item.ServiceNum}}</view>
                 <view class="amount text-ellipsis">{{item.SinglePrice=='.00'?'0.00':item.SinglePrice}}</view>
                 <view class="need text-ellipsis">{{item.billPrice}}</view>
             </view>
-            <view wx:if="{{billInfo || billInfo.length == 0}}" class="no-data">暂无账单</view>
+            <view wx:if="{{!billingInfo}}" class="no-data">暂无账单</view>
         </scroll-view>
         <view class="footer">
             <view class="total-price">合计：{{totalPrice}}</view>

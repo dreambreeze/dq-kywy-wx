@@ -679,8 +679,9 @@ Page({
 	 * 点击跳转至办卡页面
 	 */
 	toApplyCard(){
+		let checkoutDoCard = true
 		wx.navigateTo({
-			url:"/pages/component/pages/docard/docard",
+			url:"/pages/component/pages/docard/docard?checkoutDoCard="+checkoutDoCard,
 		});
 	},
 	/**
@@ -973,7 +974,7 @@ Page({
 			mask:true,
 			duration:2000,
 			success:(res) => {
-				wx.navigateTo({
+				wx.reLaunch({
 					url:'/pages/ucentermodel/pages/orders/orders',
 				});
 			}

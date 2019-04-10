@@ -32,7 +32,9 @@ Page({
         //所有卡类型
         cardType: cardType,
         //门店电话和地址
-        shopInfo: shopInfo
+        shopInfo: shopInfo,
+        //在线结账进入标识
+        checkoutDoCard:false,
     },
 
     /**
@@ -73,6 +75,10 @@ Page({
         qqmapsdk = new QQMapWX({
             key: common.config.QQMapWXKey
         });
+        let checkoutDoCard = options.checkoutDoCard ? options.checkoutDoCard : false
+        this.setData({
+            checkoutDoCard
+        })
     },
 
     /**
@@ -282,9 +288,11 @@ Page({
      * 点击跳转至办卡
      */
     jumpurl: function(e) {
+        let {checkoutDoCard} = this.data
+        let url = e.currentTarget.dataset.url+'&checkoutDoCard='+checkoutDoCard
         wx.navigateTo({
-            url: e.currentTarget.dataset.url,
-        });
+            url:url
+        })
     },
 
     /**

@@ -23,6 +23,10 @@ Page({
 		roomNo:'',
 		//手牌号
 		handNo:'',
+		//门店名称
+		bsname:'',
+		//账单信息
+		billingInfo:null,
 		//用户微信Id
 		openid:'',
 		//功能列表
@@ -79,7 +83,7 @@ Page({
 				roomNo = ShopNoRoomNoArr[1].split('=')[1]
 			}
 		}
-		if(!shopNo || !roomNo){
+		if(! shopNo || ! roomNo){
 			wx.showModal({
 				title:'提示',
 				content:'房间号不存在，获取账单信息失败',
@@ -94,7 +98,7 @@ Page({
 		}
 		//获取用户openid
 		let openid = wx.getStorageSync('openid');
-		if(!openid || openid == ""){
+		if(! openid || openid == ""){
 			common.getLogin(app.globalData.authorizerId).then((data) => {
 				openid = data;
 			}).catch((data) => {
@@ -109,8 +113,8 @@ Page({
 		}
 		this.setData({
 			isShowBillLoading:true,
-			shopNo:shopNo+'',
-			roomNo:roomNo+'',
+			shopNo:shopNo + '',
+			roomNo:roomNo + '',
 			openid:openid,
 		})
 		this.getFunction()
@@ -120,13 +124,13 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad(){
-		
+
 	},
 	//获取菜单列表
 	getFunction(){
 		//加载首页后台分配的功能模块
 		let fid = common.config.navTabBar[0].id;
-		common.getFunction(fid,app.globalData.authorizerId,0,1).then((data)=>{
+		common.getFunction(fid,app.globalData.authorizerId,0,1).then((data) => {
 			/*let functionList = data.info
 			this.setData({
 				functionList
@@ -214,11 +218,11 @@ Page({
 				title:'提示',
 				content:'门店标识与房号不存在，请扫描桌面二维码',
 				showCancel:true,
-				success:(re)=>{
+				success:(re) => {
 					if(re.confirm){
 						wx.scanCode({
 							onlyFromCamera:true,
-							success:(res)=>{
+							success:(res) => {
 								if(res.path){
 									try{
 										let path = decodeURIComponent(res.path).split("?")
@@ -243,7 +247,7 @@ Page({
 									});
 								}
 							},
-							fail:(res)=>{
+							fail:(res) => {
 								wx.showModal({
 									title:'提示',
 									content:'调起客户端扫码界面失败',
@@ -282,7 +286,7 @@ Page({
 		let p = new Promise((resolve,reject) => {
 			//查询账单信息
 			this.getBillingInfo().then((data) => {
-				let {bsname,need} = data
+				let {need} = data
 				let info = data.info?data.info:''
 				//计算该账单 每种商品 的 价格
 				if(info){
@@ -294,10 +298,6 @@ Page({
 				this.setData({
 					billingInfo:info,
 					totalPrice:need,
-					bsname:bsname,
-				});
-				wx.setNavigationBarTitle({
-					title:bsname
 				})
 				resolve(info)
 			}).catch((data) => {
@@ -341,6 +341,13 @@ Page({
 				success:(res) => {
 					wx.hideLoading();
 					if(200 == res.statusCode){
+						let {bsname} = res.data
+						wx.setNavigationBarTitle({
+							title:bsname
+						})
+						this.setData({
+							bsname:bsname
+						})
 						if(1 == res.data.status){
 							if('' == res.data.info){
 								reject('没有查询到账单信息');
@@ -386,11 +393,11 @@ Page({
 				title:'提示',
 				content:'门店标识与房号不存在，请扫描桌面二维码',
 				showCancel:true,
-				success:(re)=>{
+				success:(re) => {
 					if(re.confirm){
 						wx.scanCode({
 							onlyFromCamera:true,
-							success:(res)=>{
+							success:(res) => {
 								if(res.path){
 									try{
 										let path = decodeURIComponent(res.path).split("?")
@@ -415,7 +422,7 @@ Page({
 									});
 								}
 							},
-							fail:(res)=>{
+							fail:(res) => {
 								wx.showModal({
 									title:'提示',
 									content:'调起客户端扫码界面失败',
@@ -469,7 +476,7 @@ Page({
 			header:{
 				'content-type':'application/json'
 			},
-			success:(res)=>{
+			success:(res) => {
 				if(res.statusCode == 200){
 					wx.hideLoading();
 					if(res.data.status == 1){
@@ -477,7 +484,7 @@ Page({
 							title:'提示',
 							content:'您呼叫的服务已受理成功，请稍等',
 							showCancel:false,
-							success:(r)=>{
+							success:(r) => {
 								if(r.confirm){
 									_this.setData({
 										isShowService:false,
@@ -525,7 +532,7 @@ Page({
 	 * 账单支付成功
 	 */
 	handlerBillPlease(){
-		if(!this.data.billingInfo||this.data.billingInfo.length==0){
+		if(! this.data.billingInfo || this.data.billingInfo.length == 0){
 			wx.showModal({
 				title:'提示',
 				content:'暂无账单需要结账',

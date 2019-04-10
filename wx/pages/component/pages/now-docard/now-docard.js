@@ -52,13 +52,16 @@ Page({
         //优惠规则
         discountList: [],
         //是否已选充值金额
-        hasChoseAmout: false
+        hasChoseAmout: false,
+        //结账入口办卡
+        checkoutDoCard:false,
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        let checkoutDoCard = options.checkoutDoCard ? options.checkoutDoCard : false
         cardid = options.cardid;
         am = options.money;
         gift = options.free;
@@ -77,7 +80,13 @@ Page({
                 hasChoseAmout: true
             });
         }
-
+        
+        if(checkoutDoCard){
+            this.setData({
+                checkoutDoCard:checkoutDoCard
+            })
+        }
+        
         wx.showLoading({
             title: '加载中',
         });
@@ -345,7 +354,7 @@ Page({
     /**
      * 点击确定按钮
      */
-    formSubmit: function(e) {
+    formSubmit(e) {
         var _val = e.detail.value;
         if (_val.names.trim() == '') {
             wx.showModal({
@@ -461,7 +470,7 @@ Page({
             header: {
                 'content-type': 'application/json'
             },
-            success: function(res) {
+            success: (res) => {
                 wx.hideLoading();
                 var info = res.data.info;
                 if (res.statusCode == 200) {
@@ -472,7 +481,7 @@ Page({
                             package: info.package,
                             signType: info.signType,
                             paySign: info.paySign,
-                            success: function(res) {
+                            success: (res) => {
                                 if (res.errMsg == 'requestPayment:ok') {
                                     //保存prepay_id用于发送小程序模版信息
                                     common.savePrepayId(app.globalData.authorizerId, openid, info.package);
@@ -481,17 +490,23 @@ Page({
                                         content: '支付成功',
                                         mask: true,
                                         showCancel: false,
-                                        success: function(res) {
+                                        success: (res) => {
                                             if (res.confirm) {
-                                                wx.redirectTo({
-                                                    url: '/pages/ucentermodel/pages/orders/orders',
-                                                });
+                                                if(this.data.checkoutDoCard){
+                                                    wx.reLaunch({
+                                                        url: '/pages/component/pages/historycons/historycons',
+                                                    });
+                                                }else{
+                                                    wx.redirectTo({
+                                                        url: '/pages/ucentermodel/pages/orders/orders',
+                                                    });
+                                                }
                                             }
                                         }
                                     });
                                 }
                             },
-                            fail: function(res) {
+                            fail: (res) => {
                                 if (res.errMsg == 'requestPayment:fail cancel') {
                                     wx.showToast({
                                         title: '支付已取消',
@@ -521,7 +536,7 @@ Page({
                     });
                 }
             },
-            fail: function(res) {
+            fail: (res) => {
                 wx.hideLoading();
                 if (res.errMsg == 'request:fail timeout') {
                     wx.showModal({
