@@ -14,7 +14,7 @@
         </view>
         <view class="bill-con flex-wrp" wx:for="{{billingInfo}}" wx:key='index'>
             <view class="pname text-ellipsis">{{item.ServiceItemName}}</view>
-            <view class="work-no text-ellipsis">{{!item.JSStaffWorkNo ?'' : item.JSStaffWorkNo }}</view>
+            <view class="work-no text-ellipsis">{{!item.StaffWorkNo ?'' : item.StaffWorkNo }}</view>
             <view class="number text-ellipsis">{{item.ServiceNum}}</view>
             <view class="amount text-ellipsis">{{item.SinglePrice=='.00'?'0.00':item.SinglePrice}}</view>
             <view class="need text-ellipsis">{{item.billPrice}}</view>
