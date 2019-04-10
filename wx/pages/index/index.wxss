@@ -701,10 +701,9 @@
     max-height: 900rpx;
     overflow-y: auto;
     position: fixed;
-    transform: translateY(-50%);
+    transform: translateY(-50%) translateX(-50%);
     top: 40%;
     left: 50%;
-    margin-left: -300rpx;
     background: #fff;
     z-index: 20;
     border-radius: 3px;

@@ -615,7 +615,7 @@ Page({
 		let {openid,checkoutCard,shopNo,businessNo,roomNo,handNo} = this.data
 		let p = new Promise((resolve,reject) => {
 			wx.request({
-				url:common.config.host + '/index.php/Api/OnLineTasks/getBillingInfo',
+				url:common.config.host + '/index.php/Api/OnLineTasks/billInfo',
 				data:{
 					'authorizerId':app.globalData.authorizerId,
 					'openid':openid,
