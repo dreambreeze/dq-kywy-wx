@@ -9,6 +9,8 @@ var checkoutCard;
 var need = 0;
 //记录打开页面时间
 let openPageTime = 0;
+//锁单定时器
+let lockInterval
 Page({
 	/**
 	 * 页面的初始数据
@@ -30,7 +32,7 @@ Page({
 		//账单信息
 		billingInfo:{},
 		//可用优惠券显隐标识
-		isShowDiscount:false,
+		isShowDiscounit:false,
 		//账单加载图 显隐标识
 		isShowBillLoading:false,
 		//不可用 优惠券显隐标识
@@ -69,6 +71,7 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad(options){
+		clearInterval(lockInterval)
 		//记录打开页面时间
 		openPageTime = new Date().getTime();
 		//二维码参数
@@ -80,9 +83,9 @@ Page({
 		let handNo = ''
 		if('undefined' !== ShopNoRoomNoArr[0]){
 			shopNo = ShopNoRoomNoArr[0].split('=')[1]
-			businessNo=''
-			roomNo=''
-			handNo=''
+			businessNo = ''
+			roomNo = ''
+			handNo = ''
 			if('businessNo' == ShopNoRoomNoArr[1].split('=')[0]){
 				businessNo = ShopNoRoomNoArr[1].split('=')[1]
 			}
@@ -93,7 +96,7 @@ Page({
 				handNo = ShopNoRoomNoArr[1].split('=')[1]
 			}
 		}
-		if(!shopNo && !(businessNo || roomNo || handNo) ){
+		if(! shopNo && ! (businessNo || roomNo || handNo)){
 			wx.showModal({
 				title:'提示',
 				content:'账单不存在，获取账单信息失败',
@@ -154,85 +157,81 @@ Page({
 	 * 页面初始化时 定时器锁单 成功后获取账单信息
 	 */
 	lockOrderAndGetBillInfo(){
-		//定时器
-		let openidTime = null;
-		clearInterval(openidTime);
-		openidTime = setInterval(() => {
-			clearInterval(openidTime);
-			//锁单
-			this.lockOrder().then((data) => {
-				if(0 == data.status){ //账单状态处于不可结账状态
-					this.hideBillLoading()
-					wx.showModal({
-						title:'提示',
-						content:data.info,
-						showCancel:false,
-						success:(res) => {
-							if(res.confirm){
-								wx.navigateBack();
-							}
-						}
-					})
-				}else if(1 == data.status){ //锁单请求发起成功，等待锁单成功
-					//2秒后再次请锁单状态
-					setTimeout(() => {
-						this.lockOrder().then((data) => {
-							if(1 == data.status){
-								//0.5s请求一次锁单是否成功
-								let lockInterval = setInterval(() => {
-									this.lockOrder().then((data) => {
-										if(2 == data.status){
-											clearInterval(lockInterval)
-											this.loadInitData()
-										}
-									}).catch((data) => {
-										this.hideBillLoading()
-										wx.showModal({
-											title:'提示',
-											content:data,
-											showCancel:false,
-											success:(res) => {
-												if(res.confirm){
-													wx.navigateBack();
-												}
-											}
-										});
-									});
-								},500)
-							}else if(2 == data.status){
-								this.loadInitData()
-							}
-						}).catch((data) => {
-							this.hideBillLoading()
-							wx.showModal({
-								title:'提示',
-								content:data,
-								showCancel:false,
-								success:(res) => {
-									if(res.confirm){
-										wx.navigateBack();
-									}
-								}
-							});
-						});
-					},2000)
-				}else if(2 == data.status){
-					this.loadInitData()
-				}
-			}).catch((data) => {
+		//锁单
+		this.lockOrder().then((data) => {
+			if(0 == data.status){ //账单状态处于不可结账状态
 				this.hideBillLoading()
 				wx.showModal({
 					title:'提示',
-					content:data,
+					content:data.info,
 					showCancel:false,
 					success:(res) => {
 						if(res.confirm){
 							wx.navigateBack();
 						}
 					}
-				});
+				})
+			}else if(1 == data.status){ //锁单请求发起成功，等待锁单成功
+				//2秒后再次请锁单状态
+				setTimeout(() => {
+					this.lockOrder().then((data) => {
+						if(1 == data.status){
+							//0.5s请求一次锁单是否成功
+							lockInterval = setInterval(() => {
+								this.lockOrder().then((data) => {
+									if(2 == data.status){
+										clearInterval(lockInterval)
+										this.loadInitData()
+									}
+								}).catch((data) => {
+									clearInterval(lockInterval)
+									this.hideBillLoading()
+									wx.showModal({
+										title:'提示',
+										content:data,
+										showCancel:false,
+										success:(res) => {
+											if(res.confirm){
+												wx.navigateBack();
+											}
+										}
+									});
+								});
+							},500)
+						}else if(2 == data.status){
+							clearInterval(lockInterval)
+							this.loadInitData()
+						}
+					}).catch((data) => {
+						this.hideBillLoading()
+						wx.showModal({
+							title:'提示',
+							content:data,
+							showCancel:false,
+							success:(res) => {
+								if(res.confirm){
+									wx.navigateBack();
+								}
+							}
+						});
+					});
+				},2000)
+			}else if(2 == data.status){
+				this.loadInitData()
+			}
+		}).catch((data) => {
+			this.hideBillLoading()
+			wx.showModal({
+				title:'提示',
+				content:data,
+				showCancel:false,
+				success:(res) => {
+					if(res.confirm){
+						wx.navigateBack();
+					}
+				}
 			});
-		},800);
+		});
 	},
 
 	/**
@@ -470,6 +469,7 @@ Page({
 				data:{
 					'authorizerId':app.globalData.authorizerId,
 					'openid':this.data.openid,
+					'shopNo':this.data.shopNo,
 					'type':2
 				},
 				method:'POST',
@@ -798,8 +798,8 @@ Page({
 			consumer.ServiceNum = bill.ServiceNum
 			consumer.Omoney = bill.OMoney
 			consumer.PaySinglePrice = bill.PaySinglePrice
-			consumer.DisCount = bill.PaySinglePrice == 0 || bill.PaySinglePrice ==  0 ? 0
-					: (bill.PaySinglePrice / bill.OPrice).toFixed(2)
+			consumer.DisCount = bill.PaySinglePrice == 0 || bill.PaySinglePrice == 0?0
+					:(bill.PaySinglePrice / bill.OPrice).toFixed(2)
 			consumer.PaySinglePrice = bill.PaySinglePrice
 			consumer.Nmoney = bill.NMoney
 			consumer.ConsumeNo = bill.ConsumeNo
@@ -835,7 +835,7 @@ Page({
 		let selectedCoupons = this.getSelectDiscount()
 		let {cardNeedAmount,weChatNeedAmount,openid,shopNo,businessNo,checkoutCard,terminal} = this.data
 		let consumerdetails = this.getConsumerdetails()
-		checkoutCard = checkoutCard.AutoID == '-1' ? '' : checkoutCard
+		checkoutCard = checkoutCard.AutoID == '-1'?'':checkoutCard
 		let params = {
 			authorizerId:app.globalData.authorizerId,
 			openid:openid,
@@ -869,11 +869,11 @@ Page({
 				let paramPackage = data.data.info.package
 				wx.hideLoading();
 				wx.requestPayment({
-					timeStamp:timeStamp+'',
-					nonceStr:nonceStr+'',
-					package:paramPackage+'',
-					signType:signType+'',
-					paySign:paySign+'',
+					timeStamp:timeStamp + '',
+					nonceStr:nonceStr + '',
+					package:paramPackage + '',
+					signType:signType + '',
+					paySign:paySign + '',
 					success:(res) => {
 						if('requestPayment:ok' == res.errMsg){
 							//保存prepay_id用于发送小程序模版信息
@@ -1046,5 +1046,9 @@ Page({
 			});
 		});
 		return p;
+	},
+	onUnload: function (){
+		//离开页面时清除锁单定时器
+		clearInterval(lockInterval)
 	}
 })

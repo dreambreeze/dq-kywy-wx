@@ -22,7 +22,7 @@ Page({
     length:0,
     showImgUrl:""
   },
-  onLoad:function(options){
+  onShow(options){
     var good = wx.getStorageSync("good")
     var nodeid = wx.getStorageSync("store").request_id
     this.setData({
@@ -43,8 +43,7 @@ Page({
         "serviceitemno": good.serviceitemno
       }, 1)
   },
-  
-
+ 
   // 加购物车操作
   //   添加购物车
   tapAddCart: function (e) {

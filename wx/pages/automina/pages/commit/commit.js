@@ -43,32 +43,34 @@ Page({
         roomname: "",
         paystatus: true
     },
-
+    onShow(){
+      
+    },
     onLoad: function() {
-        var store = wx.getStorageSync("store")
-        this.setData({
-            cart: app.cart,
-            mmcart: app.cart,
-            goods: app.goods,
-            goodsList: app.goodsList ? app.goodsList : "",
-            addr: app.addr,
-            roomname: wx.getStorageSync("roomname"),
-            store: store,
-            showImgUrl: app.globalData.showImgUrl,
-            phoneinfo: wx.getStorageSync("phoneinfo"),
-            fooddefpic: wx.getStorageSync("fooddefpic")
-        });
-        //加载会员卡信息phoneinfo: wx.getStorageSync("phoneinfo"),
+      var store = wx.getStorageSync("store")
+      this.setData({
+        cart: app.cart,
+        mmcart: app.cart,
+        goods: app.goods,
+        goodsList: app.goodsList ? app.goodsList : "",
+        addr: app.addr,
+        roomname: wx.getStorageSync("roomname"),
+        store: store,
+        showImgUrl: app.globalData.showImgUrl,
+        phoneinfo: wx.getStorageSync("phoneinfo"),
+        fooddefpic: wx.getStorageSync("fooddefpic")
+      });
+      //加载会员卡信息phoneinfo: wx.getStorageSync("phoneinfo"),
 
 
-        var shopno = store['request_id'].split("#")[0]
-        this.loaddata('/index.php/Api/AutoBase/getMMVipCard', {
-            "authorizerId": app.globalData.authorizerId,
-            "type": "2",
-            "openid": wx.getStorageSync("openid"),
-            "isstoresort": 0,
-            "shopno": shopno
-        }, 1)
+      var shopno = store['request_id'].split("#")[0]
+      this.loaddata('/index.php/Api/AutoBase/getMMVipCard', {
+        "authorizerId": app.globalData.authorizerId,
+        "type": "2",
+        "openid": wx.getStorageSync("openid"),
+        "isstoresort": 0,
+        "shopno": shopno
+      }, 1)
 
         
     },

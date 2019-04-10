@@ -37,7 +37,11 @@ Page({
 			{
 				'name':'团购订单',
 				'type':9
-			}
+			},
+			{
+				'name':'在线结账',
+				'type':10
+			},
 		],
 		orderState:[
 			'全部',
