@@ -51,7 +51,7 @@
                 <view class="amount text-ellipsis">{{item.SinglePrice=='.00'?'0.00':item.SinglePrice}}</view>
                 <view class="need text-ellipsis">{{item.billPrice}}</view>
             </view>
-            <view v-if="{{billInfo || billInfo.length == 0}}" class="no-data">暂无账单</view>
+            <view wx:if="{{billInfo || billInfo.length == 0}}" class="no-data">暂无账单</view>
         </scroll-view>
         <view class="footer">
             <view class="total-price">合计：{{totalPrice}}</view>
