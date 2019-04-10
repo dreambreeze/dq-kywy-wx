@@ -67,7 +67,7 @@ Page({
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onLoad:function(){
+	onShow:function(){
 		//二维码参数
 		let ShopNoRoomNo = wx.getStorageSync('ShopNoRoomNo')
 		let ShopNoRoomNoArr = ShopNoRoomNo.split('@')
@@ -518,6 +518,14 @@ Page({
 	 * 账单支付成功
 	 */
 	handlerBillPlease(){
+		if(!this.data.billingInfo||this.data.billingInfo.length==0){
+			wx.showModal({
+				title:'提示',
+				content:'暂无账单需要结账',
+				showCancel:false
+			})
+			return
+		}
 		wx.navigateTo({
 			url:'/pages/component/pages/historycons/historycons',
 		});
