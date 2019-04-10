@@ -41,13 +41,13 @@
         <view class='select-payway'>
             <view class='ssway'>支付方式</view>
             <view class='ssrt' bindtap='showPayWay'>
-                <block wx:if="{{payWayList[pyselected].pic}}">
-                    <view class='iconfont {{payWayList[pyselected].pic}} pwl-typeIcon'></view>
+                <block wx:if="{{checkoutCard.pic}}">
+                    <view class='iconfont {{checkoutCard.pic}} pwl-typeIcon'></view>
                 </block>
-                <block wx:elif="{{!payWayList[pyselected].pic}}">
-                    <image src='{{payWayList[pyselected].PicUrl?showImgUrl+payWayList[pyselected].PicUrl:cardPicUrl}}' class="pwl-img"></image>
+                <block wx:elif="{{!checkoutCard.pic}}">
+                    <image src='{{checkoutCard.PicUrl?showImgUrl+checkoutCard.PicUrl:cardPicUrl}}' class="pwl-img"></image>
                 </block>
-                <text class='rt_type'>{{payWayList[pyselected].MembershipTypeName}}</text>
+                <text class='rt_type'>{{checkoutCard.MembershipTypeName}}</text>
                 <text class='balance' wx:if="{{checkoutCard.AutoID!='-1'}}">余额：{{checkoutCard.Balance}}</text>
                 <text class='iconfont icon-right sw_rt'></text>
             </view>

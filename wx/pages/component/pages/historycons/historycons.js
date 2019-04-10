@@ -286,25 +286,23 @@ Page({
 				MembershipTypeName:'微信支付',
 				pic:'icon-aui-icon-weichat'
 			}]
-
+			let {pyselected,shopNo} = this.data
+			checkoutCard = payWayList[0]
 			for(let i in cardType){
 				payWayList.push(cardType[i])
-				let {pyselected,shopNo} = this.data
 				//当拥有当前门店会员卡时默认支付方式为当前门店第一张卡 否则 微信支付
 				if(0 == pyselected && cardType[i].ShopNo == shopNo){
 					checkoutCard = cardType[i]
 					this.setData({
 						pyselected:(parseInt(i) + 1),
-						checkoutCard
 					})
-				}else{
-					checkoutCard = payWayList[0]
 				}
 			}
 			this.setData({
 				cardType:cardType,
-				checkoutCard:checkoutCard,
 				payWayList:payWayList,
+				pyselected,
+				checkoutCard
 			});
 			//查询账单信息
 			this.loadBillInfo()
