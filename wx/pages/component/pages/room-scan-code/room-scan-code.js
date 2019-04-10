@@ -24,7 +24,7 @@ Page({
 		//手牌号
 		handNo:'',
 		//用户微信Id
-		openId:'',
+		openid:'',
 		//功能列表
 		functionList:[
 			{
@@ -65,7 +65,7 @@ Page({
 	},
 
 	/**
-	 * 生命周期函数--监听页面加载
+	 * 生命周期函数--监听页面显示
 	 */
 	onShow:function(){
 		//二维码参数
@@ -105,7 +105,7 @@ Page({
 					showCancel:false
 				});
 				return false;
-			});
+			})
 		}
 		this.setData({
 			isShowBillLoading:true,
@@ -115,6 +115,12 @@ Page({
 		})
 		this.getFunction()
 		this.loadInitData()
+	},
+	/**
+	 * 生命周期函数--监听页面加载
+	 */
+	onLoad(){
+		
 	},
 	//获取菜单列表
 	getFunction(){
@@ -295,6 +301,7 @@ Page({
 				})
 				resolve(info)
 			}).catch((data) => {
+				this.hideBillLoading()
 				wx.showModal({
 					title:'提示',
 					content:data,
@@ -317,7 +324,7 @@ Page({
 		let {openid,checkoutCard,shopNo,businessNo,roomNo,handNo} = this.data
 		let p = new Promise((resolve,reject) => {
 			wx.request({
-				url:common.config.host + '/index.php/Api/OnLineTasks/getBillingInfo',
+				url:common.config.host + '/index.php/Api/OnLineTasks/billInfo',
 				data:{
 					'authorizerId':app.globalData.authorizerId,
 					'openid':openid,

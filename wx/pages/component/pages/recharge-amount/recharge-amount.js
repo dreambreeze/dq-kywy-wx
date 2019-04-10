@@ -76,9 +76,27 @@ Page({
                         } else {
 
                             for (var i = 0; i < res.data.info.length; i++) {
+                                console.log(cardno)
+                                console.log(shopno)
+                                console.log(res.data.info[i].CardNo == cardno)
+                                console.log(res.data.info[i].ShopNo == shopno)
                                 if (res.data.info[i].CardNo == cardno && res.data.info[i].ShopNo == shopno) {
                                     rechargeCard = res.data.info[i];
                                 }
+                            }
+                            
+                            if(!rechargeCard){
+                                wx.showModal({
+                                    title: '提示',
+                                    content: '卡片信息不存在',
+                                    showCancel: false,
+                                    success: function(res) {
+                                        if (res.confirm) {
+                                            wx.navigateBack();
+                                        }
+                                    }
+                                });
+                                return
                             }
 
                             //卡状态是否正常

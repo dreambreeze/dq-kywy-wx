@@ -288,6 +288,7 @@ Page({
 			}]
 			let {pyselected,shopNo} = this.data
 			checkoutCard = payWayList[0]
+			pyselected = 0
 			for(let i in cardType){
 				payWayList.push(cardType[i])
 				//当拥有当前门店会员卡时默认支付方式为当前门店第一张卡 否则 微信支付
@@ -615,7 +616,7 @@ Page({
 		let {openid,checkoutCard,shopNo,businessNo,roomNo,handNo} = this.data
 		let p = new Promise((resolve,reject) => {
 			wx.request({
-				url:common.config.host + '/index.php/Api/OnLineTasks/billInfo',
+				url:common.config.host + '/index.php/Api/OnLineTasks/getBillingInfo',
 				data:{
 					'authorizerId':app.globalData.authorizerId,
 					'openid':openid,
@@ -725,7 +726,7 @@ Page({
 								success:(res) => {
 									if(res.confirm){
 										wx.navigateTo({
-											url:'/pages/component/pages/recharge-amount/recharge-amount?cardno=' + checkoutCard.CardNo + '&shopNo=' + checkoutCard.shopNo + '&jumpback=1',
+											url:'/pages/component/pages/recharge-amount/recharge-amount?cardno=' + checkoutCard.CardNo + '&shopno=' + checkoutCard.ShopNo + '&jumpback=1',
 										});
 									}
 								}
@@ -1043,7 +1044,7 @@ Page({
 		});
 		return p;
 	},
-	onUnload: function (){
+	onUnload:function(){
 		//离开页面时清除锁单定时器
 		clearInterval(lockInterval)
 	}
