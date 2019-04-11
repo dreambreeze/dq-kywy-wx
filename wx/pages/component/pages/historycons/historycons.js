@@ -86,7 +86,6 @@ Page({
 			businessNo = ''
 			roomNo = ''
 			handNo = ''
-			
 			for(let item of ShopNoRoomNoArr){
 				if('businessNo' == item.split('=')[0]){
 					businessNo = item.split('=')[1]
@@ -99,7 +98,7 @@ Page({
 				}
 			}
 		}
-		if(! shopNo && ! (businessNo || roomNo || handNo)){
+		if(!shopNo && !(businessNo || roomNo || handNo)){
 			wx.showModal({
 				title:'提示',
 				content:'账单不存在，获取账单信息失败',

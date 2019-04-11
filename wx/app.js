@@ -114,7 +114,7 @@ App({
      */
     onHide: function() {
         //清除扫描二维码的门店节点标识和房间号
-        wx.removeStorageSync('ShopNoRoomNo');
+        // wx.removeStorageSync('ShopNoRoomNo');
         //清除功能模块
         wx.removeStorageSync('ucenterNav');
         wx.removeStorageSync('homeNav');

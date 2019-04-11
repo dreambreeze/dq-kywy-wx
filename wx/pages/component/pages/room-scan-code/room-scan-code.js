@@ -54,7 +54,7 @@ Page({
 				roomNo = ShopNoRoomNoArr[1].split('=')[1]
 			}
 		}
-		if(! shopNo || ! roomNo){
+		if(!shopNo || !roomNo){
 			wx.showModal({
 				title:'提示',
 				content:'房间号不存在，获取账单信息失败',
