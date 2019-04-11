@@ -262,19 +262,6 @@ Page({
 			}else{
 				cardType = data.info;
 			}
-			if(0 == cardType.length){
-				wx.showModal({
-					title:'提示',
-					content:'会员卡非正常状态，无法结账',
-					showCancel:false,
-					success:(res) => {
-						if(res.confirm){
-							wx.navigateBack();
-						}
-					}
-				});
-				return false;
-			}
 
 			//充值金额与充值赠送金额合计成余额
 			for(let i = 0; i < cardType.length; i ++){
