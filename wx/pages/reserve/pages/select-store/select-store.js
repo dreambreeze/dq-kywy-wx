@@ -121,7 +121,7 @@ Page({
                     locationStore.push({
                         'store_name': currStores.store_name,
                         'address': address == '' ? '未设置地址' : address,
-                        'tel': scurrStores.tel,
+                        'tel': currStores.tel,
                         'distance': '未知',
                         'store_img': currStores.store_img == '' ? common.config.bannerImg : common.config.showImgUrl + currStores.store_img.split(',')[0],
                         'nodeid': currStores.request_id
