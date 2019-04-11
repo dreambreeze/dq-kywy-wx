@@ -30,41 +30,7 @@ Page({
 		//用户微信Id
 		openid:'',
 		//功能列表
-		functionList:[
-			{
-				jumpName:'handleScanCode',
-				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/scan-code.png',
-				name:"扫一扫",
-			},
-			{
-				jumpName:'handleScanCode',
-				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/self-order.png',
-				name:"自助点单",
-			},
-			{
-				jumpName:'handleCallService',
-				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/index_features_02@2x.png',
-				name:"呼叫服务",
-			},
-			{
-				jumpName:'reserveTech',
-				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/index_features_03@2x.png',
-				name:"预约理疗师",
-				url:'/pages/technician/pages/techindex/techindex'
-			},
-			{
-				jumpName:'reserveRoom',
-				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/index_features_04@2x.png',
-				name:"房间预约",
-				url:'/pages/reserve/pages/reserve-room/reserve-room'
-			},
-			{
-				jumpName:'storeAssess',
-				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/index_features_05@2x.png',
-				name:"店面评价",
-				url:'/pages/reserve/pages/store-assess/store-assess'
-			},
-		],
+		functionList:[],
 		//资讯列表
 		noticeList:[],
 		//资讯弹窗显隐标识
@@ -136,10 +102,16 @@ Page({
 		//加载首页后台分配的功能模块
 		let fid = common.config.navTabBar[0].id;
 		common.getFunction(fid,app.globalData.authorizerId,0,1).then((data) => {
-			/*let functionList = data.info
+			let functionList = data.info
+			let renderList = []
+			for(let index in functionList){
+				if(functionList[index].jumpName != 'handleScanCode' ){
+					renderList.push(functionList[index])
+				}
+			}
 			this.setData({
-				functionList
-			})*/
+				functionList:renderList
+			})
 		}).catch(function(data){
 			this.setData({
 				functionList:[],
@@ -207,7 +179,7 @@ Page({
 	/**
 	 * 自助点单
 	 */
-	handleScanCode(){
+	selfServiceOrder(){
 		wx.navigateTo({
 			url:'/pages/automina/pages/detail/detail',
 		})

@@ -49,31 +49,7 @@ Page({
 		}],
 		imgurl:common.config.showImgUrl,
 		// 服务列表
-		functionList:[
-			{
-				jumpName:'handleScanCode',
-				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/scan-code.png',
-				name:"扫一扫",
-			},
-			{
-				jumpName:'reserveTech',
-				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/index_features_03@2x.png',
-				name:"预约理疗师",
-				url:'/pages/technician/pages/techindex/techindex'
-			},
-			{
-				jumpName:'reserveRoom',
-				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/index_features_04@2x.png',
-				name:"房间预约",
-				url:'/pages/reserve/pages/reserve-room/reserve-room'
-			},
-			{
-				jumpName:'storeAssess',
-				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/index_features_05@2x.png',
-				name:"店面评价",
-				url:'/pages/reserve/pages/store-assess/store-assess'
-			}
-		],
+		functionList:[],
 		//资讯列表
 		noticeList:[],
 		showNotice:false,
@@ -329,13 +305,11 @@ Page({
 	getBannerList(){
 		let _this = this;
 		common.getBanner(app.globalData.authorizerId,1).then(function(data){
-
 			if(data.info){
 				_this.setData({
 					bannerList:data.info
 				})
 			}
-
 		}).catch(function(data){
 
 		})
@@ -349,15 +323,21 @@ Page({
 		let fid = common.config.navTabBar[0].id;
 		common.getFunction(fid,app.globalData.authorizerId,0,1).then((data) => {
 			let functionList = data.info
+			let renderList = []
+			for(let index in functionList){
+				if(functionList[index].jumpName != 'selfServiceOrder' && functionList[index].jumpName != 'handleCallService'){
+					renderList.push(functionList[index])
+				}
+			}
 			this.setData({
-				functionList
+				functionList:renderList
 			})
-		}).catch(function(data){
+		}).catch((data) => {
+			console.log(data)
 			this.setData({
-				functionList:[],
-				info:data
-			});
-		});
+				functionList:[]
+			})
+		})
 	},
 
 	/**
@@ -1099,7 +1079,7 @@ Page({
 							let timer = null;
 							clearTimeout(timer);
 
-							timer = setTimeout(()=>{
+							timer = setTimeout(() => {
 								if(locationStore){
 									locationStore.sort(function(obj1,obj2){
 										var val1 = obj1.juli
