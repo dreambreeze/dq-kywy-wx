@@ -86,14 +86,17 @@ Page({
 			businessNo = ''
 			roomNo = ''
 			handNo = ''
-			if('businessNo' == ShopNoRoomNoArr[1].split('=')[0]){
-				businessNo = ShopNoRoomNoArr[1].split('=')[1]
-			}
-			if('RoomNo' == ShopNoRoomNoArr[1].split('=')[0]){
-				roomNo = ShopNoRoomNoArr[1].split('=')[1]
-			}
-			if('handNo' == ShopNoRoomNoArr[1].split('=')[0]){
-				handNo = ShopNoRoomNoArr[1].split('=')[1]
+			
+			for(let item of ShopNoRoomNoArr){
+				if('businessNo' == item.split('=')[0]){
+					businessNo = item.split('=')[1]
+				}
+				if('RoomNo' == item.split('=')[0]){
+					roomNo = item.split('=')[1]
+				}
+				if('handNo' == item.split('=')[0]){
+					handNo = item.split('=')[1]
+				}
 			}
 		}
 		if(! shopNo && ! (businessNo || roomNo || handNo)){
@@ -378,7 +381,7 @@ Page({
 		let weChatNeedAmount = 0
 		let onlyCashAmount = 0
 		for(let bill of billingInfo){
-			if(1 == bill.OnlyCash){ //限现金支付
+			if('True' == bill.OnlyCash){ //限现金支付
 				onlyCashAmount += parseFloat(bill.PaySinglePrice) * parseFloat(bill.ServiceNum)
 			}
 		}
@@ -551,7 +554,7 @@ Page({
 		let p = new Promise((resolve,reject) => {
 			//查询账单信息
 			this.getBillingInfo().then((data) => {
-				let {allcan,bsname,cannotuse,need,businessno} = data
+				let {allcan,cannotuse,need,businessno} = data
 				let info = data.info?data.info:''
 				let offerAmount = this.getInitOfferAmount(allcan,info)
 				//计算该账单 每种商品 的 价格
@@ -579,7 +582,6 @@ Page({
 				this.setData({
 					billingInfo:info,
 					need:need,
-					bsname:bsname,
 					businessNo:businessno,
 					discountList:allcan,
 					offerAmount:offerAmount,
@@ -633,6 +635,10 @@ Page({
 				success:(res) => {
 					wx.hideLoading();
 					if(200 == res.statusCode){
+						console.log(res.data.bsname)
+						this.setData({
+							bsname:res.data.bsname
+						})
 						if(1 == res.data.status){
 							if('' == res.data.info){
 								reject('没有查询到账单信息');

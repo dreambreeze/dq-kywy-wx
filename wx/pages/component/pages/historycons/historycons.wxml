@@ -2,7 +2,7 @@
     <view class="bill-box">
         <view class="bill-title">{{bsname}}</view>
         <view class="bill-stitle flex-wrp">
-            <view class="room-no">房间号：{{billingInfo[0].RoomName}}</view>
+            <view class="room-no">房间号：{{billingInfo[0].RoomNo}}</view>
             <view class="con-bills">消费账单：{{businessNo}}</view>
         </view>
         <view class="column-name flex-wrp">
@@ -13,7 +13,7 @@
             <view class="need">需付</view>
         </view>
         <view class="bill-con flex-wrp" wx:for="{{billingInfo}}" wx:key='index'>
-            <view class="pname text-ellipsis">{{item.ServiceItemName}}</view>
+            <view class="pname text-ellipsis">{{item.ServiceItemName}}{{'True' == item.OnlyCash?'(限微信)':''}}</view>
             <view class="work-no text-ellipsis">{{!item.StaffWorkNo ?'' : item.StaffWorkNo }}</view>
             <view class="number text-ellipsis">{{item.ServiceNum}}</view>
             <view class="amount text-ellipsis">{{item.SinglePrice=='.00'?'0.00':item.SinglePrice}}</view>
@@ -28,7 +28,8 @@
             <!-- 优惠券选择结果 -->
             <view class='discount-result' bindtap='showDiscount'>
                 <view>优惠券
-                    <text>已选{{selectCouponsNum}}张</text> </view>
+                    <text>已选{{selectCouponsNum}}张</text>
+                </view>
                 <view class='red-font'>已优惠{{offerAmount}}元</view>
                 <text class='iconfont icon-right sw_rt'></text>
             </view>
@@ -79,7 +80,8 @@
             </view>
         </view>
         <view class='discount-result'>您已选中优惠券
-            <text class='red-font'>{{selectCouponsNum}}</text>张，共可抵用
+            <text class='red-font'>{{selectCouponsNum}}</text>
+                                      张，共可抵用
             <text class='red-font'>{{offerAmount}}</text>
         </view>
         <view class='discount-list-box' wx:if='{{!isShowDisableDiscount}}'>

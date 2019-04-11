@@ -33,6 +33,11 @@ Page({
 		functionList:[
 			{
 				jumpName:'handleScanCode',
+				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/scan-code.png',
+				name:"扫一扫",
+			},
+			{
+				jumpName:'handleScanCode',
 				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/self-order.png',
 				name:"自助点单",
 			},
@@ -42,23 +47,23 @@ Page({
 				name:"呼叫服务",
 			},
 			{
-				jumpName:'',
+				jumpName:'reserveTech',
 				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/index_features_03@2x.png',
 				name:"预约理疗师",
 				url:'/pages/technician/pages/techindex/techindex'
 			},
 			{
-				jumpName:'',
+				jumpName:'reserveRoom',
 				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/index_features_04@2x.png',
 				name:"房间预约",
 				url:'/pages/reserve/pages/reserve-room/reserve-room'
 			},
 			{
-				jumpName:'',
+				jumpName:'storeAssess',
 				src:'https://iservice.daqisoft.cn/Public/Home/images/newimages/index_features_05@2x.png',
 				name:"店面评价",
 				url:'/pages/reserve/pages/store-assess/store-assess'
-			}
+			},
 		],
 		//资讯列表
 		noticeList:[],
