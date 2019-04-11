@@ -61,6 +61,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        
         let checkoutDoCard = options.checkoutDoCard ? options.checkoutDoCard : false
         cardid = options.cardid;
         am = options.money;
@@ -492,7 +493,7 @@ Page({
                                         showCancel: false,
                                         success: (res) => {
                                             if (res.confirm) {
-                                                if(this.data.checkoutDoCard){
+                                                if(this.data.checkoutDoCard == 'true'){
                                                     wx.reLaunch({
                                                         url: '/pages/component/pages/historycons/historycons',
                                                     });

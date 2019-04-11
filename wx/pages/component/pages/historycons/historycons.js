@@ -70,7 +70,7 @@ Page({
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onShow(options){
+	onLoad(options){
 		clearInterval(lockInterval)
 		//记录打开页面时间
 		openPageTime = new Date().getTime();
