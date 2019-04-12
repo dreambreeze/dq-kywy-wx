@@ -182,11 +182,11 @@ Page({
 							//1s请求一次锁单是否成功
 							lockInterval = setInterval(() => {
 								lockOrderUseTime++
-								if(lockOrderUseTime >= 5){
+								if(lockOrderUseTime >= 8){
 									clearInterval(lockInterval)
 									wx.showModal({
 										title:'提示',
-										content:'网络信号异常，请重试...',
+										content:'请求超时，请重试...',
 										showCancel:false,
 										success:(res) => {
 											if(res.confirm){
