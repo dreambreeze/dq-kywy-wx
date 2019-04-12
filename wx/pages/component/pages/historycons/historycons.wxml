@@ -13,7 +13,10 @@
             <view class="need">需付</view>
         </view>
         <view class="bill-con flex-wrp" wx:for="{{billingInfo}}" wx:key='index'>
-            <view class="pname text-ellipsis">{{item.ServiceItemName}}{{'True' == item.OnlyCash?'(限微信)':''}}</view>
+            <view class="pname text-ellipsis">
+                {{item.ServiceItemName}}  
+                <text class="red-font">{{'True' == item.OnlyCash?'(限微信)':''}}</text>  
+            </view>
             <view class="work-no text-ellipsis">{{!item.StaffWorkNo ?'' : item.StaffWorkNo }}</view>
             <view class="number text-ellipsis">{{item.ServiceNum}}</view>
             <view class="amount text-ellipsis">{{item.SinglePrice=='.00'?'0.00':item.SinglePrice}}</view>

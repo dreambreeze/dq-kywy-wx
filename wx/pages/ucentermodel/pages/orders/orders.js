@@ -68,15 +68,13 @@ Page({
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onLoad(options){
+	onShow(options){
 		var ymd = new Date('YYYYMMDDHH')
-
 		let _this = this;
 		wx.showLoading({
 			title:'加载中',
 			mask:true
 		});
-
 		let openid = wx.getStorageSync('openid')
 		openid = openid?openid:'omd4W0cMbxQnUkZITcq5ggoWXJtI'
 		this.setData({
@@ -99,7 +97,6 @@ Page({
 				});
 			}
 		}).catch(function(data){
-
 			wx.hideLoading();
 			_this.setData({
 				orderData:''
@@ -112,6 +109,51 @@ Page({
 		});
 	},
 
+
+	/**
+	 * 生命周期函数--监听页面加载
+	 */
+	onLoad(options){
+		var ymd = new Date('YYYYMMDDHH')
+		let _this = this;
+		wx.showLoading({
+			title:'加载中',
+			mask:true
+		});
+		let openid = wx.getStorageSync('openid')
+		openid = openid?openid:'omd4W0cMbxQnUkZITcq5ggoWXJtI'
+		this.setData({
+			openid
+		})
+		common.checkingOrder(app.globalData.authorizerId,'','').then(function(data){
+			wx.hideLoading();
+			if(data.info.length > 0){
+				_this.setData({
+					orderData:data.info
+				});
+			}else{
+				_this.setData({
+					orderData:''
+				});
+				wx.showModal({
+					title:'提示',
+					content:'没有查询到订单信息',
+					showCancel:false
+				});
+			}
+		}).catch(function(data){
+			wx.hideLoading();
+			_this.setData({
+				orderData:''
+			});
+			wx.showModal({
+				title:'提示',
+				content:data,
+				showCancel:false
+			});
+		});
+	},
+	
 	/**
 	 * 点击切换全部订单和分类订单
 	 */

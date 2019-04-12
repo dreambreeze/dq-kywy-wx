@@ -3,7 +3,7 @@
         <view class="head-info flex-wrp">
             <image src="{{orderData[0].picurl ? showImgUrl + orderData[0].picurl : cardPicUrl}}" lazy-load mode="aspectFill"></image>
             <view class="infos">
-                <view class="ptitle">在线{{orderData.cardmoney > 0 ? '会员' : '微信'}}结账订单详情</view>
+                <view class="ptitle">{{orderData.cardmoney > 0 ? '会员' : '微信'}}在线结账订单详情</view>
                 <view class="pstore">门店：{{orderData.storeinfo.store_name}}</view>
                 <block wx:if="{{address}}">
                     <view class="pstore">地址：{{address}}</view>
@@ -18,8 +18,8 @@
     <view class="bill-box">
         <view class="bill-title">{{orderData.storeinfo.store_name}}</view>
         <view class="bill-stitle flex-wrp">
-            <view class="room-no">房间号：{{orderData.paydetail.RoomNos}}</view>
-            <view class="con-bills" wx:if="{{orderData.out_trade_no}}">结账单号：{{orderData.out_trade_no}}</view>
+            <view class="room-no text-ellipsis">房间号：{{orderData.paydetail.RoomNos}}</view>
+            <view class="con-bills text-ellipsis" wx:if="{{orderData.out_trade_no}}">结账单号：{{orderData.out_trade_no}}</view>
         </view>
         <!--消费列表-->
         <view class="column-name flex-wrp">
@@ -29,7 +29,7 @@
             <view class="amount">金额</view>
             <view class="need">需付</view>
         </view>
-        <scroll-view scroll-y class="bill-scroll">
+        <view class="bill-scroll">
             <view class="bill-con flex-wrp" wx:for="{{orderData.amount_info.ckinfos}}" wx:key='index'>
                 <view class="pname text-ellipsis">{{item.ServiceItemName}}</view>
                 <view class="work-no text-ellipsis">{{!item.StaffWorkNo ?'--' : item.StaffWorkNo }}</view>
@@ -37,7 +37,7 @@
                 <view class="amount text-ellipsis">{{item.Omoney}}</view>
                 <view class="need text-ellipsis">{{item.NeedMoney}}</view>
             </view>
-        </scroll-view>
+        </view>
         <!--使用优惠券列表-->
         <view class='discount-list-box'>
             <view class='discount-list'>

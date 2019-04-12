@@ -176,10 +176,26 @@ Page({
 			}else if(1 == data.status){ //锁单请求发起成功，等待锁单成功
 				//2秒后再次请锁单状态
 				setTimeout(() => {
+					let lockOrderUseTime = 0
 					this.lockOrder().then((data) => {
 						if(1 == data.status){
-							//0.5s请求一次锁单是否成功
+							//1s请求一次锁单是否成功
 							lockInterval = setInterval(() => {
+								lockOrderUseTime++
+								if(lockOrderUseTime >= 5){
+									clearInterval(lockInterval)
+									wx.showModal({
+										title:'提示',
+										content:'网络信号异常，请重试...',
+										showCancel:false,
+										success:(res) => {
+											if(res.confirm){
+												wx.navigateBack()
+											}
+										}
+									})
+									return 
+								}
 								this.lockOrder().then((data) => {
 									if(2 == data.status){
 										clearInterval(lockInterval)
@@ -199,7 +215,7 @@ Page({
 										}
 									});
 								});
-							},500)
+							},1000)
 						}else if(2 == data.status){
 							clearInterval(lockInterval)
 							this.loadInitData()
@@ -923,6 +939,12 @@ Page({
 				if(200 == res.statusCode){
 					if(1 == res.data.status){
 						this.paySuccess()
+					}else if(0 == res.data.status){
+						wx.showModal({
+							title:'提示',
+							content:res.data.info,
+							showCancel:false
+						});
 					}else{
 						wx.showModal({
 							title:'提示',

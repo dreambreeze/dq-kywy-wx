@@ -101,8 +101,10 @@ Page({
 					item.NeedMoney = (item.Omoney*item.DisCount).toFixed(2)
 				}
 				orderData.amount_info.ckinfos = ckinfos
-
-				orderData.amount_info.tasktime = util.dateFtt('yyyy-MM-dd hh:mm:ss',new Date(orderData.amount_info.tasktime))
+				let taskTime = orderData.amount_info.tasktime.replace(/\-/g, "/")
+				taskTime = taskTime.substring(0,taskTime.length-4)
+				console.log(taskTime)
+				orderData.amount_info.tasktime = util.dateFtt('yyyy-MM-dd hh:mm:ss',new Date(taskTime))
 
 				this.setData({
 					orderData,

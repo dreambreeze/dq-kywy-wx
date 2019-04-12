@@ -236,7 +236,7 @@
                     </image>
                     <view class="order-info">
                         <view class='order-left'></view>
-                        <view class="name">在线{{item.cardmoney > 0 ? '会员' : '微信'}}结账</view>
+                        <view class="name">{{item.cardmoney > 0 ? '会员' : '微信'}}在线结账</view>
                         <view class="type-name">结账时间：{{item.tasktime}}</view>
                         <view class="type-name">结账门店：{{item.shopname}}</view>
                         <view class="type-name">结账单号：{{item.out_trade_no}}</view>

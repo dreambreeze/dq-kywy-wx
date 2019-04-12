@@ -95,7 +95,53 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad(){
-
+		//二维码参数
+		let ShopNoRoomNo = wx.getStorageSync('ShopNoRoomNo')
+		let ShopNoRoomNoArr = ShopNoRoomNo.split('@')
+		let shopNo = 'DQH02'
+		let roomNo = '333'
+		if('undefined' !== ShopNoRoomNoArr[0]){
+			shopNo = ShopNoRoomNoArr[0].split('=')[1]
+			if('RoomNo' == ShopNoRoomNoArr[1].split('=')[0]){
+				roomNo = ShopNoRoomNoArr[1].split('=')[1]
+			}
+		}
+		if(!shopNo || !roomNo){
+			wx.showModal({
+				title:'提示',
+				content:'房间号不存在，获取账单信息失败',
+				showCancel:false,
+				success:(res) => {
+					if(res.confirm){
+						wx.navigateBack();
+					}
+				}
+			});
+			return false;
+		}
+		//获取用户openid
+		let openid = wx.getStorageSync('openid');
+		if(! openid || openid == ""){
+			common.getLogin(app.globalData.authorizerId).then((data) => {
+				openid = data;
+			}).catch((data) => {
+				this.hideBillLoading()
+				wx.showModal({
+					title:'提示',
+					content:'获取账单信息失败',
+					showCancel:false
+				});
+				return false;
+			})
+		}
+		this.setData({
+			isShowBillLoading:true,
+			shopNo:shopNo + '',
+			roomNo:roomNo + '',
+			openid:openid,
+		})
+		this.getFunction()
+		this.loadInitData()
 	},
 	//获取菜单列表
 	getFunction(){
@@ -278,6 +324,11 @@ Page({
 				})
 				resolve(info)
 			}).catch((data) => {
+				let info = data.info?data.info:''
+				this.setData({
+					billingInfo:info,
+					totalPrice:0,
+				})
 				this.hideBillLoading()
 				wx.showModal({
 					title:'提示',
