@@ -54,7 +54,7 @@ Page({
 				roomNo = ShopNoRoomNoArr[1].split('=')[1]
 			}
 		}
-		if(!shopNo || !roomNo){
+		if(! shopNo || ! roomNo){
 			wx.showModal({
 				title:'提示',
 				content:'房间号不存在，获取账单信息失败',
@@ -106,7 +106,7 @@ Page({
 				roomNo = ShopNoRoomNoArr[1].split('=')[1]
 			}
 		}
-		if(!shopNo || !roomNo){
+		if(! shopNo || ! roomNo){
 			wx.showModal({
 				title:'提示',
 				content:'房间号不存在，获取账单信息失败',
@@ -151,7 +151,7 @@ Page({
 			let functionList = data.info
 			let renderList = []
 			for(let index in functionList){
-				if(functionList[index].jumpName != 'handleScanCode' ){
+				if(functionList[index].jumpName != 'handleScanCode'){
 					renderList.push(functionList[index])
 				}
 			}
@@ -317,6 +317,9 @@ Page({
 						let billPrice = (bill.PaySinglePrice * bill.ServiceNum).toFixed(2)
 						bill.billPrice = billPrice
 					}
+					this.setData({
+						businessNo:info[0].BusinessNo
+					})
 				}
 				this.setData({
 					billingInfo:info,
@@ -568,8 +571,9 @@ Page({
 			})
 			return
 		}
+		let businessNo = this.data.businessNo
 		wx.navigateTo({
-			url:'/pages/component/pages/historycons/historycons',
+			url:'/pages/component/pages/historycons/historycons?businessNo=' + businessNo,
 		});
 	},
 })

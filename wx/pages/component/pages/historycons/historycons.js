@@ -77,7 +77,7 @@ Page({
 		//二维码参数
 		let ShopNoRoomNo = wx.getStorageSync('ShopNoRoomNo')
 		let ShopNoRoomNoArr = ShopNoRoomNo.split('@')
-		let businessNo = '201903130001'
+		let businessNo = options.businessNo
 		let shopNo = 'DQH01'
 		let roomNo = ''
 		let handNo = ''
@@ -332,6 +332,16 @@ Page({
 			this.setData({
 				isShowPayWay:false,
 			})
+		}).catch((data) => {
+			wx.showModal({
+				title:'提示',
+				content:data,
+				showCancel:false,
+				success:(res) => {
+					
+				}
+			})
+			return false
 		})
 	},
 
@@ -637,17 +647,31 @@ Page({
 				success:(res) => {
 					wx.hideLoading();
 					if(200 == res.statusCode){
-						console.log(res.data.bsname)
-						this.setData({
-							bsname:res.data.bsname
-						})
 						if(1 == res.data.status){
+							this.setData({
+								bsname:res.data.bsname
+							})
 							if('' == res.data.info){
 								reject('没有查询到账单信息');
 							}else{
 								resolve(res.data);
 							}
+						}else if('-1'  == res.data.status ){
+							wx.showModal({
+								title:'提示',
+								content:data,
+								showCancel:false,
+								success:(res) => {
+									if(res.confirm){
+										wx.navigateBack()
+									}
+								}
+							})
+							return
 						}else{
+							this.setData({
+								bsname:res.data.bsname
+							})
 							reject(res.data.info);
 						}
 					}else{
